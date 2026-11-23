@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shubham & Pooja — Wedding Invitation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FAF5EC;
+      --terracotta: #C86D51;
+      --olive: #4A5D4E;
+      --gold: #C9A253;
+      --gold-dark: #9B7428;
+      --navy: #1E2A38;
+      --blush: #F2D7D0;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--cream);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    .font-serif-display {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .font-script {
+      font-family: 'Pinyon Script', cursive;
+    }
+
+    /* 3D Isometric / Side-View Suitcase Record Player */
+    .scene-3d {
+      perspective: 1400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .suitcase-3d {
+      position: relative;
+      width: 310px;
+      height: 250px;
+      transform-style: preserve-3d;
+      transform: rotateX(48deg) rotateZ(-28deg);
+      transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+      cursor: pointer;
+    }
+
+    .suitcase-3d.open {
+      transform: rotateX(42deg) rotateZ(-22deg) scale(1.06);
+    }
+
+    /* Suitcase Base Box */
+    .case-base {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, #2C3D4F 0%, #192430 100%);
+      border-radius: 16px;
+      border: 3px solid #D4AF37;
+      box-shadow:
+        -12px 14px 0px #121A24,
+        -14px 16px 0px #A6822E,
+        -24px 28px 36px rgba(0, 0, 0, 0.55);
+      transform-style: preserve-3d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Side Wall Thickness & Handle (Side Profile Detail) */
+    .case-side-front {
+      position: absolute;
+      bottom: -24px;
+      left: 6px;
+      right: 6px;
+      height: 24px;
+      background: linear-gradient(90deg, #16202A, #253545, #16202A);
+      border-bottom: 3px solid #D4AF37;
+      border-radius: 0 0 12px 12px;
+      transform-origin: top;
+      transform: rotateX(-90deg);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    .brass-clasp {
+      width: 24px;
+      height: 14px;
+      background: linear-gradient(180deg, #F5DC8E, #B5892E);
+      border-radius: 3px;
+      border: 1px solid #6E5014;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .side-handle {
+      width: 90px;
+      height: 12px;
+      background: linear-gradient(180deg, #8B4A32, #5C2E1E);
+      border: 2px solid #D4AF37;
+      border-radius: 6px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.6);
+    }
+
+    .case-side-left {
+      position: absolute;
+      top: 8px;
+      bottom: 8px;
+      left: -24px;
+      width: 24px;
+      background: linear-gradient(180deg, #141D26, #223140);
+      border-left: 3px solid #D4AF37;
+      border-radius: 12px 0 0 12px;
+      transform-origin: right;
+      transform: rotateY(90deg);
+    }
+
+    /* Turntable Platter & Vinyl */
+    .platter-deck {
+      width: 268px;
+      height: 210px;
+      background: radial-gradient(circle at center, #3A2C25 0%, #1F1815 100%);
+      border-radius: 10px;
+      border: 2px solid rgba(212, 175, 55, 0.45);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 4px 12px rgba(0,0,0,0.7);
+    }
+
+    .vinyl-disc {
+      width: 176px;
+      height: 176px;
+      border-radius: 50%;
+      background:
+        repeating-radial-gradient(
+          circle at center,
+          #111 0px,
+          #111 2px,
+          #222 3px,
+          #141414 4px
+        );
+      box-shadow: 0 6px 16px rgba(0,0,0,0.8), 0 0 0 2px #333;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.6s ease;
+    }
+
+    .vinyl-disc.spinning {
+      animation: spinVinyl 4.5s linear infinite;
+    }
+
+    @keyframes spinVinyl {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .vinyl-sheen {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 45deg,
+        transparent 0deg,
+        rgba(255, 255, 255, 0.14) 35deg,
+        transparent 75deg,
+        transparent 180deg,
+        rgba(255, 255, 255, 0.12) 215deg,
+        transparent 255deg
+      );
+      pointer-events: none;
+    }
+
+    /* Bride & Groom Center Pin */
+    .couple-pin {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #FFF8EB 0%, #F2D7D0 100%);
+      border: 3px solid #D4AF37;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 3;
+    }
+
+    /* Tonearm */
+    .tonearm-base {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #F5DC8E, #9B7428);
+      border: 2px solid #5A4110;
+      z-index: 5;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.6);
+    }
+
+    .tonearm-stick {
+      position: absolute;
+      top: 11px;
+      left: 11px;
+      width: 6px;
+      height: 118px;
+      background: linear-gradient(90deg, #E5C168, #FFF2C6, #9B7428);
+      border-radius: 4px;
+      transform-origin: top center;
+      transform: rotate(12deg);
+      transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: -3px 4px 6px rgba(0,0,0,0.5);
+    }
+
+    .tonearm-stick.playing {
+      transform: rotate(33deg);
+    }
+
+    .tonearm-head {
+      position: absolute;
+      bottom: -6px;
+      left: -3px;
+      width: 12px;
+      height: 18px;
+      background: #1E2A38;
+      border: 1.5px solid #D4AF37;
+      border-radius: 2px;
+    }
+
+    /* Hinged 3D Lid */
+    .case-lid {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #32465A 0%, #1B2734 100%);
+      border-radius: 16px;
+      border: 3px solid #D4AF37;
+      transform-origin: top center;
+      transform: rotateX(0deg) translateZ(4px);
+      transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+      backface-visibility: visible;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.45);
+      padding: 18px;
+    }
+
+    .suitcase-3d.open .case-lid {
+      transform: rotateX(118deg) translateZ(4px);
+      pointer-events: none;
+    }
+
+    .lid-inner-plaque {
+      border: 1.5px solid rgba(212, 175, 55, 0.65);
+      border-radius: 10px;
+      padding: 16px 20px;
+      text-align: center;
+      background: rgba(18, 26, 36, 0.55);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Scratch Card Canvas */
+    .scratch-container {
+      position: relative;
+      width: 320px;
+      height: 200px;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(30, 42, 56, 0.16);
+      border: 2px solid var(--gold);
+      user-select: none;
+      touch-action: none;
+    }
+
+    #scratchCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      cursor: grab;
+      z-index: 2;
+    }
+
+    /* Arched Window Frame */
+    .arch-window {
+      border-radius: 210px 210px 24px 24px;
+      border: 8px solid #E9DEC9;
+      box-shadow:
+        0 0 0 2px var(--gold),
+        0 24px 50px rgba(30, 42, 56, 0.14),
+        inset 0 6px 18px rgba(0,0,0,0.12);
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(180deg, #D9E8F5 0%, #FBE8D3 100%);
+    }
+
+    /* Floating Equalizer Bars */
+    .eq-bar {
+      width: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      height: 6px;
+      transition: height 0.2s ease;
+    }
+    .playing .eq-bar:nth-child(1) { animation: eqBounce 0.6s infinite alternate; }
+    .playing .eq-bar:nth-child(2) { animation: eqBounce 0.45s infinite alternate 0.15s; }
+    .playing .eq-bar:nth-child(3) { animation: eqBounce 0.7s infinite alternate 0.3s; }
+    .playing .eq-bar:nth-child(4) { animation: eqBounce 0.5s infinite alternate 0.1s; }
+
+    @keyframes eqBounce {
+      0% { height: 4px; }
+      100% { height: 16px; }
+    }
+
+    /* Modal Backdrop */
+    .modal-backdrop {
+      background: rgba(20, 29, 38, 0.72);
+      backdrop-filter: blur(6px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Audio Element for Aabaad Barbaad (Ludo) -->
+  <audio id="weddingAudio" loop preload="auto">
+    <source src="aabaad-barbaad.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- Floating Music Control Pill -->
+  <div id="musicPill" class="fixed bottom-5 right-5 z-50 flex items-center gap-2.5 bg-[#1E2A38]/95 text-[#FAF5EC] px-4 py-2.5 rounded-full shadow-xl border border-[#C9A253]/60 backdrop-blur-md">
+    <button id="toggleMusicBtn" onclick="toggleAudio()" class="flex items-center gap-2 text-xs font-medium tracking-wider uppercase focus:outline-none">
+      <span id="eqBars" class="flex items-end gap-0.5 h-4">
+        <span class="eq-bar"></span>
+        <span class="eq-bar"></span>
+        <span class="eq-bar"></span>
+        <span class="eq-bar"></span>
+      </span>
+      <span id="musicStatusText">Play Music</span>
+    </button>
+    <span class="text-[#C9A253]/50">|</span>
+    <a href="https://www.youtube.com/results?search_query=Aabaad+Barbaad+Ludo+Arijit+Singh" target="_blank" rel="noopener noreferrer" class="text-[11px] text-[#F5DC8E] hover:underline font-medium" title="Listen to Aabaad Barbaad">
+      ♪ Aabaad Barbaad
+    </a>
+  </div>
+
+  <!-- =========================================================
+       SECTION 1: 3D SIDE-VIEW LP RECORD PLAYER OPENING GATE
+  ========================================================== -->
+  <section id="recordSection" class="min-h-screen flex flex-col items-center justify-between py-12 px-4 relative overflow-hidden bg-gradient-to-b from-[#17212B] via-[#223140] to-[#2C3E4F] text-[#FAF5EC]">
+    <!-- Subtle Decorative Corner Filigree -->
+    <div class="text-center z-10 mt-2">
+      <p class="text-xs uppercase tracking-[0.32em] text-[#C9A253] mb-2">Together With Their Families</p>
+      <h1 class="font-serif-display text-4xl sm:text-5xl tracking-wide text-[#FAF5EC]">
+        Shubham <span class="font-script text-[#F5DC8E] text-5xl sm:text-6xl mx-1">&amp;</span> Pooja
+      </h1>
+    </div>
+
+    <!-- 3D Suitcase Turntable -->
+    <div class="scene-3d my-8 z-10">
+      <div id="suitcase3D" class="suitcase-3d" onclick="openRecordPlayer()" role="button" tabindex="0" aria-label="Tap to open record player">
+        <!-- Base Turntable Box -->
+        <div class="case-base">
+          <!-- Side Wall Thickness & Handle -->
+          <div class="case-side-front">
+            <div class="brass-clasp"></div>
+            <div class="side-handle"></div>
+            <div class="brass-clasp"></div>
+          </div>
+          <div class="case-side-left"></div>
+
+          <!-- Turntable Platter -->
+          <div class="platter-deck">
+            <div id="vinylDisc" class="vinyl-disc">
+              <div class="vinyl-sheen"></div>
+              <!-- Bride & Groom Enamel Pin -->
+              <div class="couple-pin">
+                <svg viewBox="0 0 80 80" class="w-14 h-14">
+                  <!-- Groom -->
+                  <circle cx="29" cy="27" r="8" fill="#F4C7A1" />
+                  <path d="M21 25 Q29 15 37 25" fill="#1E2A38" />
+                  <path d="M17 55 C17 40 41 40 41 55 Z" fill="#1E2A38" />
+                  <polygon points="29,38 26,45 32,45" fill="#C9A253" />
+                  <!-- Bride -->
+                  <circle cx="51" cy="29" r="7.5" fill="#F7D1B2" />
+                  <path d="M43 28 Q51 17 59 28 L61 44 L41 44 Z" fill="#2C1A12" />
+                  <path d="M39 55 C39 41 63 41 63 55 Z" fill="#C86D51" />
+                  <circle cx="51" cy="25" r="1.5" fill="#D4AF37" />
+                  <!-- Heart -->
+                  <path d="M40 16 C38 13, 34 15, 40 20 C46 15, 42 13, 40 16 Z" fill="#C86D51" />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Tonearm -->
+            <div class="tonearm-base">
+              <div id="tonearmStick" class="tonearm-stick">
+                <div class="tonearm-head"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hinged 3D Top Lid -->
+        <div class="case-lid">
+          <div class="lid-inner-plaque">
+            <span class="text-[10px] uppercase tracking-[0.3em] text-[#C9A253] mb-2">Wedding Vinyl Edition</span>
+            <p class="font-script text-4xl text-[#F5DC8E] leading-tight">S &amp; P</p>
+            <div class="w-12 h-[1px] bg-[#C9A253]/60 my-2.5"></div>
+            <p class="font-serif-display italic text-base text-[#FAF5EC]/90">Tap to Open &amp; Play</p>
+            <p class="text-[10px] uppercase tracking-widest text-[#C9A253] mt-1">♪ Aabaad Barbaad</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prompt / Scroll Cue -->
+    <div id="recordPrompt" class="text-center z-10 mb-2">
+      <p class="text-xs uppercase tracking-[0.25em] text-[#F5DC8E] animate-pulse">
+        Tap the Suitcase Record Player to Begin
+      </p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 2: SCROLL-DRIVEN ITALIAN RIVIERA CAR DRIVE
+  ========================================================== -->
+  <section id="italianDriveSection" class="relative h-[220vh] bg-gradient-to-b from-[#89BCE0] via-[#CBE4F6] to-[#FAF5EC]">
+    <div class="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between">
+      <!-- Top Narrative Caption -->
+      <div class="text-center pt-12 px-4 z-20">
+        <p class="text-xs uppercase tracking-[0.28em] text-[#4A5D4E] font-semibold">La Dolce Vita Begins</p>
+        <h2 class="font-serif-display text-3xl sm:text-5xl text-[#1E2A38] mt-1">
+          A Journey of Love &amp; Forever
+        </h2>
+        <p class="text-xs sm:text-sm text-[#1E2A38]/75 mt-2 max-w-md mx-auto">
+          Scroll down as Shubham &amp; Pooja cruise along the sun-drenched Italian coast toward their wedding celebration.
+        </p>
+      </div>
+
+      <!-- Illustrated Italian Coastline SVG Scene -->
+      <div class="relative w-full h-[65vh] mt-auto">
+        <svg viewBox="0 0 1440 520" preserveAspectRatio="xMidYMax slice" class="w-full h-full">
+          <!-- Sun -->
+          <circle cx="1140" cy="95" r="46" fill="#FFE699" opacity="0.85" />
+          <!-- Distant Hills -->
+          <path d="M0,260 Q280,150 580,250 T1160,230 L1440,210 L1440,360 L0,360 Z" fill="#9DBB9E" />
+          <!-- Amalfi Cliffside Houses -->
+          <g transform="translate(140, 145)">
+            <rect x="0" y="45" width="54" height="65" fill="#F4C095" rx="2" />
+            <polygon points="-4,45 27,25 58,45" fill="#C86D51" />
+            <rect x="48" y="25" width="62" height="85" fill="#F9E2AE" rx="2" />
+            <polygon points="44,25 79,5 114,25" fill="#B55438" />
+            <rect x="104" y="55" width="52" height="55" fill="#E9967A" rx="2" />
+            <!-- Cypress Trees -->
+            <ellipse cx="-16" cy="72" rx="9" ry="38" fill="#3E5641" />
+            <ellipse cx="168" cy="75" rx="8" ry="34" fill="#3E5641" />
+          </g>
+          <!-- Mediterranean Sea -->
+          <rect x="0" y="305" width="1440" height="105" fill="#3B8AC4" />
+          <path d="M0,325 Q180,318 360,325 T720,325 T1080,325 T1440,325" stroke="#85C7F2" stroke-width="3" fill="none" />
+          <path d="M80,355 Q260,348 440,355 T800,355 T1160,355" stroke="#85C7F2" stroke-width="2.5" fill="none" />
+          <!-- Coastal Stone Wall & Road -->
+          <rect x="0" y="395" width="1440" height="22" fill="#E5D5B7" />
+          <rect x="0" y="417" width="1440" height="103" fill="#464B52" />
+          <line x1="0" y1="468" x2="1440" y2="468" stroke="#FAF5EC" stroke-width="4" stroke-dasharray="36 28" />
+        </svg>
+
+        <!-- Moving Vintage Convertible Car with Couple -->
+        <div id="coupleCar" class="absolute bottom-[54px] left-0 w-64 sm:w-80 transition-transform duration-75 ease-out z-20 will-change-transform">
+          <svg viewBox="0 0 320 150" class="w-full drop-shadow-xl">
+            <!-- Flowing Bridal Dupatta / Scarf in Breeze -->
+            <path d="M122,46 Q72,30 28,48 Q68,54 118,54 Z" fill="#F2D7D0" opacity="0.9" />
+            <!-- Groom & Bride Silhouettes in Convertible -->
+            <circle cx="176" cy="48" r="13" fill="#F4C7A1" />
+            <path d="M164,44 Q176,28 189,44" fill="#1E2A38" />
+            <rect x="162" y="61" width="28" height="24" rx="6" fill="#1E2A38" />
+            <!-- Bride -->
+            <circle cx="136" cy="50" r="12" fill="#F7D1B2" />
+            <path d="M124,48 Q136,30 148,48 L152,72 L120,72 Z" fill="#2C1A12" />
+            <rect x="122" y="62" width="28" height="24" rx="6" fill="#C86D51" />
+            <!-- Windshield -->
+            <polygon points="196,76 212,44 218,44 205,76" fill="#DDF2FF" opacity="0.85" />
+            <!-- Vintage Italian Roadster Body -->
+            <path d="M32,84 Q42,68 95,72 L225,72 Q278,72 292,92 L292,114 L26,114 Q22,96 32,84 Z" fill="#C86D51" />
+            <path d="M36,92 L288,92" stroke="#F5DC8E" stroke-width="3" />
+            <!-- Just Married Banner -->
+            <rect x="44" y="88" width="66" height="16" rx="3" fill="#FAF5EC" />
+            <text x="77" y="99" text-anchor="middle" font-size="8" font-family="serif" fill="#1E2A38" font-weight="bold">S &amp; P</text>
+            <!-- Wheels -->
+            <circle cx="84" cy="116" r="22" fill="#1E2A38" />
+            <circle cx="84" cy="116" r="12" fill="#E5D5B7" />
+            <circle cx="84" cy="116" r="5" fill="#C9A253" />
+            <circle cx="242" cy="116" r="22" fill="#1E2A38" />
+            <circle cx="242" cy="116" r="12" fill="#E5D5B7" />
+            <circle cx="242" cy="116" r="5" fill="#C9A253" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 3: SCRATCHABLE GOLD-FOIL COUNTDOWN CARD
+  ========================================================== -->
+  <section class="py-20 px-4 flex flex-col items-center justify-center bg-[#FAF5EC] relative">
+    <div class="text-center max-w-lg mb-8">
+      <p class="text-xs uppercase tracking-[0.28em] text-[#C86D51] font-semibold">Save The Dates</p>
+      <h2 class="font-serif-display text-4xl sm:text-5xl text-[#1E2A38] mt-1">Scratch to Reveal</h2>
+      <p class="text-sm text-[#1E2A38]/70 mt-2">Rub the gold foil card below to uncover when the celebrations begin.</p>
+    </div>
+
+    <div class="scratch-container bg-white flex flex-col items-center justify-center p-5 text-center">
+      <!-- Underlying Revealed Content -->
+      <div class="z-10">
+        <p class="text-[11px] uppercase tracking-[0.25em] text-[#C86D51] font-semibold">3 &amp; 4 January 2026</p>
+        <p class="font-serif-display text-lg font-semibold text-[#1E2A38] mt-0.5">Crescent The Fern, Budhni</p>
+        <div class="grid grid-cols-3 gap-3 mt-4 bg-[#FAF5EC] px-4 py-2.5 rounded-xl border border-[#C9A253]/40">
+          <div>
+            <span id="cdDays" class="block font-serif-display text-2xl font-bold text-[#1E2A38]">00</span>
+            <span class="text-[10px] uppercase tracking-wider text-[#4A5D4E]">Days</span>
+          </div>
+          <div>
+            <span id="cdHours" class="block font-serif-display text-2xl font-bold text-[#1E2A38]">00</span>
+            <span class="text-[10px] uppercase tracking-wider text-[#4A5D4E]">Hours</span>
+          </div>
+          <div>
+            <span id="cdMins" class="block font-serif-display text-2xl font-bold text-[#1E2A38]">00</span>
+            <span class="text-[10px] uppercase tracking-wider text-[#4A5D4E]">Mins</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gold Foil Canvas Overlay -->
+      <canvas id="scratchCanvas" width="320" height="200"></canvas>
+    </div>
+
+    <button onclick="revealScratchCard()" class="mt-4 text-xs uppercase tracking-widest text-[#9B7428] hover:text-[#1E2A38] underline">
+      Or tap here to reveal instantly
+    </button>
+  </section>
+
+  <!-- =========================================================
+       SECTION 4: ARCHED FLORAL WINDOW & INVITATION VERSE
+  ========================================================== -->
+  <section class="py-20 px-4 bg-gradient-to-b from-[#FAF5EC] to-[#F3E9D8] flex flex-col items-center">
+    <div class="max-w-3xl w-full text-center">
+      <p class="font-serif-display italic text-xl sm:text-2xl text-[#4A5D4E] mb-6">
+        “Two souls, one heart, and a lifetime of laughter ahead...”
+      </p>
+
+      <!-- Decorated Arch Window -->
+      <div class="relative max-w-xs sm:max-w-sm mx-auto my-6">
+        <!-- Bougainvillea / Floral Corner Accents -->
+        <svg viewBox="0 0 120 120" class="w-24 h-24 -top-6 -left-6 absolute z-20 pointer-events-none">
+          <circle cx="42" cy="45" r="18" fill="#C86D51" opacity="0.9" />
+          <circle cx="65" cy="32" r="14" fill="#E5989B" />
+          <circle cx="30" cy="68" r="14" fill="#F2D7D0" />
+          <path d="M55,55 Q80,45 92,25" stroke="#4A5D4E" stroke-width="3" fill="none" />
+          <ellipse cx="76" cy="42" rx="10" ry="5" transform="rotate(-30 76 42)" fill="#4A5D4E" />
+        </svg>
+        <svg viewBox="0 0 120 120" class="w-24 h-24 -bottom-5 -right-5 absolute z-20 pointer-events-none rotate-180">
+          <circle cx="42" cy="45" r="18" fill="#C86D51" opacity="0.9" />
+          <circle cx="65" cy="32" r="14" fill="#E5989B" />
+          <circle cx="30" cy="68" r="14" fill="#F2D7D0" />
+          <ellipse cx="76" cy="42" rx="10" ry="5" transform="rotate(-30 76 42)" fill="#4A5D4E" />
+        </svg>
+
+        <div class="arch-window aspect-[3/4] flex flex-col items-center justify-end pt-8 px-4">
+          <!-- Illustrated Couple Portrait Inside Window -->
+          <svg viewBox="0 0 300 360" class="w-full h-full">
+            <!-- Arch Window Panes -->
+            <line x1="150" y1="0" x2="150" y2="360" stroke="#FFFFFF" stroke-width="3" opacity="0.6" />
+            <line x1="0" y1="180" x2="300" y2="180" stroke="#FFFFFF" stroke-width="3" opacity="0.6" />
+            <!-- Groom -->
+            <circle cx="118" cy="145" r="30" fill="#F2C29B" />
+            <path d="M88,140 Q118,98 148,140 Q145,120 118,120 Q92,120 88,140 Z" fill="#1E2A38" />
+            <path d="M68,360 L76,215 Q118,195 160,215 L168,360 Z" fill="#FAF5EC" stroke="#C9A253" stroke-width="2" />
+            <path d="M118,205 L118,360" stroke="#C9A253" stroke-width="2" />
+            <!-- Bride -->
+            <circle cx="186" cy="155" r="28" fill="#F6CEAE" />
+            <path d="M156,152 Q186,112 216,152 L224,235 L148,235 Z" fill="#2A1810" />
+            <!-- Bridal Dupatta Veil -->
+            <path d="M154,132 Q186,105 218,132 L242,360 L134,360 Z" fill="#C86D51" opacity="0.88" />
+            <circle cx="186" cy="138" r="4" fill="#F5DC8E" />
+            <!-- Garland / Varmala -->
+            <path d="M84,225 Q118,275 152,225" stroke="#F5DC8E" stroke-width="8" fill="none" stroke-linecap="round" />
+            <path d="M154,230 Q186,278 218,230" stroke="#F5DC8E" stroke-width="8" fill="none" stroke-linecap="round" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Invitational Sentences -->
+      <div class="mt-8 space-y-3 max-w-xl mx-auto">
+        <p class="text-xs uppercase tracking-[0.28em] text-[#C86D51] font-semibold">Cordially Invite You</p>
+        <h3 class="font-serif-display text-3xl sm:text-4xl text-[#1E2A38]">
+          Shubham Basantwani &amp; Pooja Mandhan
+        </h3>
+        <p class="text-sm sm:text-base text-[#1E2A38]/80 leading-relaxed">
+          With joyful hearts and the blessings of our parents, we request the pleasure of your company as we tie the knot and celebrate the beginning of our forever on <strong>3rd &amp; 4th January 2026</strong> at <strong>Crescent The Fern Budhni, Series by Marriott</strong>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 5: 4 CLICKABLE FUNCTION SQUARES + MAP MODAL
+  ========================================================== -->
+  <section class="py-20 px-4 bg-[#FAF5EC]">
+    <div class="max-w-4xl mx-auto text-center">
+      <p class="text-xs uppercase tracking-[0.28em] text-[#4A5D4E] font-semibold">Wedding Itinerary</p>
+      <h2 class="font-serif-display text-4xl sm:text-5xl text-[#1E2A38] mt-1">The Celebrations</h2>
+      <p class="text-sm text-[#1E2A38]/70 mt-2 mb-12">Tap each decorated square to view event timings, venue details, and Google Maps directions.</p>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-6">
+        <!-- Square 1: Mehendi & Haldi -->
+        <button onclick="openEventModal(0)" class="group aspect-square bg-white rounded-2xl p-4 border-2 border-[#C9A253]/60 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col items-center justify-center relative overflow-hidden">
+          <div class="absolute inset-2 border border-dashed border-[#C9A253]/50 rounded-xl pointer-events-none"></div>
+          <span class="text-3xl mb-2">🌼</span>
+          <span class="font-serif-display text-xl font-bold text-[#1E2A38]">Mehendi &amp; Haldi</span>
+          <span class="text-[11px] uppercase tracking-wider text-[#C86D51] mt-1 font-medium">3 Jan • Morning</span>
+          <span class="mt-3 text-[10px] uppercase tracking-widest bg-[#FAF5EC] text-[#4A5D4E] px-2.5 py-1 rounded-full border border-[#4A5D4E]/20 group-hover:bg-[#4A5D4E] group-hover:text-white transition-colors">
+            Tap Details
+          </span>
+        </button>
+
+        <!-- Square 2: Sangeet Night -->
+        <button onclick="openEventModal(1)" class="group aspect-square bg-white rounded-2xl p-4 border-2 border-[#C9A253]/60 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col items-center justify-center relative overflow-hidden">
+          <div class="absolute inset-2 border border-dashed border-[#C9A253]/50 rounded-xl pointer-events-none"></div>
+          <span class="text-3xl mb-2">🪩</span>
+          <span class="font-serif-display text-xl font-bold text-[#1E2A38]">Sangeet Night</span>
+          <span class="text-[11px] uppercase tracking-wider text-[#C86D51] mt-1 font-medium">3 Jan • Evening</span>
+          <span class="mt-3 text-[10px] uppercase tracking-widest bg-[#FAF5EC] text-[#4A5D4E] px-2.5 py-1 rounded-full border border-[#4A5D4E]/20 group-hover:bg-[#4A5D4E] group-hover:text-white transition-colors">
+            Tap Details
+          </span>
+        </button>
+
+        <!-- Square 3: The Wedding -->
+        <button onclick="openEventModal(2)" class="group aspect-square bg-white rounded-2xl p-4 border-2 border-[#C9A253]/60 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col items-center justify-center relative overflow-hidden">
+          <div class="absolute inset-2 border border-dashed border-[#C9A253]/50 rounded-xl pointer-events-none"></div>
+          <span class="text-3xl mb-2">🔥</span>
+          <span class="font-serif-display text-xl font-bold text-[#1E2A38]">The Wedding</span>
+          <span class="text-[11px] uppercase tracking-wider text-[#C86D51] mt-1 font-medium">4 Jan • Afternoon</span>
+          <span class="mt-3 text-[10px] uppercase tracking-widest bg-[#FAF5EC] text-[#4A5D4E] px-2.5 py-1 rounded-full border border-[#4A5D4E]/20 group-hover:bg-[#4A5D4E] group-hover:text-white transition-colors">
+            Tap Details
+          </span>
+        </button>
+
+        <!-- Square 4: Grand Reception -->
+        <button onclick="openEventModal(3)" class="group aspect-square bg-white rounded-2xl p-4 border-2 border-[#C9A253]/60 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col items-center justify-center relative overflow-hidden">
+          <div class="absolute inset-2 border border-dashed border-[#C9A253]/50 rounded-xl pointer-events-none"></div>
+          <span class="text-3xl mb-2">🥂</span>
+          <span class="font-serif-display text-xl font-bold text-[#1E2A38]">Grand Reception</span>
+          <span class="text-[11px] uppercase tracking-wider text-[#C86D51] mt-1 font-medium">4 Jan • Night</span>
+          <span class="mt-3 text-[10px] uppercase tracking-widest bg-[#FAF5EC] text-[#4A5D4E] px-2.5 py-1 rounded-full border border-[#4A5D4E]/20 group-hover:bg-[#4A5D4E] group-hover:text-white transition-colors">
+            Tap Details
+          </span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 6: ILLUSTRATED DRESS CODES LOOKBOOK
+  ========================================================== -->
+  <section class="py-20 px-4 bg-[#F3E9D8]">
+    <div class="max-w-5xl mx-auto text-center">
+      <p class="text-xs uppercase tracking-[0.28em] text-[#C86D51] font-semibold">Style Guide</p>
+      <h2 class="font-serif-display text-4xl sm:text-5xl text-[#1E2A38] mt-1">Dress Code Lookbook</h2>
+      <p class="text-sm text-[#1E2A38]/75 mt-2 mb-12">Curated hues and silhouettes to match the mood of each celebration.</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Look 1 -->
+        <div class="bg-[#FAF5EC] rounded-2xl p-5 border border-[#C9A253]/50 shadow-sm flex flex-col items-center">
+          <svg viewBox="0 0 140 160" class="w-32 h-36 mb-3">
+            <!-- Marigold Kurta & Lehenga Illustration -->
+            <path d="M35,45 L55,35 L75,45 L72,135 L38,135 Z" fill="#F4B41A" />
+            <path d="M88,45 L105,45 L118,138 L76,138 Z" fill="#E67E22" />
+            <circle cx="55" cy="24" r="9" fill="#E8B892" />
+            <circle cx="96" cy="26" r="8.5" fill="#F0C4A0" />
+          </svg>
+          <h3 class="font-serif-display text-xl font-bold text-[#1E2A38]">Mehendi &amp; Haldi</h3>
+          <p class="text-xs font-semibold uppercase tracking-wider text-[#D97706] mt-1">Marigold &amp; Sunshine Yellow</p>
+          <p class="text-xs text-[#1E2A38]/75 mt-2">Breezy floral kurtas, yellow lehengas, and comfortable festive silhouettes.</p>
+        </div>
+
+        <!-- Look 2 -->
+        <div class="bg-[#FAF5EC] rounded-2xl p-5 border border-[#C9A253]/50 shadow-sm flex flex-col items-center">
+          <svg viewBox="0 0 140 160" class="w-32 h-36 mb-3">
+            <!-- Emerald & Midnight Glam -->
+            <path d="M34,45 L55,35 L76,45 L73,138 L37,138 Z" fill="#1E2A38" />
+            <path d="M88,44 L106,44 L122,140 L76,140 Z" fill="#2D6A4F" />
+            <circle cx="55" cy="24" r="9" fill="#E8B892" />
+            <circle cx="97" cy="26" r="8.5" fill="#F0C4A0" />
+          </svg>
+          <h3 class="font-serif-display text-xl font-bold text-[#1E2A38]">Sangeet Night</h3>
+          <p class="text-xs font-semibold uppercase tracking-wider text-[#2D6A4F] mt-1">Emerald &amp; Midnight Shimmer</p>
+          <p class="text-xs text-[#1E2A38]/75 mt-2">Indo-western bandhgalas, sequined sarees, and cocktail gowns made for dancing.</p>
+        </div>
+
+        <!-- Look 3 -->
+        <div class="bg-[#FAF5EC] rounded-2xl p-5 border border-[#C9A253]/50 shadow-sm flex flex-col items-center">
+          <svg viewBox="0 0 140 160" class="w-32 h-36 mb-3">
+            <!-- Pastel & Ivory Traditional -->
+            <path d="M34,45 L55,35 L76,45 L73,138 L37,138 Z" fill="#EFE4D2" stroke="#C9A253" stroke-width="1.5" />
+            <path d="M88,44 L106,44 L122,140 L76,140 Z" fill="#E5989B" />
+            <circle cx="55" cy="24" r="9" fill="#E8B892" />
+            <circle cx="97" cy="26" r="8.5" fill="#F0C4A0" />
+          </svg>
+          <h3 class="font-serif-display text-xl font-bold text-[#1E2A38]">The Wedding</h3>
+          <p class="text-xs font-semibold uppercase tracking-wider text-[#C86D51] mt-1">Ivory, Blush &amp; Pastel Gold</p>
+          <p class="text-xs text-[#1E2A38]/75 mt-2">Traditional silk sherwanis, pastel sarees, and timeless heritage weaves.</p>
+        </div>
+
+        <!-- Look 4 -->
+        <div class="bg-[#FAF5EC] rounded-2xl p-5 border border-[#C9A253]/50 shadow-sm flex flex-col items-center">
+          <svg viewBox="0 0 140 160" class="w-32 h-36 mb-3">
+            <!-- Royal Wine & Tuxedo -->
+            <path d="M34,45 L55,35 L76,45 L73,138 L37,138 Z" fill="#141B24" />
+            <polygon points="55,42 50,58 60,58" fill="#FAF5EC" />
+            <path d="M88,44 L106,44 L120,140 L78,140 Z" fill="#722F37" />
+            <circle cx="55" cy="24" r="9" fill="#E8B892" />
+            <circle cx="97" cy="26" r="8.5" fill="#F0C4A0" />
+          </svg>
+          <h3 class="font-serif-display text-xl font-bold text-[#1E2A38]">Grand Reception</h3>
+          <p class="text-xs font-semibold uppercase tracking-wider text-[#722F37] mt-1">Royal Wine &amp; Black Tie</p>
+          <p class="text-xs text-[#1E2A38]/75 mt-2">Classic tuxedos, tailored suits, and jewel-toned evening ensembles.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 7: TEAM BRIDE / GROOM SELECTOR & RSVP PASS
+  ========================================================== -->
+  <section class="py-20 px-4 bg-[#1E2A38] text-[#FAF5EC]">
+    <div class="max-w-xl mx-auto">
+      <div class="text-center mb-10">
+        <p class="text-xs uppercase tracking-[0.28em] text-[#C9A253]">Kindly Respond</p>
+        <h2 class="font-serif-display text-4xl sm:text-5xl mt-1">Choose Your Side &amp; RSVP</h2>
+        <p class="text-sm text-[#FAF5EC]/75 mt-2">Let us know your arrival details so we can welcome you warmly at Budhni.</p>
+      </div>
+
+      <form id="rsvpForm" onsubmit="generateRsvpPass(event)" class="bg-[#263547] p-6 sm:p-8 rounded-3xl border border-[#C9A253]/50 shadow-2xl space-y-5">
+        <!-- Side Selection -->
+        <div>
+          <label class="block text-xs uppercase tracking-widest text-[#C9A253] mb-2.5">Which Side Are You On?</label>
+          <div class="grid grid-cols-2 gap-3">
+            <button type="button" id="btnGroom" onclick="selectSide('Team Groom (Shubham)')" class="side-btn py-3 px-4 rounded-xl border-2 border-[#C9A253] bg-[#C9A253] text-[#1E2A38] font-semibold text-sm transition-all">
+              🤵 Team Groom
+            </button>
+            <button type="button" id="btnBride" onclick="selectSide('Team Bride (Pooja)')" class="side-btn py-3 px-4 rounded-xl border-2 border-[#C9A253]/40 bg-transparent text-[#FAF5EC] font-semibold text-sm transition-all">
+              👰 Team Bride
+            </button>
+          </div>
+          <input type="hidden" id="selectedSide" value="Team Groom (Shubham)" />
+        </div>
+
+        <!-- Guest Name -->
+        <div>
+          <label for="guestName" class="block text-xs uppercase tracking-widest text-[#C9A253] mb-1.5">Full Name</label>
+          <input id="guestName" type="text" required placeholder="e.g., Rohan Sharma & Family" class="w-full px-4 py-3 rounded-xl bg-[#1A2532] border border-[#C9A253]/30 text-[#FAF5EC] focus:outline-none focus:border-[#C9A253]" />
+        </div>
+
+        <!-- Arrival Date & Time -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="arrivalDate" class="block text-xs uppercase tracking-widest text-[#C9A253] mb-1.5">Arrival Date</label>
+            <input id="arrivalDate" type="date" value="2026-01-03" required class="w-full px-4 py-3 rounded-xl bg-[#1A2532] border border-[#C9A253]/30 text-[#FAF5EC] focus:outline-none focus:border-[#C9A253]" />
+          </div>
+          <div>
+            <label for="arrivalTime" class="block text-xs uppercase tracking-widest text-[#C9A253] mb-1.5">Arrival Time</label>
+            <input id="arrivalTime" type="time" value="10:00" required class="w-full px-4 py-3 rounded-xl bg-[#1A2532] border border-[#C9A253]/30 text-[#FAF5EC] focus:outline-none focus:border-[#C9A253]" />
+          </div>
+        </div>
+
+        <!-- Guests Count -->
+        <div>
+          <label for="guestCount" class="block text-xs uppercase tracking-widest text-[#C9A253] mb-1.5">Number of Guests</label>
+          <select id="guestCount" class="w-full px-4 py-3 rounded-xl bg-[#1A2532] border border-[#C9A253]/30 text-[#FAF5EC] focus:outline-none focus:border-[#C9A253]">
+            <option value="1 Guest">1 Guest</option>
+            <option value="2 Guests" selected>2 Guests</option>
+            <option value="3 Guests">3 Guests</option>
+            <option value="4+ Family Members">4+ Family Members</option>
+          </select>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#C9A253] to-[#E5C168] text-[#1E2A38] font-bold uppercase tracking-widest text-xs shadow-lg hover:brightness-105 transition-all">
+          Confirm Attendance &amp; Generate Pass
+        </button>
+      </form>
+
+      <!-- Generated Digital Pass -->
+      <div id="rsvpPassCard" class="hidden mt-8 bg-[#FAF5EC] text-[#1E2A38] rounded-3xl p-6 border-2 border-[#C9A253] shadow-2xl relative overflow-hidden">
+        <div class="flex items-center justify-between border-b border-dashed border-[#C9A253] pb-4">
+          <div>
+            <span class="text-[10px] uppercase tracking-[0.25em] text-[#C86D51] font-bold">Official Wedding Pass</span>
+            <h3 id="passGuestName" class="font-serif-display text-2xl font-bold mt-0.5">Guest Name</h3>
+          </div>
+          <span id="passSideBadge" class="px-3 py-1 rounded-full bg-[#1E2A38] text-[#F5DC8E] text-xs font-semibold">Team Groom</span>
+        </div>
+        <div class="grid grid-cols-2 gap-4 py-4 text-sm">
+          <div>
+            <span class="block text-[10px] uppercase tracking-wider text-[#4A5D4E]">Arrival Schedule</span>
+            <strong id="passArrival" class="font-semibold">3 Jan 2026 at 10:00</strong>
+          </div>
+          <div>
+            <span class="block text-[10px] uppercase tracking-wider text-[#4A5D4E]">Party Size</span>
+            <strong id="passCount" class="font-semibold">2 Guests</strong>
+          </div>
+        </div>
+        <div class="pt-3 border-t border-[#C9A253]/30 flex flex-wrap items-center justify-between gap-2 text-xs">
+          <span class="text-[#1E2A38]/80">📍 Crescent The Fern Budhni, Series by Marriott</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=Crescent+The+Fern+Budhni+Series+by+Marriott" target="_blank" rel="noopener noreferrer" class="text-[#C86D51] font-semibold underline">
+            Open Resort Map →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       EVENT DETAIL MODAL (WITH GOOGLE MAPS LINK)
+  ========================================================== -->
+  <div id="eventModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop" onclick="closeEventModal(event)">
+    <div class="bg-[#FAF5EC] text-[#1E2A38] max-w-md w-full rounded-3xl p-6 sm:p-8 border-2 border-[#C9A253] shadow-2xl relative" onclick="event.stopPropagation()">
+      <button onclick="hideModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-[#1E2A38]/10 hover:bg-[#1E2A38] hover:text-white flex items-center justify-center text-sm font-bold transition-colors">
+        ✕
+      </button>
+      <div class="text-center">
+        <span id="modalIcon" class="text-4xl block mb-2">🌼</span>
+        <p id="modalDate" class="text-xs uppercase tracking-[0.25em] text-[#C86D51] font-semibold">3rd January 2026</p>
+        <h3 id="modalTitle" class="font-serif-display text-3xl font-bold mt-1">Mehendi &amp; Haldi</h3>
+        <div class="w-16 h-[1px] bg-[#C9A253] mx-auto my-4"></div>
+        <p id="modalTime" class="text-sm font-semibold text-[#4A5D4E]">11:00 AM Onwards</p>
+        <p id="modalVenueArea" class="text-xs uppercase tracking-wider text-[#1E2A38]/70 mt-1">Poolside Lawns • Crescent The Fern Budhni</p>
+        <p id="modalDesc" class="text-sm text-[#1E2A38]/80 mt-4 leading-relaxed">
+          Join us under the winter sun for vibrant henna, floral showers, folk melodies, and festive brunch bites.
+        </p>
+
+        <!-- Direct Google Maps Button -->
+        <a id="modalMapLink" href="https://www.google.com/maps/search/?api=1&query=Crescent+The+Fern+Budhni+Series+by+Marriott" target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center justify-center gap-2 w-full py-3 px-5 rounded-xl bg-[#1E2A38] text-[#F5DC8E] text-xs font-semibold uppercase tracking-widest hover:bg-[#2B3C50] transition-colors shadow-md">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+          Open Resort in Google Maps
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       JAVASCRIPT INTERACTIVITY
+  ========================================================== -->
+  <script>
+    // 1. AUDIO SYSTEM ("Aabaad Barbaad" MP3 + Expressive Web Audio Fallback)
+    const audioEl = document.getElementById('weddingAudio');
+    const eqBars = document.getElementById('eqBars');
+    const musicStatusText = document.getElementById('musicStatusText');
+    let isPlaying = false;
+    let synthInterval = null;
+    let audioCtx = null;
+
+    function startSynthMelody() {
+      if (synthInterval) return;
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (!audioCtx) audioCtx = new AudioContext();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+
+      // Gentle romantic melody inspired by Aabaad Barbaad cadence
+      const notes = [
+        329.63, 392.00, 440.00, 493.88, 440.00, 392.00, 329.63, 293.66,
+        329.63, 392.00, 523.25, 493.88, 440.00, 392.00, 329.63, 329.63
+      ];
+      let step = 0;
+
+      const playNote = () => {
+        if (!isPlaying) return;
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(notes[step % notes.length], now);
+
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.exponentialRampToValueAtTime(0.08, now + 0.08);
+        gain.gain.exponentialRampToValueAtTime(0.0008, now + 0.75);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.8);
+        step++;
+      };
+
+      playNote();
+      synthInterval = setInterval(playNote, 620);
+    }
+
+    function stopSynthMelody() {
+      if (synthInterval) {
+        clearInterval(synthInterval);
+        synthInterval = null;
+      }
+    }
+
+    function playWeddingMusic() {
+      isPlaying = true;
+      eqBars.classList.add('playing');
+      musicStatusText.textContent = 'Pause Music';
+
+      const playPromise = audioEl.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Fallback to romantic synth melody when aabaad-barbaad.mp3 isn't bundled yet
+          startSynthMelody();
+        });
+      }
+    }
+
+    function pauseWeddingMusic() {
+      isPlaying = false;
+      eqBars.classList.remove('playing');
+      musicStatusText.textContent = 'Play Music';
+      audioEl.pause();
+      stopSynthMelody();
+    }
+
+    function toggleAudio() {
+      if (isPlaying) {
+        pauseWeddingMusic();
+      } else {
+        playWeddingMusic();
+      }
+    }
+
+    // 2. 3D RECORD PLAYER OPENING INTERACTION
+    let playerOpened = false;
+    function openRecordPlayer() {
+      const suitcase = document.getElementById('suitcase3D');
+      const vinyl = document.getElementById('vinylDisc');
+      const tonearm = document.getElementById('tonearmStick');
+      const prompt = document.getElementById('recordPrompt');
+
+      if (!playerOpened) {
+        playerOpened = true;
+        suitcase.classList.add('open');
+        setTimeout(() => {
+          vinyl.classList.add('spinning');
+          tonearm.classList.add('playing');
+        }, 450);
+        prompt.innerHTML = '<p class="text-xs uppercase tracking-[0.25em] text-[#F5DC8E]">Now Spinning • Scroll Down to Begin the Drive ↓</p>';
+        playWeddingMusic();
+      } else {
+        toggleAudio();
+      }
+    }
+
+    // 3. SCROLL-DRIVEN ITALIAN COASTAL CAR ANIMATION
+    const italianSection = document.getElementById('italianDriveSection');
+    const coupleCar = document.getElementById('coupleCar');
+
+    window.addEventListener('scroll', () => {
+      if (!italianSection || !coupleCar) return;
+      const rect = italianSection.getBoundingClientRect();
+      const scrollableDistance = rect.height - window.innerHeight;
+      if (scrollableDistance <= 0) return;
+
+      const progress = Math.min(Math.max(-rect.top / scrollableDistance, 0), 1);
+      const maxTravel = window.innerWidth + 320;
+      const translateX = -120 + progress * maxTravel;
+      coupleCar.style.transform = `translateX(${translateX}px)`;
+    }, { passive: true });
+
+    // 4. GOLD-FOIL SCRATCH CARD CANVAS
+    const canvas = document.getElementById('scratchCanvas');
+    const ctx = canvas.getContext('2d');
+    let isDrawing = false;
+
+    function initScratchFoil() {
+      const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      grad.addColorStop(0, '#B8892D');
+      grad.addColorStop(0.35, '#F3D678');
+      grad.addColorStop(0.65, '#C9A253');
+      grad.addColorStop(1, '#9E7322');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#1E2A38';
+      ctx.font = '600 13px Montserrat, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('SCRATCH GOLD FOIL HERE', canvas.width / 2, canvas.height / 2 - 4);
+      ctx.font = 'italic 13px "Cormorant Garamond", serif';
+      ctx.fillText('to reveal the wedding countdown', canvas.width / 2, canvas.height / 2 + 16);
+    }
+
+    function scratchAt(clientX, clientY) {
+      const rect = canvas.getBoundingClientRect();
+      const x = (clientX - rect.left) * (canvas.width / rect.width);
+      const y = (clientY - rect.top) * (canvas.height / rect.height);
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath();
+      ctx.arc(x, y, 24, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    canvas.addEventListener('mousedown', (e) => { isDrawing = true; scratchAt(e.clientX, e.clientY); });
+    window.addEventListener('mouseup', () => { isDrawing = false; });
+    canvas.addEventListener('mousemove', (e) => { if (isDrawing) scratchAt(e.clientX, e.clientY); });
+
+    canvas.addEventListener('touchstart', (e) => {
+      isDrawing = true;
+      const t = e.touches[0];
+      scratchAt(t.clientX, t.clientY);
+    }, { passive: true });
+    canvas.addEventListener('touchmove', (e) => {
+      if (!isDrawing) return;
+      const t = e.touches[0];
+      scratchAt(t.clientX, t.clientY);
+    }, { passive: true });
+    canvas.addEventListener('touchend', () => { isDrawing = false; });
+
+    function revealScratchCard() {
+      canvas.style.transition = 'opacity 0.6s ease';
+      canvas.style.opacity = '0';
+      setTimeout(() => { canvas.style.display = 'none'; }, 600);
+    }
+
+    initScratchFoil();
+
+    // Countdown Timer to 3 Jan 2026
+    function updateCountdown() {
+      const target = new Date('2026-01-03T11:00:00+05:30').getTime();
+      const now = Date.now();
+      const diff = Math.max(target - now, 0);
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const mins = Math.floor((diff / (1000 * 60)) % 60);
+
+      document.getElementById('cdDays').textContent = String(days).padStart(2, '0');
+      document.getElementById('cdHours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('cdMins').textContent = String(mins).padStart(2, '0');
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 30000);
+
+    // 5. EVENT DETAIL MODAL DATA & GOOGLE MAPS LINK
+    const resortMapsUrl = 'https://www.google.com/maps/search/?api=1&query=Crescent+The+Fern+Budhni+Series+by+Marriott';
+    const eventsData = [
+      {
+        icon: '🌼',
+        date: '3rd January 2026',
+        title: 'Mehendi & Haldi',
+        time: '11:00 AM Onwards',
+        area: 'Poolside Lawns • Crescent The Fern Budhni, Series by Marriott',
+        desc: 'Join us under the winter sun for vibrant henna artistry, marigold petal showers, dhol beats, and a festive brunch.'
+      },
+      {
+        icon: '🪩',
+        date: '3rd January 2026',
+        title: 'Sangeet Night',
+        time: '7:30 PM Onwards',
+        area: 'Grand Ballroom • Crescent The Fern Budhni, Series by Marriott',
+        desc: 'An evening of choreographed family performances, musical toasts, and dancing late into the night.'
+      },
+      {
+        icon: '🔥',
+        date: '4th January 2026',
+        title: 'The Wedding Ceremony',
+        time: '4:00 PM Baraat • 5:30 PM Pheras',
+        area: 'Royal Courtyard • Crescent The Fern Budhni, Series by Marriott',
+        desc: 'Witness Shubham & Pooja exchange vows around the sacred fire surrounded by family, blessings, and sunset hues.'
+      },
+      {
+        icon: '🥂',
+        date: '4th January 2026',
+        title: 'Grand Reception',
+        time: '8:30 PM Onwards',
+        area: 'Imperial Banquet • Crescent The Fern Budhni, Series by Marriott',
+        desc: 'Raise a glass with the newlyweds over a royal dinner feast and live acoustic melodies.'
+      }
+    ];
+
+    function openEventModal(idx) {
+      const ev = eventsData[idx];
+      document.getElementById('modalIcon').textContent = ev.icon;
+      document.getElementById('modalDate').textContent = ev.date;
+      document.getElementById('modalTitle').textContent = ev.title;
+      document.getElementById('modalTime').textContent = ev.time;
+      document.getElementById('modalVenueArea').textContent = ev.area;
+      document.getElementById('modalDesc').textContent = ev.desc;
+      document.getElementById('modalMapLink').href = resortMapsUrl;
+
+      const modal = document.getElementById('eventModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function hideModal() {
+      const modal = document.getElementById('eventModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function closeEventModal(e) {
+      if (e.target.id === 'eventModal') hideModal();
+    }
+
+    // 6. TEAM SELECTOR & RSVP PASS GENERATOR
+    function selectSide(sideLabel) {
+      document.getElementById('selectedSide').value = sideLabel;
+      const btnGroom = document.getElementById('btnGroom');
+      const btnBride = document.getElementById('btnBride');
+
+      if (sideLabel.includes('Groom')) {
+        btnGroom.className = 'side-btn py-3 px-4 rounded-xl border-2 border-[#C9A253] bg-[#C9A253] text-[#1E2A38] font-semibold text-sm transition-all';
+        btnBride.className = 'side-btn py-3 px-4 rounded-xl border-2 border-[#C9A253]/40 bg-transparent text-[#FAF5EC] font-semibold text-sm transition-all';
+      } else {
+        btnBride.className = 'side-btn py-3 px-4 rounded-xl border-2 border-[#C9A253] bg-[#C9A253] text-[#1E2A38] font-semibold text-sm transition-all';
+        btnGroom.className = 'side-btn py-3 px-4 rounded-xl border-2 border-[#C9A253]/40 bg-transparent text-[#FAF5EC] font-semibold text-sm transition-all';
+      }
+    }
+
+    function generateRsvpPass(e) {
+      e.preventDefault();
+      const name = document.getElementById('guestName').value.trim();
+      const side = document.getElementById('selectedSide').value;
+      const date = document.getElementById('arrivalDate').value;
+      const time = document.getElementById('arrivalTime').value;
+      const count = document.getElementById('guestCount').value;
+
+      document.getElementById('passGuestName').textContent = name;
+      document.getElementById('passSideBadge').textContent = side;
+      document.getElementById('passArrival').textContent = `${date} at ${time}`;
+      document.getElementById('passCount').textContent = count;
+
+      const passCard = document.getElementById('rsvpPassCard');
+      passCard.classList.remove('hidden');
+      passCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  </script>
+</body>
+</html>
