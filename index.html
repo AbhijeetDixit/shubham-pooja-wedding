@@ -62,7 +62,6 @@
       transform: rotateX(42deg) rotateZ(-22deg) scale(1.06);
     }
 
-    /* Suitcase Base Box */
     .case-base {
       position: absolute;
       inset: 0;
@@ -79,7 +78,6 @@
       justify-content: center;
     }
 
-    /* Side Wall Thickness & Handle (Side Profile Detail) */
     .case-side-front {
       position: absolute;
       bottom: -24px;
@@ -127,7 +125,6 @@
       transform: rotateY(90deg);
     }
 
-    /* Turntable Platter & Vinyl */
     .platter-deck {
       width: 268px;
       height: 210px;
@@ -186,7 +183,6 @@
       pointer-events: none;
     }
 
-    /* Bride & Groom Center Pin */
     .couple-pin {
       width: 68px;
       height: 68px;
@@ -201,7 +197,6 @@
       z-index: 3;
     }
 
-    /* Tonearm */
     .tonearm-base {
       position: absolute;
       top: 18px;
@@ -244,7 +239,6 @@
       border-radius: 2px;
     }
 
-    /* Hinged 3D Lid */
     .case-lid {
       position: absolute;
       inset: 0;
@@ -283,7 +277,7 @@
       justify-content: center;
     }
 
-    /* Scratch Card Canvas — Strictly Layered ABOVE the Countdown Content */
+    /* Scratch Card Canvas */
     .scratch-container {
       position: relative;
       width: 320px;
@@ -325,6 +319,38 @@
 
     #scratchCanvas:active {
       cursor: grabbing;
+    }
+
+    /* 3D Isometric Pedestal & Interactive Tilt Cards for Dress Codes */
+    .card-3d-wrap {
+      perspective: 1100px;
+    }
+
+    .card-3d {
+      transform-style: preserve-3d;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+      box-shadow:
+        0 14px 28px -8px rgba(30, 42, 56, 0.16),
+        0 6px 0 -1px #DFC9A6,
+        0 7px 0 0 rgba(201, 162, 83, 0.65);
+    }
+
+    .card-3d:hover {
+      transform: translateY(-6px) rotateX(4deg) rotateY(-3deg);
+      box-shadow:
+        0 24px 38px -10px rgba(30, 42, 56, 0.24),
+        0 9px 0 -1px #D5BC94,
+        0 10px 0 0 rgba(201, 162, 83, 0.85);
+    }
+
+    .figure-3d-stage {
+      transform: translateZ(24px);
+      filter: drop-shadow(0 14px 14px rgba(30, 42, 56, 0.22));
+      transition: transform 0.4s ease;
+    }
+
+    .card-3d:hover .figure-3d-stage {
+      transform: translateZ(34px) scale(1.05);
     }
 
     /* Fix Mobile Native Date & Time Inputs Overshooting Container */
@@ -375,13 +401,11 @@
       100% { height: 16px; }
     }
 
-    /* Modal Backdrop */
     .modal-backdrop {
       background: rgba(20, 29, 38, 0.72);
       backdrop-filter: blur(6px);
     }
 
-    /* Language Welcome Overlay Animation */
     .lang-card-enter {
       animation: fadeScaleIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
@@ -411,13 +435,11 @@
       </p>
 
       <div class="space-y-2.5">
-        <!-- 1. English -->
         <button onclick="chooseLanguage('en')" class="w-full py-3 px-4 rounded-2xl bg-[#1E2A38] text-[#FAF5EC] hover:bg-[#2A3B4E] border border-[#C9A253] flex items-center justify-between transition-all shadow-md group">
           <span class="font-semibold text-sm tracking-wide">English</span>
           <span class="text-xs text-[#F5DC8E] group-hover:translate-x-1 transition-transform">Continue →</span>
         </button>
 
-        <!-- 2. Hindi -->
         <button onclick="chooseLanguage('hi')" class="w-full py-3 px-4 rounded-2xl bg-white text-[#1E2A38] hover:bg-[#F3E9D8] border-2 border-[#C9A253]/70 flex items-center justify-between transition-all shadow-sm group">
           <div class="text-left">
             <span class="font-bold text-sm sm:text-base block">हिन्दी (Hindi)</span>
@@ -426,7 +448,6 @@
           <span class="text-xs text-[#C86D51] font-semibold group-hover:translate-x-1 transition-transform">आगे बढ़ें →</span>
         </button>
 
-        <!-- 3. Sindhi (Devanagari Script) -->
         <button onclick="chooseLanguage('sd_dev')" class="w-full py-3 px-4 rounded-2xl bg-white text-[#1E2A38] hover:bg-[#F3E9D8] border-2 border-[#C9A253]/70 flex items-center justify-between transition-all shadow-sm group">
           <div class="text-left">
             <span class="font-bold text-sm sm:text-base block">सिन्धी (देवनागरी • Sindhi)</span>
@@ -435,7 +456,6 @@
           <span class="text-xs text-[#C86D51] font-semibold group-hover:translate-x-1 transition-transform">अॻते वधो →</span>
         </button>
 
-        <!-- 4. Sindhi (Arabic / Original Perso-Arabic Script) -->
         <button onclick="chooseLanguage('sd')" class="w-full py-3 px-4 rounded-2xl bg-white text-[#1E2A38] hover:bg-[#F3E9D8] border-2 border-[#C9A253]/70 flex items-center justify-between transition-all shadow-sm group">
           <div class="text-left">
             <span class="font-bold text-sm sm:text-base block">سنڌي (Sindhi Script)</span>
@@ -455,9 +475,9 @@
     <button id="pill-sd" onclick="setLanguage('sd')" class="px-2 sm:px-2.5 py-1 rounded-full font-semibold text-[#FAF5EC]/80 hover:text-white transition-colors">سنڌي</button>
   </div>
 
-  <!-- Audio Element for Aabaad Barbaad (Ludo) -->
-  <audio id="weddingAudio" loop preload="auto">
-    <source src="aabaad-barbaad.mp3" type="audio/mpeg" />
+  <!-- Audio Element for Hardum Humdum (Ludo) -->
+  <audio id="weddingAudio" loop autoplay playsinline preload="auto">
+    <source src="mangal-rang.mp3" type="audio/mpeg" />
   </audio>
 
   <!-- Floating Music Control Pill -->
@@ -472,8 +492,8 @@
       <span id="musicStatusText" data-i18n="playMusic">Play Music</span>
     </button>
     <span class="text-[#C9A253]/50">|</span>
-    <a href="https://www.youtube.com/results?search_query=Aabaad+Barbaad+Ludo+Arijit+Singh" target="_blank" rel="noopener noreferrer" class="text-[11px] text-[#F5DC8E] hover:underline font-medium" title="Listen to Aabaad Barbaad">
-      ♪ Aabaad Barbaad
+    <a href="https://www.youtube.com/results?search_query=Mangal+Rang+Ramayana" target="_blank" rel="noopener noreferrer" class="text-[11px] text-[#F5DC8E] hover:underline font-medium" title="Listen to Mangal Rang">
+      ♪ Mangal Rang
     </a>
   </div>
 
@@ -491,9 +511,7 @@
     <!-- 3D Suitcase Turntable -->
     <div class="scene-3d my-8 z-10">
       <div id="suitcase3D" class="suitcase-3d" onclick="openRecordPlayer()" role="button" tabindex="0" aria-label="Tap to open record player">
-        <!-- Base Turntable Box -->
         <div class="case-base">
-          <!-- Side Wall Thickness & Handle -->
           <div class="case-side-front">
             <div class="brass-clasp"></div>
             <div class="side-handle"></div>
@@ -501,11 +519,9 @@
           </div>
           <div class="case-side-left"></div>
 
-          <!-- Turntable Platter -->
           <div class="platter-deck">
             <div id="vinylDisc" class="vinyl-disc">
               <div class="vinyl-sheen"></div>
-              <!-- Bride & Groom Enamel Pin -->
               <div class="couple-pin">
                 <svg viewBox="0 0 80 80" class="w-14 h-14">
                   <circle cx="29" cy="27" r="8" fill="#F4C7A1" />
@@ -521,7 +537,6 @@
               </div>
             </div>
 
-            <!-- Tonearm -->
             <div class="tonearm-base">
               <div id="tonearmStick" class="tonearm-stick">
                 <div class="tonearm-head"></div>
@@ -530,20 +545,18 @@
           </div>
         </div>
 
-        <!-- Hinged 3D Top Lid -->
         <div class="case-lid">
           <div class="lid-inner-plaque">
             <span data-i18n="vinylEdition" class="text-[10px] uppercase tracking-[0.25em] text-[#C9A253] mb-2">Wedding Vinyl Edition</span>
             <p class="font-script text-4xl text-[#F5DC8E] leading-tight">S &amp; P</p>
             <div class="w-12 h-[1px] bg-[#C9A253]/60 my-2.5"></div>
             <p data-i18n="tapOpenPlay" class="font-serif-display italic text-base text-[#FAF5EC]/90">Tap to Open &amp; Play</p>
-            <p class="text-[10px] uppercase tracking-widest text-[#C9A253] mt-1">♪ Aabaad Barbaad</p>
+            <p class="text-[10px] uppercase tracking-widest text-[#C9A253] mt-1">♪ Mangal Rang</p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Prompt / Scroll Cue -->
     <div id="recordPrompt" class="text-center z-10 mb-2">
       <p data-i18n="tapRecordPrompt" class="text-xs uppercase tracking-[0.22em] text-[#F5DC8E] animate-pulse">
         Tap the Suitcase Record Player to Begin
@@ -556,7 +569,6 @@
   ========================================================== -->
   <section id="italianDriveSection" class="relative h-[220vh] bg-gradient-to-b from-[#89BCE0] via-[#CBE4F6] to-[#FAF5EC]">
     <div class="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between">
-      <!-- Top Narrative Caption -->
       <div class="text-center pt-16 px-4 z-20">
         <p data-i18n="driveSubtitle" class="text-xs uppercase tracking-[0.25em] text-[#4A5D4E] font-semibold">La Dolce Vita Begins</p>
         <h2 data-i18n="driveTitle" class="font-serif-display text-3xl sm:text-5xl text-[#1E2A38] mt-1">
@@ -567,10 +579,25 @@
         </p>
       </div>
 
-      <!-- Illustrated Italian Coastline SVG Scene -->
       <div class="relative w-full h-[65vh] mt-auto">
         <svg viewBox="0 0 1440 520" preserveAspectRatio="xMidYMax slice" class="w-full h-full">
-          <circle cx="1140" cy="95" r="46" fill="#FFE699" opacity="0.85" />
+          <defs>
+            <radialGradient id="sun3d" cx="35%" cy="35%" r="65%">
+              <stop offset="0%" stop-color="#FFFDF0" />
+              <stop offset="60%" stop-color="#FFE082" />
+              <stop offset="100%" stop-color="#F6B93B" />
+            </radialGradient>
+            <linearGradient id="sea3d" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#2980B9" />
+              <stop offset="100%" stop-color="#1B4F72" />
+            </linearGradient>
+            <linearGradient id="carBody3d" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#E58264" />
+              <stop offset="55%" stop-color="#C86D51" />
+              <stop offset="100%" stop-color="#8E422B" />
+            </linearGradient>
+          </defs>
+          <circle cx="1140" cy="95" r="46" fill="url(#sun3d)" />
           <path d="M0,260 Q280,150 580,250 T1160,230 L1440,210 L1440,360 L0,360 Z" fill="#9DBB9E" />
           <g transform="translate(140, 145)">
             <rect x="0" y="45" width="54" height="65" fill="#F4C095" rx="2" />
@@ -581,18 +608,18 @@
             <ellipse cx="-16" cy="72" rx="9" ry="38" fill="#3E5641" />
             <ellipse cx="168" cy="75" rx="8" ry="34" fill="#3E5641" />
           </g>
-          <rect x="0" y="305" width="1440" height="105" fill="#3B8AC4" />
+          <rect x="0" y="305" width="1440" height="105" fill="url(#sea3d)" />
           <path d="M0,325 Q180,318 360,325 T720,325 T1080,325 T1440,325" stroke="#85C7F2" stroke-width="3" fill="none" />
           <path d="M80,355 Q260,348 440,355 T800,355 T1160,355" stroke="#85C7F2" stroke-width="2.5" fill="none" />
           <rect x="0" y="395" width="1440" height="22" fill="#E5D5B7" />
-          <rect x="0" y="417" width="1440" height="103" fill="#464B52" />
+          <rect x="0" y="417" width="1440" height="103" fill="#3D4249" />
           <line x1="0" y1="468" x2="1440" y2="468" stroke="#FAF5EC" stroke-width="4" stroke-dasharray="36 28" />
         </svg>
 
-        <!-- Moving Vintage Convertible Car with Couple -->
         <div id="coupleCar" class="absolute bottom-[54px] left-0 w-64 sm:w-80 transition-transform duration-75 ease-out z-20 will-change-transform">
-          <svg viewBox="0 0 320 150" class="w-full drop-shadow-xl">
-            <path d="M122,46 Q72,30 28,48 Q68,54 118,54 Z" fill="#F2D7D0" opacity="0.9" />
+          <svg viewBox="0 0 320 150" class="w-full drop-shadow-2xl">
+            <ellipse cx="162" cy="138" rx="132" ry="8" fill="rgba(0,0,0,0.35)" />
+            <path d="M122,46 Q72,30 28,48 Q68,54 118,54 Z" fill="#F2D7D0" opacity="0.95" />
             <circle cx="176" cy="48" r="13" fill="#F4C7A1" />
             <path d="M164,44 Q176,28 189,44" fill="#1E2A38" />
             <rect x="162" y="61" width="28" height="24" rx="6" fill="#1E2A38" />
@@ -600,7 +627,7 @@
             <path d="M124,48 Q136,30 148,48 L152,72 L120,72 Z" fill="#2C1A12" />
             <rect x="122" y="62" width="28" height="24" rx="6" fill="#C86D51" />
             <polygon points="196,76 212,44 218,44 205,76" fill="#DDF2FF" opacity="0.85" />
-            <path d="M32,84 Q42,68 95,72 L225,72 Q278,72 292,92 L292,114 L26,114 Q22,96 32,84 Z" fill="#C86D51" />
+            <path d="M32,84 Q42,68 95,72 L225,72 Q278,72 292,92 L292,114 L26,114 Q22,96 32,84 Z" fill="url(#carBody3d)" />
             <path d="M36,92 L288,92" stroke="#F5DC8E" stroke-width="3" />
             <rect x="44" y="88" width="66" height="16" rx="3" fill="#FAF5EC" />
             <text x="77" y="99" text-anchor="middle" font-size="8" font-family="serif" fill="#1E2A38" font-weight="bold">S &amp; P</text>
@@ -627,7 +654,6 @@
     </div>
 
     <div class="scratch-container text-center">
-      <!-- Underlying Revealed Content (z-index: 1) -->
       <div class="scratch-underlay">
         <p data-i18n="weddingDatesShort" class="text-[11px] uppercase tracking-[0.22em] text-[#C86D51] font-semibold">3 &amp; 4 January 2027</p>
         <p data-i18n="venueShort" class="font-serif-display text-lg font-semibold text-[#1E2A38] mt-0.5">Crescent The Fern, Budhni</p>
@@ -647,7 +673,6 @@
         </div>
       </div>
 
-      <!-- Gold Foil Canvas Overlay (z-index: 20) -->
       <canvas id="scratchCanvas" width="320" height="200"></canvas>
     </div>
 
@@ -657,7 +682,7 @@
   </section>
 
   <!-- =========================================================
-       SECTION 4: ARCHED FLORAL WINDOW & INVITATION VERSE
+       SECTION 4: 3D-SHADED ARCHED FLORAL WINDOW & INVITATION VERSE
   ========================================================== -->
   <section class="py-20 px-4 bg-gradient-to-b from-[#FAF5EC] to-[#F3E9D8] flex flex-col items-center">
     <div class="max-w-3xl w-full text-center">
@@ -665,41 +690,64 @@
         “Two souls, one heart, and a lifetime of laughter ahead...”
       </p>
 
-      <!-- Decorated Arch Window -->
       <div class="relative max-w-xs sm:max-w-sm mx-auto my-6">
-        <svg viewBox="0 0 120 120" class="w-24 h-24 -top-6 -left-6 absolute z-20 pointer-events-none">
-          <circle cx="42" cy="45" r="18" fill="#C86D51" opacity="0.9" />
+        <svg viewBox="0 0 120 120" class="w-24 h-24 -top-6 -left-6 absolute z-20 pointer-events-none drop-shadow-md">
+          <circle cx="42" cy="45" r="18" fill="#C86D51" opacity="0.95" />
           <circle cx="65" cy="32" r="14" fill="#E5989B" />
           <circle cx="30" cy="68" r="14" fill="#F2D7D0" />
           <path d="M55,55 Q80,45 92,25" stroke="#4A5D4E" stroke-width="3" fill="none" />
           <ellipse cx="76" cy="42" rx="10" ry="5" transform="rotate(-30 76 42)" fill="#4A5D4E" />
         </svg>
-        <svg viewBox="0 0 120 120" class="w-24 h-24 -bottom-5 -right-5 absolute z-20 pointer-events-none rotate-180">
-          <circle cx="42" cy="45" r="18" fill="#C86D51" opacity="0.9" />
+        <svg viewBox="0 0 120 120" class="w-24 h-24 -bottom-5 -right-5 absolute z-20 pointer-events-none rotate-180 drop-shadow-md">
+          <circle cx="42" cy="45" r="18" fill="#C86D51" opacity="0.95" />
           <circle cx="65" cy="32" r="14" fill="#E5989B" />
           <circle cx="30" cy="68" r="14" fill="#F2D7D0" />
           <ellipse cx="76" cy="42" rx="10" ry="5" transform="rotate(-30 76 42)" fill="#4A5D4E" />
         </svg>
 
         <div class="arch-window aspect-[3/4] flex flex-col items-center justify-end pt-8 px-4">
-          <svg viewBox="0 0 300 360" class="w-full h-full">
-            <line x1="150" y1="0" x2="150" y2="360" stroke="#FFFFFF" stroke-width="3" opacity="0.6" />
-            <line x1="0" y1="180" x2="300" y2="180" stroke="#FFFFFF" stroke-width="3" opacity="0.6" />
-            <circle cx="118" cy="145" r="30" fill="#F2C29B" />
+          <svg viewBox="0 0 300 360" class="w-full h-full drop-shadow-lg">
+            <defs>
+              <radialGradient id="skin3dA" cx="35%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#FFE0C2" />
+                <stop offset="70%" stop-color="#F2C29B" />
+                <stop offset="100%" stop-color="#C99268" />
+              </radialGradient>
+              <radialGradient id="skin3dB" cx="35%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#FFE6CE" />
+                <stop offset="70%" stop-color="#F6CEAE" />
+                <stop offset="100%" stop-color="#CE9A72" />
+              </radialGradient>
+              <linearGradient id="sherwani3d" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#FFFFFF" />
+                <stop offset="65%" stop-color="#FAF5EC" />
+                <stop offset="100%" stop-color="#DFD2BC" />
+              </linearGradient>
+              <linearGradient id="lehenga3d" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#E58467" />
+                <stop offset="60%" stop-color="#C86D51" />
+                <stop offset="100%" stop-color="#873D26" />
+              </linearGradient>
+            </defs>
+            <line x1="150" y1="0" x2="150" y2="360" stroke="#FFFFFF" stroke-width="3" opacity="0.65" />
+            <line x1="0" y1="180" x2="300" y2="180" stroke="#FFFFFF" stroke-width="3" opacity="0.65" />
+            <!-- Groom 3D Shaded -->
+            <circle cx="118" cy="145" r="30" fill="url(#skin3dA)" />
             <path d="M88,140 Q118,98 148,140 Q145,120 118,120 Q92,120 88,140 Z" fill="#1E2A38" />
-            <path d="M68,360 L76,215 Q118,195 160,215 L168,360 Z" fill="#FAF5EC" stroke="#C9A253" stroke-width="2" />
+            <path d="M68,360 L76,215 Q118,195 160,215 L168,360 Z" fill="url(#sherwani3d)" stroke="#C9A253" stroke-width="2" />
             <path d="M118,205 L118,360" stroke="#C9A253" stroke-width="2" />
-            <circle cx="186" cy="155" r="28" fill="#F6CEAE" />
+            <!-- Bride 3D Shaded -->
+            <circle cx="186" cy="155" r="28" fill="url(#skin3dB)" />
             <path d="M156,152 Q186,112 216,152 L224,235 L148,235 Z" fill="#2A1810" />
-            <path d="M154,132 Q186,105 218,132 L242,360 L134,360 Z" fill="#C86D51" opacity="0.88" />
+            <path d="M154,132 Q186,105 218,132 L242,360 L134,360 Z" fill="url(#lehenga3d)" opacity="0.94" />
             <circle cx="186" cy="138" r="4" fill="#F5DC8E" />
+            <!-- Garland -->
             <path d="M84,225 Q118,275 152,225" stroke="#F5DC8E" stroke-width="8" fill="none" stroke-linecap="round" />
             <path d="M154,230 Q186,278 218,230" stroke="#F5DC8E" stroke-width="8" fill="none" stroke-linecap="round" />
           </svg>
         </div>
       </div>
 
-      <!-- Invitational Sentences -->
       <div class="mt-8 space-y-3 max-w-xl mx-auto">
         <p data-i18n="cordiallyInvite" class="text-xs uppercase tracking-[0.25em] text-[#C86D51] font-semibold">Cordially Invite You</p>
         <h3 data-i18n="coupleFullNames" class="font-serif-display text-3xl sm:text-4xl text-[#1E2A38]">
@@ -713,55 +761,67 @@
   </section>
 
   <!-- =========================================================
-       SECTION 5: 4 CLICKABLE FUNCTION SQUARES + MAP MODAL
+       SECTION 5: 5 CLICKABLE FUNCTION SQUARES + MAP MODAL
   ========================================================== -->
   <section class="py-20 px-4 bg-[#FAF5EC]">
-    <div class="max-w-4xl mx-auto text-center">
+    <div class="max-w-5xl mx-auto text-center">
       <p data-i18n="itinerarySub" class="text-xs uppercase tracking-[0.25em] text-[#4A5D4E] font-semibold">Wedding Itinerary</p>
       <h2 data-i18n="celebrationsTitle" class="font-serif-display text-4xl sm:text-5xl text-[#1E2A38] mt-1">The Celebrations</h2>
-      <p data-i18n="celebrationsDesc" class="text-sm text-[#1E2A38]/70 mt-2 mb-12">Tap each decorated square to view event timings, venue details, and Google Maps directions.</p>
+      <p data-i18n="celebrationsDesc" class="text-sm text-[#1E2A38]/70 mt-2 mb-12">Tap each decorated square to view event timings, dress codes, and Google Maps directions.</p>
 
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-6">
-        <!-- Square 1 -->
-        <button onclick="openEventModal(0)" class="group aspect-square bg-white rounded-2xl p-4 border-2 border-[#C9A253]/60 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col items-center justify-center relative overflow-hidden">
+      <!-- 5 Functions Grid (2 cols mobile, 3 cols tablet, 5 cols desktop) -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
+        <!-- Square 0: Haldi (3rd Jan, 1:00 PM) -->
+        <button onclick="openEventModal(0)" class="card-3d group aspect-square bg-white rounded-2xl p-3.5 border-2 border-[#C9A253]/70 flex flex-col items-center justify-center relative overflow-hidden">
           <div class="absolute inset-2 border border-dashed border-[#C9A253]/50 rounded-xl pointer-events-none"></div>
-          <span class="text-3xl mb-2">🌼</span>
-          <span data-i18n="ev0Title" class="font-serif-display text-xl font-bold text-[#1E2A38]">Mehendi &amp; Haldi</span>
-          <span data-i18n="ev0TimeShort" class="text-[11px] uppercase tracking-wider text-[#C86D51] mt-1 font-medium">3 Jan 2027 • Morning</span>
-          <span data-i18n="tapDetails" class="mt-3 text-[10px] uppercase tracking-widest bg-[#FAF5EC] text-[#4A5D4E] px-2.5 py-1 rounded-full border border-[#4A5D4E]/20 group-hover:bg-[#4A5D4E] group-hover:text-white transition-colors">
+          <span class="text-3xl mb-1.5 drop-shadow">🌼</span>
+          <span data-i18n="ev0Title" class="font-serif-display text-lg sm:text-xl font-bold text-[#1E2A38] leading-tight">Haldi</span>
+          <span data-i18n="ev0TimeShort" class="text-[10px] sm:text-[11px] uppercase tracking-wider text-[#C86D51] mt-1 font-semibold">3 Jan • 1:00 PM</span>
+          <span data-i18n="tapDetails" class="mt-2.5 text-[10px] uppercase tracking-widest bg-[#FAF5EC] text-[#4A5D4E] px-2.5 py-1 rounded-full border border-[#4A5D4E]/20 group-hover:bg-[#4A5D4E] group-hover:text-white transition-colors">
             Tap Details
           </span>
         </button>
 
-        <!-- Square 2 -->
-        <button onclick="openEventModal(1)" class="group aspect-square bg-white rounded-2xl p-4 border-2 border-[#C9A253]/60 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col items-center justify-center relative overflow-hidden">
+        <!-- Square 1: Sangeet & After Party (3rd Jan, 8:00 PM) -->
+        <button onclick="openEventModal(1)" class="card-3d group aspect-square bg-white rounded-2xl p-3.5 border-2 border-[#C9A253]/70 flex flex-col items-center justify-center relative overflow-hidden">
           <div class="absolute inset-2 border border-dashed border-[#C9A253]/50 rounded-xl pointer-events-none"></div>
-          <span class="text-3xl mb-2">🪩</span>
-          <span data-i18n="ev1Title" class="font-serif-display text-xl font-bold text-[#1E2A38]">Sangeet Night</span>
-          <span data-i18n="ev1TimeShort" class="text-[11px] uppercase tracking-wider text-[#C86D51] mt-1 font-medium">3 Jan 2027 • Evening</span>
-          <span data-i18n="tapDetails" class="mt-3 text-[10px] uppercase tracking-widest bg-[#FAF5EC] text-[#4A5D4E] px-2.5 py-1 rounded-full border border-[#4A5D4E]/20 group-hover:bg-[#4A5D4E] group-hover:text-white transition-colors">
+          <span class="text-3xl mb-1.5 drop-shadow">🪩</span>
+          <span data-i18n="ev1Title" class="font-serif-display text-lg sm:text-xl font-bold text-[#1E2A38] leading-tight">Sangeet &amp; After Party</span>
+          <span data-i18n="ev1TimeShort" class="text-[10px] sm:text-[11px] uppercase tracking-wider text-[#C86D51] mt-1 font-semibold">3 Jan • 8:00 PM</span>
+          <span data-i18n="tapDetails" class="mt-2.5 text-[10px] uppercase tracking-widest bg-[#FAF5EC] text-[#4A5D4E] px-2.5 py-1 rounded-full border border-[#4A5D4E]/20 group-hover:bg-[#4A5D4E] group-hover:text-white transition-colors">
             Tap Details
           </span>
         </button>
 
-        <!-- Square 3 -->
-        <button onclick="openEventModal(2)" class="group aspect-square bg-white rounded-2xl p-4 border-2 border-[#C9A253]/60 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col items-center justify-center relative overflow-hidden">
+        <!-- Square 2: Baraat (4th Jan, 12:00 PM) -->
+        <button onclick="openEventModal(2)" class="card-3d group aspect-square bg-white rounded-2xl p-3.5 border-2 border-[#C9A253]/70 flex flex-col items-center justify-center relative overflow-hidden">
           <div class="absolute inset-2 border border-dashed border-[#C9A253]/50 rounded-xl pointer-events-none"></div>
-          <span class="text-3xl mb-2">🔥</span>
-          <span data-i18n="ev2Title" class="font-serif-display text-xl font-bold text-[#1E2A38]">The Wedding</span>
-          <span data-i18n="ev2TimeShort" class="text-[11px] uppercase tracking-wider text-[#C86D51] mt-1 font-medium">4 Jan 2027 • Afternoon</span>
-          <span data-i18n="tapDetails" class="mt-3 text-[10px] uppercase tracking-widest bg-[#FAF5EC] text-[#4A5D4E] px-2.5 py-1 rounded-full border border-[#4A5D4E]/20 group-hover:bg-[#4A5D4E] group-hover:text-white transition-colors">
+          <span class="text-3xl mb-1.5 drop-shadow">🥁</span>
+          <span data-i18n="ev2Title" class="font-serif-display text-lg sm:text-xl font-bold text-[#1E2A38] leading-tight">Baraat</span>
+          <span data-i18n="ev2TimeShort" class="text-[10px] sm:text-[11px] uppercase tracking-wider text-[#C86D51] mt-1 font-semibold">4 Jan • 12:00 PM</span>
+          <span data-i18n="tapDetails" class="mt-2.5 text-[10px] uppercase tracking-widest bg-[#FAF5EC] text-[#4A5D4E] px-2.5 py-1 rounded-full border border-[#4A5D4E]/20 group-hover:bg-[#4A5D4E] group-hover:text-white transition-colors">
             Tap Details
           </span>
         </button>
 
-        <!-- Square 4 -->
-        <button onclick="openEventModal(3)" class="group aspect-square bg-white rounded-2xl p-4 border-2 border-[#C9A253]/60 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col items-center justify-center relative overflow-hidden">
+        <!-- Square 3: Phera (4th Jan, 3:00 PM) -->
+        <button onclick="openEventModal(3)" class="card-3d group aspect-square bg-white rounded-2xl p-3.5 border-2 border-[#C9A253]/70 flex flex-col items-center justify-center relative overflow-hidden">
           <div class="absolute inset-2 border border-dashed border-[#C9A253]/50 rounded-xl pointer-events-none"></div>
-          <span class="text-3xl mb-2">🥂</span>
-          <span data-i18n="ev3Title" class="font-serif-display text-xl font-bold text-[#1E2A38]">Grand Reception</span>
-          <span data-i18n="ev3TimeShort" class="text-[11px] uppercase tracking-wider text-[#C86D51] mt-1 font-medium">4 Jan 2027 • Night</span>
-          <span data-i18n="tapDetails" class="mt-3 text-[10px] uppercase tracking-widest bg-[#FAF5EC] text-[#4A5D4E] px-2.5 py-1 rounded-full border border-[#4A5D4E]/20 group-hover:bg-[#4A5D4E] group-hover:text-white transition-colors">
+          <span class="text-3xl mb-1.5 drop-shadow">🔥</span>
+          <span data-i18n="ev3Title" class="font-serif-display text-lg sm:text-xl font-bold text-[#1E2A38] leading-tight">Phera</span>
+          <span data-i18n="ev3TimeShort" class="text-[10px] sm:text-[11px] uppercase tracking-wider text-[#C86D51] mt-1 font-semibold">4 Jan • 3:00 PM</span>
+          <span data-i18n="tapDetails" class="mt-2.5 text-[10px] uppercase tracking-widest bg-[#FAF5EC] text-[#4A5D4E] px-2.5 py-1 rounded-full border border-[#4A5D4E]/20 group-hover:bg-[#4A5D4E] group-hover:text-white transition-colors">
+            Tap Details
+          </span>
+        </button>
+
+        <!-- Square 4: Sufi Nights (4th Jan, 9:00 PM) -->
+        <button onclick="openEventModal(4)" class="card-3d group col-span-2 sm:col-span-1 aspect-[2/1] sm:aspect-square bg-white rounded-2xl p-3.5 border-2 border-[#C9A253]/70 flex flex-col items-center justify-center relative overflow-hidden">
+          <div class="absolute inset-2 border border-dashed border-[#C9A253]/50 rounded-xl pointer-events-none"></div>
+          <span class="text-3xl mb-1.5 drop-shadow">🏮</span>
+          <span data-i18n="ev4Title" class="font-serif-display text-lg sm:text-xl font-bold text-[#1E2A38] leading-tight">Sufi Nights</span>
+          <span data-i18n="ev4TimeShort" class="text-[10px] sm:text-[11px] uppercase tracking-wider text-[#C86D51] mt-1 font-semibold">4 Jan • 9:00 PM</span>
+          <span data-i18n="tapDetails" class="mt-2.5 text-[10px] uppercase tracking-widest bg-[#FAF5EC] text-[#4A5D4E] px-2.5 py-1 rounded-full border border-[#4A5D4E]/20 group-hover:bg-[#4A5D4E] group-hover:text-white transition-colors">
             Tap Details
           </span>
         </button>
@@ -770,73 +830,259 @@
   </section>
 
   <!-- =========================================================
-       SECTION 6: ILLUSTRATED DRESS CODES LOOKBOOK
+       SECTION 6: 3D-STYLED DRESS CODE LOOKBOOK (5 EVENTS)
   ========================================================== -->
   <section class="py-20 px-4 bg-[#F3E9D8]">
-    <div class="max-w-5xl mx-auto text-center">
+    <div class="max-w-6xl mx-auto text-center">
       <p data-i18n="styleGuideSub" class="text-xs uppercase tracking-[0.25em] text-[#C86D51] font-semibold">Style Guide</p>
       <h2 data-i18n="dressCodeTitle" class="font-serif-display text-4xl sm:text-5xl text-[#1E2A38] mt-1">Dress Code Lookbook</h2>
-      <p data-i18n="dressCodeDesc" class="text-sm text-[#1E2A38]/75 mt-2 mb-12">Curated hues and silhouettes to match the mood of each celebration.</p>
+      <p data-i18n="dressCodeDesc" class="text-sm text-[#1E2A38]/75 mt-2 mb-12">Curated 3D lookbook silhouettes matched to each celebration’s dress code.</p>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Look 1 -->
-        <div class="bg-[#FAF5EC] rounded-2xl p-5 border border-[#C9A253]/50 shadow-sm flex flex-col items-center">
-          <svg viewBox="0 0 140 160" class="w-32 h-36 mb-3">
-            <path d="M35,45 L55,35 L75,45 L72,135 L38,135 Z" fill="#F4B41A" />
-            <path d="M88,45 L105,45 L118,138 L76,138 Z" fill="#E67E22" />
-            <circle cx="55" cy="24" r="9" fill="#E8B892" />
-            <circle cx="96" cy="26" r="8.5" fill="#F0C4A0" />
-          </svg>
-          <h3 data-i18n="ev0Title" class="font-serif-display text-xl font-bold text-[#1E2A38]">Mehendi &amp; Haldi</h3>
-          <p data-i18n="dc0Color" class="text-xs font-semibold uppercase tracking-wider text-[#D97706] mt-1">Marigold &amp; Sunshine Yellow</p>
-          <p data-i18n="dc0Desc" class="text-xs text-[#1E2A38]/75 mt-2">Breezy floral kurtas, yellow lehengas, and comfortable festive silhouettes.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+        <!-- 3D Look 1: Haldi — Pastel / Floral / Traditional -->
+        <div class="card-3d-wrap">
+          <div class="card-3d bg-gradient-to-b from-[#FFFDF9] to-[#F6ECE0] rounded-3xl p-5 border border-[#C9A253]/60 h-full flex flex-col items-center">
+            <div class="figure-3d-stage w-32 h-36 mb-3 flex items-center justify-center">
+              <!-- Optional custom 3D asset hook: replace SVG with <img src="assets/dress-haldi-3d.png" ...> if desired -->
+              <svg viewBox="0 0 160 175" class="w-full h-full">
+                <defs>
+                  <radialGradient id="pedestal3d" cx="40%" cy="35%" r="65%">
+                    <stop offset="0%" stop-color="#FFF7E6" />
+                    <stop offset="70%" stop-color="#E6CFA3" />
+                    <stop offset="100%" stop-color="#B58E46" />
+                  </radialGradient>
+                  <linearGradient id="pastelKurta3d" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#FDEBD0" />
+                    <stop offset="55%" stop-color="#F8C471" />
+                    <stop offset="100%" stop-color="#CA8A2E" />
+                  </linearGradient>
+                  <linearGradient id="pastelLehenga3d" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#FADBD8" />
+                    <stop offset="55%" stop-color="#F1948A" />
+                    <stop offset="100%" stop-color="#B05248" />
+                  </linearGradient>
+                </defs>
+                <!-- 3D Isometric Pedestal Disc -->
+                <ellipse cx="80" cy="154" rx="58" ry="13" fill="#9E7B3B" />
+                <ellipse cx="80" cy="149" rx="58" ry="13" fill="url(#pedestal3d)" />
+                <!-- 3D Groom Pastel Kurta -->
+                <path d="M40,56 Q58,44 76,56 L73,144 L43,144 Z" fill="url(#pastelKurta3d)" />
+                <path d="M58,48 L58,108" stroke="#FFF8EB" stroke-width="2" />
+                <circle cx="58" cy="34" r="10.5" fill="url(#skin3dA)" />
+                <path d="M48,31 Q58,20 68,31" fill="#2C1E16" />
+                <!-- 3D Bride Floral Pastel Lehenga -->
+                <path d="M90,56 L108,56 L124,146 L80,146 Z" fill="url(#pastelLehenga3d)" />
+                <circle cx="96" cy="98" r="3" fill="#FFFDF7" opacity="0.85" />
+                <circle cx="106" cy="116" r="3.5" fill="#F9E79F" opacity="0.9" />
+                <circle cx="92" cy="126" r="3" fill="#FFFDF7" opacity="0.85" />
+                <circle cx="99" cy="36" r="9.5" fill="url(#skin3dB)" />
+                <path d="M89,34 Q99,22 109,34 L112,52 L86,52 Z" fill="#2A1810" />
+              </svg>
+            </div>
+            <h3 data-i18n="ev0Title" class="font-serif-display text-xl font-bold text-[#1E2A38]">Haldi</h3>
+            <p data-i18n="dc0Color" class="text-[11px] font-bold uppercase tracking-wider text-[#D97706] mt-1">Pastel / Floral / Traditional</p>
+            <p data-i18n="dc0Desc" class="text-xs text-[#1E2A38]/75 mt-2 leading-relaxed">Breezy pastel kurtas, floral prints, and sunlit traditional wear.</p>
+          </div>
         </div>
 
-        <!-- Look 2 -->
-        <div class="bg-[#FAF5EC] rounded-2xl p-5 border border-[#C9A253]/50 shadow-sm flex flex-col items-center">
-          <svg viewBox="0 0 140 160" class="w-32 h-36 mb-3">
-            <path d="M34,45 L55,35 L76,45 L73,138 L37,138 Z" fill="#1E2A38" />
-            <path d="M88,44 L106,44 L122,140 L76,140 Z" fill="#2D6A4F" />
-            <circle cx="55" cy="24" r="9" fill="#E8B892" />
-            <circle cx="97" cy="26" r="8.5" fill="#F0C4A0" />
-          </svg>
-          <h3 data-i18n="ev1Title" class="font-serif-display text-xl font-bold text-[#1E2A38]">Sangeet Night</h3>
-          <p data-i18n="dc1Color" class="text-xs font-semibold uppercase tracking-wider text-[#2D6A4F] mt-1">Emerald &amp; Midnight Shimmer</p>
-          <p data-i18n="dc1Desc" class="text-xs text-[#1E2A38]/75 mt-2">Indo-western bandhgalas, sequined sarees, and cocktail gowns made for dancing.</p>
+        <!-- 3D Look 2: Sangeet & After Party — Glamorous Indian / Indo-Western -->
+        <div class="card-3d-wrap">
+          <div class="card-3d bg-gradient-to-b from-[#FFFDF9] to-[#F6ECE0] rounded-3xl p-5 border border-[#C9A253]/60 h-full flex flex-col items-center">
+            <div class="figure-3d-stage w-32 h-36 mb-3 flex items-center justify-center">
+              <svg viewBox="0 0 160 175" class="w-full h-full">
+                <defs>
+                  <linearGradient id="indoWest3d" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#34495E" />
+                    <stop offset="60%" stop-color="#1E2A38" />
+                    <stop offset="100%" stop-color="#0F1720" />
+                  </linearGradient>
+                  <linearGradient id="glamGown3d" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#52BE80" />
+                    <stop offset="55%" stop-color="#1E8449" />
+                    <stop offset="100%" stop-color="#0E4B28" />
+                  </linearGradient>
+                </defs>
+                <ellipse cx="80" cy="154" rx="58" ry="13" fill="#9E7B3B" />
+                <ellipse cx="80" cy="149" rx="58" ry="13" fill="url(#pedestal3d)" />
+                <!-- 3D Bandhgala -->
+                <path d="M40,56 Q58,44 76,56 L73,144 L43,144 Z" fill="url(#indoWest3d)" />
+                <line x1="58" y1="50" x2="58" y2="135" stroke="#F5DC8E" stroke-width="2" />
+                <circle cx="58" cy="34" r="10.5" fill="url(#skin3dA)" />
+                <path d="M48,31 Q58,20 68,31" fill="#1C1410" />
+                <!-- 3D Shimmer Gown / Saree -->
+                <path d="M90,56 L108,56 L124,146 L80,146 Z" fill="url(#glamGown3d)" />
+                <path d="M88,58 L118,132" stroke="#F5DC8E" stroke-width="3" opacity="0.85" />
+                <circle cx="99" cy="36" r="9.5" fill="url(#skin3dB)" />
+                <path d="M89,34 Q99,22 109,34 L112,52 L86,52 Z" fill="#2A1810" />
+              </svg>
+            </div>
+            <h3 data-i18n="ev1Title" class="font-serif-display text-xl font-bold text-[#1E2A38]">Sangeet &amp; After Party</h3>
+            <p data-i18n="dc1Color" class="text-[11px] font-bold uppercase tracking-wider text-[#1E8449] mt-1">Glamorous Indian / Indo-Western</p>
+            <p data-i18n="dc1Desc" class="text-xs text-[#1E2A38]/75 mt-2 leading-relaxed">Shimmering sarees, structured bandhgalas, and Indo-Western party silhouettes.</p>
+          </div>
         </div>
 
-        <!-- Look 3 -->
-        <div class="bg-[#FAF5EC] rounded-2xl p-5 border border-[#C9A253]/50 shadow-sm flex flex-col items-center">
-          <svg viewBox="0 0 140 160" class="w-32 h-36 mb-3">
-            <path d="M34,45 L55,35 L76,45 L73,138 L37,138 Z" fill="#EFE4D2" stroke="#C9A253" stroke-width="1.5" />
-            <path d="M88,44 L106,44 L122,140 L76,140 Z" fill="#E5989B" />
-            <circle cx="55" cy="24" r="9" fill="#E8B892" />
-            <circle cx="97" cy="26" r="8.5" fill="#F0C4A0" />
-          </svg>
-          <h3 data-i18n="ev2Title" class="font-serif-display text-xl font-bold text-[#1E2A38]">The Wedding</h3>
-          <p data-i18n="dc2Color" class="text-xs font-semibold uppercase tracking-wider text-[#C86D51] mt-1">Ivory, Blush &amp; Pastel Gold</p>
-          <p data-i18n="dc2Desc" class="text-xs text-[#1E2A38]/75 mt-2">Traditional silk sherwanis, pastel sarees, and timeless heritage weaves.</p>
+        <!-- 3D Look 3: Baraat — Elegant / Grand Ethnic / Formal -->
+        <div class="card-3d-wrap">
+          <div class="card-3d bg-gradient-to-b from-[#FFFDF9] to-[#F6ECE0] rounded-3xl p-5 border border-[#C9A253]/60 h-full flex flex-col items-center">
+            <div class="figure-3d-stage w-32 h-36 mb-3 flex items-center justify-center">
+              <svg viewBox="0 0 160 175" class="w-full h-full">
+                <defs>
+                  <linearGradient id="royalSherwani3d" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#FFFDF8" />
+                    <stop offset="60%" stop-color="#EAD8B8" />
+                    <stop offset="100%" stop-color="#B99C6B" />
+                  </linearGradient>
+                  <linearGradient id="grandEthnic3d" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#5DADE2" />
+                    <stop offset="55%" stop-color="#2874A6" />
+                    <stop offset="100%" stop-color="#154360" />
+                  </linearGradient>
+                </defs>
+                <ellipse cx="80" cy="154" rx="58" ry="13" fill="#9E7B3B" />
+                <ellipse cx="80" cy="149" rx="58" ry="13" fill="url(#pedestal3d)" />
+                <!-- 3D Safa & Royal Sherwani -->
+                <path d="M40,56 Q58,44 76,56 L73,144 L43,144 Z" fill="url(#royalSherwani3d)" />
+                <path d="M46,56 L70,126" stroke="#C86D51" stroke-width="4" />
+                <circle cx="58" cy="34" r="10.5" fill="url(#skin3dA)" />
+                <path d="M46,29 Q58,14 70,29 Z" fill="#C86D51" />
+                <!-- 3D Grand Ethnic Anarkali -->
+                <path d="M90,56 L108,56 L124,146 L80,146 Z" fill="url(#grandEthnic3d)" />
+                <path d="M84,142 L122,142" stroke="#F5DC8E" stroke-width="3.5" />
+                <circle cx="99" cy="36" r="9.5" fill="url(#skin3dB)" />
+                <path d="M89,34 Q99,22 109,34 L112,52 L86,52 Z" fill="#2A1810" />
+              </svg>
+            </div>
+            <h3 data-i18n="ev2Title" class="font-serif-display text-xl font-bold text-[#1E2A38]">Baraat</h3>
+            <p data-i18n="dc2Color" class="text-[11px] font-bold uppercase tracking-wider text-[#2874A6] mt-1">Elegant / Grand Ethnic / Formal</p>
+            <p data-i18n="dc2Desc" class="text-xs text-[#1E2A38]/75 mt-2 leading-relaxed">Safas, grand sherwanis, tailored formalwear, and festive royal ethnic.</p>
+          </div>
         </div>
 
-        <!-- Look 4 -->
-        <div class="bg-[#FAF5EC] rounded-2xl p-5 border border-[#C9A253]/50 shadow-sm flex flex-col items-center">
-          <svg viewBox="0 0 140 160" class="w-32 h-36 mb-3">
-            <path d="M34,45 L55,35 L76,45 L73,138 L37,138 Z" fill="#141B24" />
-            <polygon points="55,42 50,58 60,58" fill="#FAF5EC" />
-            <path d="M88,44 L106,44 L120,140 L78,140 Z" fill="#722F37" />
-            <circle cx="55" cy="24" r="9" fill="#E8B892" />
-            <circle cx="97" cy="26" r="8.5" fill="#F0C4A0" />
-          </svg>
-          <h3 data-i18n="ev3Title" class="font-serif-display text-xl font-bold text-[#1E2A38]">Grand Reception</h3>
-          <p data-i18n="dc3Color" class="text-xs font-semibold uppercase tracking-wider text-[#722F37] mt-1">Royal Wine &amp; Black Tie</p>
-          <p data-i18n="dc3Desc" class="text-xs text-[#1E2A38]/75 mt-2">Classic tuxedos, tailored suits, and jewel-toned evening ensembles.</p>
+        <!-- 3D Look 4: Phera — Traditional Indian / Wedding Glam -->
+        <div class="card-3d-wrap">
+          <div class="card-3d bg-gradient-to-b from-[#FFFDF9] to-[#F6ECE0] rounded-3xl p-5 border border-[#C9A253]/60 h-full flex flex-col items-center">
+            <div class="figure-3d-stage w-32 h-36 mb-3 flex items-center justify-center">
+              <svg viewBox="0 0 160 175" class="w-full h-full">
+                <defs>
+                  <linearGradient id="weddingGold3d" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#FCF3CF" />
+                    <stop offset="60%" stop-color="#F5CBA7" />
+                    <stop offset="100%" stop-color="#BA7A45" />
+                  </linearGradient>
+                  <linearGradient id="bridalCrimson3d" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#EC7063" />
+                    <stop offset="55%" stop-color="#C0392B" />
+                    <stop offset="100%" stop-color="#78281F" />
+                  </linearGradient>
+                </defs>
+                <ellipse cx="80" cy="154" rx="58" ry="13" fill="#9E7B3B" />
+                <ellipse cx="80" cy="149" rx="58" ry="13" fill="url(#pedestal3d)" />
+                <!-- 3D Heritage Sherwani -->
+                <path d="M40,56 Q58,44 76,56 L73,144 L43,144 Z" fill="url(#weddingGold3d)" />
+                <circle cx="58" cy="34" r="10.5" fill="url(#skin3dA)" />
+                <path d="M48,31 Q58,20 68,31" fill="#1E2A38" />
+                <!-- 3D Wedding Glam Lehenga -->
+                <path d="M90,56 L108,56 L125,146 L79,146 Z" fill="url(#bridalCrimson3d)" />
+                <path d="M82,138 L122,138" stroke="#F5DC8E" stroke-width="4" />
+                <circle cx="99" cy="36" r="9.5" fill="url(#skin3dB)" />
+                <path d="M89,34 Q99,22 109,34 L112,52 L86,52 Z" fill="#2A1810" />
+              </svg>
+            </div>
+            <h3 data-i18n="ev3Title" class="font-serif-display text-xl font-bold text-[#1E2A38]">Phera</h3>
+            <p data-i18n="dc3Color" class="text-[11px] font-bold uppercase tracking-wider text-[#C0392B] mt-1">Traditional Indian / Wedding Glam</p>
+            <p data-i18n="dc3Desc" class="text-xs text-[#1E2A38]/75 mt-2 leading-relaxed">Rich silk weaves, heritage lehengas, and classic wedding glam.</p>
+          </div>
+        </div>
+
+        <!-- 3D Look 5: Sufi Nights — Dark / Classy Evening Wear -->
+        <div class="card-3d-wrap sm:col-span-2 lg:col-span-1">
+          <div class="card-3d bg-gradient-to-b from-[#FFFDF9] to-[#F6ECE0] rounded-3xl p-5 border border-[#C9A253]/60 h-full flex flex-col items-center">
+            <div class="figure-3d-stage w-32 h-36 mb-3 flex items-center justify-center">
+              <svg viewBox="0 0 160 175" class="w-full h-full">
+                <defs>
+                  <linearGradient id="tux3d" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#2C3E50" />
+                    <stop offset="55%" stop-color="#17202A" />
+                    <stop offset="100%" stop-color="#090D12" />
+                  </linearGradient>
+                  <linearGradient id="sufiPlum3d" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#9B59B6" />
+                    <stop offset="55%" stop-color="#5B2C6F" />
+                    <stop offset="100%" stop-color="#2E1437" />
+                  </linearGradient>
+                </defs>
+                <ellipse cx="80" cy="154" rx="58" ry="13" fill="#9E7B3B" />
+                <ellipse cx="80" cy="149" rx="58" ry="13" fill="url(#pedestal3d)" />
+                <!-- 3D Black Tuxedo -->
+                <path d="M40,56 Q58,44 76,56 L73,144 L43,144 Z" fill="url(#tux3d)" />
+                <polygon points="58,52 52,72 64,72" fill="#FAF5EC" />
+                <circle cx="58" cy="34" r="10.5" fill="url(#skin3dA)" />
+                <path d="M48,31 Q58,20 68,31" fill="#1C1410" />
+                <!-- 3D Dark Evening Gown -->
+                <path d="M90,56 L108,56 L124,146 L80,146 Z" fill="url(#sufiPlum3d)" />
+                <circle cx="99" cy="36" r="9.5" fill="url(#skin3dB)" />
+                <path d="M89,34 Q99,22 109,34 L112,52 L86,52 Z" fill="#2A1810" />
+              </svg>
+            </div>
+            <h3 data-i18n="ev4Title" class="font-serif-display text-xl font-bold text-[#1E2A38]">Sufi Nights</h3>
+            <p data-i18n="dc4Color" class="text-[11px] font-bold uppercase tracking-wider text-[#5B2C6F] mt-1">Dark / Classy Evening Wear</p>
+            <p data-i18n="dc4Desc" class="text-xs text-[#1E2A38]/75 mt-2 leading-relaxed">Midnight velvet, jewel tones, tuxedos, and classy cocktail attire.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- =========================================================
-       SECTION 7: TEAM BRIDE / GROOM SELECTOR & RSVP PASS
+       SECTION 7: HOSPITALITY & FAMILY CONTACT CARD
+  ========================================================== -->
+  <section class="py-16 px-4 bg-[#FAF5EC] border-t border-[#C9A253]/30">
+    <div class="max-w-3xl mx-auto text-center">
+      <p data-i18n="contactSub" class="text-xs uppercase tracking-[0.25em] text-[#C86D51] font-semibold">Need Assistance?</p>
+      <h2 data-i18n="contactTitle" class="font-serif-display text-3xl sm:text-4xl text-[#1E2A38] mt-1">Hospitality &amp; Family Contacts</h2>
+      <p data-i18n="contactDesc" class="text-xs sm:text-sm text-[#1E2A38]/75 mt-2 mb-8">For travel, stay, or schedule queries at Crescent The Fern Budhni, feel free to reach out to us anytime.</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 text-left">
+        <!-- Contact 1 -->
+        <div class="card-3d bg-white rounded-2xl p-5 border border-[#C9A253]/60 flex items-center justify-between gap-4">
+          <div>
+            <span data-i18n="contact1Role" class="text-[10px] uppercase tracking-widest text-[#C86D51] font-bold">Groom’s Family • Hospitality</span>
+            <h3 data-i18n="contact1Name" class="font-serif-display text-2xl font-bold text-[#1E2A38] mt-0.5">Basantwani Family</h3>
+            <p class="text-xs text-[#4A5D4E] font-medium mt-1">+91 98260 00001</p>
+          </div>
+          <div class="flex flex-col gap-2 shrink-0">
+            <a href="tel:+919826000001" class="px-3.5 py-2 rounded-xl bg-[#1E2A38] text-[#F5DC8E] text-[11px] font-semibold uppercase tracking-wider text-center hover:bg-[#2B3C50] transition-colors">
+              📞 <span data-i18n="callBtn">Call</span>
+            </a>
+            <a href="https://wa.me/919826000001" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-[#4A5D4E] text-white text-[11px] font-semibold uppercase tracking-wider text-center hover:opacity-95 transition-opacity">
+              💬 WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <!-- Contact 2 -->
+        <div class="card-3d bg-white rounded-2xl p-5 border border-[#C9A253]/60 flex items-center justify-between gap-4">
+          <div>
+            <span data-i18n="contact2Role" class="text-[10px] uppercase tracking-widest text-[#C86D51] font-bold">Bride’s Family • Hospitality</span>
+            <h3 data-i18n="contact2Name" class="font-serif-display text-2xl font-bold text-[#1E2A38] mt-0.5">Mandhan Family</h3>
+            <p class="text-xs text-[#4A5D4E] font-medium mt-1">+91 98260 00002</p>
+          </div>
+          <div class="flex flex-col gap-2 shrink-0">
+            <a href="tel:+919826000002" class="px-3.5 py-2 rounded-xl bg-[#1E2A38] text-[#F5DC8E] text-[11px] font-semibold uppercase tracking-wider text-center hover:bg-[#2B3C50] transition-colors">
+              📞 <span data-i18n="callBtn">Call</span>
+            </a>
+            <a href="https://wa.me/919826000002" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-[#4A5D4E] text-white text-[11px] font-semibold uppercase tracking-wider text-center hover:opacity-95 transition-opacity">
+              💬 WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECTION 8: TEAM BRIDE / GROOM SELECTOR & RSVP PASS
   ========================================================== -->
   <section class="py-20 px-4 bg-[#1E2A38] text-[#FAF5EC]">
     <div class="max-w-xl mx-auto">
@@ -847,7 +1093,6 @@
       </div>
 
       <form id="rsvpForm" onsubmit="generateRsvpPass(event)" class="bg-[#263547] p-5 sm:p-8 rounded-3xl border border-[#C9A253]/50 shadow-2xl space-y-5 overflow-hidden">
-        <!-- Side Selection -->
         <div>
           <label data-i18n="whichSideLabel" class="block text-xs uppercase tracking-widest text-[#C9A253] mb-2.5">Which Side Are You On?</label>
           <div class="grid grid-cols-2 gap-3">
@@ -861,13 +1106,11 @@
           <input type="hidden" id="selectedSideKey" value="groom" />
         </div>
 
-        <!-- Guest Name -->
         <div>
           <label data-i18n="fullNameLabel" for="guestName" class="block text-xs uppercase tracking-widest text-[#C9A253] mb-1.5">Full Name</label>
           <input id="guestName" type="text" required placeholder="e.g., Rohan Sharma & Family" class="rsvp-input px-4 py-3 rounded-xl bg-[#1A2532] border border-[#C9A253]/30 text-[#FAF5EC] focus:outline-none focus:border-[#C9A253]" />
         </div>
 
-        <!-- Arrival Date & Time -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="min-w-0">
             <label data-i18n="arrivalDateLabel" for="arrivalDate" class="block text-xs uppercase tracking-widest text-[#C9A253] mb-1.5">Arrival Date</label>
@@ -875,11 +1118,10 @@
           </div>
           <div class="min-w-0">
             <label data-i18n="arrivalTimeLabel" for="arrivalTime" class="block text-xs uppercase tracking-widest text-[#C9A253] mb-1.5">Arrival Time</label>
-            <input id="arrivalTime" type="time" value="10:00" required class="rsvp-input px-3.5 py-3 rounded-xl bg-[#1A2532] border border-[#C9A253]/30 text-[#FAF5EC] text-sm focus:outline-none focus:border-[#C9A253]" />
+            <input id="arrivalTime" type="time" value="11:00" required class="rsvp-input px-3.5 py-3 rounded-xl bg-[#1A2532] border border-[#C9A253]/30 text-[#FAF5EC] text-sm focus:outline-none focus:border-[#C9A253]" />
           </div>
         </div>
 
-        <!-- Guests Count -->
         <div>
           <label data-i18n="guestCountLabel" for="guestCount" class="block text-xs uppercase tracking-widest text-[#C9A253] mb-1.5">Number of Guests</label>
           <select id="guestCount" class="rsvp-input px-4 py-3 rounded-xl bg-[#1A2532] border border-[#C9A253]/30 text-[#FAF5EC] text-sm focus:outline-none focus:border-[#C9A253]">
@@ -895,7 +1137,6 @@
         </button>
       </form>
 
-      <!-- Generated Digital Pass -->
       <div id="rsvpPassCard" class="hidden mt-8 bg-[#FAF5EC] text-[#1E2A38] rounded-3xl p-6 border-2 border-[#C9A253] shadow-2xl relative overflow-hidden">
         <div class="flex items-center justify-between border-b border-dashed border-[#C9A253] pb-4">
           <div>
@@ -907,7 +1148,7 @@
         <div class="grid grid-cols-2 gap-4 py-4 text-sm">
           <div>
             <span data-i18n="arrivalSchedLabel" class="block text-[10px] uppercase tracking-wider text-[#4A5D4E]">Arrival Schedule</span>
-            <strong id="passArrival" class="font-semibold">2027-01-03 • 10:00</strong>
+            <strong id="passArrival" class="font-semibold">2027-01-03 • 11:00</strong>
           </div>
           <div>
             <span data-i18n="partySizeLabel" class="block text-[10px] uppercase tracking-wider text-[#4A5D4E]">Party Size</span>
@@ -925,7 +1166,7 @@
   </section>
 
   <!-- =========================================================
-       EVENT DETAIL MODAL (WITH GOOGLE MAPS LINK)
+       EVENT DETAIL MODAL (WITH DRESS CODE + GOOGLE MAPS LINK)
   ========================================================== -->
   <div id="eventModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop" onclick="closeEventModal(event)">
     <div class="bg-[#FAF5EC] text-[#1E2A38] max-w-md w-full rounded-3xl p-6 sm:p-8 border-2 border-[#C9A253] shadow-2xl relative" onclick="event.stopPropagation()">
@@ -935,15 +1176,17 @@
       <div class="text-center">
         <span id="modalIcon" class="text-4xl block mb-2">🌼</span>
         <p id="modalDate" class="text-xs uppercase tracking-[0.22em] text-[#C86D51] font-semibold">3rd January 2027</p>
-        <h3 id="modalTitle" class="font-serif-display text-3xl font-bold mt-1">Mehendi &amp; Haldi</h3>
+        <h3 id="modalTitle" class="font-serif-display text-3xl font-bold mt-1">Haldi</h3>
         <div class="w-16 h-[1px] bg-[#C9A253] mx-auto my-4"></div>
-        <p id="modalTime" class="text-sm font-semibold text-[#4A5D4E]">11:00 AM Onwards</p>
-        <p id="modalVenueArea" class="text-xs uppercase tracking-wider text-[#1E2A38]/70 mt-1">Poolside Lawns • Crescent The Fern Budhni</p>
+        <p id="modalTime" class="text-sm font-semibold text-[#4A5D4E]">1:00 PM Onwards</p>
+        <p id="modalVenueArea" class="text-xs uppercase tracking-wider text-[#1E2A38]/70 mt-1">Crescent The Fern Budhni, Series by Marriott</p>
+        <div class="mt-3 inline-block px-3.5 py-1.5 rounded-full bg-[#F3E9D8] border border-[#C9A253]/60 text-xs font-semibold text-[#1E2A38]">
+          👗 <span id="modalDressCode">Pastel / Floral / Traditional</span>
+        </div>
         <p id="modalDesc" class="text-sm text-[#1E2A38]/80 mt-4 leading-relaxed">
-          Join us under the winter sun for vibrant henna, floral showers, folk melodies, and festive brunch bites.
+          Join us under the afternoon sun for marigold showers, vibrant haldi rituals, folk beats, and festive lunch.
         </p>
 
-        <!-- Direct Google Maps Button -->
         <a id="modalMapLink" href="https://www.google.com/maps/search/?api=1&query=Crescent+The+Fern+Budhni+Series+by+Marriott" target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center justify-center gap-2 w-full py-3 px-5 rounded-xl bg-[#1E2A38] text-[#F5DC8E] text-xs font-semibold uppercase tracking-widest hover:bg-[#2B3C50] transition-colors shadow-md">
           <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
@@ -958,9 +1201,6 @@
        JAVASCRIPT: MULTI-LANGUAGE + INTERACTIVITY
   ========================================================== -->
   <script>
-    // =========================================================
-    // 1. MULTI-LANGUAGE TRANSLATION DICTIONARY (EN / HI / SD_DEV / SD)
-    // =========================================================
     let currentLang = 'en';
 
     const i18n = {
@@ -994,27 +1234,39 @@
         inviteBody: 'With joyful hearts and the blessings of our parents, we request the pleasure of your company as we tie the knot and celebrate the beginning of our forever on <strong>3rd &amp; 4th January 2027</strong> at <strong>Crescent The Fern Budhni, Series by Marriott</strong>.',
         itinerarySub: 'Wedding Itinerary',
         celebrationsTitle: 'The Celebrations',
-        celebrationsDesc: 'Tap each decorated square to view event timings, venue details, and Google Maps directions.',
+        celebrationsDesc: 'Tap each decorated square to view event timings, dress codes, and Google Maps directions.',
         tapDetails: 'Tap Details',
-        ev0Title: 'Mehendi & Haldi',
-        ev0TimeShort: '3 Jan 2027 • Morning',
-        ev1Title: 'Sangeet Night',
-        ev1TimeShort: '3 Jan 2027 • Evening',
-        ev2Title: 'The Wedding',
-        ev2TimeShort: '4 Jan 2027 • Afternoon',
-        ev3Title: 'Grand Reception',
-        ev3TimeShort: '4 Jan 2027 • Night',
+        ev0Title: 'Haldi',
+        ev0TimeShort: '3 Jan • 1:00 PM',
+        ev1Title: 'Sangeet & After Party',
+        ev1TimeShort: '3 Jan • 8:00 PM',
+        ev2Title: 'Baraat',
+        ev2TimeShort: '4 Jan • 12:00 PM',
+        ev3Title: 'Phera',
+        ev3TimeShort: '4 Jan • 3:00 PM',
+        ev4Title: 'Sufi Nights',
+        ev4TimeShort: '4 Jan • 9:00 PM',
         styleGuideSub: 'Style Guide',
         dressCodeTitle: 'Dress Code Lookbook',
-        dressCodeDesc: 'Curated hues and silhouettes to match the mood of each celebration.',
-        dc0Color: 'Marigold & Sunshine Yellow',
-        dc0Desc: 'Breezy floral kurtas, yellow lehengas, and comfortable festive silhouettes.',
-        dc1Color: 'Emerald & Midnight Shimmer',
-        dc1Desc: 'Indo-western bandhgalas, sequined sarees, and cocktail gowns made for dancing.',
-        dc2Color: 'Ivory, Blush & Pastel Gold',
-        dc2Desc: 'Traditional silk sherwanis, pastel sarees, and timeless heritage weaves.',
-        dc3Color: 'Royal Wine & Black Tie',
-        dc3Desc: 'Classic tuxedos, tailored suits, and jewel-toned evening ensembles.',
+        dressCodeDesc: 'Curated 3D lookbook silhouettes matched to each celebration’s dress code.',
+        dc0Color: 'Pastel / Floral / Traditional',
+        dc0Desc: 'Breezy pastel kurtas, floral prints, and sunlit traditional wear.',
+        dc1Color: 'Glamorous Indian / Indo-Western',
+        dc1Desc: 'Shimmering sarees, structured bandhgalas, and Indo-Western party silhouettes.',
+        dc2Color: 'Elegant / Grand Ethnic / Formal',
+        dc2Desc: 'Safas, grand sherwanis, tailored formalwear, and festive royal ethnic.',
+        dc3Color: 'Traditional Indian / Wedding Glam',
+        dc3Desc: 'Rich silk weaves, heritage lehengas, and classic wedding glam.',
+        dc4Color: 'Dark / Classy Evening Wear',
+        dc4Desc: 'Midnight velvet, jewel tones, tuxedos, and classy cocktail attire.',
+        contactSub: 'Need Assistance?',
+        contactTitle: 'Hospitality & Family Contacts',
+        contactDesc: 'For travel, stay, or schedule queries at Crescent The Fern Budhni, feel free to reach out to us anytime.',
+        contact1Role: 'Groom’s Family • Hospitality',
+        contact1Name: 'Basantwani Family',
+        contact2Role: 'Bride’s Family • Hospitality',
+        contact2Name: 'Mandhan Family',
+        callBtn: 'Call',
         rsvpSub: 'Kindly Respond',
         rsvpTitle: 'Choose Your Side & RSVP',
         rsvpDesc: 'Let us know your arrival details so we can welcome you warmly at Budhni.',
@@ -1042,34 +1294,47 @@
           {
             icon: '🌼',
             date: '3rd January 2027',
-            title: 'Mehendi & Haldi',
-            time: '11:00 AM Onwards',
+            title: 'Haldi',
+            time: '1:00 PM Onwards',
             area: 'Poolside Lawns • Crescent The Fern Budhni, Series by Marriott',
-            desc: 'Join us under the winter sun for vibrant henna artistry, marigold petal showers, dhol beats, and a festive brunch.'
+            dress: 'Dress Code: Pastel / Floral / Traditional',
+            desc: 'Join us under the afternoon sun for marigold showers, vibrant haldi rituals, folk beats, and festive lunch.'
           },
           {
             icon: '🪩',
             date: '3rd January 2027',
-            title: 'Sangeet Night',
-            time: '7:30 PM Onwards',
+            title: 'Sangeet & After Party',
+            time: '8:00 PM Onwards',
             area: 'Grand Ballroom • Crescent The Fern Budhni, Series by Marriott',
-            desc: 'An evening of choreographed family performances, musical toasts, and dancing late into the night.'
+            dress: 'Dress Code: Glamorous Indian / Indo-Western',
+            desc: 'An electrifying evening of choreographed family performances, musical toasts, and an after-party late into the night.'
+          },
+          {
+            icon: '🥁',
+            date: '4th January 2027',
+            title: 'Baraat',
+            time: '12:00 PM Onwards',
+            area: 'Royal Entrance • Crescent The Fern Budhni, Series by Marriott',
+            dress: 'Dress Code: Elegant / Grand Ethnic / Formal',
+            desc: 'Bring your energy and dancing shoes as Shubham arrives in royal procession with dhol beats and celebration.'
           },
           {
             icon: '🔥',
             date: '4th January 2027',
-            title: 'The Wedding Ceremony',
-            time: '4:00 PM Baraat • 5:30 PM Pheras',
+            title: 'Phera',
+            time: '3:00 PM Onwards',
             area: 'Royal Courtyard • Crescent The Fern Budhni, Series by Marriott',
-            desc: 'Witness Shubham & Pooja exchange vows around the sacred fire surrounded by family, blessings, and sunset hues.'
+            dress: 'Dress Code: Traditional Indian / Wedding Glam',
+            desc: 'Witness Shubham & Pooja exchange sacred vows around the holy fire surrounded by family, blessings, and golden afternoon hues.'
           },
           {
-            icon: '🥂',
+            icon: '🏮',
             date: '4th January 2027',
-            title: 'Grand Reception',
-            time: '8:30 PM Onwards',
-            area: 'Imperial Banquet • Crescent The Fern Budhni, Series by Marriott',
-            desc: 'Raise a glass with the newlyweds over a royal dinner feast and live acoustic melodies.'
+            title: 'Sufi Nights',
+            time: '9:00 PM Onwards',
+            area: 'Starlit Aangan • Crescent The Fern Budhni, Series by Marriott',
+            dress: 'Dress Code: Dark / Classy Evening Wear',
+            desc: 'Unwind under glowing lanterns with soulful Sufi melodies, cocktails, and a royal celebratory feast.'
           }
         ]
       },
@@ -1103,27 +1368,39 @@
         inviteBody: 'माता-पिता के आशीर्वाद और हर्षोल्लास के साथ, हम आपको <strong>3 और 4 जनवरी 2027</strong> को <strong>क्रिसेंट द फ़र्न बुधनी (सीरीज़ बाय मैरियट)</strong> में आयोजित हमारे शुभ विवाह समारोह में सपरिवार पधारने का स्नेहपूर्ण निमंत्रण देते हैं।',
         itinerarySub: 'विवाह कार्यक्रम',
         celebrationsTitle: 'मांगलिक समारोह',
-        celebrationsDesc: 'प्रत्येक समारोह का समय, स्थान और गूगल मैप्स लोकेशन देखने के लिए बॉक्स पर टैप करें।',
+        celebrationsDesc: 'प्रत्येक समारोह का समय, ड्रेस कोड और गूगल मैप्स लोकेशन देखने के लिए बॉक्स पर टैप करें।',
         tapDetails: 'विवरण देखें',
-        ev0Title: 'मेहंदी एवं हल्दी',
-        ev0TimeShort: '3 जनवरी 2027 • प्रातः',
-        ev1Title: 'संगीत संध्या',
-        ev1TimeShort: '3 जनवरी 2027 • संध्या',
-        ev2Title: 'शुभ विवाह',
-        ev2TimeShort: '4 जनवरी 2027 • अपराह्न',
-        ev3Title: 'भव्य रिसेप्शन',
-        ev3TimeShort: '4 जनवरी 2027 • रात्रि',
+        ev0Title: 'हल्दी',
+        ev0TimeShort: '3 जनवरी • दोपहर 1:00 बजे',
+        ev1Title: 'संगीत एवं आफ्टर पार्टी',
+        ev1TimeShort: '3 जनवरी • रात 8:00 बजे',
+        ev2Title: 'बारात',
+        ev2TimeShort: '4 जनवरी • दोपहर 12:00 बजे',
+        ev3Title: 'फेरे',
+        ev3TimeShort: '4 जनवरी • दोपहर 3:00 बजे',
+        ev4Title: 'सूफ़ी नाइट्स',
+        ev4TimeShort: '4 जनवरी • रात 9:00 बजे',
         styleGuideSub: 'परिधान सुझाव',
         dressCodeTitle: 'ड्रेस कोड लुकबुक',
-        dressCodeDesc: 'प्रत्येक उत्सव की रौनक बढ़ाने के लिए सुझाए गए रंग और परिधान।',
-        dc0Color: 'गेंदा और सुनहरा पीला',
-        dc0Desc: 'हल्के-फुल्के फ्लोरल कुर्ते, पीले लहंगे और आरामदायक उत्सवी परिधान।',
-        dc1Color: 'पन्ना हरा और मिडनाइट शिमर',
-        dc1Desc: 'इंडो-वेस्टर्न बंदगला, सीक्विन साड़ियाँ और नृत्य के लिए शानदार गाउन।',
-        dc2Color: 'आइवरी, ब्लश और पेस्टल गोल्ड',
-        dc2Desc: 'पारंपरिक सिल्क शेरवानी, पेस्टल साड़ियाँ और शाही भारतीय परिधान।',
-        dc3Color: 'रॉयल वाइन और ब्लैक टाई',
-        dc3Desc: 'क्लासिक टक्सीडो, सूट और आकर्षक शाम के परिधान।',
+        dressCodeDesc: 'प्रत्येक उत्सव के ड्रेस कोड के अनुरूप विशेष 3D लुकबुक।',
+        dc0Color: 'पेस्टल / फ्लोरल / पारंपरिक',
+        dc0Desc: 'हल्के पेस्टल कुर्ते, फ्लोरल प्रिंट और पारंपरिक उत्सवी परिधान।',
+        dc1Color: 'ग्लैमरस इंडियन / इंडो-वेस्टर्न',
+        dc1Desc: 'चमकदार साड़ियाँ, बंदगला और इंडो-वेस्टर्न पार्टी परिधान।',
+        dc2Color: 'एलिगेंट / ग्रैंड एथनिक / फॉर्मल',
+        dc2Desc: 'शाही साफ़ा, शेरवानी, फॉर्मल सूट और भव्य एथनिक परिधान।',
+        dc3Color: 'पारंपरिक इंडियन / वेडिंग ग्लैम',
+        dc3Desc: 'रेशमी साड़ियाँ, पारंपरिक लहंगे और शाही विवाह परिधान।',
+        dc4Color: 'डार्क / क्लासी इवनिंग वियर',
+        dc4Desc: 'गहरे रंग के वेलवेट, टक्सीडो और क्लासी इवनिंग परिधान।',
+        contactSub: 'सहायता एवं संपर्क',
+        contactTitle: 'स्वागत एवं परिवार संपर्क',
+        contactDesc: 'क्रिसेंट द फ़र्न बुधनी में यात्रा, आवास या कार्यक्रम से जुड़ी किसी भी जानकारी के लिए संपर्क करें।',
+        contact1Role: 'वर पक्ष • स्वागत सत्कार',
+        contact1Name: 'बसंतवानी परिवार',
+        contact2Role: 'वधू पक्ष • स्वागत सत्कार',
+        contact2Name: 'मंधन परिवार',
+        callBtn: 'कॉल करें',
         rsvpSub: 'कृपया सूचित करें',
         rsvpTitle: 'अपना पक्ष चुनें और RSVP करें',
         rsvpDesc: 'कृपया अपने आगमन का विवरण साझा करें ताकि हम बुधनी में आपका हार्दिक स्वागत कर सकें।',
@@ -1151,34 +1428,47 @@
           {
             icon: '🌼',
             date: '3 जनवरी 2027',
-            title: 'मेहंदी एवं हल्दी',
-            time: 'सुबह 11:00 बजे से',
+            title: 'हल्दी',
+            time: 'दोपहर 1:00 बजे से',
             area: 'पूलसाइड लॉन • क्रिसेंट द फ़र्न बुधनी, सीरीज़ बाय मैरियट',
-            desc: 'सर्दियों की गुनगुनी धूप में मेहंदी के रंग, फूलों की वर्षा, ढोल की थाप और स्वादिष्ट ब्रंच का आनंद लें।'
+            dress: 'ड्रेस कोड: पेस्टल / फ्लोरल / पारंपरिक',
+            desc: 'दोपहर की गुनगुनी धूप में फूलों की वर्षा, हल्दी की रस्म, ढोल की थाप और उत्सवी भोज का आनंद लें।'
           },
           {
             icon: '🪩',
             date: '3 जनवरी 2027',
-            title: 'संगीत संध्या',
-            time: 'शाम 7:30 बजे से',
+            title: 'संगीत एवं आफ्टर पार्टी',
+            time: 'रात 8:00 बजे से',
             area: 'ग्रैंड बॉलरूम • क्रिसेंट द फ़र्न बुधनी, सीरीज़ बाय मैरियट',
-            desc: 'पारिवारिक नृत्य प्रस्तुतियों, मधुर संगीत और देर रात तक चलने वाले जश्न की एक यादगार शाम।'
+            dress: 'ड्रेस कोड: ग्लैमरस इंडियन / इंडो-वेस्टर्न',
+            desc: 'पारिवारिक नृत्य प्रस्तुतियों, मधुर संगीत और देर रात तक चलने वाली आफ्टर पार्टी का शानदार जश्न।'
+          },
+          {
+            icon: '🥁',
+            date: '4 जनवरी 2027',
+            title: 'बारात',
+            time: 'दोपहर 12:00 बजे से',
+            area: 'रॉयल एंट्रेंस • क्रिसेंट द फ़र्न बुधनी, सीरीज़ बाय मैरियट',
+            dress: 'ड्रेस कोड: एलिगेंट / ग्रैंड एथनिक / फॉर्मल',
+            desc: 'ढोल-नगाड़ों और शाही अंदाज़ में शुभम की बारात के स्वागत और नृत्य के लिए तैयार रहें।'
           },
           {
             icon: '🔥',
             date: '4 जनवरी 2027',
-            title: 'शुभ विवाह समारोह',
-            time: 'शाम 4:00 बजे बारात • 5:30 बजे फेरे',
+            title: 'फेरे',
+            time: 'दोपहर 3:00 बजे से',
             area: 'रॉयल कोर्टयार्ड • क्रिसेंट द फ़र्न बुधनी, सीरीज़ बाय मैरियट',
+            dress: 'ड्रेस कोड: पारंपरिक इंडियन / वेडिंग ग्लैम',
             desc: 'परिवार के आशीर्वाद और पवित्र अग्नि के समक्ष शुभम और पूजा के सात फेरों के साक्षी बनें।'
           },
           {
-            icon: '🥂',
+            icon: '🏮',
             date: '4 जनवरी 2027',
-            title: 'भव्य रिसेप्शन',
-            time: 'रात 8:30 बजे से',
-            area: 'इम्पीरियल बैंक्वेट • क्रिसेंट द फ़र्न बुधनी, सीरीज़ बाय मैरियट',
-            desc: 'नवविवाहित जोड़े को शुभकामनाएं दें और शाही रात्रिभोज का आनंद लें।'
+            title: 'सूफ़ी नाइट्स',
+            time: 'रात 9:00 बजे से',
+            area: 'स्टारलिट आँगन • क्रिसेंट द फ़र्न बुधनी, सीरीज़ बाय मैरियट',
+            dress: 'ड्रेस कोड: डार्क / क्लासी इवनिंग वियर',
+            desc: 'रोशन लालटेनों के नीचे रूहानी सूफ़ी संगीत, कॉकटेल और शाही रात्रिभोज का आनंद लें।'
           }
         ]
       },
@@ -1212,27 +1502,39 @@
         inviteBody: 'माइटनि जी दुआउनि ऐं वॾी खुशीअ सां, अव्हाखे <strong>3 ऐं 4 जनवरी 2027</strong> ते <strong>क्रिसेंट द फ़र्न बुधनी (सीरीज़ बाइ मैरियट)</strong> में असांजी शादीअ जी खुशियुनि में शरीक थियण जो दिल सां सॾु ॾिजे थो।',
         itinerarySub: 'शादीअ जा प्रोग्राम',
         celebrationsTitle: 'खुशीअ जूं तकरीबूं',
-        celebrationsDesc: 'हर तकरीब जो वक्तु, हंधु ऐं गूगल मैप्स लोकेशन ॾिसण लाइ बॉक्स ते दबायो।',
+        celebrationsDesc: 'हर तकरीब जो वक्तु, ड्रेस कोड ऐं गूगल मैप्स लोकेशन ॾिसण लाइ बॉक्स ते दबायो।',
         tapDetails: 'तफ़सील ॾिसो',
-        ev0Title: 'मेंहदी ऐं हल्दी',
-        ev0TimeShort: '3 जनवरी 2027 • सुबुह',
-        ev1Title: 'संगीत जी राति',
-        ev1TimeShort: '3 जनवरी 2027 • शाम',
-        ev2Title: 'शादीअ जी तकरीब',
-        ev2TimeShort: '4 जनवरी 2027 • मंझंदि',
-        ev3Title: 'शानदार रिसेप्शन',
-        ev3TimeShort: '4 जनवरी 2027 • राति',
+        ev0Title: 'हल्दी',
+        ev0TimeShort: '3 जनवरी • मंझंदि 1:00 वॻे',
+        ev1Title: 'संगीत ऐं आफ्टर पार्टी',
+        ev1TimeShort: '3 जनवरी • राति 8:00 वॻे',
+        ev2Title: 'बरात',
+        ev2TimeShort: '4 जनवरी • मंझंदि 12:00 वॻे',
+        ev3Title: 'फेरा',
+        ev3TimeShort: '4 जनवरी • मंझंदि 3:00 वॻे',
+        ev4Title: 'सूफ़ी नाइट्स',
+        ev4TimeShort: '4 जनवरी • राति 9:00 वॻे',
         styleGuideSub: 'लिबास जी रहनुमाई',
         dressCodeTitle: 'ड्रेस कोड लुकबुक',
-        dressCodeDesc: 'हर तकरीब जे रंगनि मुताबिक तजवीज़ कयल लिबास।',
-        dc0Color: 'गेंदा ऐं चमकीलो पीलो',
-        dc0Desc: 'हलका फुलका कुड़ता, पीला लहंगा ऐं खुशगवार रिवायती लिबास।',
-        dc1Color: 'ज़मुर्रद साओ ऐं राति जी चमक',
-        dc1Desc: 'इंडो-वेस्टर्न बंदगला, चमकीलियूं साड़ियूं ऐं नाच लाइ खूबसूरत लिबास।',
-        dc2Color: 'आइवरी, गुलाबी ऐं हलको सोनेरी',
-        dc2Desc: 'रिवायती रेशमी शेरवानी, पेस्टल साड़ियूं ऐं शाही लिबास।',
-        dc3Color: 'शाही वाइन ऐं ब्लैक टाई',
-        dc3Desc: 'क्लासिक टक्सीडो, सूट ऐं शाम जा शानदार लिबास।',
+        dressCodeDesc: 'हर तकरीब जे ड्रेस कोड मुताबिक ख़ास 3D लुकबुक।',
+        dc0Color: 'पेस्टल / फ्लोरल / रिवायती',
+        dc0Desc: 'हलका पेस्टल कुड़ता, फ्लोरल प्रिंट ऐं रिवायती लिबास।',
+        dc1Color: 'ग्लैमरस इंडियन / इंडो-वेस्टर्न',
+        dc1Desc: 'चमकीलियूं साड़ियूं, बंदगला ऐं इंडो-वेस्टर्न पार्टी लिबास।',
+        dc2Color: 'एलिगेंट / ग्रैंड एथनिक / फॉर्मल',
+        dc2Desc: 'शाही साफ़ो, शेरवानी, फॉर्मल सूट ऐं शाही एथनिक लिबास।',
+        dc3Color: 'रिवायती इंडियन / वेडिंग ग्लैम',
+        dc3Desc: 'रेशमी साड़ियूं, रिवायती लहंगा ऐं शाही शादीअ जा लिबास।',
+        dc4Color: 'डार्क / क्लासी इवनिंग वियर',
+        dc4Desc: 'गहिरे रंग जा वेलवेट, टक्सीडो ऐं क्लासी इवनिंग लिबास।',
+        contactSub: 'मदद ऐं संपर्क',
+        contactTitle: 'इस्तकबाल ऐं कुटुंब संपर्क',
+        contactDesc: 'क्रिसेंट द फ़र्न बुधनी में सफ़र या प्रोग्राम जी का बि जाण लाइ असां सां संपर्क करियो।',
+        contact1Role: 'घोट जो कुटुंब • इस्तकबाल',
+        contact1Name: 'बसंतवाणी कुटुंब',
+        contact2Role: 'कंवरि जो कुटुंब • इस्तकबाल',
+        contact2Name: 'मंधण कुटुंब',
+        callBtn: 'कॉल करियो',
         rsvpSub: 'मेहरबानी करे इत्तिलाह ॾियो',
         rsvpTitle: 'पंहिंजो पासो चूंडियो ऐं RSVP करियो',
         rsvpDesc: 'पंहिंजे अचण जो वक्तु ॿुधायो त जीअं असां बुधनी में अव्हाजो भरपूर इस्तकबाल करे सघूं।',
@@ -1260,34 +1562,47 @@
           {
             icon: '🌼',
             date: '3 जनवरी 2027',
-            title: 'मेंहदी ऐं हल्दी',
-            time: 'सुबुह 11:00 वॻे खां',
+            title: 'हल्दी',
+            time: 'मंझंदि 1:00 वॻे खां',
             area: 'पूलसाइड लॉन • क्रिसेंट द फ़र्न बुधनी, सीरीज़ बाइ मैरियट',
-            desc: 'सियारे जी मिठी उस में मेंहदीअ जे रंगनि, गुलनि जी वरखा, ढोल जे आवाज़ ऐं मज़ेदार नाश्ते जो लुत्फ़ु माणियो।'
+            dress: 'ड्रेस कोड: पेस्टल / फ्लोरल / रिवायती',
+            desc: 'मंझंदि जी मिठी उस में गुलनि जी वरखा, हल्दीअ जी रस्म ऐं उत्सवी भोज जो लुत्फ़ु माणियो।'
           },
           {
             icon: '🪩',
             date: '3 जनवरी 2027',
-            title: 'संगीत जी राति',
-            time: 'शाम 7:30 वॻे खां',
+            title: 'संगीत ऐं आफ्टर पार्टी',
+            time: 'राति 8:00 वॻे खां',
             area: 'ग्रैंड बॉलरूम • क्रिसेंट द फ़र्न बुधनी, सीरीज़ बाइ मैरियट',
-            desc: 'कुटुंब जे नाच, मिठी मौसीकी ऐं राति देर ताईं हलंदड़ जश्न जी हिक यादगार शाम।'
+            dress: 'ड्रेस कोड: ग्लैमरस इंडियन / इंडो-वेस्टर्न',
+            desc: 'कुटुंब जे नाच, मिठी मौसीकी ऐं राति देर ताईं हलंदड़ आफ्टर पार्टी जो शानदार जश्न।'
+          },
+          {
+            icon: '🥁',
+            date: '4 जनवरी 2027',
+            title: 'बरात',
+            time: 'मंझंदि 12:00 वॻे खां',
+            area: 'रॉयल एंट्रेंस • क्रिसेंट द फ़र्न बुधनी, सीरीज़ बाइ मैरियट',
+            dress: 'ड्रेस कोड: एलिगेंट / ग्रैंड एथनिक / फॉर्मल',
+            desc: 'ढोल-नगाड़नि ऐं शाही अंदाज़ में शुभम जी बरात जे इस्तकबाल ऐं नाच लाइ तैयार रहो।'
           },
           {
             icon: '🔥',
             date: '4 जनवरी 2027',
-            title: 'शादीअ जी तकरीब',
-            time: 'शाम 4:00 वॻे बरात • 5:30 वॻे फेरा',
+            title: 'फेरा',
+            time: 'मंझंदि 3:00 वॻे खां',
             area: 'रॉयल कोर्टयार्ड • क्रिसेंट द फ़र्न बुधनी, सीरीज़ बाइ मैरियट',
-            desc: 'माइटनि जी दुआउनि सां शुभम ऐं पूजा जी शादीअ जी मुक़द्दस रस्मुनि जा शाहिद बणजो।'
+            dress: 'ड्रेस कोड: रिवायती इंडियन / वेडिंग ग्लैम',
+            desc: 'माइटनि जी दुआउनि सां शुभम ऐं पूजा जी शादीअ जे सतनि फेरनि जा शाहिद बणजो।'
           },
           {
-            icon: '🥂',
+            icon: '🏮',
             date: '4 जनवरी 2027',
-            title: 'शानदार रिसेप्शन',
-            time: 'राति 8:30 वॻे खां',
-            area: 'इम्पीरियल बैंक्वेट • क्रिसेंट द फ़र्न बुधनी, सीरीज़ बाइ मैरियट',
-            desc: 'नएं जोड़े खे मुबारकूं ॾियो ऐं शाही राति जी मानीअ जो लुत्फ़ु वठो।'
+            title: 'सूफ़ी नाइट्स',
+            time: 'राति 9:00 वॻे खां',
+            area: 'स्टारलिट आँगन • क्रिसेंट द फ़र्न बुधनी, सीरीज़ बाइ मैरियट',
+            dress: 'ड्रेस कोड: डार्क / क्लासी इवनिंग वियर',
+            desc: 'रोशन लालटेननि हेठ रूहानी सूफ़ी मौसीकी ऐं शाही राति जी मानीअ जो लुत्फ़ु वठो।'
           }
         ]
       },
@@ -1321,27 +1636,39 @@
         inviteBody: 'مائٽن جي دعائن ۽ وڏي خوشيءَ سان، اوهان کي <strong>3 ۽ 4 جنوري 2027</strong> تي <strong>ڪريسينٽ دي فرن ٻڌڻي (سيريز باءِ ميريئٽ)</strong> ۾ اسان جي شاديءَ جي خوشين ۾ شريڪ ٿيڻ جي دل سان دعوت ڏجي ٿي.',
         itinerarySub: 'شاديءَ جا پروگرام',
         celebrationsTitle: 'خوشيءَ جون تقريبون',
-        celebrationsDesc: 'هر تقريب جو وقت، هنڌ ۽ گوگل ميپس لوڪيشن ڏسڻ لاءِ دٻايو.',
+        celebrationsDesc: 'هر تقريب جو وقت، ڊريس ڪوڊ ۽ گوگل ميپس لوڪيشن ڏسڻ لاءِ دٻايو.',
         tapDetails: 'تفصيل ڏسو',
-        ev0Title: 'ميندي ۽ هلدي',
-        ev0TimeShort: '3 جنوري 2027 • صبح',
-        ev1Title: 'سنگيت جي رات',
-        ev1TimeShort: '3 جنوري 2027 • شام',
-        ev2Title: 'شاديءَ جي تقريب',
-        ev2TimeShort: '4 جنوري 2027 • منجهند',
-        ev3Title: 'شاندار رسيپشن',
-        ev3TimeShort: '4 جنوري 2027 • رات',
+        ev0Title: 'هلدي',
+        ev0TimeShort: '3 جنوري • منجهند 1:00 وڳي',
+        ev1Title: 'سنگيت ۽ آفٽر پارٽي',
+        ev1TimeShort: '3 جنوري • رات 8:00 وڳي',
+        ev2Title: 'برات',
+        ev2TimeShort: '4 جنوري • منجهند 12:00 وڳي',
+        ev3Title: 'ڦيرا',
+        ev3TimeShort: '4 جنوري • منجهند 3:00 وڳي',
+        ev4Title: 'صوفي نائيٽس',
+        ev4TimeShort: '4 جنوري • رات 9:00 وڳي',
         styleGuideSub: 'لباس جي رهنمائي',
         dressCodeTitle: 'ڊريس ڪوڊ لُڪ بُڪ',
-        dressCodeDesc: 'هر تقريب جي رنگن مطابق تجويز ڪيل لباس.',
-        dc0Color: 'گيندا ۽ چمڪندڙ پيلو',
-        dc0Desc: 'هلڪا ڦلڪا ڪڙتا، پيلا لهنگا ۽ خوشگوار روايتي لباس.',
-        dc1Color: 'زمرد سائو ۽ رات جي چمڪ',
-        dc1Desc: 'انڊو-ويسٽرن بندگلا، چمڪندڙ ساڙهيون ۽ ناچ لاءِ خوبصورت لباس.',
-        dc2Color: 'آئيوري، گلابي ۽ هلڪو سونهري',
-        dc2Desc: 'روايتي ريشمي شيرواني، پيسٽل ساڙهيون ۽ شاهي لباس.',
-        dc3Color: 'شاهي وائن ۽ بليڪ ٽائي',
-        dc3Desc: 'ڪلاسڪ ٽڪسيڊو، سوٽ ۽ شام جا شاندار لباس.',
+        dressCodeDesc: 'هر تقريب جي ڊريس ڪوڊ مطابق خاص 3D لُڪ بُڪ.',
+        dc0Color: 'پيسٽل / فلورل / روايتي',
+        dc0Desc: 'هلڪا پيسٽل ڪڙتا، گلن وارا پرنٽ ۽ روايتي لباس.',
+        dc1Color: 'گليمرس انڊين / انڊو-ويسٽرن',
+        dc1Desc: 'چمڪندڙ ساڙهيون، بندگلا ۽ انڊو-ويسٽرن پارٽي لباس.',
+        dc2Color: 'ايليگينٽ / گرانڊ ايٿنڪ / فارمل',
+        dc2Desc: 'شاهي صافو، شيرواني، فارمل سوٽ ۽ شاهي لباس.',
+        dc3Color: 'روايتي انڊين / ويڊنگ گليم',
+        dc3Desc: 'ريشمي ساڙهيون، روايتي لهنگا ۽ شاهي شاديءَ جا لباس.',
+        dc4Color: 'ڊارڪ / ڪلاسي ايوننگ ويئر',
+        dc4Desc: 'گھري رنگ جا ويلويٽ، ٽڪسيڊو ۽ ڪلاسي شام جا لباس.',
+        contactSub: 'مدد ۽ رابطو',
+        contactTitle: 'مهمان نوازي ۽ خانداني رابطا',
+        contactDesc: 'ڪريسينٽ دي فرن ٻڌڻي ۾ سفر يا رهائش جي ڪنهن به ڄاڻ لاءِ اسان سان رابطو ڪريو.',
+        contact1Role: 'گھوٽ جو خاندان • مهمان نوازي',
+        contact1Name: 'بسنتواڻي خاندان',
+        contact2Role: 'ڪنوار جو خاندان • مهمان نوازي',
+        contact2Name: 'منڌڻ خاندان',
+        callBtn: 'ڪال ڪريو',
         rsvpSub: 'مهرباني ڪري اطلاع ڏيو',
         rsvpTitle: 'پنهنجو پاسو چونڊيو ۽ RSVP ڪريو',
         rsvpDesc: 'پنهنجي اچڻ جو وقت ٻڌايو ته جيئن اسان ٻڌڻي ۾ اوهان جو ڀرپور استقبال ڪري سگهون.',
@@ -1369,34 +1696,47 @@
           {
             icon: '🌼',
             date: '3 جنوري 2027',
-            title: 'ميندي ۽ هلدي',
-            time: 'صبح 11:00 وڳي کان',
+            title: 'هلدي',
+            time: 'منجهند 1:00 وڳي کان',
             area: 'پول سائيڊ لان • ڪريسينٽ دي فرن ٻڌڻي، سيريز باءِ ميريئٽ',
-            desc: 'سياري جي مٺي اس ۾ مينديءَ جي رنگن، گلن جي ورکا، دهل جي آواز ۽ مزيدار ناشتي جو لطف ماڻيو.'
+            dress: 'ڊريس ڪوڊ: پيسٽل / فلورل / روايتي',
+            desc: 'منجهند جي مٺي اس ۾ گلن جي ورکا، هلديءَ جي رسم ۽ مزيدار کاڌي جو لطف ماڻيو.'
           },
           {
             icon: '🪩',
             date: '3 جنوري 2027',
-            title: 'سنگيت جي رات',
-            time: 'شام 7:30 وڳي کان',
+            title: 'سنگيت ۽ آفٽر پارٽي',
+            time: 'رات 8:00 وڳي کان',
             area: 'گرانڊ بال روم • ڪريسينٽ دي فرن ٻڌڻي، سيريز باءِ ميريئٽ',
-            desc: 'خانداني ناچ، مٺي موسيقي ۽ رات دير تائين هلندڙ جشن جي هڪ يادگار شام.'
+            dress: 'ڊريس ڪوڊ: گليمرس انڊين / انڊو-ويسٽرن',
+            desc: 'خانداني ناچ، مٺي موسيقي ۽ رات دير تائين هلندڙ آفٽر پارٽيءَ جو شاندار جشن.'
+          },
+          {
+            icon: '🥁',
+            date: '4 جنوري 2027',
+            title: 'برات',
+            time: 'منجهند 12:00 وڳي کان',
+            area: 'رائل اينٽرنس • ڪريسينٽ دي فرن ٻڌڻي، سيريز باءِ ميريئٽ',
+            dress: 'ڊريس ڪوڊ: ايليگينٽ / گرانڊ ايٿنڪ / فارمل',
+            desc: 'دهلن ۽ شاهي انداز ۾ شڀم جي برات جي استقبال لاءِ تيار رهو.'
           },
           {
             icon: '🔥',
             date: '4 جنوري 2027',
-            title: 'شاديءَ جي تقريب',
-            time: 'شام 4:00 وڳي برات • 5:30 وڳي ڦيرا',
+            title: 'ڦيرا',
+            time: 'منجهند 3:00 وڳي کان',
             area: 'رائل ڪورٽ يارڊ • ڪريسينٽ دي فرن ٻڌڻي، سيريز باءِ ميريئٽ',
-            desc: 'خاندان جي دعائن سان شڀم ۽ پوجا جي شاديءَ جي مقدس رسمن جا شاهد بڻجو.'
+            dress: 'ڊريس ڪوڊ: روايتي انڊين / ويڊنگ گليم',
+            desc: 'خاندان جي دعائن سان شڀم ۽ پوجا جي شاديءَ جي مقدس ڦيرن جا شاهد بڻجو.'
           },
           {
-            icon: '🥂',
+            icon: '🏮',
             date: '4 جنوري 2027',
-            title: 'شاندار رسيپشن',
-            time: 'رات 8:30 وڳي کان',
-            area: 'امپيريل بينڪوئيٽ • ڪريسينٽ دي فرن ٻڌڻي، سيريز باءِ ميريئٽ',
-            desc: 'نئين جوڙي کي مبارڪون ڏيو ۽ شاهي رات جي مانيءَ جو لطف وٺو.'
+            title: 'صوفي نائيٽس',
+            time: 'رات 9:00 وڳي کان',
+            area: 'اسٽارلٽ آنڱڻ • ڪريسينٽ دي فرن ٻڌڻي، سيريز باءِ ميريئٽ',
+            dress: 'ڊريس ڪوڊ: ڊارڪ / ڪلاسي ايوننگ ويئر',
+            desc: 'روشن فانوسن هيٺ روحاني صوفي موسيقي ۽ شاهي رات جي مانيءَ جو لطف وٺو.'
           }
         ]
       }
@@ -1416,7 +1756,6 @@
       currentLang = lang;
       const dict = i18n[lang] || i18n.en;
 
-      // Update top-right pill active states
       ['en', 'hi', 'sd_dev', 'sd'].forEach((code) => {
         const pill = document.getElementById(`pill-${code}`);
         if (!pill) return;
@@ -1427,7 +1766,6 @@
         }
       });
 
-      // Translate all elements with data-i18n
       document.querySelectorAll('[data-i18n]').forEach((el) => {
         const key = el.getAttribute('data-i18n');
         if (dict[key] !== undefined) {
@@ -1435,24 +1773,20 @@
         }
       });
 
-      // Translate placeholder
       const guestNameInput = document.getElementById('guestName');
       if (guestNameInput && dict.fullNamePlaceholder) {
         guestNameInput.placeholder = dict.fullNamePlaceholder;
       }
 
-      // Update music status label according to playback state
       const musicStatusText = document.getElementById('musicStatusText');
       if (musicStatusText) {
         musicStatusText.textContent = isPlaying ? dict.pauseMusic : dict.playMusic;
       }
 
-      // Update record prompt if already opened
       if (playerOpened) {
         document.getElementById('recordPrompt').innerHTML = `<p class="text-xs uppercase tracking-[0.22em] text-[#F5DC8E]">${dict.nowSpinningPrompt}</p>`;
       }
 
-      // Re-draw scratch foil text if not revealed yet
       const canvas = document.getElementById('scratchCanvas');
       if (canvas && canvas.style.display !== 'none' && canvas.style.opacity !== '0') {
         initScratchFoil();
@@ -1460,7 +1794,7 @@
     }
 
     // =========================================================
-    // 2. AUDIO SYSTEM ("Aabaad Barbaad" MP3 + Web Audio Fallback)
+    // 2. AUDIO SYSTEM ("Hardum Humdum" MP3 + Web Audio Fallback)
     // =========================================================
     const audioEl = document.getElementById('weddingAudio');
     const eqBars = document.getElementById('eqBars');
@@ -1539,6 +1873,44 @@
         playWeddingMusic();
       }
     }
+
+    // Seamless Loop Guarantee (in addition to HTML loop attribute)
+    audioEl.addEventListener('ended', () => {
+      if (isPlaying) {
+        audioEl.currentTime = 0;
+        audioEl.play().catch(() => {});
+      }
+    });
+
+    // Attempt Autoplay immediately on page load / refresh, with automatic unlock on first interaction
+    function attemptAutoplayOnLoad() {
+      const playPromise = audioEl.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          isPlaying = true;
+          eqBars.classList.add('playing');
+          musicStatusText.textContent = i18n[currentLang].pauseMusic;
+        }).catch(() => {
+          // Mobile/desktop browser blocked unmuted autoplay before first tap — unlock on first gesture anywhere
+          const unlockOnFirstGesture = () => {
+            if (!isPlaying) {
+              playWeddingMusic();
+            }
+            ['pointerdown', 'touchstart', 'click', 'keydown'].forEach((evt) => {
+              document.removeEventListener(evt, unlockOnFirstGesture);
+            });
+          };
+          ['pointerdown', 'touchstart', 'click', 'keydown'].forEach((evt) => {
+            document.addEventListener(evt, unlockOnFirstGesture, { once: true, passive: true });
+          });
+        });
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', attemptAutoplayOnLoad);
+    window.addEventListener('load', () => {
+      if (!isPlaying) attemptAutoplayOnLoad();
+    });
 
     // =========================================================
     // 3. 3D RECORD PLAYER OPENING INTERACTION
@@ -1658,9 +2030,9 @@
       });
     }
 
-    // Countdown Timer to 3 Jan 2027
+    // Countdown Timer to 3 Jan 2027, 1:00 PM IST
     function updateCountdown() {
-      const target = new Date('2027-01-03T11:00:00+05:30').getTime();
+      const target = new Date('2027-01-03T13:00:00+05:30').getTime();
       const now = Date.now();
       const diff = Math.max(target - now, 0);
 
@@ -1687,6 +2059,7 @@
       document.getElementById('modalTitle').textContent = ev.title;
       document.getElementById('modalTime').textContent = ev.time;
       document.getElementById('modalVenueArea').textContent = ev.area;
+      document.getElementById('modalDressCode').textContent = ev.dress;
       document.getElementById('modalDesc').textContent = ev.desc;
       document.getElementById('modalMapLink').href = resortMapsUrl;
 
