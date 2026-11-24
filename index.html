@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shubham & Pooja — Wedding Invitation</title>
+  <title>Shubham &amp; Pooja — Wedding Invitation</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <meta name="description" content="Basantwani &amp; Mandhan Family request the pleasure of your gracious presence at the wedding of Shubham &amp; Pooja on 3rd &amp; 4th January 2027 at Crescent The Fern Budhni, Series by Marriott." />
 
@@ -321,7 +321,6 @@
       background: linear-gradient(135deg, #32465A 0%, #1B2734 100%);
     }
 
-    /* Inner lid face rotated 180deg on X so when lid swings open 118deg it reads right-side up! */
     .lid-face-open {
       background: linear-gradient(135deg, #273849 0%, #16212C 100%);
       transform: rotateX(180deg);
@@ -394,6 +393,21 @@
       cursor: grabbing;
     }
 
+    /* 2D Storybook Scene Cards + Continuous Left-Column Particle Stream */
+    .storybook-scene-card {
+      border-radius: 16px;
+      box-shadow: 0 8px 20px -6px rgba(35, 26, 46, 0.22);
+    }
+
+    .storybook-event-row {
+      cursor: pointer;
+      transition: transform 0.22s ease, filter 0.22s ease;
+    }
+
+    .storybook-event-row:hover {
+      filter: brightness(0.99);
+    }
+
     /* 3D Isometric Pedestal & Interactive Tilt Cards */
     .card-3d-wrap {
       perspective: 1100px;
@@ -414,139 +428,6 @@
         0 24px 38px -10px rgba(30, 42, 56, 0.24),
         0 9px 0 -1px #D5BC94,
         0 10px 0 0 rgba(201, 162, 83, 0.85);
-    }
-
-    /* Horizontal Split Celebration Cards + Continuous Morphing Particle Layer */
-    #celebrationsSection {
-      position: relative;
-      overflow: hidden;
-    }
-
-    #eventParticleCanvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 25;
-    }
-
-    .split-event-card {
-      position: relative;
-      z-index: 10;
-      display: flex;
-      flex-direction: row;
-      align-items: stretch;
-      gap: 16px;
-      padding: 16px;
-      border-radius: 24px;
-      border: 1.5px solid rgba(201, 162, 83, 0.55);
-      box-shadow: 0 12px 26px rgba(30, 42, 56, 0.09);
-      cursor: pointer;
-      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease;
-      text-align: left;
-    }
-
-    .split-event-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 18px 34px rgba(30, 42, 56, 0.15);
-      border-color: #C9A253;
-    }
-
-    .split-event-card.active-focus {
-      border-color: #C86D51;
-      box-shadow: 0 18px 36px rgba(200, 109, 81, 0.22), 0 0 0 2px rgba(200, 109, 81, 0.25);
-    }
-
-    .event-art-box {
-      width: 112px;
-      min-width: 112px;
-      height: 124px;
-      border-radius: 18px;
-      overflow: hidden;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.08);
-    }
-
-    @media (min-width: 640px) {
-      .event-art-box {
-        width: 132px;
-        min-width: 132px;
-        height: 136px;
-      }
-    }
-
-    @keyframes footTapBreak {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      45% { transform: translateY(9px) rotate(-6deg); }
-      65% { transform: translateY(6px) rotate(-3deg); }
-    }
-
-    @keyframes diyaCrackPulse {
-      0%, 100% { transform: scale(1); opacity: 0.9; }
-      50% { transform: scale(1.08); opacity: 1; }
-    }
-
-    @keyframes garlandSway {
-      0%, 100% { transform: rotate(-2deg); }
-      50% { transform: rotate(2deg); }
-    }
-
-    @keyframes stagePulse {
-      0%, 100% { opacity: 0.75; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.04); }
-    }
-
-    @keyframes horseBounce {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-3px); }
-    }
-
-    @keyframes flameFlicker {
-      0%, 100% { transform: scaleY(1); }
-      50% { transform: scaleY(1.12); }
-    }
-
-    @keyframes lanternSwing {
-      0%, 100% { transform: rotate(-3deg); }
-      50% { transform: rotate(3deg); }
-    }
-
-    .anim-foot-step {
-      transform-origin: 65px 25px;
-      animation: footTapBreak 2.1s ease-in-out infinite;
-    }
-
-    .anim-diya-ulta {
-      transform-origin: 65px 86px;
-      animation: diyaCrackPulse 2.1s ease-in-out infinite;
-    }
-
-    .anim-garland-sway {
-      transform-origin: 65px 10px;
-      animation: garlandSway 2.8s ease-in-out infinite;
-    }
-
-    .anim-stage-glow {
-      transform-origin: center;
-      animation: stagePulse 2.4s ease-in-out infinite;
-    }
-
-    .anim-baraat-move {
-      animation: horseBounce 1.8s ease-in-out infinite;
-    }
-
-    .anim-phera-flame {
-      transform-origin: 65px 82px;
-      animation: flameFlicker 1.4s ease-in-out infinite;
-    }
-
-    .anim-sufi-lantern {
-      transform-origin: 65px 14px;
-      animation: lanternSwing 3s ease-in-out infinite;
     }
 
     /* Interactive 3D Vanity Table & Drawers */
@@ -702,7 +583,6 @@
 
         <!-- Double-Sided Hinged 3D Lid -->
         <div class="case-lid">
-          <!-- Front Face (Visible when lid is closed) -->
           <div class="lid-face-closed">
             <div class="lid-inner-plaque">
               <span class="text-[10px] uppercase tracking-[0.25em] text-[#C9A253] mb-1">Wedding Invitation</span>
@@ -714,7 +594,6 @@
             </div>
           </div>
 
-          <!-- Inner Face (Visible right-side-up when lid opens: Heart with Shubham and Pooja) -->
           <div class="lid-face-open">
             <div class="lid-inner-plaque">
               <svg viewBox="0 0 220 155" class="w-44 h-32 drop-shadow-lg">
@@ -742,9 +621,8 @@
       </div>
     </div>
 
-    <!-- Bottom Interactive Area: Clear Tap Button BEFORE open -> Non-blocking 3 Language Bubbles + Scroll Cue AFTER open -->
+    <!-- Bottom Interactive Area -->
     <div id="recordActionArea" class="text-center z-10 mb-3 min-h-[120px] flex flex-col items-center justify-center">
-      <!-- State 1: Clear Tap to Open Callout -->
       <div id="tapToOpenBox" class="flex flex-col items-center gap-2">
         <button onclick="openRecordPlayer()" class="px-6 py-3 rounded-full bg-gradient-to-r from-[#C9A253] to-[#F5DC8E] text-[#1E2A38] font-bold text-xs uppercase tracking-[0.2em] shadow-xl hover:scale-105 transition-transform flex items-center gap-2">
           <span>🎵</span> <span>Tap Record Player to Open</span>
@@ -752,7 +630,6 @@
         <p class="text-[11px] text-[#FAF5EC]/70 tracking-wider">Tap to play music &amp; unlock the invitation</p>
       </div>
 
-      <!-- State 2: Non-Blocking 3 Language Bubbles + Immediate Scroll Down Prompt -->
       <div id="languageBubblesBox" class="hidden lang-bubbles-reveal flex-col items-center gap-3">
         <div class="flex flex-wrap items-center justify-center gap-2.5">
           <button id="bubble-en" onclick="setLanguage('en')" class="px-4 py-2 rounded-full bg-[#C9A253] text-[#1E2A38] font-bold text-xs sm:text-sm tracking-wide border-2 border-[#F5DC8E] shadow-lg transition-all">
@@ -852,7 +729,7 @@
   </section>
 
   <!-- =========================================================
-       SECTION 3: SCRATCHABLE GOLD-FOIL COUNTDOWN CARD (NO EXTRA REVEAL BUTTON)
+       SECTION 3: SCRATCHABLE GOLD-FOIL COUNTDOWN CARD
   ========================================================== -->
   <section class="py-20 px-4 flex flex-col items-center justify-center bg-[#FAF5EC] relative">
     <div class="text-center max-w-lg mb-8">
@@ -986,211 +863,164 @@
   </section>
 
   <!-- =========================================================
-       SECTION 5: THE CELEBRATIONS — SPLIT CARDS + MORPHING PARTICLE RAIN
+       SECTION 5: 2D STORYBOOK FUNCTION SHOWCASE + MORPHING PARTICLE STREAM
   ========================================================== -->
-  <section id="celebrationsSection" class="py-20 px-4 bg-[#FAF5EC]">
-    <!-- Continuous Morphing Particle Canvas across the Celebrations section -->
-    <canvas id="eventParticleCanvas"></canvas>
-
-    <div class="max-w-3xl mx-auto text-center relative z-10">
-      <p data-i18n="itinerarySub" class="text-xs uppercase tracking-[0.25em] text-[#4A5D4E] font-semibold">Wedding Itinerary</p>
-      <h2 data-i18n="celebrationsTitle" class="font-serif-display text-4xl sm:text-5xl text-[#1E2A38] mt-1">The Celebrations</h2>
-      <p data-i18n="celebrationsDesc" class="text-sm text-[#1E2A38]/70 mt-2 mb-6">Tap any event card to watch its falling motif rain across the section and view full details.</p>
-
-      <!-- Active Falling Motif Indicator Pill -->
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-[#C9A253]/70 shadow-sm text-xs font-semibold text-[#1E2A38] mb-10">
-        <span id="activeMotifIcon">🪔</span>
-        <span id="activeMotifLabel" data-i18n="motifSaath">Saath: Groom's Foot Breaking Ulta Diya → Diya Bits Falling</span>
+  <section id="celebrationsSection" class="py-16 px-3 sm:px-4 bg-[#EAE0D2]">
+    <div class="max-w-[430px] mx-auto bg-[#FDF8F2] rounded-3xl shadow-2xl border border-[#E6D5B8] overflow-hidden">
+      <div class="px-4 pt-5 pb-3 text-center border-b border-[#E6D5B8] bg-[#FDF8F2]">
+        <p data-i18n="itinerarySub" class="text-[10px] uppercase tracking-[0.25em] text-[#4A5D4E] font-semibold">Wedding Itinerary</p>
+        <h2 data-i18n="celebrationsTitle" class="font-serif-display text-3xl sm:text-4xl font-bold text-[#231A2E] mt-0.5">The Celebrations</h2>
+        <p data-i18n="celebrationsDesc" class="text-xs text-[#231A2E]/70 mt-1">Scroll or tap any event to view timings, hall &amp; dress code.</p>
       </div>
 
-      <!-- Vertical Stack of Horizontal Split Cards (Left: Animated Event Logo | Right: Title, Time, Desc, Hall) -->
-      <div class="space-y-5 text-left">
+      <div id="eventsWrapper" class="relative divide-y divide-[#E6D5B8]">
+        <!-- Continuous Overlay Canvas spanning the full vertical events list,
+             strictly clipped horizontally to the left 124px image column -->
+        <canvas id="particleStreamCanvas" class="absolute inset-0 w-full h-full pointer-events-none z-20"></canvas>
 
         <!-- 1. SAATH (3 Jan • 1:00 PM) -->
-        <div id="evCard-0" onclick="activateEventAndOpen(0)" class="split-event-card active-focus bg-[#FCECE6]">
-          <div class="event-art-box bg-gradient-to-b from-[#FDE7DF] to-[#F7D1C4] border border-[#C86D51]/30">
-            <svg viewBox="0 0 130 130" class="w-full h-full">
-              <!-- Groom's foot stepping down onto ulta diya -->
-              <g class="anim-foot-step">
-                <path d="M44,14 L76,14 L76,44 Q76,56 92,58 Q102,60 100,67 L44,67 Z" fill="#F2C29B" stroke="#8C4A2B" stroke-width="2" />
-                <path d="M44,14 L76,14 L76,24 L44,24 Z" fill="#1E2A38" />
-              </g>
-              <!-- Ulta (inverted) earthen diya -->
-              <g class="anim-diya-ulta">
-                <path d="M36,96 Q65,72 94,96 L88,104 L42,104 Z" fill="#C86D51" stroke="#7D3721" stroke-width="2" />
-                <line x1="65" y1="82" x2="65" y2="103" stroke="#F5DC8E" stroke-width="2" stroke-dasharray="2 2" />
-              </g>
-              <!-- Broken diya fragments -->
-              <polygon points="34,112 42,109 39,117" fill="#C86D51" />
-              <polygon points="88,111 96,115 89,120" fill="#B55438" />
-              <circle cx="65" cy="116" r="3" fill="#C9A253" />
-            </svg>
-          </div>
-          <div class="flex-1 min-w-0 flex flex-col justify-center">
-            <div class="flex flex-wrap items-center gap-2">
-              <h3 data-i18n="ev0Title" class="font-serif-display text-2xl sm:text-3xl font-bold text-[#1E2A38]">Saath</h3>
-              <span data-i18n="ev0TimeShort" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#FAD6C8] text-[#9E4226]">3 Jan • 1:00 PM</span>
+        <article id="row-saath" onclick="openEventModal(0)" class="storybook-event-row relative px-4 py-2.5 bg-gradient-to-r from-[#FDF8F2] to-[#F8EDE0]">
+          <div class="flex flex-row items-center gap-3.5">
+            <div id="card-saath" class="storybook-scene-card relative w-[124px] h-[162px] shrink-0 overflow-hidden border border-[#3E2718]/40 bg-[#FAF0E1]">
+              <canvas id="scene-saath" class="w-full h-full block"></canvas>
             </div>
-            <p data-i18n="ev0DescShort" class="text-xs sm:text-sm text-[#1E2A38]/80 mt-1.5 leading-relaxed">
-              Groom steps over the ulta diya amid family blessings, sacred rituals, and festive warmth.
-            </p>
-            <p data-i18n="ev0HallShort" class="text-xs font-semibold text-[#9E4226] mt-2 flex items-center gap-1">
-              <span>📍</span> <span>Heritage Courtyard Hall (Placeholder)</span>
-            </p>
+            <div class="flex-1 min-w-0 text-left space-y-1.5">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <h3 data-i18n="ev0Title" class="font-serif-display font-bold text-[22px] text-[#231A2E] leading-none">Saath</h3>
+                <span data-i18n="ev0TimeShort" class="px-2 py-0.5 rounded-full bg-[#C85A32]/15 text-[#C85A32] text-[10px] font-semibold">
+                  1:00 PM • Jan 3
+                </span>
+              </div>
+              <p data-i18n="ev0DescShort" class="text-[12.5px] text-[#231A2E]/80 leading-snug">
+                Groom steps over the upside-down diya.
+              </p>
+              <p data-i18n="ev0HallShort" class="text-[11.5px] font-semibold text-[#231A2E]/90 flex items-center gap-1 truncate pt-0.5">
+                <span class="text-[#C85A32] text-xs">📍</span>
+                <span class="truncate">Heritage Courtyard Hall (Placeholder)</span>
+              </p>
+            </div>
           </div>
-        </div>
+        </article>
 
         <!-- 2. HALDI (3 Jan • 3:00 PM) -->
-        <div id="evCard-1" onclick="activateEventAndOpen(1)" class="split-event-card bg-[#FDF6E2]">
-          <div class="event-art-box bg-gradient-to-b from-[#FFF3CC] to-[#FCE29C] border border-[#C9A253]/40">
-            <svg viewBox="0 0 130 130" class="w-full h-full">
-              <!-- Marigold garland & tassels -->
-              <g class="anim-garland-sway">
-                <path d="M18,16 Q65,52 112,16" stroke="#D97706" stroke-width="3" fill="none" />
-                <circle cx="28" cy="22" r="6" fill="#F59E0B" />
-                <circle cx="46" cy="31" r="6.5" fill="#FBBF24" />
-                <circle cx="65" cy="35" r="7" fill="#F59E0B" />
-                <circle cx="84" cy="31" r="6.5" fill="#FBBF24" />
-                <circle cx="102" cy="22" r="6" fill="#F59E0B" />
-                <line x1="65" y1="35" x2="65" y2="56" stroke="#D97706" stroke-width="2" />
-                <polygon points="59,56 71,56 75,68 55,68" fill="#F59E0B" />
-              </g>
-              <!-- Haldi bowl -->
-              <path d="M40,86 L90,86 L82,110 L48,110 Z" fill="#C86D51" />
-              <ellipse cx="65" cy="86" rx="25" ry="7" fill="#FACC15" />
-            </svg>
-          </div>
-          <div class="flex-1 min-w-0 flex flex-col justify-center">
-            <div class="flex flex-wrap items-center gap-2">
-              <h3 data-i18n="ev1Title" class="font-serif-display text-2xl sm:text-3xl font-bold text-[#1E2A38]">Haldi</h3>
-              <span data-i18n="ev1TimeShort" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#FDE68A] text-[#92400E]">3 Jan • 3:00 PM</span>
+        <article id="row-haldi" onclick="openEventModal(1)" class="storybook-event-row relative px-4 py-2.5 bg-gradient-to-r from-[#FFFDF5] to-[#FEF4CE]/75">
+          <div class="flex flex-row items-center gap-3.5">
+            <div id="card-haldi" class="storybook-scene-card relative w-[124px] h-[162px] shrink-0 overflow-hidden border border-[#5A3D18]/35 bg-[#FFF8DC]">
+              <canvas id="scene-haldi" class="w-full h-full block"></canvas>
             </div>
-            <p data-i18n="ev1DescShort" class="text-xs sm:text-sm text-[#1E2A38]/80 mt-1.5 leading-relaxed">
-              Sunlit marigold blooms, turmeric blessings, joyous splashes, and afternoon cheer.
-            </p>
-            <p data-i18n="ev1HallShort" class="text-xs font-semibold text-[#92400E] mt-2 flex items-center gap-1">
-              <span>📍</span> <span>Poolside Lawn &amp; Pavilion (Placeholder)</span>
-            </p>
+            <div class="flex-1 min-w-0 text-left space-y-1.5">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <h3 data-i18n="ev1Title" class="font-serif-display font-bold text-[22px] text-amber-950 leading-none">Haldi</h3>
+                <span data-i18n="ev1TimeShort" class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-900 text-[10px] font-semibold">
+                  3:00 PM • Jan 3
+                </span>
+              </div>
+              <p data-i18n="ev1DescShort" class="text-[12.5px] text-amber-950/80 leading-snug">
+                Sunlit marigold blooms &amp; haldi cheer.
+              </p>
+              <p data-i18n="ev1HallShort" class="text-[11.5px] font-semibold text-amber-950 flex items-center gap-1 truncate pt-0.5">
+                <span class="text-amber-600 text-xs">📍</span>
+                <span class="truncate">Poolside Lawn &amp; Pavilion (Placeholder)</span>
+              </p>
+            </div>
           </div>
-        </div>
+        </article>
 
         <!-- 3. SANGEET (3 Jan • 8:00 PM) -->
-        <div id="evCard-2" onclick="activateEventAndOpen(2)" class="split-event-card bg-[#EFEAFE]">
-          <div class="event-art-box bg-gradient-to-b from-[#2B1E4A] via-[#432B7A] to-[#1D1533] border border-[#C9A253]/50">
-            <svg viewBox="0 0 130 130" class="w-full h-full">
-              <g class="anim-stage-glow">
-                <polygon points="36,16 58,16 32,112 12,112" fill="#A855F7" opacity="0.35" />
-                <polygon points="72,16 94,16 118,112 98,112" fill="#EC4899" opacity="0.35" />
-                <circle cx="65" cy="44" r="16" fill="#F5DC8E" opacity="0.9" />
-                <line x1="65" y1="24" x2="65" y2="64" stroke="#FFFDF7" stroke-width="1.5" opacity="0.7" />
-                <line x1="45" y1="44" x2="85" y2="44" stroke="#FFFDF7" stroke-width="1.5" opacity="0.7" />
-              </g>
-              <!-- Couple dancing silhouette -->
-              <circle cx="56" cy="78" r="7" fill="#F4C7A1" />
-              <path d="M46,86 L66,86 L68,114 L44,114 Z" fill="#F5DC8E" />
-              <circle cx="74" cy="80" r="6.5" fill="#F7D1B2" />
-              <path d="M65,88 L83,88 L87,114 L63,114 Z" fill="#F472B6" />
-            </svg>
-          </div>
-          <div class="flex-1 min-w-0 flex flex-col justify-center">
-            <div class="flex flex-wrap items-center gap-2">
-              <h3 data-i18n="ev2Title" class="font-serif-display text-2xl sm:text-3xl font-bold text-[#1E2A38]">Sangeet</h3>
-              <span data-i18n="ev2TimeShort" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#DDD6FE] text-[#4C1D95]">3 Jan • 8:00 PM</span>
+        <article id="row-sangeet" onclick="openEventModal(2)" class="storybook-event-row relative px-4 py-2.5 bg-gradient-to-r from-[#FDF6FA] to-[#F7E2F0]/75">
+          <div class="flex flex-row items-center gap-3.5">
+            <div id="card-sangeet" class="storybook-scene-card relative w-[124px] h-[162px] shrink-0 overflow-hidden border border-[#3B1854]/45 bg-[#1D0E33]">
+              <canvas id="scene-sangeet" class="w-full h-full block"></canvas>
             </div>
-            <p data-i18n="ev2DescShort" class="text-xs sm:text-sm text-[#1E2A38]/80 mt-1.5 leading-relaxed">
-              Choreographed beats, sparkling lights, family performances, and high-energy dance.
-            </p>
-            <p data-i18n="ev2HallShort" class="text-xs font-semibold text-[#4C1D95] mt-2 flex items-center gap-1">
-              <span>📍</span> <span>Grand Crystal Ballroom (Placeholder)</span>
-            </p>
+            <div class="flex-1 min-w-0 text-left space-y-1.5">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <h3 data-i18n="ev2Title" class="font-serif-display font-bold text-[22px] text-purple-950 leading-none">Sangeet</h3>
+                <span data-i18n="ev2TimeShort" class="px-2 py-0.5 rounded-full bg-fuchsia-800/15 text-fuchsia-950 text-[10px] font-semibold">
+                  8:00 PM • Jan 3
+                </span>
+              </div>
+              <p data-i18n="ev2DescShort" class="text-[12.5px] text-purple-950/80 leading-snug">
+                LED stage lights &amp; couple twirling on the floor.
+              </p>
+              <p data-i18n="ev2HallShort" class="text-[11.5px] font-semibold text-purple-950 flex items-center gap-1 truncate pt-0.5">
+                <span class="text-fuchsia-700 text-xs">📍</span>
+                <span class="truncate">Grand Crystal Ballroom (Placeholder)</span>
+              </p>
+            </div>
           </div>
-        </div>
+        </article>
 
         <!-- 4. BARAAT (4 Jan • 12:00 PM) -->
-        <div id="evCard-3" onclick="activateEventAndOpen(3)" class="split-event-card bg-[#FDEBE6]">
-          <div class="event-art-box bg-gradient-to-b from-[#FCE1D9] to-[#F7C7B9] border border-[#C86D51]/35">
-            <svg viewBox="0 0 130 130" class="w-full h-full">
-              <g class="anim-baraat-move">
-                <!-- Royal processional dhol & groom safa emblem -->
-                <rect x="34" y="42" width="62" height="44" rx="10" fill="#C86D51" stroke="#7A3621" stroke-width="2" />
-                <line x1="42" y1="42" x2="42" y2="86" stroke="#F5DC8E" stroke-width="2.5" stroke-dasharray="4 4" />
-                <line x1="88" y1="42" x2="88" y2="86" stroke="#F5DC8E" stroke-width="2.5" stroke-dasharray="4 4" />
-                <circle cx="65" cy="64" r="12" fill="#FFF8EB" stroke="#C9A253" stroke-width="2" />
-                <text x="65" y="68" text-anchor="middle" font-size="11" font-weight="bold" fill="#1E2A38">₹</text>
-              </g>
-              <rect x="24" y="96" width="82" height="10" rx="5" fill="#4A5D4E" opacity="0.35" />
-            </svg>
-          </div>
-          <div class="flex-1 min-w-0 flex flex-col justify-center">
-            <div class="flex flex-wrap items-center gap-2">
-              <h3 data-i18n="ev3Title" class="font-serif-display text-2xl sm:text-3xl font-bold text-[#1E2A38]">Baraat</h3>
-              <span data-i18n="ev3TimeShort" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#FECDD3] text-[#881337]">4 Jan • 12:00 PM</span>
+        <article id="row-baraat" onclick="openEventModal(3)" class="storybook-event-row relative px-4 py-2.5 bg-gradient-to-r from-[#FFF8F2] to-[#FDE7D4]/80">
+          <div class="flex flex-row items-center gap-3.5">
+            <div id="card-baraat" class="storybook-scene-card relative w-[124px] h-[162px] shrink-0 overflow-hidden border border-[#4E2712]/35 bg-[#FFF1DF]">
+              <canvas id="scene-baraat" class="w-full h-full block"></canvas>
             </div>
-            <p data-i18n="ev3DescShort" class="text-xs sm:text-sm text-[#1E2A38]/80 mt-1.5 leading-relaxed">
-              Dhol rhythms, celebratory notes in the air, and a grand royal procession to the mandap.
-            </p>
-            <p data-i18n="ev3HallShort" class="text-xs font-semibold text-[#881337] mt-2 flex items-center gap-1">
-              <span>📍</span> <span>Royal Porch &amp; Main Avenue (Placeholder)</span>
-            </p>
+            <div class="flex-1 min-w-0 text-left space-y-1.5">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <h3 data-i18n="ev3Title" class="font-serif-display font-bold text-[22px] text-orange-950 leading-none">Baraat</h3>
+                <span data-i18n="ev3TimeShort" class="px-2 py-0.5 rounded-full bg-orange-600/15 text-orange-900 text-[10px] font-semibold">
+                  12:00 PM • Jan 4
+                </span>
+              </div>
+              <p data-i18n="ev3DescShort" class="text-[12.5px] text-orange-950/80 leading-snug">
+                Groom on a white horse leading a festive procession.
+              </p>
+              <p data-i18n="ev3HallShort" class="text-[11.5px] font-semibold text-orange-950 flex items-center gap-1 truncate pt-0.5">
+                <span class="text-orange-600 text-xs">📍</span>
+                <span class="truncate">Royal Porch &amp; Main Avenue (Placeholder)</span>
+              </p>
+            </div>
           </div>
-        </div>
+        </article>
 
         <!-- 5. PHERA (4 Jan • 3:00 PM) -->
-        <div id="evCard-4" onclick="activateEventAndOpen(4)" class="split-event-card bg-[#FBE7EC]">
-          <div class="event-art-box bg-gradient-to-b from-[#FDE2E8] to-[#F7C2CF] border border-[#E11D48]/25">
-            <svg viewBox="0 0 130 130" class="w-full h-full">
-              <!-- Mandap arch & sacred agni -->
-              <path d="M26,108 L26,44 Q65,14 104,44 L104,108" stroke="#C86D51" stroke-width="4" fill="none" />
-              <path d="M36,42 Q65,64 94,42" stroke="#F43F5E" stroke-width="3" fill="none" stroke-dasharray="5 4" />
-              <g class="anim-phera-flame">
-                <path d="M65,56 Q78,76 72,92 Q65,98 58,92 Q52,76 65,56 Z" fill="#F97316" />
-                <path d="M65,68 Q72,80 68,90 Q65,94 62,90 Q58,80 65,68 Z" fill="#FACC15" />
-              </g>
-              <rect x="44" y="94" width="42" height="14" rx="4" fill="#C9A253" />
-            </svg>
-          </div>
-          <div class="flex-1 min-w-0 flex flex-col justify-center">
-            <div class="flex flex-wrap items-center gap-2">
-              <h3 data-i18n="ev4Title" class="font-serif-display text-2xl sm:text-3xl font-bold text-[#1E2A38]">Phera</h3>
-              <span data-i18n="ev4TimeShort" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#FFE4E6] text-[#9F1239]">4 Jan • 3:00 PM</span>
+        <article id="row-phere" onclick="openEventModal(4)" class="storybook-event-row relative px-4 py-2.5 bg-gradient-to-r from-[#FFF5F6] to-[#FDE0E5]/80">
+          <div class="flex flex-row items-center gap-3.5">
+            <div id="card-phere" class="storybook-scene-card relative w-[124px] h-[162px] shrink-0 overflow-hidden border border-[#521826]/35 bg-[#FFF0F3]">
+              <canvas id="scene-phere" class="w-full h-full block"></canvas>
             </div>
-            <p data-i18n="ev4DescShort" class="text-xs sm:text-sm text-[#1E2A38]/80 mt-1.5 leading-relaxed">
-              Sacred vows around the holy fire amidst showering rose petals and family blessings.
-            </p>
-            <p data-i18n="ev4HallShort" class="text-xs font-semibold text-[#9F1239] mt-2 flex items-center gap-1">
-              <span>📍</span> <span>Sunset Mandap Lawn (Placeholder)</span>
-            </p>
+            <div class="flex-1 min-w-0 text-left space-y-1.5">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <h3 data-i18n="ev4Title" class="font-serif-display font-bold text-[22px] text-rose-950 leading-none">Phera</h3>
+                <span data-i18n="ev4TimeShort" class="px-2 py-0.5 rounded-full bg-rose-700/15 text-rose-900 text-[10px] font-semibold">
+                  3:00 PM • Jan 4
+                </span>
+              </div>
+              <p data-i18n="ev4DescShort" class="text-[12.5px] text-rose-950/80 leading-snug">
+                Floral mandap &amp; seven vows around the sacred fire.
+              </p>
+              <p data-i18n="ev4HallShort" class="text-[11.5px] font-semibold text-rose-950 flex items-center gap-1 truncate pt-0.5">
+                <span class="text-rose-700 text-xs">📍</span>
+                <span class="truncate">Sunset Mandap Lawn (Placeholder)</span>
+              </p>
+            </div>
           </div>
-        </div>
+        </article>
 
         <!-- 6. SUFI NIGHT (4 Jan • 9:00 PM) -->
-        <div id="evCard-5" onclick="activateEventAndOpen(5)" class="split-event-card bg-[#E8EEF5]">
-          <div class="event-art-box bg-gradient-to-b from-[#17212B] via-[#243445] to-[#111921] border border-[#C9A253]/60">
-            <svg viewBox="0 0 130 130" class="w-full h-full">
-              <g class="anim-sufi-lantern">
-                <line x1="65" y1="10" x2="65" y2="28" stroke="#F5DC8E" stroke-width="2" />
-                <polygon points="48,44 65,28 82,44" fill="#C9A253" />
-                <rect x="50" y="44" width="30" height="36" rx="6" fill="#2A3B4D" stroke="#F5DC8E" stroke-width="2" />
-                <circle cx="65" cy="62" r="8" fill="#FDE047" opacity="0.9" />
-              </g>
-              <!-- Musical note emblem -->
-              <text x="65" y="112" text-anchor="middle" font-size="24" fill="#F5DC8E">♫</text>
-            </svg>
-          </div>
-          <div class="flex-1 min-w-0 flex flex-col justify-center">
-            <div class="flex flex-wrap items-center gap-2">
-              <h3 data-i18n="ev5Title" class="font-serif-display text-2xl sm:text-3xl font-bold text-[#1E2A38]">Sufi Night</h3>
-              <span data-i18n="ev5TimeShort" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#1E2A38] text-[#F5DC8E]">4 Jan • 9:00 PM</span>
+        <article id="row-sufi" onclick="openEventModal(5)" class="storybook-event-row relative px-4 py-3 bg-gradient-to-b from-[#171333] via-[#110E29] to-[#0A081A] text-[#FDF8F2]">
+          <div class="flex flex-row items-center gap-3.5">
+            <div id="card-sufi" class="storybook-scene-card relative w-[124px] h-[162px] shrink-0 overflow-hidden border border-[#C59B27]/55 bg-[#120E2B]">
+              <canvas id="scene-sufi" class="w-full h-full block"></canvas>
             </div>
-            <p data-i18n="ev5DescShort" class="text-xs sm:text-sm text-[#1E2A38]/80 mt-1.5 leading-relaxed">
-              Soulful Sufi melodies under glowing lanterns, evening conversations, and celebratory dining.
-            </p>
-            <p data-i18n="ev5HallShort" class="text-xs font-semibold text-[#1E2A38] mt-2 flex items-center gap-1">
-              <span>📍</span> <span>Starlit Aangan Banquet (Placeholder)</span>
-            </p>
+            <div class="flex-1 min-w-0 text-left space-y-1.5">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <h3 data-i18n="ev5Title" class="font-serif-display font-bold text-[22px] text-[#F5DC8E] leading-none">Sufi Night</h3>
+                <span data-i18n="ev5TimeShort" class="px-2 py-0.5 rounded-full bg-amber-400/15 text-amber-200 text-[10px] font-semibold border border-amber-300/25">
+                  9:00 PM • Jan 4
+                </span>
+              </div>
+              <p data-i18n="ev5DescShort" class="text-[12.5px] text-indigo-100/85 leading-snug">
+                Soulful qawwali singers &amp; live band under the stars.
+              </p>
+              <p data-i18n="ev5HallShort" class="text-[11.5px] font-semibold text-amber-200 flex items-center gap-1 truncate pt-0.5">
+                <span class="text-[#C59B27] text-xs">📍</span>
+                <span class="truncate">Starlit Aangan Banquet (Placeholder)</span>
+              </p>
+            </div>
           </div>
-        </div>
-
+        </article>
       </div>
     </div>
   </section>
@@ -1204,15 +1034,11 @@
       <h2 data-i18n="dressCodeTitle" class="font-serif-display text-4xl sm:text-5xl text-[#1E2A38] mt-1">The Wedding Vanity</h2>
       <p data-i18n="dressCodeDesc" class="text-sm text-[#1E2A38]/75 mt-2 mb-10">Tap any labeled drawer on the vanity table below to open it and reveal that celebration’s dress code.</p>
 
-      <!-- Illustrated Vanity Table with Arched Mirror & 6 Labeled Drawers -->
       <div class="max-w-xl mx-auto">
-        <!-- Arched Vanity Mirror Frame -->
         <div class="relative mx-auto w-64 sm:w-72 h-52 sm:h-56 rounded-t-full border-[10px] border-[#C9A253] bg-gradient-to-b from-[#E8F3FA] via-[#FDFBF7] to-[#F2E2C9] shadow-2xl flex flex-col items-center justify-center p-4 overflow-hidden">
-          <!-- Mirror Glass Reflection Streak -->
           <div class="absolute -left-10 -top-10 w-24 h-72 bg-white/45 rotate-25 pointer-events-none"></div>
           <div class="absolute inset-1.5 rounded-t-full border border-[#9B7428]/50 pointer-events-none"></div>
 
-          <!-- Dynamic Mirror Reflection Display -->
           <div id="mirrorDisplay" class="z-10 text-center px-3">
             <span id="mirrorIcon" class="text-4xl block mb-1.5 drop-shadow">🪞</span>
             <p id="mirrorEventTitle" data-i18n="mirrorPromptTitle" class="font-serif-display text-xl sm:text-2xl font-bold text-[#1E2A38]">
@@ -1224,50 +1050,41 @@
           </div>
         </div>
 
-        <!-- Vanity Tabletop Surface -->
         <div class="h-5 bg-gradient-to-r from-[#5A3520] via-[#7A492E] to-[#5A3520] rounded-t-xl border-t-2 border-x-2 border-[#C9A253] shadow-md mx-2"></div>
 
-        <!-- Vanity Cabinet Body with 6 Labeled Drawers -->
         <div class="bg-gradient-to-b from-[#3B2316] to-[#26160D] p-4 sm:p-6 rounded-b-3xl border-2 border-[#C9A253] shadow-2xl">
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-3.5">
-            <!-- Drawer 0: Saath -->
             <button type="button" id="drawer-0" onclick="openVanityDrawer(0)" class="vanity-drawer bg-gradient-to-b from-[#8B5334] to-[#6E3F25] text-[#FAF5EC] rounded-xl p-3 border border-[#C9A253]/80 flex flex-col items-center justify-center">
               <span data-i18n="ev0Title" class="font-serif-display text-lg font-bold tracking-wide">Saath</span>
               <span class="w-8 h-2 rounded-full bg-gradient-to-r from-[#B5892E] via-[#F5DC8E] to-[#B5892E] mt-2 shadow-inner"></span>
             </button>
 
-            <!-- Drawer 1: Haldi -->
             <button type="button" id="drawer-1" onclick="openVanityDrawer(1)" class="vanity-drawer bg-gradient-to-b from-[#8B5334] to-[#6E3F25] text-[#FAF5EC] rounded-xl p-3 border border-[#C9A253]/80 flex flex-col items-center justify-center">
               <span data-i18n="ev1Title" class="font-serif-display text-lg font-bold tracking-wide">Haldi</span>
               <span class="w-8 h-2 rounded-full bg-gradient-to-r from-[#B5892E] via-[#F5DC8E] to-[#B5892E] mt-2 shadow-inner"></span>
             </button>
 
-            <!-- Drawer 2: Sangeet -->
             <button type="button" id="drawer-2" onclick="openVanityDrawer(2)" class="vanity-drawer bg-gradient-to-b from-[#8B5334] to-[#6E3F25] text-[#FAF5EC] rounded-xl p-3 border border-[#C9A253]/80 flex flex-col items-center justify-center">
               <span data-i18n="ev2Title" class="font-serif-display text-lg font-bold tracking-wide">Sangeet</span>
               <span class="w-8 h-2 rounded-full bg-gradient-to-r from-[#B5892E] via-[#F5DC8E] to-[#B5892E] mt-2 shadow-inner"></span>
             </button>
 
-            <!-- Drawer 3: Baraat -->
             <button type="button" id="drawer-3" onclick="openVanityDrawer(3)" class="vanity-drawer bg-gradient-to-b from-[#8B5334] to-[#6E3F25] text-[#FAF5EC] rounded-xl p-3 border border-[#C9A253]/80 flex flex-col items-center justify-center">
               <span data-i18n="ev3Title" class="font-serif-display text-lg font-bold tracking-wide">Baraat</span>
               <span class="w-8 h-2 rounded-full bg-gradient-to-r from-[#B5892E] via-[#F5DC8E] to-[#B5892E] mt-2 shadow-inner"></span>
             </button>
 
-            <!-- Drawer 4: Phera -->
             <button type="button" id="drawer-4" onclick="openVanityDrawer(4)" class="vanity-drawer bg-gradient-to-b from-[#8B5334] to-[#6E3F25] text-[#FAF5EC] rounded-xl p-3 border border-[#C9A253]/80 flex flex-col items-center justify-center">
               <span data-i18n="ev4Title" class="font-serif-display text-lg font-bold tracking-wide">Phera</span>
               <span class="w-8 h-2 rounded-full bg-gradient-to-r from-[#B5892E] via-[#F5DC8E] to-[#B5892E] mt-2 shadow-inner"></span>
             </button>
 
-            <!-- Drawer 5: Sufi Night -->
             <button type="button" id="drawer-5" onclick="openVanityDrawer(5)" class="vanity-drawer bg-gradient-to-b from-[#8B5334] to-[#6E3F25] text-[#FAF5EC] rounded-xl p-3 border border-[#C9A253]/80 flex flex-col items-center justify-center">
               <span data-i18n="ev5Title" class="font-serif-display text-lg font-bold tracking-wide">Sufi Night</span>
               <span class="w-8 h-2 rounded-full bg-gradient-to-r from-[#B5892E] via-[#F5DC8E] to-[#B5892E] mt-2 shadow-inner"></span>
             </button>
           </div>
 
-          <!-- Pop-up Dress Code Card inside Opened Drawer -->
           <div id="vanityPopCard" class="hidden mt-5 bg-[#FAF5EC] text-[#1E2A38] rounded-2xl p-5 border-2 border-[#C9A253] shadow-xl text-center">
             <span id="popDrawerLabel" class="text-[10px] uppercase tracking-[0.25em] text-[#C86D51] font-bold">Saath • 3 Jan</span>
             <h3 id="popDressTheme" class="font-serif-display text-2xl sm:text-3xl font-bold text-[#1E2A38] mt-1">
@@ -1279,7 +1096,6 @@
           </div>
         </div>
 
-        <!-- Vanity Table Legs -->
         <div class="flex justify-between px-10">
           <div class="w-4 h-10 bg-gradient-to-b from-[#26160D] to-[#4A2C1B] rounded-b-lg border-x border-b border-[#C9A253]/60"></div>
           <div class="w-4 h-10 bg-gradient-to-b from-[#26160D] to-[#4A2C1B] rounded-b-lg border-x border-b border-[#C9A253]/60"></div>
@@ -1522,7 +1338,7 @@
         <p id="modalTime" class="text-sm font-semibold text-[#4A5D4E]">1:00 PM Onwards</p>
 
         <div class="mt-3 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#1E2A38] text-[#F5DC8E] text-xs font-semibold tracking-wide">
-          <span>🏛️</span> <span id="modalHall">Venue: Royal Courtyard Hall (TBA)</span>
+          <span>🏛️</span> <span id="modalHall">Hall: Heritage Courtyard Hall (Placeholder)</span>
         </div>
 
         <div class="mt-2.5 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#F3E9D8] border border-[#C9A253]/70 text-xs font-semibold text-[#1E2A38]">
@@ -1530,14 +1346,14 @@
         </div>
 
         <p id="modalDesc" class="text-sm text-[#1E2A38]/80 mt-4 leading-relaxed">
-          Traditional Sindhi pre-wedding blessing ceremony surrounded by family, rituals, and joyous music.
+          Groom steps over the upside-down diya amid family blessings, sacred rituals, and festive warmth.
         </p>
       </div>
     </div>
   </div>
 
   <!-- =========================================================
-       JAVASCRIPT: 3 LANGUAGES (EN / HI / SD_DEV) + INTERACTIVITY
+       JAVASCRIPT: 3 LANGUAGES + INTERACTIVITY + 2D STORYBOOK SCENES & PARTICLE STREAM
   ========================================================== -->
   <script>
     let currentLang = 'en';
@@ -1571,21 +1387,31 @@
         openGoogleMaps: 'Open Venue in Google Maps',
         itinerarySub: 'Wedding Itinerary',
         celebrationsTitle: 'The Celebrations',
-        celebrationsDesc: 'Tap each royal arch to view event timings, venue hall, and dress code.',
-        tapDetails: 'Full Details',
-        tapFlipHint: 'Tap to Flip',
+        celebrationsDesc: 'Scroll or tap any event to view timings, hall & dress code.',
         ev0Title: 'Saath',
-        ev0TimeShort: '3 Jan • 1:00 PM',
+        ev0TimeShort: '1:00 PM • Jan 3',
+        ev0DescShort: 'Groom steps over the upside-down diya.',
+        ev0HallShort: 'Heritage Courtyard Hall (Placeholder)',
         ev1Title: 'Haldi',
-        ev1TimeShort: '3 Jan • 3:00 PM',
+        ev1TimeShort: '3:00 PM • Jan 3',
+        ev1DescShort: 'Sunlit marigold blooms & haldi cheer.',
+        ev1HallShort: 'Poolside Lawn & Pavilion (Placeholder)',
         ev2Title: 'Sangeet',
-        ev2TimeShort: '3 Jan • 8:00 PM',
+        ev2TimeShort: '8:00 PM • Jan 3',
+        ev2DescShort: 'LED stage lights & couple twirling on the floor.',
+        ev2HallShort: 'Grand Crystal Ballroom (Placeholder)',
         ev3Title: 'Baraat',
-        ev3TimeShort: '4 Jan • 12:00 PM',
+        ev3TimeShort: '12:00 PM • Jan 4',
+        ev3DescShort: 'Groom on a white horse leading a festive procession.',
+        ev3HallShort: 'Royal Porch & Main Avenue (Placeholder)',
         ev4Title: 'Phera',
-        ev4TimeShort: '4 Jan • 3:00 PM',
+        ev4TimeShort: '3:00 PM • Jan 4',
+        ev4DescShort: 'Floral mandap & seven vows around the sacred fire.',
+        ev4HallShort: 'Sunset Mandap Lawn (Placeholder)',
         ev5Title: 'Sufi Night',
-        ev5TimeShort: '4 Jan • 9:00 PM',
+        ev5TimeShort: '9:00 PM • Jan 4',
+        ev5DescShort: 'Soulful qawwali singers & live band under the stars.',
+        ev5HallShort: 'Starlit Aangan Banquet (Placeholder)',
         styleGuideSub: 'Style Guide',
         dressCodeTitle: 'The Wedding Vanity',
         dressCodeDesc: 'Tap any labeled drawer on the vanity table below to open it and reveal that celebration’s dress code.',
@@ -1639,8 +1465,7 @@
             dressTheme: 'Green / Colourful Ethnic',
             dress: 'Dress Code: Green / Colourful Ethnic',
             dressTip: 'Vibrant festive kurtas, colourful bandhani, and traditional ethnic wear.',
-            motifStatus: "Saath: Groom's foot breaks ulta diya → diya bits & marigold falling",
-            desc: 'Traditional Sindhi pre-wedding blessing ceremony surrounded by family, sacred rituals, and joyous folk songs.'
+            desc: 'Groom steps over the upside-down diya amid family blessings, sacred rituals, and festive warmth.'
           },
           {
             icon: '🌼',
@@ -1652,8 +1477,7 @@
             dressTheme: 'Pastel / Floral / Traditional',
             dress: 'Dress Code: Pastel / Floral / Traditional',
             dressTip: 'Breezy pastel kurtas, floral prints, and sunlit traditional wear.',
-            motifStatus: "Haldi: Marigold flowers & tassels falling",
-            desc: 'Join us under the afternoon sun for marigold showers, vibrant haldi rituals, dhol beats, and festive refreshments.'
+            desc: 'Sunlit marigold blooms, haldi cheer, joyous splashes, and afternoon celebration.'
           },
           {
             icon: '🪩',
@@ -1665,8 +1489,7 @@
             dressTheme: 'Glamorous Indian / Indo-Western',
             dress: 'Dress Code: Glamorous Indian / Indo-Western',
             dressTip: 'Shimmering sarees, structured bandhgalas, and Indo-Western party silhouettes.',
-            motifStatus: "Sangeet: Sparkle glitter & bubbles falling",
-            desc: 'An electrifying evening of choreographed family performances, musical toasts, and dancing late into the night.'
+            desc: 'LED stage lights & couple twirling on the floor with family dances and music.'
           },
           {
             icon: '🥁',
@@ -1678,8 +1501,7 @@
             dressTheme: 'Traditional Indian / Wedding Glam',
             dress: 'Dress Code: Traditional Indian / Wedding Glam',
             dressTip: 'Safas, rich silk sherwanis, heritage lehengas, and classic wedding glam.',
-            motifStatus: "Baraat: Cash notes showering down",
-            desc: 'Bring your energy and dancing shoes as Shubham arrives in royal procession with dhol beats and celebration.'
+            desc: 'Groom on a white horse leading a festive procession with dhol beats and celebration.'
           },
           {
             icon: '🔥',
@@ -1691,8 +1513,7 @@
             dressTheme: 'Traditional Indian / Wedding Glam',
             dress: 'Dress Code: Traditional Indian / Wedding Glam',
             dressTip: 'Safas, rich silk sherwanis, heritage lehengas, and classic wedding glam.',
-            motifStatus: "Phera: Rose petals drifting down",
-            desc: 'Witness Shubham & Pooja exchange sacred vows around the holy fire surrounded by family, blessings, and golden afternoon hues.'
+            desc: 'Floral mandap & seven vows around the sacred fire surrounded by family blessings.'
           },
           {
             icon: '🏮',
@@ -1704,8 +1525,7 @@
             dressTheme: 'Dark / Classy Evening Wear',
             dress: 'Dress Code: Dark / Classy Evening Wear',
             dressTip: 'Midnight velvet, jewel tones, tuxedos, and classy cocktail attire.',
-            motifStatus: "Sufi Night: Musical notes (♪ ♫) floating down",
-            desc: 'Unwind under glowing lanterns with soulful Sufi melodies, cocktails, and a royal celebratory feast.'
+            desc: 'Soulful qawwali singers & live band under the stars with evening dining.'
           }
         ]
       },
@@ -1737,21 +1557,31 @@
         openGoogleMaps: 'गूगल मैप्स में स्थान देखें',
         itinerarySub: 'विवाह कार्यक्रम',
         celebrationsTitle: 'मांगलिक समारोह',
-        celebrationsDesc: 'प्रत्येक समारोह का समय, हॉल और ड्रेस कोड देखने के लिए कार्ड पर टैप करें।',
-        tapDetails: 'विवरण देखें',
-        tapFlipHint: 'पलटने के लिए टैप करें',
+        celebrationsDesc: 'समय, हॉल और ड्रेस कोड देखने के लिए किसी भी समारोह पर टैप करें।',
         ev0Title: 'साठ (Saath)',
-        ev0TimeShort: '3 जनवरी • दोपहर 1:00 बजे',
+        ev0TimeShort: '1:00 PM • 3 जन',
+        ev0DescShort: 'उल्टे दिए पर दूल्हे के कदम।',
+        ev0HallShort: 'हेरिटेज कोर्टयार्ड हॉल (प्लेसहोल्डर)',
         ev1Title: 'हल्दी',
-        ev1TimeShort: '3 जनवरी • दोपहर 3:00 बजे',
+        ev1TimeShort: '3:00 PM • 3 जन',
+        ev1DescShort: 'गेंदे के फूलों और हल्दी की रौनक।',
+        ev1HallShort: 'पूलसाइड लॉन एवं पवेलियन (प्लेसहोल्डर)',
         ev2Title: 'संगीत',
-        ev2TimeShort: '3 जनवरी • रात 8:00 बजे',
+        ev2TimeShort: '8:00 PM • 3 जन',
+        ev2DescShort: 'एलईडी स्टेज लाइट्स और नृत्य की शाम।',
+        ev2HallShort: 'ग्रैंड क्रिस्टल बॉलरूम (प्लेसहोल्डर)',
         ev3Title: 'बारात',
-        ev3TimeShort: '4 जनवरी • दोपहर 12:00 बजे',
+        ev3TimeShort: '12:00 PM • 4 जन',
+        ev3DescShort: 'सफेद घोड़ी पर शाही बारात।',
+        ev3HallShort: 'रॉयल पोर्च एवं मेन एवेन्यू (प्लेसहोल्डर)',
         ev4Title: 'फेरे',
-        ev4TimeShort: '4 जनवरी • दोपहर 3:00 बजे',
+        ev4TimeShort: '3:00 PM • 4 जन',
+        ev4DescShort: 'फूलों का मंडप और पवित्र अग्नि के सात फेरे।',
+        ev4HallShort: 'सनसेट मंडप लॉन (प्लेसहोल्डर)',
         ev5Title: 'सूफ़ी नाइट',
-        ev5TimeShort: '4 जनवरी • रात 9:00 बजे',
+        ev5TimeShort: '9:00 PM • 4 जन',
+        ev5DescShort: 'तारों के नीचे सूफ़ी कव्वाली और लाइव संगीत।',
+        ev5HallShort: 'स्टारलिट आँगन बैंक्वेट (प्लेसहोल्डर)',
         styleGuideSub: 'परिधान सुझाव',
         dressCodeTitle: 'वेडिंग वैनिटी लुकबुक',
         dressCodeDesc: 'ड्रेस कोड देखने के लिए नीचे दी गई वैनिटी टेबल की किसी भी दराज पर टैप करें।',
@@ -1798,74 +1628,74 @@
           {
             icon: '🪔',
             date: '3 जनवरी 2027',
-            shortDate: '3 जनवरी • दोपहर 1:00 बजे',
+            shortDate: '3 जनवरी • 1:00 PM',
             title: 'साठ (Saath)',
             time: 'दोपहर 1:00 बजे से',
             hall: 'हॉल: हेरिटेज कोर्टयार्ड हॉल (प्लेसहोल्डर)',
             dressTheme: 'हरा / रंग-बिरंगा एथनिक',
             dress: 'ड्रेस कोड: हरा / रंग-बिरंगा एथनिक',
             dressTip: 'उत्सवी कुर्ते, रंगीन बंधेज और पारंपरिक भारतीय परिधान।',
-            desc: 'परिवारजनों के आशीर्वाद और पारंपरिक सिन्धी मांगलिक रीति-रिवाजों के साथ शुभ शुरुआत।'
+            desc: 'उल्टे दिए पर दूल्हे के कदम और परिवारजनों का आशीर्वाद।'
           },
           {
             icon: '🌼',
             date: '3 जनवरी 2027',
-            shortDate: '3 जनवरी • दोपहर 3:00 बजे',
+            shortDate: '3 जनवरी • 3:00 PM',
             title: 'हल्दी',
             time: 'दोपहर 3:00 बजे से',
             hall: 'हॉल: पूलसाइड लॉन एवं पवेलियन (प्लेसहोल्डर)',
             dressTheme: 'पेस्टल / फ्लोरल / पारंपरिक',
             dress: 'ड्रेस कोड: पेस्टल / फ्लोरल / पारंपरिक',
             dressTip: 'हल्के पेस्टल कुर्ते, फ्लोरल प्रिंट और पारंपरिक उत्सवी परिधान।',
-            desc: 'दोपहर की गुनगुनी धूप में फूलों की वर्षा, हल्दी की रस्म और ढोल की थाप का आनंद लें।'
+            desc: 'गेंदे के फूलों और हल्दी की रौनक के साथ उत्सव।'
           },
           {
             icon: '🪩',
             date: '3 जनवरी 2027',
-            shortDate: '3 जनवरी • रात 8:00 बजे',
+            shortDate: '3 जनवरी • 8:00 PM',
             title: 'संगीत',
             time: 'रात 8:00 बजे से',
             hall: 'हॉल: ग्रैंड क्रिस्टल बॉलरूम (प्लेसहोल्डर)',
             dressTheme: 'ग्लैमरस इंडियन / इंडो-वेस्टर्न',
             dress: 'ड्रेस कोड: ग्लैमरस इंडियन / इंडो-वेस्टर्न',
             dressTip: 'चमकदार साड़ियाँ, बंदगला और इंडो-वेस्टर्न पार्टी परिधान।',
-            desc: 'पारिवारिक नृत्य प्रस्तुतियों, मधुर संगीत और देर रात तक चलने वाले जश्न की एक यादगार शाम।'
+            desc: 'एलईडी स्टेज लाइट्स और नृत्य की यादगार शाम।'
           },
           {
             icon: '🥁',
             date: '4 जनवरी 2027',
-            shortDate: '4 जनवरी • दोपहर 12:00 बजे',
+            shortDate: '4 जनवरी • 12:00 PM',
             title: 'बारात',
             time: 'दोपहर 12:00 बजे से',
             hall: 'हॉल: रॉयल पोर्च एवं मेन एवेन्यू (प्लेसहोल्डर)',
             dressTheme: 'पारंपरिक इंडियन / वेडिंग ग्लैम',
             dress: 'ड्रेस कोड: पारंपरिक इंडियन / वेडिंग ग्लैम',
             dressTip: 'शाही साफ़ा, रेशमी शेरवानी, पारंपरिक लहंगे और वेडिंग ग्लैम।',
-            desc: 'ढोल-नगाड़ों और शाही अंदाज़ में शुभम की बारात के स्वागत और नृत्य के लिए तैयार रहें।'
+            desc: 'सफेद घोड़ी पर शुभम की शाही बारात।'
           },
           {
             icon: '🔥',
             date: '4 जनवरी 2027',
-            shortDate: '4 जनवरी • दोपहर 3:00 बजे',
+            shortDate: '4 जनवरी • 3:00 PM',
             title: 'फेरे',
             time: 'दोपहर 3:00 बजे से',
             hall: 'हॉल: सनसेट मंडप लॉन (प्लेसहोल्डर)',
             dressTheme: 'पारंपरिक इंडियन / वेडिंग ग्लैम',
             dress: 'ड्रेस कोड: पारंपरिक इंडियन / वेडिंग ग्लैम',
             dressTip: 'शाही साफ़ा, रेशमी शेरवानी, पारंपरिक लहंगे और वेडिंग ग्लैम।',
-            desc: 'परिवार के आशीर्वाद और पवित्र अग्नि के समक्ष शुभम और पूजा के सात फेरों के साक्षी बनें।'
+            desc: 'फूलों का मंडप और पवित्र अग्नि के समक्ष सात फेरे।'
           },
           {
             icon: '🏮',
             date: '4 जनवरी 2027',
-            shortDate: '4 जनवरी • रात 9:00 बजे',
+            shortDate: '4 जनवरी • 9:00 PM',
             title: 'सूफ़ी नाइट',
             time: 'रात 9:00 बजे से',
             hall: 'हॉल: स्टारलिट आँगन बैंक्वेट (प्लेसहोल्डर)',
             dressTheme: 'डार्क / क्लासी इवनिंग वियर',
             dress: 'ड्रेस कोड: डार्क / क्लासी इवनिंग वियर',
             dressTip: 'गहरे रंग के वेलवेट, टक्सीडो और क्लासी इवनिंग परिधान।',
-            desc: 'रोशन लालटेनों के नीचे रूहानी सूफ़ी संगीत, कॉकटेल और शाही रात्रिभोज का आनंद लें।'
+            desc: 'तारों के नीचे सूफ़ी कव्वाली और लाइव संगीत।'
           }
         ]
       },
@@ -1897,21 +1727,31 @@
         openGoogleMaps: 'गूगल मैप्स में हंधु ॾिसो',
         itinerarySub: 'शादीअ जा प्रोग्राम',
         celebrationsTitle: 'खुशीअ जूं तकरीबूं',
-        celebrationsDesc: 'हर तकरीब जो वक्तु, हॉल ऐं ड्रेस कोड ॾिसण लाइ कार्ड ते दबायो।',
-        tapDetails: 'तफ़सील ॾिसो',
-        tapFlipHint: 'पलटण लाइ दबायो',
+        celebrationsDesc: 'वक्तु, हॉल ऐं ड्रेस कोड ॾिसण लाइ कहिं बि तकरीब ते दबायो।',
         ev0Title: 'साठ (Saath)',
-        ev0TimeShort: '3 जनवरी • मंझंदि 1:00 वॻे',
+        ev0TimeShort: '1:00 PM • 3 जन',
+        ev0DescShort: 'उल्टे ॾिए ते घोट जा कदम।',
+        ev0HallShort: 'हेरिटेज कोर्टयार्ड हॉल (प्लेसहोल्डर)',
         ev1Title: 'हल्दी',
-        ev1TimeShort: '3 जनवरी • मंझंदि 3:00 वॻे',
+        ev1TimeShort: '3:00 PM • 3 जन',
+        ev1DescShort: 'गेंदा गुलनि ऐं हल्दीअ जी रौनक।',
+        ev1HallShort: 'पूलसाइड लॉन ऐं पवेलियन (प्लेसहोल्डर)',
         ev2Title: 'संगीत',
-        ev2TimeShort: '3 जनवरी • राति 8:00 वॻे',
+        ev2TimeShort: '8:00 PM • 3 जन',
+        ev2DescShort: 'एलईडी स्टेज लाइट्स ऐं नाच।',
+        ev2HallShort: 'ग्रैंड क्रिस्टल बॉलरूम (प्लेसहोल्डर)',
         ev3Title: 'बरात',
-        ev3TimeShort: '4 जनवरी • मंझंदि 12:00 वॻे',
+        ev3TimeShort: '12:00 PM • 4 जन',
+        ev3DescShort: 'सफेद घोड़े ते शाही बरात।',
+        ev3HallShort: 'रॉयल पोर्च ऐं मेन एवेन्यू (प्लेसहोल्डर)',
         ev4Title: 'फेरा',
-        ev4TimeShort: '4 जनवरी • मंझंदि 3:00 वॻे',
+        ev4TimeShort: '3:00 PM • 4 जन',
+        ev4DescShort: 'गुलनि जो मंडप ऐं सत फेरा।',
+        ev4HallShort: 'सनसेट मंडप लॉन (प्लेसहोल्डर)',
         ev5Title: 'सूफ़ी नाइट',
-        ev5TimeShort: '4 जनवरी • राति 9:00 वॻे',
+        ev5TimeShort: '9:00 PM • 4 जन',
+        ev5DescShort: 'तारनि हेठ सूफ़ी कव्वाली ऐं मौसीकी।',
+        ev5HallShort: 'स्टारलिट आँगन बैंक्वेट (प्लेसहोल्डर)',
         styleGuideSub: 'लिबास जी रहनुमाई',
         dressCodeTitle: 'वेडिंग वैनिटी लुकबुक',
         dressCodeDesc: 'ड्रेस कोड ॾिसण लाइ हेठ ॾिनल वैनिटी टेबल जी कहिं बि दराज ते दबायो।',
@@ -1958,74 +1798,74 @@
           {
             icon: '🪔',
             date: '3 जनवरी 2027',
-            shortDate: '3 जनवरी • मंझंदि 1:00 वॻे',
+            shortDate: '3 जनवरी • 1:00 PM',
             title: 'साठ (Saath)',
             time: 'मंझंदि 1:00 वॻे खां',
             hall: 'हॉल: हेरिटेज कोर्टयार्ड हॉल (प्लेसहोल्डर)',
             dressTheme: 'साओ / रंग-बिरंगी एथनिक',
             dress: 'ड्रेस कोड: साओ / रंग-बिरंगी एथनिक',
             dressTip: 'उत्सवी कुड़ता, रंगीन बंधेज ऐं रिवायती लिबास।',
-            desc: 'माइटनि जी दुआउनि ऐं रिवायती सिन्धी मांगलिक रस्मुनि सां शुभ शुरुआत।'
+            desc: 'उल्टे ॾिए ते घोट जा कदम ऐं कुटुंब जी दुआउनि सां शुभ शुरुआत।'
           },
           {
             icon: '🌼',
             date: '3 जनवरी 2027',
-            shortDate: '3 जनवरी • मंझंदि 3:00 वॻे',
+            shortDate: '3 जनवरी • 3:00 PM',
             title: 'हल्दी',
             time: 'मंझंदि 3:00 वॻे खां',
             hall: 'हॉल: पूलसाइड लॉन ऐं पवेलियन (प्लेसहोल्डर)',
             dressTheme: 'पेस्टल / फ्लोरल / रिवायती',
             dress: 'ड्रेस कोड: पेस्टल / फ्लोरल / रिवायती',
             dressTip: 'हलका पेस्टल कुड़ता, फ्लोरल प्रिंट ऐं रिवायती लिबास।',
-            desc: 'मंझंदि जी मिठी उस में गुलनि जी वरखा, हल्दीअ जी रस्म ऐं ढोल जे आवाज़ जो लुत्फ़ु माणियो।'
+            desc: 'गेंदा गुलनि ऐं हल्दीअ जी रौनक सां खुशगवार तकरीब।'
           },
           {
             icon: '🪩',
             date: '3 जनवरी 2027',
-            shortDate: '3 जनवरी • राति 8:00 वॻे',
+            shortDate: '3 जनवरी • 8:00 PM',
             title: 'संगीत',
             time: 'राति 8:00 वॻे खां',
             hall: 'हॉल: ग्रैंड क्रिस्टल बॉलरूम (प्लेसहोल्डर)',
             dressTheme: 'ग्लैमरस इंडियन / इंडो-वेस्टर्न',
             dress: 'ड्रेस कोड: ग्लैमरस इंडियन / इंडो-वेस्टर्न',
             dressTip: 'चमकीलियूं साड़ियूं, बंदगला ऐं इंडो-वेस्टर्न पार्टी लिबास।',
-            desc: 'कुटुंब जे नाच, मिठी मौसीकी ऐं राति देर ताईं हलंदड़ जश्न जी हिक यादगार शाम।'
+            desc: 'एलईडी स्टेज लाइट्स ऐं नाच जी हिक यादगार शाम।'
           },
           {
             icon: '🥁',
             date: '4 जनवरी 2027',
-            shortDate: '4 जनवरी • मंझंदि 12:00 वॻे',
+            shortDate: '4 जनवरी • 12:00 PM',
             title: 'बरात',
             time: 'मंझंदि 12:00 वॻे खां',
             hall: 'हॉल: रॉयल पोर्च ऐं मेन एवेन्यू (प्लेसहोल्डर)',
             dressTheme: 'रिवायती इंडियन / वेडिंग ग्लैम',
             dress: 'ड्रेस कोड: रिवायती इंडियन / वेडिंग ग्लैम',
             dressTip: 'शाही साफ़ो, रेशमी शेरवानी, रिवायती लहंगा ऐं वेडिंग ग्लैम।',
-            desc: 'ढोल-नगाड़नि ऐं शाही अंदाज़ में शुभम जी बरात जे इस्तकबाल ऐं नाच लाइ तैयार रहो।'
+            desc: 'सफेद घोड़े ते शुभम जी शाही बरात।'
           },
           {
             icon: '🔥',
             date: '4 जनवरी 2027',
-            shortDate: '4 जनवरी • मंझंदि 3:00 वॻे',
+            shortDate: '4 जनवरी • 3:00 PM',
             title: 'फेरा',
             time: 'मंझंदि 3:00 वॻे खां',
             hall: 'हॉल: सनसेट मंडप लॉन (प्लेसहोल्डर)',
             dressTheme: 'रिवायती इंडियन / वेडिंग ग्लैम',
             dress: 'ड्रेस कोड: रिवायती इंडियन / वेडिंग ग्लैम',
             dressTip: 'शाही साफ़ो, रेशमी शेरवानी, रिवायती लहंगा ऐं वेडिंग ग्लैम।',
-            desc: 'माइटनि जी दुआउनि सां शुभम ऐं पूजा जी शादीअ जे सतनि फेरनि जा शाहिद बणजो।'
+            desc: 'गुलनि जो मंडप ऐं पवित्र अग्निअ जे सामने सत फेरा।'
           },
           {
             icon: '🏮',
             date: '4 जनवरी 2027',
-            shortDate: '4 जनवरी • राति 9:00 वॻे',
+            shortDate: '4 जनवरी • 9:00 PM',
             title: 'सूफ़ी नाइट',
             time: 'राति 9:00 वॻे खां',
             hall: 'हॉल: स्टारलिट आँगन बैंक्वेट (प्लेसहोल्डर)',
             dressTheme: 'डार्क / क्लासी इवनिंग वियर',
             dress: 'ड्रेस कोड: डार्क / क्लासी इवनिंग वियर',
             dressTip: 'गहिरे रंग जा वेलवेट, टक्सीडो ऐं क्लासी इवनिंग लिबास।',
-            desc: 'रोशन लालटेननि हेठ रूहानी सूफ़ी मौसीकी ऐं शाही राति जी मानीअ जो लुत्फ़ु वठो।'
+            desc: 'तारनि हेठ सूफ़ी कव्वाली ऐं लाइव मौसीकी।'
           }
         ]
       }
@@ -2156,7 +1996,6 @@
         tonearm.classList.add('playing');
       }, 420);
 
-      // Immediately unlock scrolling with English default & reveal 3 language bubbles
       document.body.classList.remove('scroll-locked');
       tapToOpenBox.classList.add('hidden');
       languageBubblesBox.classList.remove('hidden');
@@ -2309,213 +2148,1495 @@
     setInterval(updateCountdown, 30000);
 
     // =========================================================
-    // 6. MORPHING FALLING PARTICLE ENGINE + EVENT MODAL
+    // 6. 2D STORYBOOK VECTOR-INK SCENES & MORPHING LEFT PARTICLE STREAM
     // =========================================================
-    const particleCanvas = document.getElementById('eventParticleCanvas');
-    const pCtx = particleCanvas ? particleCanvas.getContext('2d') : null;
-    const celebrationsSec = document.getElementById('celebrationsSection');
+    (function initStorybookCelebrations() {
+      const CARD_W = 124;
+      const CARD_H = 162;
+      const INK = '#261710';
 
-    // Mode 0: Saath (starts with diya bits/shards falling, then morphs into Haldi marigolds)
-    // Mode 1: Haldi (marigold flowers & tassels falling)
-    // Mode 2: Sangeet (glitter & bubbles falling)
-    // Mode 3: Baraat (cash / currency notes falling)
-    // Mode 4: Phera (rose petals falling)
-    // Mode 5: Sufi Night (musical symbols ♪ ♫ ♬ falling)
-    let currentParticleMode = 0;
-    let saathStartTime = Date.now();
-    let particles = [];
-
-    function resizeParticleCanvas() {
-      if (!particleCanvas || !celebrationsSec) return;
-      particleCanvas.width = celebrationsSec.clientWidth;
-      particleCanvas.height = celebrationsSec.clientHeight;
-    }
-
-    function createParticleForMode(mode, spawnAtTop = true) {
-      const w = particleCanvas ? particleCanvas.width : 800;
-      const h = particleCanvas ? particleCanvas.height : 900;
-
-      // For Saath (0): first ~4.5s showers diya bits/shards, then smoothly turns into Haldi marigold flowers!
-      let effectiveMode = mode;
-      if (mode === 0 && (Date.now() - saathStartTime) > 4500) {
-        effectiveMode = 1;
+      function initCardCanvas(id) {
+        const c = document.getElementById(id);
+        if (!c) return null;
+        const c2d = c.getContext('2d');
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        c.width = CARD_W * dpr;
+        c.height = CARD_H * dpr;
+        c2d.setTransform(dpr, 0, 0, dpr, 0, 0);
+        c2d.lineCap = 'round';
+        c2d.lineJoin = 'round';
+        return c2d;
       }
 
-      return {
-        x: Math.random() * w,
-        y: spawnAtTop ? -25 - Math.random() * 120 : Math.random() * h,
-        vy: 1.4 + Math.random() * 2.2,
-        vx: (Math.random() - 0.5) * 1.2,
-        size: 7 + Math.random() * 9,
-        rot: Math.random() * Math.PI * 2,
-        vRot: (Math.random() - 0.5) * 0.06,
-        swayPhase: Math.random() * Math.PI * 2,
-        kind: effectiveMode,
-        huePick: Math.random()
-      };
-    }
+      const ctxSaath = initCardCanvas('scene-saath');
+      const ctxHaldi = initCardCanvas('scene-haldi');
+      const ctxSangeet = initCardCanvas('scene-sangeet');
+      const ctxBaraat = initCardCanvas('scene-baraat');
+      const ctxPhere = initCardCanvas('scene-phere');
+      const ctxSufi = initCardCanvas('scene-sufi');
 
-    function seedParticles() {
-      particles = [];
-      const count = 46;
-      for (let i = 0; i < count; i++) {
-        particles.push(createParticleForMode(currentParticleMode, false));
-      }
-    }
+      function drawStoryBackdrop(c2d, topCol, botCol, glowCol) {
+        const bg = c2d.createLinearGradient(0, 0, 0, CARD_H);
+        bg.addColorStop(0, topCol);
+        bg.addColorStop(1, botCol);
+        c2d.fillStyle = bg;
+        c2d.fillRect(0, 0, CARD_W, CARD_H);
 
-    function setParticleMode(idx) {
-      currentParticleMode = idx;
-      if (idx === 0) {
-        saathStartTime = Date.now();
-      }
-      for (let i = 0; i < 6; i++) {
-        const card = document.getElementById(`evCard-${i}`);
-        if (card) {
-          if (i === idx) card.classList.add('active-focus');
-          else card.classList.remove('active-focus');
+        if (glowCol) {
+          const rad = c2d.createRadialGradient(CARD_W * 0.5, CARD_H * 0.32, 4, CARD_W * 0.5, CARD_H * 0.32, 68);
+          rad.addColorStop(0, glowCol);
+          rad.addColorStop(1, 'rgba(255,255,255,0)');
+          c2d.fillStyle = rad;
+          c2d.fillRect(0, 0, CARD_W, CARD_H);
         }
       }
-      const ev = (i18n[currentLang] && i18n[currentLang].events[idx]) || i18n.en.events[idx];
-      const iconEl = document.getElementById('activeMotifIcon');
-      const labelEl = document.getElementById('activeMotifLabel');
-      if (iconEl) iconEl.textContent = ev.icon;
-      if (labelEl) labelEl.textContent = ev.motifStatus;
-      seedParticles();
-    }
 
-    function drawSingleParticle(pt) {
-      if (!pCtx) return;
-      pCtx.save();
-      pCtx.translate(pt.x, pt.y);
-      pCtx.rotate(pt.rot);
+      function drawStoryGroom(c2d, opts) {
+        const {
+          x, y,
+          kurtaColor = '#F59E0B',
+          trimColor = '#FDE047',
+          turbanColor = '#B91C1C',
+          armL = 0.32,
+          armR = -0.32,
+          headTilt = 0,
+          faceDir = 0,
+          scale = 1,
+          hasTurban = true,
+          hasSunglasses = false
+        } = opts;
 
-      if (pt.kind === 0) {
-        // Broken ulta diya bits & clay shards
-        pCtx.fillStyle = pt.huePick > 0.5 ? '#C86D51' : '#A84A2E';
-        pCtx.beginPath();
-        pCtx.moveTo(-pt.size * 0.6, -pt.size * 0.35);
-        pCtx.lineTo(pt.size * 0.6, -pt.size * 0.15);
-        pCtx.lineTo(0, pt.size * 0.65);
-        pCtx.closePath();
-        pCtx.fill();
-      } else if (pt.kind === 1) {
-        // Marigold flower / tassel
-        if (pt.huePick > 0.25) {
-          pCtx.fillStyle = pt.huePick > 0.6 ? '#F59E0B' : '#FBBF24';
-          for (let p = 0; p < 6; p++) {
-            pCtx.rotate(Math.PI / 3);
-            pCtx.beginPath();
-            pCtx.ellipse(0, pt.size * 0.45, pt.size * 0.28, pt.size * 0.52, 0, 0, Math.PI * 2);
-            pCtx.fill();
-          }
-          pCtx.fillStyle = '#D97706';
-          pCtx.beginPath();
-          pCtx.arc(0, 0, pt.size * 0.25, 0, Math.PI * 2);
-          pCtx.fill();
+        c2d.save();
+        c2d.translate(x, y);
+        c2d.scale(scale, scale);
+
+        c2d.fillStyle = 'rgba(38, 23, 16, 0.16)';
+        c2d.beginPath();
+        c2d.ellipse(0, 0, 9.5, 2.4, 0, 0, Math.PI * 2);
+        c2d.fill();
+
+        c2d.strokeStyle = INK;
+        c2d.lineWidth = 1.35;
+
+        c2d.fillStyle = '#FDF6EC';
+        c2d.beginPath();
+        c2d.roundRect(-4.6, -8, 3.8, 7, 1.8);
+        c2d.roundRect(0.8, -8, 3.8, 7, 1.8);
+        c2d.fill();
+        c2d.stroke();
+
+        c2d.fillStyle = '#881337';
+        c2d.beginPath();
+        c2d.ellipse(-3.2, -0.8, 3.1, 1.5, 0, 0, Math.PI * 2);
+        c2d.ellipse(3.2, -0.8, 3.1, 1.5, 0, 0, Math.PI * 2);
+        c2d.fill();
+
+        c2d.fillStyle = kurtaColor;
+        c2d.beginPath();
+        c2d.moveTo(-6.2, -19.5);
+        c2d.quadraticCurveTo(0, -21, 6.2, -19.5);
+        c2d.quadraticCurveTo(8.5, -12, 7.6, -6.2);
+        c2d.quadraticCurveTo(0, -4.8, -7.6, -6.2);
+        c2d.quadraticCurveTo(-8.5, -12, -6.2, -19.5);
+        c2d.closePath();
+        c2d.fill();
+        c2d.stroke();
+
+        c2d.strokeStyle = trimColor;
+        c2d.lineWidth = 1.2;
+        c2d.beginPath();
+        c2d.moveTo(0, -19.5);
+        c2d.lineTo(0, -6.5);
+        c2d.moveTo(-4.4, -19);
+        c2d.quadraticCurveTo(0, -10.5, 4.6, -19);
+        c2d.stroke();
+
+        c2d.strokeStyle = INK;
+        c2d.lineWidth = 1.35;
+        function renderArm(sx, sy, angle, isLeft) {
+          const dir = isLeft ? -1 : 1;
+          const elbowX = sx + dir * (2.6 + Math.sin(Math.abs(angle)) * 2.8);
+          const elbowY = sy + Math.cos(angle) * 3.8;
+          const handX = elbowX + dir * (2.2 + Math.sin(Math.abs(angle)) * 3.2);
+          const handY = elbowY + Math.cos(angle * 1.15) * 3.8;
+
+          c2d.beginPath();
+          c2d.moveTo(sx, sy);
+          c2d.quadraticCurveTo(elbowX, elbowY, handX, handY);
+          c2d.stroke();
+
+          c2d.fillStyle = '#F8CFAF';
+          c2d.beginPath();
+          c2d.arc(handX, handY, 1.65, 0, Math.PI * 2);
+          c2d.fill();
+          c2d.stroke();
+        }
+        renderArm(-6.0, -17.2, armL, true);
+        renderArm(6.0, -17.2, armR, false);
+
+        c2d.save();
+        c2d.translate(0, -26.5);
+        c2d.rotate(headTilt);
+
+        c2d.fillStyle = '#EAB894';
+        c2d.fillRect(-2.1, 4.5, 4.2, 3.2);
+
+        c2d.fillStyle = '#FCD5B5';
+        c2d.beginPath();
+        c2d.ellipse(0, 0, 7.6, 8.0, 0, 0, Math.PI * 2);
+        c2d.fill();
+        c2d.stroke();
+
+        const ex = faceDir * 1.5;
+
+        c2d.fillStyle = '#291D18';
+        c2d.beginPath();
+        c2d.arc(ex * 0.6, 1.4, 6.6, 0.14 * Math.PI, 0.86 * Math.PI);
+        c2d.quadraticCurveTo(ex * 0.6, 4.2, -5.6 + ex * 0.6, 2.2);
+        c2d.fill();
+
+        c2d.fillStyle = 'rgba(244, 63, 94, 0.30)';
+        c2d.beginPath();
+        c2d.arc(-4.3 + ex, 1.1, 1.6, 0, Math.PI * 2);
+        c2d.arc(4.3 + ex, 1.1, 1.6, 0, Math.PI * 2);
+        c2d.fill();
+
+        if (hasSunglasses) {
+          c2d.fillStyle = '#1E1B4B';
+          c2d.beginPath();
+          c2d.roundRect(-5.2 + ex, -2.2, 4.4, 2.7, 0.9);
+          c2d.roundRect(0.8 + ex, -2.2, 4.4, 2.7, 0.9);
+          c2d.fill();
+          c2d.strokeStyle = '#FACC15';
+          c2d.lineWidth = 0.8;
+          c2d.stroke();
+          c2d.strokeStyle = INK;
+          c2d.lineWidth = 1.35;
         } else {
-          // Tassel
-          pCtx.fillStyle = '#EA580C';
-          pCtx.fillRect(-2, -pt.size * 0.6, 4, pt.size * 0.4);
-          pCtx.beginPath();
-          pCtx.moveTo(-5, -pt.size * 0.2);
-          pCtx.lineTo(5, -pt.size * 0.2);
-          pCtx.lineTo(8, pt.size * 0.65);
-          pCtx.lineTo(-8, pt.size * 0.65);
-          pCtx.closePath();
-          pCtx.fill();
+          c2d.fillStyle = INK;
+          c2d.beginPath();
+          c2d.arc(-2.6 + ex, -0.7, 1.15, 0, Math.PI * 2);
+          c2d.arc(2.6 + ex, -0.7, 1.15, 0, Math.PI * 2);
+          c2d.fill();
+
+          c2d.fillStyle = '#FFFFFF';
+          c2d.beginPath();
+          c2d.arc(-2.3 + ex, -1.0, 0.42, 0, Math.PI * 2);
+          c2d.arc(2.9 + ex, -1.0, 0.42, 0, Math.PI * 2);
+          c2d.fill();
+
+          c2d.beginPath();
+          c2d.moveTo(-3.9 + ex, -2.5);
+          c2d.quadraticCurveTo(-2.6 + ex, -3.1, -1.4 + ex, -2.5);
+          c2d.moveTo(1.4 + ex, -2.5);
+          c2d.quadraticCurveTo(2.6 + ex, -3.1, 3.9 + ex, -2.5);
+          c2d.stroke();
         }
-      } else if (pt.kind === 2) {
-        // Glitter & bubbles for Sangeet
-        if (pt.huePick > 0.45) {
-          pCtx.strokeStyle = pt.huePick > 0.72 ? 'rgba(168, 85, 247, 0.75)' : 'rgba(236, 72, 153, 0.75)';
-          pCtx.fillStyle = 'rgba(255, 255, 255, 0.35)';
-          pCtx.lineWidth = 1.6;
-          pCtx.beginPath();
-          pCtx.arc(0, 0, pt.size * 0.65, 0, Math.PI * 2);
-          pCtx.fill();
-          pCtx.stroke();
+
+        c2d.fillStyle = '#FFFFFF';
+        c2d.beginPath();
+        c2d.arc(ex, 2.1, 2.1, 0.08 * Math.PI, 0.92 * Math.PI);
+        c2d.fill();
+        c2d.stroke();
+
+        if (hasTurban) {
+          c2d.fillStyle = turbanColor;
+          c2d.beginPath();
+          c2d.ellipse(0, -6.0, 8.6, 4.1, -0.06, 0, Math.PI * 2);
+          c2d.fill();
+          c2d.stroke();
+
+          c2d.strokeStyle = trimColor;
+          c2d.lineWidth = 1.0;
+          c2d.beginPath();
+          c2d.moveTo(-6.5, -5.5);
+          c2d.quadraticCurveTo(0, -7.8, 6.8, -5.0);
+          c2d.stroke();
+
+          c2d.strokeStyle = INK;
+          c2d.lineWidth = 1.2;
+          c2d.fillStyle = '#FACC15';
+          c2d.beginPath();
+          c2d.ellipse(3.8, -10.2, 1.7, 3.6, 0.32, 0, Math.PI * 2);
+          c2d.fill();
+          c2d.stroke();
         } else {
-          pCtx.fillStyle = pt.huePick > 0.22 ? '#F5DC8E' : '#C084FC';
-          pCtx.beginPath();
-          pCtx.moveTo(0, -pt.size * 0.7);
-          pCtx.lineTo(pt.size * 0.22, -pt.size * 0.22);
-          pCtx.lineTo(pt.size * 0.7, 0);
-          pCtx.lineTo(pt.size * 0.22, pt.size * 0.22);
-          pCtx.lineTo(0, pt.size * 0.7);
-          pCtx.lineTo(-pt.size * 0.22, pt.size * 0.22);
-          pCtx.lineTo(-pt.size * 0.7, 0);
-          pCtx.lineTo(-pt.size * 0.22, -pt.size * 0.22);
-          pCtx.closePath();
-          pCtx.fill();
+          c2d.fillStyle = '#241814';
+          c2d.beginPath();
+          c2d.arc(0, -1.6, 7.9, Math.PI * 1.04, Math.PI * 1.96);
+          c2d.quadraticCurveTo(2, -5.5, -6, -3);
+          c2d.fill();
         }
-      } else if (pt.kind === 3) {
-        // Cash notes for Baraat
-        const wNote = pt.size * 1.9;
-        const hNote = pt.size * 0.95;
-        pCtx.fillStyle = '#4D9B6A';
-        pCtx.strokeStyle = '#1E5631';
-        pCtx.lineWidth = 1.2;
-        pCtx.beginPath();
-        pCtx.roundRect(-wNote / 2, -hNote / 2, wNote, hNote, 2);
-        pCtx.fill();
-        pCtx.stroke();
-        pCtx.fillStyle = '#E8F8EE';
-        pCtx.font = `bold ${Math.max(8, Math.round(pt.size * 0.65))}px sans-serif`;
-        pCtx.textAlign = 'center';
-        pCtx.textBaseline = 'middle';
-        pCtx.fillText('₹', 0, 0.5);
-      } else if (pt.kind === 4) {
-        // Rose petals for Phera
-        pCtx.fillStyle = pt.huePick > 0.5 ? '#E11D48' : '#FB7185';
-        pCtx.beginPath();
-        pCtx.ellipse(0, 0, pt.size * 0.75, pt.size * 0.42, 0, 0, Math.PI * 2);
-        pCtx.fill();
-      } else {
-        // Musical symbol for Sufi Night
-        pCtx.fillStyle = pt.huePick > 0.5 ? '#C9A253' : '#9B7428';
-        pCtx.font = `bold ${Math.max(12, Math.round(pt.size * 1.35))}px serif`;
-        pCtx.textAlign = 'center';
-        pCtx.textBaseline = 'middle';
-        const symbols = ['♪', '♫', '♬'];
-        const sym = symbols[Math.floor(pt.huePick * symbols.length) % symbols.length];
-        pCtx.fillText(sym, 0, 0);
+
+        c2d.restore();
+        c2d.restore();
       }
 
-      pCtx.restore();
-    }
+      function drawStoryBride(c2d, opts) {
+        const {
+          x, y,
+          lehengaColor = '#E11D48',
+          dupattaColor = '#FDE047',
+          armL = 0.32,
+          armR = -0.32,
+          headTilt = 0,
+          faceDir = 0,
+          skirtFlare = 0,
+          scale = 1
+        } = opts;
 
-    function animateParticles() {
-      if (pCtx && particleCanvas) {
-        pCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
-        for (let i = 0; i < particles.length; i++) {
-          const pt = particles[i];
-          pt.swayPhase += 0.04;
-          pt.x += pt.vx + Math.sin(pt.swayPhase) * 0.65;
-          pt.y += pt.vy;
-          pt.rot += pt.vRot;
+        c2d.save();
+        c2d.translate(x, y);
+        c2d.scale(scale, scale);
 
-          drawSingleParticle(pt);
+        c2d.fillStyle = 'rgba(38, 23, 16, 0.16)';
+        c2d.beginPath();
+        c2d.ellipse(0, 0, 10.5 + skirtFlare * 2, 2.4, 0, 0, Math.PI * 2);
+        c2d.fill();
 
-          if (pt.y > particleCanvas.height + 30) {
-            particles[i] = createParticleForMode(currentParticleMode, true);
+        c2d.strokeStyle = INK;
+        c2d.lineWidth = 1.35;
+
+        c2d.fillStyle = dupattaColor;
+        c2d.beginPath();
+        c2d.moveTo(-7.8, -28);
+        c2d.quadraticCurveTo(0, -36.5, 7.8, -28);
+        c2d.quadraticCurveTo(12 + skirtFlare * 2, -16, 11.2 + skirtFlare * 2, -6.5);
+        c2d.lineTo(-11.2 - skirtFlare * 2, -6.5);
+        c2d.quadraticCurveTo(-12 - skirtFlare * 2, -16, -7.8, -28);
+        c2d.closePath();
+        c2d.fill();
+        c2d.stroke();
+
+        const flareW = 11.0 + skirtFlare * 3.5;
+        c2d.fillStyle = lehengaColor;
+        c2d.beginPath();
+        c2d.moveTo(-4.8, -14.5);
+        c2d.lineTo(4.8, -14.5);
+        c2d.quadraticCurveTo(flareW * 0.92, -6, flareW, -0.8);
+        c2d.quadraticCurveTo(0, 1.0, -flareW, -0.8);
+        c2d.quadraticCurveTo(-flareW * 0.92, -6, -4.8, -14.5);
+        c2d.closePath();
+        c2d.fill();
+        c2d.stroke();
+
+        c2d.strokeStyle = '#FACC15';
+        c2d.lineWidth = 1.25;
+        c2d.beginPath();
+        c2d.moveTo(-flareW * 0.88, -2.8);
+        c2d.quadraticCurveTo(0, -1.2, flareW * 0.88, -2.8);
+        c2d.moveTo(-2.2, -14);
+        c2d.lineTo(-4.5 - skirtFlare, -1.5);
+        c2d.moveTo(2.2, -14);
+        c2d.lineTo(4.5 + skirtFlare, -1.5);
+        c2d.stroke();
+
+        c2d.strokeStyle = INK;
+        c2d.lineWidth = 1.35;
+        c2d.fillStyle = lehengaColor;
+        c2d.beginPath();
+        c2d.roundRect(-5.2, -19.2, 10.4, 5.0, 2.2);
+        c2d.fill();
+        c2d.stroke();
+
+        c2d.strokeStyle = '#FACC15';
+        c2d.lineWidth = 1.3;
+        c2d.beginPath();
+        c2d.arc(0, -19.2, 3.2, 0.1 * Math.PI, 0.9 * Math.PI);
+        c2d.stroke();
+
+        c2d.strokeStyle = INK;
+        c2d.lineWidth = 1.35;
+        function renderArm(sx, sy, angle, isLeft) {
+          const dir = isLeft ? -1 : 1;
+          const elbowX = sx + dir * (2.4 + Math.sin(Math.abs(angle)) * 2.6);
+          const elbowY = sy + Math.cos(angle) * 3.5;
+          const handX = elbowX + dir * (2.0 + Math.sin(Math.abs(angle)) * 3.0);
+          const handY = elbowY + Math.cos(angle * 1.15) * 3.5;
+
+          c2d.beginPath();
+          c2d.moveTo(sx, sy);
+          c2d.quadraticCurveTo(elbowX, elbowY, handX, handY);
+          c2d.stroke();
+
+          c2d.fillStyle = '#F8CFAF';
+          c2d.beginPath();
+          c2d.arc(handX, handY, 1.55, 0, Math.PI * 2);
+          c2d.fill();
+          c2d.stroke();
+        }
+        renderArm(-5.2, -17.2, armL, true);
+        renderArm(5.2, -17.2, armR, false);
+
+        c2d.save();
+        c2d.translate(0, -25.8);
+        c2d.rotate(headTilt);
+
+        c2d.fillStyle = '#FCD5B5';
+        c2d.beginPath();
+        c2d.ellipse(0, 0, 7.3, 7.6, 0, 0, Math.PI * 2);
+        c2d.fill();
+        c2d.stroke();
+
+        const ex = faceDir * 1.4;
+
+        c2d.fillStyle = '#241814';
+        c2d.beginPath();
+        c2d.arc(0, -1.2, 7.5, Math.PI * 1.02, Math.PI * 1.98);
+        c2d.fill();
+
+        c2d.fillStyle = '#FACC15';
+        c2d.beginPath();
+        c2d.arc(ex, -4.3, 1.35, 0, Math.PI * 2);
+        c2d.fill();
+
+        c2d.fillStyle = 'rgba(244, 63, 94, 0.34)';
+        c2d.beginPath();
+        c2d.arc(-4.2 + ex, 1.2, 1.65, 0, Math.PI * 2);
+        c2d.arc(4.2 + ex, 1.2, 1.65, 0, Math.PI * 2);
+        c2d.fill();
+
+        c2d.fillStyle = INK;
+        c2d.beginPath();
+        c2d.arc(-2.5 + ex, -0.5, 1.15, 0, Math.PI * 2);
+        c2d.arc(2.5 + ex, -0.5, 1.15, 0, Math.PI * 2);
+        c2d.fill();
+
+        c2d.fillStyle = '#FFFFFF';
+        c2d.beginPath();
+        c2d.arc(-2.2 + ex, -0.8, 0.42, 0, Math.PI * 2);
+        c2d.arc(2.8 + ex, -0.8, 0.42, 0, Math.PI * 2);
+        c2d.fill();
+
+        c2d.beginPath();
+        c2d.arc(ex, 1.6, 2.0, 0.14 * Math.PI, 0.86 * Math.PI);
+        c2d.stroke();
+
+        c2d.restore();
+        c2d.restore();
+      }
+
+      let diyaBreakProgress = 0;
+      let isDiyaShattered = false;
+      let shatterTimestamp = 0;
+
+      function updateDiyaScrollProgress() {
+        if (isDiyaShattered) {
+          diyaBreakProgress = 1;
+          return;
+        }
+        const cardEl = document.getElementById('card-saath');
+        if (!cardEl) return;
+        const r = cardEl.getBoundingClientRect();
+        const vh = window.innerHeight || 800;
+        const visibilityRatio = Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.55)));
+        const target = Math.max(visibilityRatio, Math.min(1, window.scrollY / 90));
+        diyaBreakProgress += (target - diyaBreakProgress) * 0.22;
+
+        if (diyaBreakProgress >= 0.92) {
+          diyaBreakProgress = 1;
+          isDiyaShattered = true;
+          shatterTimestamp = performance.now();
+          initContinuousLeftParticles();
+        }
+      }
+
+      const streamCanvas = document.getElementById('particleStreamCanvas');
+      const streamCtx = streamCanvas ? streamCanvas.getContext('2d') : null;
+      let streamW = 0;
+      let streamH = 0;
+      let cardBounds = [];
+      let diyaOriginRel = { x: 78, y: 132 };
+
+      const STREAM_COUNT = 54;
+      let streamParticles = [];
+      let lastScrollY = window.scrollY;
+      let scrollBoost = 0;
+
+      function measureLayoutBounds() {
+        const wrapper = document.getElementById('eventsWrapper');
+        if (!wrapper || !streamCanvas || !streamCtx) return;
+        const wRect = wrapper.getBoundingClientRect();
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+        streamW = wRect.width;
+        streamH = wRect.height;
+        streamCanvas.width = streamW * dpr;
+        streamCanvas.height = streamH * dpr;
+        streamCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        const cardIds = ['card-saath', 'card-haldi', 'card-sangeet', 'card-baraat', 'card-phere', 'card-sufi'];
+        cardBounds = cardIds.map((id) => {
+          const el = document.getElementById(id);
+          const r = el.getBoundingClientRect();
+          return {
+            left: r.left - wRect.left,
+            right: r.right - wRect.left,
+            top: r.top - wRect.top,
+            bottom: r.bottom - wRect.top,
+            width: r.width,
+            height: r.height
+          };
+        });
+
+        if (cardBounds[0]) {
+          diyaOriginRel = {
+            x: cardBounds[0].left + 62,
+            y: cardBounds[0].top + 130
+          };
+        }
+      }
+
+      function initContinuousLeftParticles() {
+        measureLayoutBounds();
+        streamParticles = [];
+        const totalSpan = Math.max(400, streamH - diyaOriginRel.y);
+
+        for (let i = 0; i < STREAM_COUNT; i++) {
+          const slot = i % 12;
+          const normX = 0.10 + (slot / 11) * 0.80 + (Math.random() - 0.5) * 0.04;
+          const isBurstWave = i < 14;
+          const startY = isBurstWave
+            ? diyaOriginRel.y + Math.random() * 14
+            : diyaOriginRel.y + (i / STREAM_COUNT) * totalSpan;
+
+          streamParticles.push({
+            y: startY,
+            normX: Math.min(0.92, Math.max(0.08, normX)),
+            burstX: isBurstWave ? diyaOriginRel.x : null,
+            burstBlend: isBurstWave ? 0 : 1,
+            vy: 0.72 + (i % 5) * 0.18 + Math.random() * 0.25,
+            size: 5.5 + (i % 4) * 1.1,
+            swayAmp: 4.5 + (i % 3) * 2.5,
+            phase: (i * 0.73) % (Math.PI * 2),
+            rot: Math.random() * Math.PI * 2,
+            rotSpeed: ((i % 2 === 0 ? 1 : -1) * (0.02 + Math.random() * 0.025)),
+            variant: i % 4
+          });
+        }
+      }
+
+      function getStageForY(y) {
+        if (cardBounds.length < 6) return 0;
+        for (let i = 0; i < 5; i++) {
+          const midBoundary = (cardBounds[i].bottom + cardBounds[i + 1].top) * 0.5;
+          if (y < midBoundary) return i;
+        }
+        return 5;
+      }
+
+      function drawParticleShard(c2d, x, y, p) {
+        c2d.save();
+        c2d.translate(x, y);
+        c2d.rotate(p.rot);
+        const s = p.size * 0.78;
+        c2d.fillStyle = p.variant % 2 === 0 ? '#D96B43' : '#A94422';
+        c2d.strokeStyle = INK;
+        c2d.lineWidth = 0.85;
+        c2d.beginPath();
+        c2d.moveTo(-s * 0.65, -s * 0.4);
+        c2d.lineTo(s * 0.7, -s * 0.15);
+        c2d.lineTo(s * 0.25, s * 0.65);
+        c2d.lineTo(-s * 0.5, s * 0.35);
+        c2d.closePath();
+        c2d.fill();
+        c2d.stroke();
+        c2d.restore();
+      }
+
+      function drawParticleMarigold(c2d, x, y, p) {
+        c2d.save();
+        c2d.translate(x, y);
+        c2d.rotate(p.rot);
+        if (p.variant === 0) {
+          const s = p.size * 0.85;
+          c2d.fillStyle = '#D97706';
+          c2d.beginPath();
+          c2d.arc(0, -s * 0.45, s * 0.25, 0, Math.PI * 2);
+          c2d.fill();
+          c2d.strokeStyle = '#F59E0B';
+          c2d.lineWidth = 1.15;
+          for (let k = -2; k <= 2; k++) {
+            c2d.beginPath();
+            c2d.moveTo(k * 1.0, -s * 0.25);
+            c2d.lineTo(k * 2.0, s * 0.75);
+            c2d.stroke();
+          }
+        } else {
+          const r = p.size * 0.76;
+          c2d.fillStyle = p.variant === 1 ? '#FB923C' : '#FACC15';
+          for (let k = 0; k < 6; k++) {
+            const a = (k / 6) * Math.PI * 2;
+            c2d.beginPath();
+            c2d.arc(Math.cos(a) * r * 0.45, Math.sin(a) * r * 0.45, r * 0.38, 0, Math.PI * 2);
+            c2d.fill();
+          }
+          c2d.fillStyle = '#FEF08A';
+          c2d.beginPath();
+          c2d.arc(0, 0, r * 0.35, 0, Math.PI * 2);
+          c2d.fill();
+        }
+        c2d.restore();
+      }
+
+      function drawParticleGlitter(c2d, x, y, p, t) {
+        c2d.save();
+        c2d.translate(x, y);
+        c2d.rotate(p.rot);
+        const twinkle = 0.55 + 0.55 * Math.sin(t * 0.011 + p.phase * 2.3);
+        c2d.globalAlpha *= twinkle;
+
+        const colors = ['#FDE047', '#F472B6', '#C084FC', '#38BDF8'];
+        const col = colors[p.variant % colors.length];
+        c2d.fillStyle = col;
+        c2d.shadowColor = col;
+        c2d.shadowBlur = 5;
+
+        if (p.variant % 2 === 0) {
+          const s = p.size * 0.78 * (0.85 + 0.25 * twinkle);
+          c2d.beginPath();
+          c2d.moveTo(0, -s);
+          c2d.quadraticCurveTo(0, 0, s, 0);
+          c2d.quadraticCurveTo(0, 0, 0, s);
+          c2d.quadraticCurveTo(0, 0, -s, 0);
+          c2d.quadraticCurveTo(0, 0, 0, -s);
+          c2d.fill();
+        } else {
+          const s = p.size * 0.52;
+          c2d.beginPath();
+          c2d.moveTo(0, -s);
+          c2d.lineTo(s * 0.7, 0);
+          c2d.lineTo(0, s);
+          c2d.lineTo(-s * 0.7, 0);
+          c2d.closePath();
+          c2d.fill();
+        }
+        c2d.restore();
+      }
+
+      function drawParticleCash(c2d, x, y, p, t) {
+        c2d.save();
+        c2d.translate(x, y);
+        c2d.rotate(p.rot * 0.55);
+        const flutter = 0.55 + 0.45 * Math.abs(Math.cos(t * 0.005 + p.phase));
+        c2d.scale(1, flutter);
+
+        const w = p.size * 1.55;
+        const h = p.size * 0.86;
+        const isEmerald = p.variant % 2 === 0;
+        c2d.fillStyle = isEmerald ? '#D1FAE5' : '#FEF3C7';
+        c2d.strokeStyle = isEmerald ? '#059669' : '#D97706';
+        c2d.lineWidth = 0.9;
+        c2d.beginPath();
+        c2d.roundRect(-w / 2, -h / 2, w, h, 2.5);
+        c2d.fill();
+        c2d.stroke();
+
+        c2d.fillStyle = isEmerald ? '#065F46' : '#92400E';
+        c2d.font = `bold ${Math.max(7, Math.round(h * 0.68))}px sans-serif`;
+        c2d.textAlign = 'center';
+        c2d.textBaseline = 'middle';
+        c2d.fillText('₹', 0, 0.5);
+        c2d.restore();
+      }
+
+      function drawParticlePetal(c2d, x, y, p, t) {
+        c2d.save();
+        c2d.translate(x, y);
+        c2d.rotate(p.rot);
+        c2d.scale(1, 0.68 + 0.32 * Math.sin(t * 0.004 + p.phase));
+        const s = p.size * 0.80;
+        c2d.fillStyle = p.variant % 2 === 0 ? '#E11D48' : '#FB7185';
+        c2d.beginPath();
+        c2d.moveTo(0, -s);
+        c2d.bezierCurveTo(s * 0.88, -s * 0.65, s * 0.85, s * 0.6, 0, s);
+        c2d.bezierCurveTo(-s * 0.85, s * 0.6, -s * 0.88, -s * 0.65, 0, -s);
+        c2d.fill();
+        c2d.restore();
+      }
+
+      function drawParticleMusic(c2d, x, y, p, t) {
+        c2d.save();
+        c2d.translate(x, y);
+        c2d.rotate(Math.sin(t * 0.003 + p.phase) * 0.22);
+        const symbols = ['♪', '♫', '♬', '𝄞'];
+        const pulse = 0.9 + 0.2 * Math.sin(t * 0.006 + p.phase);
+        c2d.font = `bold ${Math.round(p.size * 1.45 * pulse)}px serif`;
+        c2d.textAlign = 'center';
+        c2d.textBaseline = 'middle';
+        c2d.fillStyle = '#FDE047';
+        c2d.shadowColor = '#D4AF37';
+        c2d.shadowBlur = 7;
+        c2d.fillText(symbols[p.variant], 0, 0);
+        c2d.restore();
+      }
+
+      const restingShards = [
+        { dx: -24, dy: 2, rot: -0.45, w: 6.5, h: 3.5, col: '#C85A32' },
+        { dx: -15, dy: 4, rot: 0.3, w: 5.0, h: 3.0, col: '#9E3E1E' },
+        { dx: -7, dy: 3, rot: -0.2, w: 4.5, h: 2.8, col: '#D96B43' },
+        { dx: 14, dy: 4, rot: 0.4, w: 5.5, h: 3.2, col: '#C85A32' },
+        { dx: 23, dy: 2, rot: -0.35, w: 6.8, h: 3.6, col: '#9E3E1E' },
+        { dx: 30, dy: 5, rot: 0.55, w: 4.5, h: 2.5, col: '#D96B43' }
+      ];
+
+      function renderSaathScene(now) {
+        if (!ctxSaath) return;
+        ctxSaath.clearRect(0, 0, CARD_W, CARD_H);
+        drawStoryBackdrop(ctxSaath, '#FCF3E6', '#F3DEC2', 'rgba(253, 224, 71, 0.32)');
+
+        ctxSaath.strokeStyle = 'rgba(180, 125, 58, 0.45)';
+        ctxSaath.lineWidth = 1.6;
+        ctxSaath.beginPath();
+        ctxSaath.moveTo(14, 132);
+        ctxSaath.lineTo(14, 54);
+        ctxSaath.quadraticCurveTo(14, 24, 62, 16);
+        ctxSaath.quadraticCurveTo(110, 24, 110, 54);
+        ctxSaath.lineTo(110, 132);
+        ctxSaath.stroke();
+
+        const floorY = 132;
+        ctxSaath.fillStyle = '#E5B887';
+        ctxSaath.fillRect(0, floorY, CARD_W, CARD_H - floorY);
+        ctxSaath.strokeStyle = INK;
+        ctxSaath.lineWidth = 1.4;
+        ctxSaath.beginPath();
+        ctxSaath.moveTo(0, floorY);
+        ctxSaath.lineTo(CARD_W, floorY);
+        ctxSaath.stroke();
+
+        ctxSaath.fillStyle = '#B91C1C';
+        ctxSaath.beginPath();
+        ctxSaath.roundRect(12, floorY + 3, CARD_W - 24, 13, 4);
+        ctxSaath.fill();
+        ctxSaath.stroke();
+
+        const cx = 62;
+        const p = diyaBreakProgress;
+        const raisedOffset = 34;
+        const footY = (floorY - raisedOffset) + Math.pow(p, 1.8) * (raisedOffset - 2);
+
+        let squashX = 1;
+        let squashY = 1;
+        if (isDiyaShattered) {
+          const sinceBreak = (now - shatterTimestamp) / 1000;
+          if (sinceBreak < 0.25) {
+            const impactWave = Math.sin((sinceBreak / 0.25) * Math.PI);
+            squashX = 1 + impactWave * 0.08;
+            squashY = 1 - impactWave * 0.09;
           }
         }
+
+        if (!isDiyaShattered) {
+          const wobble = p > 0.65 ? Math.sin(now * 0.08) * 1.2 * ((p - 0.65) / 0.35) : 0;
+          ctxSaath.save();
+          ctxSaath.translate(cx + wobble, floorY);
+
+          const diyaGrad = ctxSaath.createLinearGradient(0, -15, 0, 0);
+          diyaGrad.addColorStop(0, '#E07A52');
+          diyaGrad.addColorStop(1, '#B84A27');
+          ctxSaath.fillStyle = diyaGrad;
+          ctxSaath.strokeStyle = INK;
+          ctxSaath.lineWidth = 1.5;
+          ctxSaath.beginPath();
+          ctxSaath.moveTo(-19, 0);
+          ctxSaath.quadraticCurveTo(-17, -15, 0, -15);
+          ctxSaath.quadraticCurveTo(17, -15, 19, 0);
+          ctxSaath.closePath();
+          ctxSaath.fill();
+          ctxSaath.stroke();
+
+          ctxSaath.fillStyle = '#FDE047';
+          [-9, -3, 3, 9].forEach((dx) => {
+            ctxSaath.beginPath();
+            ctxSaath.arc(dx, -5.5, 1.35, 0, Math.PI * 2);
+            ctxSaath.fill();
+          });
+          ctxSaath.restore();
+        } else {
+          restingShards.forEach((s) => {
+            ctxSaath.save();
+            ctxSaath.translate(cx + s.dx, floorY + s.dy);
+            ctxSaath.rotate(s.rot);
+            ctxSaath.fillStyle = s.col;
+            ctxSaath.strokeStyle = INK;
+            ctxSaath.lineWidth = 1.1;
+            ctxSaath.beginPath();
+            ctxSaath.moveTo(-s.w, -s.h * 0.5);
+            ctxSaath.lineTo(s.w, -s.h * 0.2);
+            ctxSaath.lineTo(s.w * 0.4, s.h * 0.8);
+            ctxSaath.lineTo(-s.w * 0.7, s.h * 0.5);
+            ctxSaath.closePath();
+            ctxSaath.fill();
+            ctxSaath.stroke();
+            ctxSaath.restore();
+          });
+
+          const sinceBreak = (now - shatterTimestamp) / 1000;
+          if (sinceBreak < 0.65) {
+            const puffAlpha = Math.max(0, 1 - sinceBreak / 0.65) * 0.45;
+            ctxSaath.fillStyle = `rgba(217, 107, 67, ${puffAlpha})`;
+            ctxSaath.beginPath();
+            ctxSaath.arc(cx - 22 - sinceBreak * 18, floorY - 4 - sinceBreak * 10, 5 + sinceBreak * 8, 0, Math.PI * 2);
+            ctxSaath.arc(cx + 24 + sinceBreak * 18, floorY - 4 - sinceBreak * 10, 5 + sinceBreak * 8, 0, Math.PI * 2);
+            ctxSaath.fill();
+          }
+        }
+
+        ctxSaath.save();
+        ctxSaath.translate(cx - 4, footY);
+        ctxSaath.scale(squashX, squashY);
+
+        ctxSaath.fillStyle = '#F59E0B';
+        ctxSaath.strokeStyle = INK;
+        ctxSaath.lineWidth = 1.5;
+        ctxSaath.beginPath();
+        ctxSaath.moveTo(-22, -74);
+        ctxSaath.lineTo(20, -74);
+        ctxSaath.quadraticCurveTo(23, -44, 25, -22);
+        ctxSaath.quadraticCurveTo(0, -19, -25, -22);
+        ctxSaath.quadraticCurveTo(-23, -44, -22, -74);
+        ctxSaath.closePath();
+        ctxSaath.fill();
+        ctxSaath.stroke();
+
+        ctxSaath.fillStyle = '#FDE047';
+        ctxSaath.fillRect(-23.5, -26, 47, 3.5);
+
+        ctxSaath.fillStyle = '#FFFDF7';
+        ctxSaath.beginPath();
+        ctxSaath.roundRect(-10, -22, 18, 13, 4);
+        ctxSaath.fill();
+        ctxSaath.stroke();
+
+        const mojariGrad = ctxSaath.createLinearGradient(0, -11, 0, 2);
+        mojariGrad.addColorStop(0, '#B91C1C');
+        mojariGrad.addColorStop(1, '#7F1D1D');
+        ctxSaath.fillStyle = mojariGrad;
+        ctxSaath.beginPath();
+        ctxSaath.moveTo(-13, -10);
+        ctxSaath.quadraticCurveTo(-16, 1, -7, 1.5);
+        ctxSaath.lineTo(21, 1.5);
+        ctxSaath.quadraticCurveTo(33, 1.5, 34, -9);
+        ctxSaath.quadraticCurveTo(28, -8, 22, -5);
+        ctxSaath.quadraticCurveTo(9, -5, 3, -11);
+        ctxSaath.closePath();
+        ctxSaath.fill();
+        ctxSaath.stroke();
+
+        ctxSaath.fillStyle = '#FDE047';
+        [-4, 3, 10, 18].forEach((dx) => {
+          ctxSaath.beginPath();
+          ctxSaath.arc(dx, -2.5, 1.25, 0, Math.PI * 2);
+          ctxSaath.fill();
+        });
+
+        ctxSaath.restore();
       }
-      requestAnimationFrame(animateParticles);
-    }
 
-    resizeParticleCanvas();
-    seedParticles();
-    animateParticles();
-    window.addEventListener('resize', resizeParticleCanvas, { passive: true });
+      function renderHaldiScene(t) {
+        if (!ctxHaldi) return;
+        const sec = t * 0.001;
+        ctxHaldi.clearRect(0, 0, CARD_W, CARD_H);
+        drawStoryBackdrop(ctxHaldi, '#FFFDF0', '#FDECA6', 'rgba(250, 204, 21, 0.35)');
 
-    function activateEventAndOpen(idx) {
-      setParticleMode(idx);
-      openEventModal(idx);
-    }
+        ctxHaldi.strokeStyle = INK;
+        ctxHaldi.lineWidth = 1.2;
+        for (let i = 0; i <= 15; i++) {
+          const u = i / 15;
+          const ax = 11 + u * 102;
+          const ay = 46 - Math.sin(u * Math.PI) * 26;
+          ctxHaldi.fillStyle = i % 2 === 0 ? '#FACC15' : '#FB923C';
+          ctxHaldi.beginPath();
+          ctxHaldi.arc(ax, ay, 6.2, 0, Math.PI * 2);
+          ctxHaldi.fill();
+          ctxHaldi.stroke();
+        }
+
+        [25, 49, 75, 99].forEach((gx, idx) => {
+          const sway = Math.sin(sec * 2.1 + idx) * 2.2;
+          const len = idx % 2 === 0 ? 40 : 32;
+          const topY = 38 - Math.sin(((gx - 11) / 102) * Math.PI) * 18;
+
+          ctxHaldi.strokeStyle = '#D97706';
+          ctxHaldi.lineWidth = 1.3;
+          ctxHaldi.beginPath();
+          ctxHaldi.moveTo(gx, topY);
+          ctxHaldi.quadraticCurveTo(gx + sway * 0.5, topY + len * 0.5, gx + sway, topY + len);
+          ctxHaldi.stroke();
+
+          for (let b = 1; b <= 3; b++) {
+            const by = topY + (len / 3) * b;
+            const bx = gx + sway * (b / 3);
+            ctxHaldi.fillStyle = b % 2 === 0 ? '#F59E0B' : '#FDE047';
+            ctxHaldi.strokeStyle = INK;
+            ctxHaldi.lineWidth = 0.95;
+            ctxHaldi.beginPath();
+            ctxHaldi.arc(bx, by, 3.0, 0, Math.PI * 2);
+            ctxHaldi.fill();
+            ctxHaldi.stroke();
+          }
+        });
+
+        const floorY = 138;
+        ctxHaldi.fillStyle = '#FCD34D';
+        ctxHaldi.fillRect(0, floorY, CARD_W, CARD_H - floorY);
+        ctxHaldi.strokeStyle = INK;
+        ctxHaldi.lineWidth = 1.4;
+        ctxHaldi.beginPath();
+        ctxHaldi.moveTo(0, floorY);
+        ctxHaldi.lineTo(CARD_W, floorY);
+        ctxHaldi.stroke();
+
+        [36, 88].forEach((cx, idx) => {
+          ctxHaldi.fillStyle = '#92400E';
+          ctxHaldi.strokeStyle = INK;
+          ctxHaldi.lineWidth = 1.25;
+          ctxHaldi.beginPath();
+          ctxHaldi.roundRect(cx - 21, floorY - 8, 42, 8, 3);
+          ctxHaldi.fill();
+          ctxHaldi.stroke();
+
+          ctxHaldi.fillStyle = idx === 0 ? '#FDE047' : '#FDBA74';
+          ctxHaldi.beginPath();
+          ctxHaldi.roundRect(cx - 19, floorY - 13, 38, 6, 3);
+          ctxHaldi.fill();
+          ctxHaldi.stroke();
+
+          ctxHaldi.fillStyle = '#EA580C';
+          ctxHaldi.beginPath();
+          ctxHaldi.arc(idx === 0 ? cx - 16 : cx + 16, floorY - 15, 3.5, 0, Math.PI * 2);
+          ctxHaldi.fill();
+          ctxHaldi.stroke();
+        });
+
+        const wave = Math.sin(sec * 2.8) * 0.16;
+        drawStoryBride(ctxHaldi, {
+          x: 36,
+          y: floorY - 12,
+          lehengaColor: '#F59E0B',
+          dupattaColor: '#FEF08A',
+          armL: 0.25,
+          armR: -0.65 + wave,
+          headTilt: Math.sin(sec * 2.2) * 0.06,
+          faceDir: 1,
+          scale: 0.96
+        });
+
+        drawStoryGroom(ctxHaldi, {
+          x: 88,
+          y: floorY - 12,
+          kurtaColor: '#FDE047',
+          turbanColor: '#EA580C',
+          armL: 0.65 - wave,
+          armR: -0.25,
+          headTilt: -Math.sin(sec * 2.2) * 0.06,
+          faceDir: -1,
+          hasSunglasses: true,
+          scale: 0.96
+        });
+
+        ctxHaldi.fillStyle = '#D97706';
+        ctxHaldi.strokeStyle = INK;
+        ctxHaldi.lineWidth = 1.25;
+        ctxHaldi.beginPath();
+        ctxHaldi.arc(62, floorY - 4, 6.2, 0, Math.PI);
+        ctxHaldi.closePath();
+        ctxHaldi.fill();
+        ctxHaldi.stroke();
+      }
+
+      function renderSangeetScene(t) {
+        if (!ctxSangeet) return;
+        const sec = t * 0.001;
+        ctxSangeet.clearRect(0, 0, CARD_W, CARD_H);
+
+        ctxSangeet.fillStyle = '#180B2B';
+        ctxSangeet.fillRect(0, 0, CARD_W, CARD_H);
+
+        const ledX = 11;
+        const ledY = 16;
+        const ledW = CARD_W - 22;
+        const ledH = 108;
+        const hue1 = (sec * 42) % 360;
+        const hue2 = (hue1 + 80) % 360;
+
+        const ledGrad = ctxSangeet.createLinearGradient(ledX, ledY, ledX + ledW, ledY + ledH);
+        ledGrad.addColorStop(0, `hsla(${hue1}, 82%, 46%, 0.92)`);
+        ledGrad.addColorStop(0.5, '#6D28D9');
+        ledGrad.addColorStop(1, `hsla(${hue2}, 88%, 50%, 0.92)`);
+
+        ctxSangeet.fillStyle = ledGrad;
+        ctxSangeet.strokeStyle = '#F5D0FE';
+        ctxSangeet.lineWidth = 1.4;
+        ctxSangeet.beginPath();
+        ctxSangeet.roundRect(ledX, ledY, ledW, ledH, 8);
+        ctxSangeet.fill();
+        ctxSangeet.stroke();
+
+        for (let b = 0; b < 9; b++) {
+          const barH = 14 + Math.abs(Math.sin(sec * 4.5 + b * 0.85)) * 32;
+          const bx = ledX + 8 + b * 10;
+          ctxSangeet.fillStyle = 'rgba(255, 255, 255, 0.24)';
+          ctxSangeet.beginPath();
+          ctxSangeet.roundRect(bx, ledY + ledH - barH - 4, 6.5, barH, 2);
+          ctxSangeet.fill();
+        }
+
+        ctxSangeet.save();
+        ctxSangeet.globalAlpha = 0.22;
+        ctxSangeet.fillStyle = '#FEF08A';
+        ctxSangeet.beginPath();
+        ctxSangeet.moveTo(24, 16);
+        ctxSangeet.lineTo(52 + Math.sin(sec * 2.5) * 14, 130);
+        ctxSangeet.lineTo(26 + Math.sin(sec * 2.5) * 14, 130);
+        ctxSangeet.closePath();
+        ctxSangeet.fill();
+
+        ctxSangeet.beginPath();
+        ctxSangeet.moveTo(100, 16);
+        ctxSangeet.lineTo(98 - Math.sin(sec * 2.5) * 14, 130);
+        ctxSangeet.lineTo(72 - Math.sin(sec * 2.5) * 14, 130);
+        ctxSangeet.closePath();
+        ctxSangeet.fill();
+        ctxSangeet.restore();
+
+        const stageY = 130;
+        ctxSangeet.fillStyle = '#4C1D95';
+        ctxSangeet.fillRect(0, stageY, CARD_W, CARD_H - stageY);
+        ctxSangeet.strokeStyle = '#E879F9';
+        ctxSangeet.lineWidth = 1.5;
+        ctxSangeet.beginPath();
+        ctxSangeet.moveTo(0, stageY);
+        ctxSangeet.lineTo(CARD_W, stageY);
+        ctxSangeet.stroke();
+
+        const spin = Math.sin(sec * 3.1);
+        const flare = Math.abs(Math.cos(sec * 3.1));
+        const bx = 46 + spin * 3.5;
+        const gx = 78 - spin * 3.5;
+
+        drawStoryBride(ctxSangeet, {
+          x: bx,
+          y: stageY + 1 - flare * 2.5,
+          lehengaColor: '#EC4899',
+          dupattaColor: '#FDE047',
+          armL: -0.65,
+          armR: 2.35,
+          headTilt: spin * 0.08,
+          faceDir: 1,
+          skirtFlare: flare,
+          scale: 1.05
+        });
+
+        drawStoryGroom(ctxSangeet, {
+          x: gx,
+          y: stageY + 1,
+          kurtaColor: '#3B82F6',
+          turbanColor: '#F59E0B',
+          armL: -2.35,
+          armR: 0.45,
+          headTilt: -spin * 0.06,
+          faceDir: -1,
+          scale: 1.05
+        });
+      }
+
+      function renderBaraatScene(t) {
+        if (!ctxBaraat) return;
+        const sec = t * 0.001;
+        ctxBaraat.clearRect(0, 0, CARD_W, CARD_H);
+        drawStoryBackdrop(ctxBaraat, '#FFEDD5', '#FED7AA', 'rgba(251, 146, 60, 0.25)');
+
+        ctxBaraat.fillStyle = 'rgba(194, 65, 12, 0.14)';
+        ctxBaraat.beginPath();
+        ctxBaraat.arc(30, 74, 17, Math.PI, 0);
+        ctxBaraat.arc(82, 68, 24, Math.PI, 0);
+        ctxBaraat.fill();
+
+        const roadY = 133;
+        ctxBaraat.fillStyle = '#BE123C';
+        ctxBaraat.fillRect(0, roadY, CARD_W, CARD_H - roadY);
+        ctxBaraat.strokeStyle = INK;
+        ctxBaraat.lineWidth = 1.4;
+        ctxBaraat.beginPath();
+        ctxBaraat.moveTo(0, roadY);
+        ctxBaraat.lineTo(CARD_W, roadY);
+        ctxBaraat.stroke();
+
+        const bgCrowd = [
+          { x: 14, kurta: '#38BDF8', turban: '#F59E0B', phase: 0.2 },
+          { x: 33, kurta: '#A855F7', turban: '#EC4899', phase: 1.5 },
+          { x: 52, kurta: '#10B981', turban: '#FACC15', phase: 2.7 },
+          { x: 69, kurta: '#F43F5E', turban: '#FDE047', phase: 0.9 }
+        ];
+        bgCrowd.forEach((g) => {
+          const hop = Math.abs(Math.sin(sec * 6.5 + g.phase)) * 3.5;
+          const wave = Math.sin(sec * 8 + g.phase) * 0.45;
+          drawStoryGroom(ctxBaraat, {
+            x: g.x,
+            y: roadY - 5 - hop,
+            kurtaColor: g.kurta,
+            turbanColor: g.turban,
+            armL: -2.2 + wave,
+            armR: 2.2 + wave,
+            faceDir: 1,
+            scale: 0.68
+          });
+        });
+
+        const dholHop = Math.abs(Math.sin(sec * 7.5)) * 3;
+        drawStoryGroom(ctxBaraat, {
+          x: 19,
+          y: roadY + 1 - dholHop,
+          kurtaColor: '#F59E0B',
+          turbanColor: '#DC2626',
+          armL: 1.2,
+          armR: 1.2,
+          faceDir: 1,
+          scale: 0.82
+        });
+        ctxBaraat.fillStyle = '#9F1239';
+        ctxBaraat.strokeStyle = INK;
+        ctxBaraat.lineWidth = 1.2;
+        ctxBaraat.beginPath();
+        ctxBaraat.roundRect(15, roadY - 14 - dholHop, 11, 7, 2);
+        ctxBaraat.fill();
+        ctxBaraat.stroke();
+
+        drawStoryBride(ctxBaraat, {
+          x: 41,
+          y: roadY + 2 - Math.abs(Math.cos(sec * 7.2)) * 4,
+          lehengaColor: '#EC4899',
+          dupattaColor: '#FDE047',
+          armL: -2.3,
+          armR: 2.1,
+          faceDir: 1,
+          skirtFlare: 0.35,
+          scale: 0.82
+        });
+
+        drawStoryGroom(ctxBaraat, {
+          x: 60,
+          y: roadY + 2 - Math.abs(Math.sin(sec * 7.2 + 1)) * 4,
+          kurtaColor: '#0D9488',
+          turbanColor: '#F97316',
+          armL: -2.2,
+          armR: 2.3,
+          faceDir: 1,
+          scale: 0.82
+        });
+
+        const trot = Math.sin(sec * 6.8);
+        const legSwing = Math.sin(sec * 6.8) * 4.2;
+        const hx = 92;
+        const hy = roadY - 21 + trot * 1.5;
+
+        ctxBaraat.strokeStyle = INK;
+        ctxBaraat.lineWidth = 2.4;
+        ctxBaraat.beginPath();
+        ctxBaraat.moveTo(hx - 12, hy + 5);
+        ctxBaraat.lineTo(hx - 14 - legSwing, roadY);
+        ctxBaraat.moveTo(hx - 7, hy + 5);
+        ctxBaraat.lineTo(hx - 6 + legSwing, roadY);
+        ctxBaraat.moveTo(hx + 10, hy + 5);
+        ctxBaraat.lineTo(hx + 13 + legSwing, roadY - Math.max(0, trot * 4));
+        ctxBaraat.moveTo(hx + 13, hy + 5);
+        ctxBaraat.lineTo(hx + 10 - legSwing, roadY);
+        ctxBaraat.stroke();
+
+        ctxBaraat.fillStyle = '#F8FAFC';
+        ctxBaraat.strokeStyle = INK;
+        ctxBaraat.lineWidth = 1.3;
+        ctxBaraat.beginPath();
+        ctxBaraat.moveTo(hx - 15, hy - 2);
+        ctxBaraat.quadraticCurveTo(hx - 24, hy + 2 + trot * 2, hx - 20, hy + 12);
+        ctxBaraat.quadraticCurveTo(hx - 15, hy + 7, hx - 14, hy + 1);
+        ctxBaraat.fill();
+        ctxBaraat.stroke();
+
+        ctxBaraat.fillStyle = '#FFFFFF';
+        ctxBaraat.beginPath();
+        ctxBaraat.ellipse(hx - 1, hy, 16.5, 9.5, 0, 0, Math.PI * 2);
+        ctxBaraat.fill();
+        ctxBaraat.stroke();
+
+        ctxBaraat.beginPath();
+        ctxBaraat.moveTo(hx + 8, hy - 4);
+        ctxBaraat.quadraticCurveTo(hx + 14, hy - 20, hx + 20, hy - 21);
+        ctxBaraat.quadraticCurveTo(hx + 26, hy - 18, hx + 25, hy - 12);
+        ctxBaraat.quadraticCurveTo(hx + 18, hy - 11, hx + 14, hy + 2);
+        ctxBaraat.closePath();
+        ctxBaraat.fill();
+        ctxBaraat.stroke();
+
+        ctxBaraat.fillStyle = INK;
+        ctxBaraat.beginPath();
+        ctxBaraat.arc(hx + 19, hy - 16.5, 1.1, 0, Math.PI * 2);
+        ctxBaraat.fill();
+
+        ctxBaraat.fillStyle = '#DC2626';
+        ctxBaraat.beginPath();
+        ctxBaraat.roundRect(hx - 10, hy - 8, 17, 11, 3);
+        ctxBaraat.fill();
+        ctxBaraat.stroke();
+
+        drawStoryGroom(ctxBaraat, {
+          x: hx - 1,
+          y: hy - 5,
+          kurtaColor: '#FDE047',
+          turbanColor: '#B91C1C',
+          armL: 0.35,
+          armR: 0.85,
+          faceDir: 1,
+          scale: 0.85
+        });
+
+        ctxBaraat.strokeStyle = INK;
+        ctxBaraat.lineWidth = 1.4;
+        ctxBaraat.beginPath();
+        ctxBaraat.moveTo(hx - 8, hy - 5);
+        ctxBaraat.lineTo(hx - 8, hy - 45);
+        ctxBaraat.stroke();
+
+        ctxBaraat.fillStyle = '#E11D48';
+        ctxBaraat.beginPath();
+        ctxBaraat.arc(hx - 8, hy - 44, 15, Math.PI, 0);
+        ctxBaraat.closePath();
+        ctxBaraat.fill();
+        ctxBaraat.stroke();
+      }
+
+      function renderPhereScene(t) {
+        if (!ctxPhere) return;
+        const sec = t * 0.001;
+        ctxPhere.clearRect(0, 0, CARD_W, CARD_H);
+        drawStoryBackdrop(ctxPhere, '#FFF1F2', '#FFE4E6', 'rgba(244, 63, 94, 0.22)');
+
+        const floorY = 138;
+        ctxPhere.fillStyle = '#FECDD3';
+        ctxPhere.fillRect(0, floorY, CARD_W, CARD_H - floorY);
+        ctxPhere.strokeStyle = INK;
+        ctxPhere.lineWidth = 1.4;
+        ctxPhere.beginPath();
+        ctxPhere.moveTo(0, floorY);
+        ctxPhere.lineTo(CARD_W, floorY);
+        ctxPhere.stroke();
+
+        ctxPhere.fillStyle = '#FFF8F6';
+        ctxPhere.beginPath();
+        ctxPhere.roundRect(12, 32, 6, 106, 2);
+        ctxPhere.roundRect(106, 32, 6, 106, 2);
+        ctxPhere.fill();
+        ctxPhere.stroke();
+
+        ctxPhere.fillStyle = '#BE123C';
+        ctxPhere.beginPath();
+        ctxPhere.moveTo(6, 34);
+        ctxPhere.quadraticCurveTo(62, 11, 118, 34);
+        ctxPhere.lineTo(113, 41);
+        ctxPhere.quadraticCurveTo(62, 20, 11, 41);
+        ctxPhere.closePath();
+        ctxPhere.fill();
+        ctxPhere.stroke();
+
+        [26, 44, 62, 80, 98].forEach((fx, idx) => {
+          const hLen = idx === 2 ? 14 : 21;
+          ctxPhere.strokeStyle = '#FB7185';
+          ctxPhere.lineWidth = 1.5;
+          ctxPhere.beginPath();
+          ctxPhere.moveTo(fx, 33);
+          ctxPhere.lineTo(fx, 33 + hLen);
+          ctxPhere.stroke();
+          ctxPhere.fillStyle = '#FACC15';
+          ctxPhere.beginPath();
+          ctxPhere.arc(fx, 33 + hLen, 2.3, 0, Math.PI * 2);
+          ctxPhere.fill();
+        });
+
+        const orbitAngle = sec * 1.4;
+        const rx = 27;
+        const ry = 8.5;
+        const cx = 62;
+        const cy = 126;
+
+        const groomA = orbitAngle;
+        const brideA = orbitAngle - 0.9;
+
+        const entities = [
+          { type: 'groom', x: cx + Math.cos(groomA) * rx, y: cy + Math.sin(groomA) * ry, depth: Math.sin(groomA) },
+          { type: 'bride', x: cx + Math.cos(brideA) * rx, y: cy + Math.sin(brideA) * ry, depth: Math.sin(brideA) },
+          { type: 'fire', x: cx, y: cy, depth: 0 }
+        ];
+        entities.sort((a, b) => a.depth - b.depth);
+
+        const gEnt = entities.find((e) => e.type === 'groom');
+        const bEnt = entities.find((e) => e.type === 'bride');
+        ctxPhere.strokeStyle = '#F59E0B';
+        ctxPhere.lineWidth = 1.6;
+        ctxPhere.beginPath();
+        ctxPhere.moveTo(gEnt.x, gEnt.y - 14);
+        ctxPhere.quadraticCurveTo((gEnt.x + bEnt.x) / 2, (gEnt.y + bEnt.y) / 2 - 8, bEnt.x, bEnt.y - 14);
+        ctxPhere.stroke();
+
+        entities.forEach((ent) => {
+          if (ent.type === 'fire') {
+            ctxPhere.fillStyle = '#9F1239';
+            ctxPhere.strokeStyle = INK;
+            ctxPhere.lineWidth = 1.3;
+            ctxPhere.beginPath();
+            ctxPhere.roundRect(cx - 10, cy - 6, 20, 7, 2);
+            ctxPhere.fill();
+            ctxPhere.stroke();
+
+            const flicker = Math.sin(sec * 11) * 2;
+            ctxPhere.fillStyle = '#F97316';
+            ctxPhere.beginPath();
+            ctxPhere.moveTo(cx - 6, cy - 6);
+            ctxPhere.quadraticCurveTo(cx - 4, cy - 20 + flicker, cx + flicker * 0.4, cy - 23);
+            ctxPhere.quadraticCurveTo(cx + 5, cy - 19 - flicker, cx + 6, cy - 6);
+            ctxPhere.closePath();
+            ctxPhere.fill();
+            ctxPhere.stroke();
+
+            ctxPhere.fillStyle = '#FEF08A';
+            ctxPhere.beginPath();
+            ctxPhere.arc(cx, cy - 11, 2.8, 0, Math.PI * 2);
+            ctxPhere.fill();
+          } else if (ent.type === 'groom') {
+            const bob = Math.abs(Math.sin(sec * 6)) * 1.6;
+            drawStoryGroom(ctxPhere, {
+              x: ent.x,
+              y: ent.y - bob,
+              kurtaColor: '#FEF3C7',
+              turbanColor: '#BE123C',
+              armL: 0.28,
+              armR: -0.28,
+              faceDir: Math.cos(groomA) > 0 ? -1 : 1,
+              scale: 0.86 + ent.depth * 0.06
+            });
+          } else if (ent.type === 'bride') {
+            const bob = Math.abs(Math.cos(sec * 6)) * 1.6;
+            drawStoryBride(ctxPhere, {
+              x: ent.x,
+              y: ent.y - bob,
+              lehengaColor: '#BE123C',
+              dupattaColor: '#FDE047',
+              armL: 0.28,
+              armR: -0.28,
+              faceDir: Math.cos(brideA) > 0 ? -1 : 1,
+              skirtFlare: 0.2,
+              scale: 0.86 + ent.depth * 0.06
+            });
+          }
+        });
+      }
+
+      function renderSufiScene(t) {
+        if (!ctxSufi) return;
+        const sec = t * 0.001;
+        ctxSufi.clearRect(0, 0, CARD_W, CARD_H);
+
+        const sky = ctxSufi.createLinearGradient(0, 0, 0, CARD_H);
+        sky.addColorStop(0, '#0D0A22');
+        sky.addColorStop(1, '#26184D');
+        ctxSufi.fillStyle = sky;
+        ctxSufi.fillRect(0, 0, CARD_W, CARD_H);
+
+        ctxSufi.fillStyle = '#FEF08A';
+        ctxSufi.beginPath();
+        ctxSufi.arc(98, 22, 6, 0, Math.PI * 2);
+        ctxSufi.fill();
+        ctxSufi.fillStyle = '#110D2B';
+        ctxSufi.beginPath();
+        ctxSufi.arc(95.5, 20.5, 5.2, 0, Math.PI * 2);
+        ctxSufi.fill();
+
+        ctxSufi.strokeStyle = 'rgba(253, 224, 71, 0.55)';
+        ctxSufi.lineWidth = 1;
+        ctxSufi.beginPath();
+        ctxSufi.moveTo(6, 34);
+        ctxSufi.quadraticCurveTo(62, 48, 118, 34);
+        ctxSufi.stroke();
+
+        for (let i = 0; i <= 8; i++) {
+          const u = i / 8;
+          const lx = 10 + u * 104;
+          const ly = 34 + Math.sin(u * Math.PI) * 7;
+          ctxSufi.fillStyle = i % 2 === 0 ? '#FDE047' : '#FB923C';
+          ctxSufi.beginPath();
+          ctxSufi.arc(lx, ly, 2.2, 0, Math.PI * 2);
+          ctxSufi.fill();
+        }
+
+        const stageY = 132;
+        ctxSufi.fillStyle = '#7F1D1D';
+        ctxSufi.fillRect(0, stageY, CARD_W, CARD_H - stageY);
+        ctxSufi.strokeStyle = '#FACC15';
+        ctxSufi.lineWidth = 1.4;
+        ctxSufi.beginPath();
+        ctxSufi.moveTo(0, stageY);
+        ctxSufi.lineTo(CARD_W, stageY);
+        ctxSufi.stroke();
+
+        drawStoryGroom(ctxSufi, {
+          x: 19,
+          y: stageY + 1,
+          kurtaColor: '#4F46E5',
+          hasTurban: false,
+          armL: 0.65,
+          armR: 0.85,
+          faceDir: 1,
+          scale: 0.78
+        });
+        ctxSufi.fillStyle = '#F59E0B';
+        ctxSufi.strokeStyle = INK;
+        ctxSufi.lineWidth = 1.1;
+        ctxSufi.beginPath();
+        ctxSufi.ellipse(21, stageY - 10, 5.5, 3.8, -0.25, 0, Math.PI * 2);
+        ctxSufi.fill();
+        ctxSufi.stroke();
+
+        drawStoryGroom(ctxSufi, {
+          x: 105,
+          y: stageY + 1,
+          kurtaColor: '#4F46E5',
+          hasTurban: false,
+          armL: 0.75,
+          armR: 0.75,
+          faceDir: -1,
+          scale: 0.78
+        });
+        ctxSufi.fillStyle = '#D97706';
+        ctxSufi.beginPath();
+        ctxSufi.arc(98, stageY - 3, 3.8, 0, Math.PI * 2);
+        ctxSufi.arc(106, stageY - 3, 3.2, 0, Math.PI * 2);
+        ctxSufi.fill();
+        ctxSufi.stroke();
+
+        const sway1 = Math.sin(sec * 3.1) * 1.4;
+        const sway2 = Math.sin(sec * 3.1 + 1.2) * 1.7;
+        const sway3 = Math.sin(sec * 3.1 + 2.4) * 1.4;
+
+        drawStoryGroom(ctxSufi, {
+          x: 43 + sway1,
+          y: stageY + 1,
+          kurtaColor: '#F8FAFC',
+          turbanColor: '#FACC15',
+          armL: 1.0,
+          armR: 1.0,
+          faceDir: 0,
+          scale: 0.82
+        });
+
+        drawStoryGroom(ctxSufi, {
+          x: 81 + sway3,
+          y: stageY + 1,
+          kurtaColor: '#F8FAFC',
+          turbanColor: '#FACC15',
+          armL: 1.0,
+          armR: 1.0,
+          faceDir: 0,
+          scale: 0.82
+        });
+
+        drawStoryGroom(ctxSufi, {
+          x: 62 + sway2,
+          y: stageY + 2,
+          kurtaColor: '#059669',
+          turbanColor: '#F59E0B',
+          armL: 0.55,
+          armR: -2.45 + Math.sin(sec * 4) * 0.2,
+          headTilt: Math.sin(sec * 2.5) * 0.08,
+          faceDir: 0,
+          scale: 0.9
+        });
+
+        ctxSufi.fillStyle = '#B45309';
+        ctxSufi.strokeStyle = INK;
+        ctxSufi.lineWidth = 1.2;
+        ctxSufi.beginPath();
+        ctxSufi.roundRect(53, stageY - 8, 18, 8, 2);
+        ctxSufi.fill();
+        ctxSufi.stroke();
+      }
+
+      function masterLoop(now) {
+        updateDiyaScrollProgress();
+
+        renderSaathScene(now);
+        renderHaldiScene(now);
+        renderSangeetScene(now);
+        renderBaraatScene(now);
+        renderPhereScene(now);
+        renderSufiScene(now);
+
+        const sy = window.scrollY;
+        const deltaY = sy - lastScrollY;
+        lastScrollY = sy;
+        scrollBoost = scrollBoost * 0.82 + Math.max(0, deltaY) * 0.25;
+
+        if (streamCtx && streamCanvas) {
+          streamCtx.clearRect(0, 0, streamW, streamH);
+
+          if (isDiyaShattered && cardBounds.length === 6) {
+            const colLeft = cardBounds[0].left;
+            const colWidth = cardBounds[0].width;
+            const minY = diyaOriginRel.y;
+            const maxY = streamH + 12;
+
+            streamCtx.save();
+            streamCtx.beginPath();
+            streamCtx.rect(colLeft, minY, colWidth, maxY - minY);
+            streamCtx.clip();
+
+            streamParticles.forEach((p) => {
+              p.y += p.vy + scrollBoost * 0.45;
+              p.rot += p.rotSpeed + scrollBoost * 0.004;
+
+              if (p.burstBlend < 1) {
+                p.burstBlend = Math.min(1, p.burstBlend + 0.035);
+              }
+
+              if (p.y > maxY) {
+                p.y = minY + Math.random() * 8;
+                p.burstX = diyaOriginRel.x;
+                p.burstBlend = 0;
+              }
+
+              const targetX = colLeft + p.normX * colWidth;
+              const originX = p.burstX !== null ? p.burstX : targetX;
+              const baseX = originX + (targetX - originX) * p.burstBlend;
+              const px = baseX + Math.sin(now * 0.0018 + p.phase + p.y * 0.025) * p.swayAmp * p.burstBlend;
+
+              const spawnFade = Math.min(1, (p.y - minY) / 18);
+              streamCtx.save();
+              streamCtx.globalAlpha = Math.max(0, spawnFade) * 0.94;
+
+              const stage = getStageForY(p.y);
+              if (stage === 0) drawParticleShard(streamCtx, px, p.y, p);
+              else if (stage === 1) drawParticleMarigold(streamCtx, px, p.y, p);
+              else if (stage === 2) drawParticleGlitter(streamCtx, px, p.y, p, now);
+              else if (stage === 3) drawParticleCash(streamCtx, px, p.y, p, now);
+              else if (stage === 4) drawParticlePetal(streamCtx, px, p.y, p, now);
+              else drawParticleMusic(streamCtx, px, p.y, p, now);
+
+              streamCtx.restore();
+            });
+
+            streamCtx.restore();
+          }
+        }
+
+        requestAnimationFrame(masterLoop);
+      }
+
+      window.addEventListener('resize', measureLayoutBounds);
+      measureLayoutBounds();
+      requestAnimationFrame(masterLoop);
+    })();
 
     function openEventModal(idx) {
-      setParticleMode(idx);
       const ev = i18n[currentLang].events[idx];
       document.getElementById('modalIcon').textContent = ev.icon;
       document.getElementById('modalDate').textContent = ev.date;
@@ -2547,7 +3668,6 @@
       activeDrawerIdx = idx;
       const ev = i18n[currentLang].events[idx];
 
-      // Highlight opened drawer
       for (let i = 0; i < 6; i++) {
         const btn = document.getElementById(`drawer-${i}`);
         if (!btn) continue;
@@ -2558,19 +3678,17 @@
         }
       }
 
-      // Update Vanity Mirror reflection
       document.getElementById('mirrorIcon').textContent = ev.icon;
       document.getElementById('mirrorEventTitle').textContent = ev.title;
       document.getElementById('mirrorDressBadge').textContent = ev.dressTheme;
 
-      // Pop up the dress code card inside the drawer
       const popCard = document.getElementById('vanityPopCard');
       document.getElementById('popDrawerLabel').textContent = `${ev.title} • ${ev.shortDate}`;
       document.getElementById('popDressTheme').textContent = ev.dressTheme;
       document.getElementById('popDressTip').textContent = ev.dressTip;
 
       popCard.classList.remove('hidden', 'drawer-pop-card');
-      void popCard.offsetWidth; // trigger reflow for smooth re-animation
+      void popCard.offsetWidth;
       popCard.classList.add('drawer-pop-card');
     }
 
