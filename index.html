@@ -48,6 +48,17 @@
       background-color: var(--cream);
       color: var(--navy);
       overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button,
+    a,
+    [role="button"],
+    .storybook-event-row,
+    .wardrobe-drawer-btn,
+    #suitcase3D,
+    #wardrobeClosedView {
+      touch-action: manipulation;
     }
 
     body.scroll-locked {
@@ -2039,48 +2050,62 @@
     let audioCtx = null;
 
     function startSynthMelody() {
-      if (synthInterval) return;
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      if (!audioCtx) audioCtx = new AudioContext();
-      if (audioCtx.state === 'suspended') audioCtx.resume();
+      try {
+        if (synthInterval) return;
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        if (!audioCtx) audioCtx = new AudioContext();
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume().catch(() => {});
+        }
 
-      const notes = [
-        329.63, 392.00, 440.00, 493.88, 440.00, 392.00, 329.63, 293.66,
-        329.63, 392.00, 523.25, 493.88, 440.00, 392.00, 329.63, 329.63
-      ];
-      let step = 0;
+        const notes = [
+          329.63, 392.00, 440.00, 493.88, 440.00, 392.00, 329.63, 293.66,
+          329.63, 392.00, 523.25, 493.88, 440.00, 392.00, 329.63, 329.63
+        ];
+        let step = 0;
 
-      const playNote = () => {
-        if (!isPlaying) return;
-        const now = audioCtx.currentTime;
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(notes[step % notes.length], now);
+        const playNote = () => {
+          if (!isPlaying || !audioCtx || audioCtx.state !== 'running') return;
+          try {
+            const now = audioCtx.currentTime;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(notes[step % notes.length], now);
 
-        gain.gain.setValueAtTime(0.001, now);
-        gain.gain.exponentialRampToValueAtTime(0.08, now + 0.08);
-        gain.gain.exponentialRampToValueAtTime(0.0008, now + 0.75);
+            gain.gain.setValueAtTime(0.001, now);
+            gain.gain.exponentialRampToValueAtTime(0.08, now + 0.08);
+            gain.gain.exponentialRampToValueAtTime(0.0008, now + 0.75);
 
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start(now);
-        osc.stop(now + 0.8);
-        step++;
-      };
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(now);
+            osc.stop(now + 0.8);
+            step++;
+          } catch (e) {}
+        };
 
-      playNote();
-      synthInterval = setInterval(playNote, 620);
+        playNote();
+        synthInterval = setInterval(playNote, 620);
+      } catch (err) {
+        // Ignore audio restrictions while user is on an active phone/VoIP call
+      }
     }
 
     function playWeddingMusic() {
       if (isPlaying) return;
       isPlaying = true;
-      const playPromise = audioEl.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          startSynthMelody();
-        });
+      try {
+        if (!audioEl) return;
+        const playPromise = audioEl.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            startSynthMelody();
+          });
+        }
+      } catch (err) {
+        startSynthMelody();
       }
     }
 
@@ -2118,7 +2143,9 @@
       languageBubblesBox.classList.remove('hidden');
       languageBubblesBox.classList.add('flex');
 
-      playWeddingMusic();
+      setTimeout(() => {
+        playWeddingMusic();
+      }, 0);
     }
 
     // =========================================================
@@ -3711,7 +3738,25 @@
         ctxSufi.stroke();
       }
 
+      const celebSectionEl = document.getElementById('celebrationsSection');
+      let hasRenderedInitialFrames = false;
+
       function masterLoop(now) {
+        if (document.hidden) {
+          requestAnimationFrame(masterLoop);
+          return;
+        }
+
+        const celebRect = celebSectionEl ? celebSectionEl.getBoundingClientRect() : null;
+        const vh = window.innerHeight || 800;
+        const isCelebNearViewport = !celebRect || (celebRect.bottom > -250 && celebRect.top < vh + 250);
+
+        if (!isCelebNearViewport && hasRenderedInitialFrames) {
+          requestAnimationFrame(masterLoop);
+          return;
+        }
+        hasRenderedInitialFrames = true;
+
         updateDiyaScrollProgress(now);
 
         renderSaathScene(now);
@@ -3976,9 +4021,6 @@
     }
 
     // =========================================================
-    // 8. TEAM SELECTOR & BOARDING PASS RSVP GENERATOR
-    // =========================================================
-    function selectSide(sideKey) {    // =========================================================
     // 8. TEAM SELECTOR & BOARDING PASS RSVP GENERATOR
     // =========================================================
     function selectSide(sideKey) {
