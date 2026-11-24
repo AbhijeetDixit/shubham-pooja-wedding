@@ -416,47 +416,137 @@
         0 10px 0 0 rgba(201, 162, 83, 0.85);
     }
 
-    /* Royal Archway Celebration Function Cards (Inspired by Luxury Illustrated Canvas) */
-    .royal-arch-card {
+    /* Horizontal Split Celebration Cards + Continuous Morphing Particle Layer */
+    #celebrationsSection {
       position: relative;
-      background: linear-gradient(180deg, #FFFDF9 0%, #F7EFE1 100%);
-      border: 2px solid #C9A253;
-      border-radius: 110px 110px 20px 20px;
-      padding: 28px 14px 18px;
-      box-shadow:
-        0 14px 28px -8px rgba(30, 42, 56, 0.15),
-        0 5px 0 -1px #DEC79F,
-        inset 0 0 0 4px #FAF5EC,
-        inset 0 0 0 5.5px rgba(201, 162, 83, 0.55);
-      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+      overflow: hidden;
+    }
+
+    #eventParticleCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 25;
+    }
+
+    .split-event-card {
+      position: relative;
+      z-index: 10;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      text-align: center;
+      flex-direction: row;
+      align-items: stretch;
+      gap: 16px;
+      padding: 16px;
+      border-radius: 24px;
+      border: 1.5px solid rgba(201, 162, 83, 0.55);
+      box-shadow: 0 12px 26px rgba(30, 42, 56, 0.09);
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+      text-align: left;
     }
 
-    .royal-arch-card:hover {
-      transform: translateY(-7px);
-      box-shadow:
-        0 24px 38px -10px rgba(30, 42, 56, 0.24),
-        0 8px 0 -1px #D5BC94,
-        inset 0 0 0 4px #FFFDF9,
-        inset 0 0 0 6px #C9A253;
+    .split-event-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 34px rgba(30, 42, 56, 0.15);
+      border-color: #C9A253;
     }
 
-    .royal-crest-badge {
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 35% 30%, #FFFDF8, #F2E2C4);
-      border: 2px solid #C9A253;
-      box-shadow: 0 6px 14px rgba(30, 42, 56, 0.14);
+    .split-event-card.active-focus {
+      border-color: #C86D51;
+      box-shadow: 0 18px 36px rgba(200, 109, 81, 0.22), 0 0 0 2px rgba(200, 109, 81, 0.25);
+    }
+
+    .event-art-box {
+      width: 112px;
+      min-width: 112px;
+      height: 124px;
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 26px;
-      margin-bottom: 10px;
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    @media (min-width: 640px) {
+      .event-art-box {
+        width: 132px;
+        min-width: 132px;
+        height: 136px;
+      }
+    }
+
+    @keyframes footTapBreak {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      45% { transform: translateY(9px) rotate(-6deg); }
+      65% { transform: translateY(6px) rotate(-3deg); }
+    }
+
+    @keyframes diyaCrackPulse {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+
+    @keyframes garlandSway {
+      0%, 100% { transform: rotate(-2deg); }
+      50% { transform: rotate(2deg); }
+    }
+
+    @keyframes stagePulse {
+      0%, 100% { opacity: 0.75; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.04); }
+    }
+
+    @keyframes horseBounce {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-3px); }
+    }
+
+    @keyframes flameFlicker {
+      0%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(1.12); }
+    }
+
+    @keyframes lanternSwing {
+      0%, 100% { transform: rotate(-3deg); }
+      50% { transform: rotate(3deg); }
+    }
+
+    .anim-foot-step {
+      transform-origin: 65px 25px;
+      animation: footTapBreak 2.1s ease-in-out infinite;
+    }
+
+    .anim-diya-ulta {
+      transform-origin: 65px 86px;
+      animation: diyaCrackPulse 2.1s ease-in-out infinite;
+    }
+
+    .anim-garland-sway {
+      transform-origin: 65px 10px;
+      animation: garlandSway 2.8s ease-in-out infinite;
+    }
+
+    .anim-stage-glow {
+      transform-origin: center;
+      animation: stagePulse 2.4s ease-in-out infinite;
+    }
+
+    .anim-baraat-move {
+      animation: horseBounce 1.8s ease-in-out infinite;
+    }
+
+    .anim-phera-flame {
+      transform-origin: 65px 82px;
+      animation: flameFlicker 1.4s ease-in-out infinite;
+    }
+
+    .anim-sufi-lantern {
+      transform-origin: 65px 14px;
+      animation: lanternSwing 3s ease-in-out infinite;
     }
 
     /* Interactive 3D Vanity Table & Drawers */
@@ -896,99 +986,211 @@
   </section>
 
   <!-- =========================================================
-       SECTION 5: THE CELEBRATIONS — ROYAL ARCHWAY FUNCTION CARDS
+       SECTION 5: THE CELEBRATIONS — SPLIT CARDS + MORPHING PARTICLE RAIN
   ========================================================== -->
-  <section class="py-20 px-4 bg-[#FAF5EC]">
-    <div class="max-w-4xl mx-auto text-center">
+  <section id="celebrationsSection" class="py-20 px-4 bg-[#FAF5EC]">
+    <!-- Continuous Morphing Particle Canvas across the Celebrations section -->
+    <canvas id="eventParticleCanvas"></canvas>
+
+    <div class="max-w-3xl mx-auto text-center relative z-10">
       <p data-i18n="itinerarySub" class="text-xs uppercase tracking-[0.25em] text-[#4A5D4E] font-semibold">Wedding Itinerary</p>
       <h2 data-i18n="celebrationsTitle" class="font-serif-display text-4xl sm:text-5xl text-[#1E2A38] mt-1">The Celebrations</h2>
-      <p data-i18n="celebrationsDesc" class="text-sm text-[#1E2A38]/70 mt-2 mb-12">Tap each royal arch to view event timings, venue hall, and dress code.</p>
+      <p data-i18n="celebrationsDesc" class="text-sm text-[#1E2A38]/70 mt-2 mb-6">Tap any event card to watch its falling motif rain across the section and view full details.</p>
 
-      <!-- 6 Functions Grid in Luxury Illustrated Archway Style -->
-      <div class="grid grid-cols-2 sm:grid-cols-3 gap-5 sm:gap-7 max-w-4xl mx-auto">
-        <!-- Arch 0: Saath (3rd Jan, 1:00 PM) -->
-        <button onclick="openEventModal(0)" class="royal-arch-card group aspect-[4/5]">
-          <div class="w-full flex flex-col items-center">
-            <span class="text-[9px] uppercase tracking-[0.25em] text-[#C9A253] font-bold mb-1.5">✦ DAY 1 ✦</span>
-            <div class="royal-crest-badge">🪔</div>
-            <span data-i18n="ev0Title" class="font-serif-display text-2xl sm:text-3xl font-bold text-[#1E2A38] leading-tight">Saath</span>
-            <div class="w-10 h-[1px] bg-[#C9A253] my-2"></div>
-            <span data-i18n="ev0TimeShort" class="text-[11px] uppercase tracking-wider text-[#C86D51] font-semibold">3 Jan • 1:00 PM</span>
-          </div>
-          <span data-i18n="tapDetails" class="mt-2 text-[10px] uppercase tracking-widest bg-[#1E2A38] text-[#F5DC8E] px-3 py-1 rounded-full group-hover:bg-[#C86D51] group-hover:text-white transition-colors">
-            Tap Details
-          </span>
-        </button>
+      <!-- Active Falling Motif Indicator Pill -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-[#C9A253]/70 shadow-sm text-xs font-semibold text-[#1E2A38] mb-10">
+        <span id="activeMotifIcon">🪔</span>
+        <span id="activeMotifLabel" data-i18n="motifSaath">Saath: Groom's Foot Breaking Ulta Diya → Diya Bits Falling</span>
+      </div>
 
-        <!-- Arch 1: Haldi (3rd Jan, 3:00 PM) -->
-        <button onclick="openEventModal(1)" class="royal-arch-card group aspect-[4/5]">
-          <div class="w-full flex flex-col items-center">
-            <span class="text-[9px] uppercase tracking-[0.25em] text-[#C9A253] font-bold mb-1.5">✦ DAY 1 ✦</span>
-            <div class="royal-crest-badge">🌼</div>
-            <span data-i18n="ev1Title" class="font-serif-display text-2xl sm:text-3xl font-bold text-[#1E2A38] leading-tight">Haldi</span>
-            <div class="w-10 h-[1px] bg-[#C9A253] my-2"></div>
-            <span data-i18n="ev1TimeShort" class="text-[11px] uppercase tracking-wider text-[#C86D51] font-semibold">3 Jan • 3:00 PM</span>
-          </div>
-          <span data-i18n="tapDetails" class="mt-2 text-[10px] uppercase tracking-widest bg-[#1E2A38] text-[#F5DC8E] px-3 py-1 rounded-full group-hover:bg-[#C86D51] group-hover:text-white transition-colors">
-            Tap Details
-          </span>
-        </button>
+      <!-- Vertical Stack of Horizontal Split Cards (Left: Animated Event Logo | Right: Title, Time, Desc, Hall) -->
+      <div class="space-y-5 text-left">
 
-        <!-- Arch 2: Sangeet (3rd Jan, 8:00 PM) -->
-        <button onclick="openEventModal(2)" class="royal-arch-card group aspect-[4/5]">
-          <div class="w-full flex flex-col items-center">
-            <span class="text-[9px] uppercase tracking-[0.25em] text-[#C9A253] font-bold mb-1.5">✦ DAY 1 ✦</span>
-            <div class="royal-crest-badge">🪩</div>
-            <span data-i18n="ev2Title" class="font-serif-display text-2xl sm:text-3xl font-bold text-[#1E2A38] leading-tight">Sangeet</span>
-            <div class="w-10 h-[1px] bg-[#C9A253] my-2"></div>
-            <span data-i18n="ev2TimeShort" class="text-[11px] uppercase tracking-wider text-[#C86D51] font-semibold">3 Jan • 8:00 PM</span>
+        <!-- 1. SAATH (3 Jan • 1:00 PM) -->
+        <div id="evCard-0" onclick="activateEventAndOpen(0)" class="split-event-card active-focus bg-[#FCECE6]">
+          <div class="event-art-box bg-gradient-to-b from-[#FDE7DF] to-[#F7D1C4] border border-[#C86D51]/30">
+            <svg viewBox="0 0 130 130" class="w-full h-full">
+              <!-- Groom's foot stepping down onto ulta diya -->
+              <g class="anim-foot-step">
+                <path d="M44,14 L76,14 L76,44 Q76,56 92,58 Q102,60 100,67 L44,67 Z" fill="#F2C29B" stroke="#8C4A2B" stroke-width="2" />
+                <path d="M44,14 L76,14 L76,24 L44,24 Z" fill="#1E2A38" />
+              </g>
+              <!-- Ulta (inverted) earthen diya -->
+              <g class="anim-diya-ulta">
+                <path d="M36,96 Q65,72 94,96 L88,104 L42,104 Z" fill="#C86D51" stroke="#7D3721" stroke-width="2" />
+                <line x1="65" y1="82" x2="65" y2="103" stroke="#F5DC8E" stroke-width="2" stroke-dasharray="2 2" />
+              </g>
+              <!-- Broken diya fragments -->
+              <polygon points="34,112 42,109 39,117" fill="#C86D51" />
+              <polygon points="88,111 96,115 89,120" fill="#B55438" />
+              <circle cx="65" cy="116" r="3" fill="#C9A253" />
+            </svg>
           </div>
-          <span data-i18n="tapDetails" class="mt-2 text-[10px] uppercase tracking-widest bg-[#1E2A38] text-[#F5DC8E] px-3 py-1 rounded-full group-hover:bg-[#C86D51] group-hover:text-white transition-colors">
-            Tap Details
-          </span>
-        </button>
+          <div class="flex-1 min-w-0 flex flex-col justify-center">
+            <div class="flex flex-wrap items-center gap-2">
+              <h3 data-i18n="ev0Title" class="font-serif-display text-2xl sm:text-3xl font-bold text-[#1E2A38]">Saath</h3>
+              <span data-i18n="ev0TimeShort" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#FAD6C8] text-[#9E4226]">3 Jan • 1:00 PM</span>
+            </div>
+            <p data-i18n="ev0DescShort" class="text-xs sm:text-sm text-[#1E2A38]/80 mt-1.5 leading-relaxed">
+              Groom steps over the ulta diya amid family blessings, sacred rituals, and festive warmth.
+            </p>
+            <p data-i18n="ev0HallShort" class="text-xs font-semibold text-[#9E4226] mt-2 flex items-center gap-1">
+              <span>📍</span> <span>Heritage Courtyard Hall (Placeholder)</span>
+            </p>
+          </div>
+        </div>
 
-        <!-- Arch 3: Baraat (4th Jan, 12:00 PM) -->
-        <button onclick="openEventModal(3)" class="royal-arch-card group aspect-[4/5]">
-          <div class="w-full flex flex-col items-center">
-            <span class="text-[9px] uppercase tracking-[0.25em] text-[#C9A253] font-bold mb-1.5">✦ DAY 2 ✦</span>
-            <div class="royal-crest-badge">🥁</div>
-            <span data-i18n="ev3Title" class="font-serif-display text-2xl sm:text-3xl font-bold text-[#1E2A38] leading-tight">Baraat</span>
-            <div class="w-10 h-[1px] bg-[#C9A253] my-2"></div>
-            <span data-i18n="ev3TimeShort" class="text-[11px] uppercase tracking-wider text-[#C86D51] font-semibold">4 Jan • 12:00 PM</span>
+        <!-- 2. HALDI (3 Jan • 3:00 PM) -->
+        <div id="evCard-1" onclick="activateEventAndOpen(1)" class="split-event-card bg-[#FDF6E2]">
+          <div class="event-art-box bg-gradient-to-b from-[#FFF3CC] to-[#FCE29C] border border-[#C9A253]/40">
+            <svg viewBox="0 0 130 130" class="w-full h-full">
+              <!-- Marigold garland & tassels -->
+              <g class="anim-garland-sway">
+                <path d="M18,16 Q65,52 112,16" stroke="#D97706" stroke-width="3" fill="none" />
+                <circle cx="28" cy="22" r="6" fill="#F59E0B" />
+                <circle cx="46" cy="31" r="6.5" fill="#FBBF24" />
+                <circle cx="65" cy="35" r="7" fill="#F59E0B" />
+                <circle cx="84" cy="31" r="6.5" fill="#FBBF24" />
+                <circle cx="102" cy="22" r="6" fill="#F59E0B" />
+                <line x1="65" y1="35" x2="65" y2="56" stroke="#D97706" stroke-width="2" />
+                <polygon points="59,56 71,56 75,68 55,68" fill="#F59E0B" />
+              </g>
+              <!-- Haldi bowl -->
+              <path d="M40,86 L90,86 L82,110 L48,110 Z" fill="#C86D51" />
+              <ellipse cx="65" cy="86" rx="25" ry="7" fill="#FACC15" />
+            </svg>
           </div>
-          <span data-i18n="tapDetails" class="mt-2 text-[10px] uppercase tracking-widest bg-[#1E2A38] text-[#F5DC8E] px-3 py-1 rounded-full group-hover:bg-[#C86D51] group-hover:text-white transition-colors">
-            Tap Details
-          </span>
-        </button>
+          <div class="flex-1 min-w-0 flex flex-col justify-center">
+            <div class="flex flex-wrap items-center gap-2">
+              <h3 data-i18n="ev1Title" class="font-serif-display text-2xl sm:text-3xl font-bold text-[#1E2A38]">Haldi</h3>
+              <span data-i18n="ev1TimeShort" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#FDE68A] text-[#92400E]">3 Jan • 3:00 PM</span>
+            </div>
+            <p data-i18n="ev1DescShort" class="text-xs sm:text-sm text-[#1E2A38]/80 mt-1.5 leading-relaxed">
+              Sunlit marigold blooms, turmeric blessings, joyous splashes, and afternoon cheer.
+            </p>
+            <p data-i18n="ev1HallShort" class="text-xs font-semibold text-[#92400E] mt-2 flex items-center gap-1">
+              <span>📍</span> <span>Poolside Lawn &amp; Pavilion (Placeholder)</span>
+            </p>
+          </div>
+        </div>
 
-        <!-- Arch 4: Phera (4th Jan, 3:00 PM) -->
-        <button onclick="openEventModal(4)" class="royal-arch-card group aspect-[4/5]">
-          <div class="w-full flex flex-col items-center">
-            <span class="text-[9px] uppercase tracking-[0.25em] text-[#C9A253] font-bold mb-1.5">✦ DAY 2 ✦</span>
-            <div class="royal-crest-badge">🔥</div>
-            <span data-i18n="ev4Title" class="font-serif-display text-2xl sm:text-3xl font-bold text-[#1E2A38] leading-tight">Phera</span>
-            <div class="w-10 h-[1px] bg-[#C9A253] my-2"></div>
-            <span data-i18n="ev4TimeShort" class="text-[11px] uppercase tracking-wider text-[#C86D51] font-semibold">4 Jan • 3:00 PM</span>
+        <!-- 3. SANGEET (3 Jan • 8:00 PM) -->
+        <div id="evCard-2" onclick="activateEventAndOpen(2)" class="split-event-card bg-[#EFEAFE]">
+          <div class="event-art-box bg-gradient-to-b from-[#2B1E4A] via-[#432B7A] to-[#1D1533] border border-[#C9A253]/50">
+            <svg viewBox="0 0 130 130" class="w-full h-full">
+              <g class="anim-stage-glow">
+                <polygon points="36,16 58,16 32,112 12,112" fill="#A855F7" opacity="0.35" />
+                <polygon points="72,16 94,16 118,112 98,112" fill="#EC4899" opacity="0.35" />
+                <circle cx="65" cy="44" r="16" fill="#F5DC8E" opacity="0.9" />
+                <line x1="65" y1="24" x2="65" y2="64" stroke="#FFFDF7" stroke-width="1.5" opacity="0.7" />
+                <line x1="45" y1="44" x2="85" y2="44" stroke="#FFFDF7" stroke-width="1.5" opacity="0.7" />
+              </g>
+              <!-- Couple dancing silhouette -->
+              <circle cx="56" cy="78" r="7" fill="#F4C7A1" />
+              <path d="M46,86 L66,86 L68,114 L44,114 Z" fill="#F5DC8E" />
+              <circle cx="74" cy="80" r="6.5" fill="#F7D1B2" />
+              <path d="M65,88 L83,88 L87,114 L63,114 Z" fill="#F472B6" />
+            </svg>
           </div>
-          <span data-i18n="tapDetails" class="mt-2 text-[10px] uppercase tracking-widest bg-[#1E2A38] text-[#F5DC8E] px-3 py-1 rounded-full group-hover:bg-[#C86D51] group-hover:text-white transition-colors">
-            Tap Details
-          </span>
-        </button>
+          <div class="flex-1 min-w-0 flex flex-col justify-center">
+            <div class="flex flex-wrap items-center gap-2">
+              <h3 data-i18n="ev2Title" class="font-serif-display text-2xl sm:text-3xl font-bold text-[#1E2A38]">Sangeet</h3>
+              <span data-i18n="ev2TimeShort" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#DDD6FE] text-[#4C1D95]">3 Jan • 8:00 PM</span>
+            </div>
+            <p data-i18n="ev2DescShort" class="text-xs sm:text-sm text-[#1E2A38]/80 mt-1.5 leading-relaxed">
+              Choreographed beats, sparkling lights, family performances, and high-energy dance.
+            </p>
+            <p data-i18n="ev2HallShort" class="text-xs font-semibold text-[#4C1D95] mt-2 flex items-center gap-1">
+              <span>📍</span> <span>Grand Crystal Ballroom (Placeholder)</span>
+            </p>
+          </div>
+        </div>
 
-        <!-- Arch 5: Sufi Night (4th Jan, 9:00 PM) -->
-        <button onclick="openEventModal(5)" class="royal-arch-card group aspect-[4/5]">
-          <div class="w-full flex flex-col items-center">
-            <span class="text-[9px] uppercase tracking-[0.25em] text-[#C9A253] font-bold mb-1.5">✦ DAY 2 ✦</span>
-            <div class="royal-crest-badge">🏮</div>
-            <span data-i18n="ev5Title" class="font-serif-display text-2xl sm:text-3xl font-bold text-[#1E2A38] leading-tight">Sufi Night</span>
-            <div class="w-10 h-[1px] bg-[#C9A253] my-2"></div>
-            <span data-i18n="ev5TimeShort" class="text-[11px] uppercase tracking-wider text-[#C86D51] font-semibold">4 Jan • 9:00 PM</span>
+        <!-- 4. BARAAT (4 Jan • 12:00 PM) -->
+        <div id="evCard-3" onclick="activateEventAndOpen(3)" class="split-event-card bg-[#FDEBE6]">
+          <div class="event-art-box bg-gradient-to-b from-[#FCE1D9] to-[#F7C7B9] border border-[#C86D51]/35">
+            <svg viewBox="0 0 130 130" class="w-full h-full">
+              <g class="anim-baraat-move">
+                <!-- Royal processional dhol & groom safa emblem -->
+                <rect x="34" y="42" width="62" height="44" rx="10" fill="#C86D51" stroke="#7A3621" stroke-width="2" />
+                <line x1="42" y1="42" x2="42" y2="86" stroke="#F5DC8E" stroke-width="2.5" stroke-dasharray="4 4" />
+                <line x1="88" y1="42" x2="88" y2="86" stroke="#F5DC8E" stroke-width="2.5" stroke-dasharray="4 4" />
+                <circle cx="65" cy="64" r="12" fill="#FFF8EB" stroke="#C9A253" stroke-width="2" />
+                <text x="65" y="68" text-anchor="middle" font-size="11" font-weight="bold" fill="#1E2A38">₹</text>
+              </g>
+              <rect x="24" y="96" width="82" height="10" rx="5" fill="#4A5D4E" opacity="0.35" />
+            </svg>
           </div>
-          <span data-i18n="tapDetails" class="mt-2 text-[10px] uppercase tracking-widest bg-[#1E2A38] text-[#F5DC8E] px-3 py-1 rounded-full group-hover:bg-[#C86D51] group-hover:text-white transition-colors">
-            Tap Details
-          </span>
-        </button>
+          <div class="flex-1 min-w-0 flex flex-col justify-center">
+            <div class="flex flex-wrap items-center gap-2">
+              <h3 data-i18n="ev3Title" class="font-serif-display text-2xl sm:text-3xl font-bold text-[#1E2A38]">Baraat</h3>
+              <span data-i18n="ev3TimeShort" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#FECDD3] text-[#881337]">4 Jan • 12:00 PM</span>
+            </div>
+            <p data-i18n="ev3DescShort" class="text-xs sm:text-sm text-[#1E2A38]/80 mt-1.5 leading-relaxed">
+              Dhol rhythms, celebratory notes in the air, and a grand royal procession to the mandap.
+            </p>
+            <p data-i18n="ev3HallShort" class="text-xs font-semibold text-[#881337] mt-2 flex items-center gap-1">
+              <span>📍</span> <span>Royal Porch &amp; Main Avenue (Placeholder)</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- 5. PHERA (4 Jan • 3:00 PM) -->
+        <div id="evCard-4" onclick="activateEventAndOpen(4)" class="split-event-card bg-[#FBE7EC]">
+          <div class="event-art-box bg-gradient-to-b from-[#FDE2E8] to-[#F7C2CF] border border-[#E11D48]/25">
+            <svg viewBox="0 0 130 130" class="w-full h-full">
+              <!-- Mandap arch & sacred agni -->
+              <path d="M26,108 L26,44 Q65,14 104,44 L104,108" stroke="#C86D51" stroke-width="4" fill="none" />
+              <path d="M36,42 Q65,64 94,42" stroke="#F43F5E" stroke-width="3" fill="none" stroke-dasharray="5 4" />
+              <g class="anim-phera-flame">
+                <path d="M65,56 Q78,76 72,92 Q65,98 58,92 Q52,76 65,56 Z" fill="#F97316" />
+                <path d="M65,68 Q72,80 68,90 Q65,94 62,90 Q58,80 65,68 Z" fill="#FACC15" />
+              </g>
+              <rect x="44" y="94" width="42" height="14" rx="4" fill="#C9A253" />
+            </svg>
+          </div>
+          <div class="flex-1 min-w-0 flex flex-col justify-center">
+            <div class="flex flex-wrap items-center gap-2">
+              <h3 data-i18n="ev4Title" class="font-serif-display text-2xl sm:text-3xl font-bold text-[#1E2A38]">Phera</h3>
+              <span data-i18n="ev4TimeShort" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#FFE4E6] text-[#9F1239]">4 Jan • 3:00 PM</span>
+            </div>
+            <p data-i18n="ev4DescShort" class="text-xs sm:text-sm text-[#1E2A38]/80 mt-1.5 leading-relaxed">
+              Sacred vows around the holy fire amidst showering rose petals and family blessings.
+            </p>
+            <p data-i18n="ev4HallShort" class="text-xs font-semibold text-[#9F1239] mt-2 flex items-center gap-1">
+              <span>📍</span> <span>Sunset Mandap Lawn (Placeholder)</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- 6. SUFI NIGHT (4 Jan • 9:00 PM) -->
+        <div id="evCard-5" onclick="activateEventAndOpen(5)" class="split-event-card bg-[#E8EEF5]">
+          <div class="event-art-box bg-gradient-to-b from-[#17212B] via-[#243445] to-[#111921] border border-[#C9A253]/60">
+            <svg viewBox="0 0 130 130" class="w-full h-full">
+              <g class="anim-sufi-lantern">
+                <line x1="65" y1="10" x2="65" y2="28" stroke="#F5DC8E" stroke-width="2" />
+                <polygon points="48,44 65,28 82,44" fill="#C9A253" />
+                <rect x="50" y="44" width="30" height="36" rx="6" fill="#2A3B4D" stroke="#F5DC8E" stroke-width="2" />
+                <circle cx="65" cy="62" r="8" fill="#FDE047" opacity="0.9" />
+              </g>
+              <!-- Musical note emblem -->
+              <text x="65" y="112" text-anchor="middle" font-size="24" fill="#F5DC8E">♫</text>
+            </svg>
+          </div>
+          <div class="flex-1 min-w-0 flex flex-col justify-center">
+            <div class="flex flex-wrap items-center gap-2">
+              <h3 data-i18n="ev5Title" class="font-serif-display text-2xl sm:text-3xl font-bold text-[#1E2A38]">Sufi Night</h3>
+              <span data-i18n="ev5TimeShort" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#1E2A38] text-[#F5DC8E]">4 Jan • 9:00 PM</span>
+            </div>
+            <p data-i18n="ev5DescShort" class="text-xs sm:text-sm text-[#1E2A38]/80 mt-1.5 leading-relaxed">
+              Soulful Sufi melodies under glowing lanterns, evening conversations, and celebratory dining.
+            </p>
+            <p data-i18n="ev5HallShort" class="text-xs font-semibold text-[#1E2A38] mt-2 flex items-center gap-1">
+              <span>📍</span> <span>Starlit Aangan Banquet (Placeholder)</span>
+            </p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1370,7 +1572,8 @@
         itinerarySub: 'Wedding Itinerary',
         celebrationsTitle: 'The Celebrations',
         celebrationsDesc: 'Tap each royal arch to view event timings, venue hall, and dress code.',
-        tapDetails: 'Tap Details',
+        tapDetails: 'Full Details',
+        tapFlipHint: 'Tap to Flip',
         ev0Title: 'Saath',
         ev0TimeShort: '3 Jan • 1:00 PM',
         ev1Title: 'Haldi',
@@ -1436,6 +1639,7 @@
             dressTheme: 'Green / Colourful Ethnic',
             dress: 'Dress Code: Green / Colourful Ethnic',
             dressTip: 'Vibrant festive kurtas, colourful bandhani, and traditional ethnic wear.',
+            motifStatus: "Saath: Groom's foot breaks ulta diya → diya bits & marigold falling",
             desc: 'Traditional Sindhi pre-wedding blessing ceremony surrounded by family, sacred rituals, and joyous folk songs.'
           },
           {
@@ -1448,6 +1652,7 @@
             dressTheme: 'Pastel / Floral / Traditional',
             dress: 'Dress Code: Pastel / Floral / Traditional',
             dressTip: 'Breezy pastel kurtas, floral prints, and sunlit traditional wear.',
+            motifStatus: "Haldi: Marigold flowers & tassels falling",
             desc: 'Join us under the afternoon sun for marigold showers, vibrant haldi rituals, dhol beats, and festive refreshments.'
           },
           {
@@ -1460,6 +1665,7 @@
             dressTheme: 'Glamorous Indian / Indo-Western',
             dress: 'Dress Code: Glamorous Indian / Indo-Western',
             dressTip: 'Shimmering sarees, structured bandhgalas, and Indo-Western party silhouettes.',
+            motifStatus: "Sangeet: Sparkle glitter & bubbles falling",
             desc: 'An electrifying evening of choreographed family performances, musical toasts, and dancing late into the night.'
           },
           {
@@ -1472,6 +1678,7 @@
             dressTheme: 'Traditional Indian / Wedding Glam',
             dress: 'Dress Code: Traditional Indian / Wedding Glam',
             dressTip: 'Safas, rich silk sherwanis, heritage lehengas, and classic wedding glam.',
+            motifStatus: "Baraat: Cash notes showering down",
             desc: 'Bring your energy and dancing shoes as Shubham arrives in royal procession with dhol beats and celebration.'
           },
           {
@@ -1484,6 +1691,7 @@
             dressTheme: 'Traditional Indian / Wedding Glam',
             dress: 'Dress Code: Traditional Indian / Wedding Glam',
             dressTip: 'Safas, rich silk sherwanis, heritage lehengas, and classic wedding glam.',
+            motifStatus: "Phera: Rose petals drifting down",
             desc: 'Witness Shubham & Pooja exchange sacred vows around the holy fire surrounded by family, blessings, and golden afternoon hues.'
           },
           {
@@ -1496,6 +1704,7 @@
             dressTheme: 'Dark / Classy Evening Wear',
             dress: 'Dress Code: Dark / Classy Evening Wear',
             dressTip: 'Midnight velvet, jewel tones, tuxedos, and classy cocktail attire.',
+            motifStatus: "Sufi Night: Musical notes (♪ ♫) floating down",
             desc: 'Unwind under glowing lanterns with soulful Sufi melodies, cocktails, and a royal celebratory feast.'
           }
         ]
@@ -1530,6 +1739,7 @@
         celebrationsTitle: 'मांगलिक समारोह',
         celebrationsDesc: 'प्रत्येक समारोह का समय, हॉल और ड्रेस कोड देखने के लिए कार्ड पर टैप करें।',
         tapDetails: 'विवरण देखें',
+        tapFlipHint: 'पलटने के लिए टैप करें',
         ev0Title: 'साठ (Saath)',
         ev0TimeShort: '3 जनवरी • दोपहर 1:00 बजे',
         ev1Title: 'हल्दी',
@@ -1689,6 +1899,7 @@
         celebrationsTitle: 'खुशीअ जूं तकरीबूं',
         celebrationsDesc: 'हर तकरीब जो वक्तु, हॉल ऐं ड्रेस कोड ॾिसण लाइ कार्ड ते दबायो।',
         tapDetails: 'तफ़सील ॾिसो',
+        tapFlipHint: 'पलटण लाइ दबायो',
         ev0Title: 'साठ (Saath)',
         ev0TimeShort: '3 जनवरी • मंझंदि 1:00 वॻे',
         ev1Title: 'हल्दी',
@@ -2098,9 +2309,213 @@
     setInterval(updateCountdown, 30000);
 
     // =========================================================
-    // 6. EVENT DETAIL MODAL DATA
+    // 6. MORPHING FALLING PARTICLE ENGINE + EVENT MODAL
     // =========================================================
+    const particleCanvas = document.getElementById('eventParticleCanvas');
+    const pCtx = particleCanvas ? particleCanvas.getContext('2d') : null;
+    const celebrationsSec = document.getElementById('celebrationsSection');
+
+    // Mode 0: Saath (starts with diya bits/shards falling, then morphs into Haldi marigolds)
+    // Mode 1: Haldi (marigold flowers & tassels falling)
+    // Mode 2: Sangeet (glitter & bubbles falling)
+    // Mode 3: Baraat (cash / currency notes falling)
+    // Mode 4: Phera (rose petals falling)
+    // Mode 5: Sufi Night (musical symbols ♪ ♫ ♬ falling)
+    let currentParticleMode = 0;
+    let saathStartTime = Date.now();
+    let particles = [];
+
+    function resizeParticleCanvas() {
+      if (!particleCanvas || !celebrationsSec) return;
+      particleCanvas.width = celebrationsSec.clientWidth;
+      particleCanvas.height = celebrationsSec.clientHeight;
+    }
+
+    function createParticleForMode(mode, spawnAtTop = true) {
+      const w = particleCanvas ? particleCanvas.width : 800;
+      const h = particleCanvas ? particleCanvas.height : 900;
+
+      // For Saath (0): first ~4.5s showers diya bits/shards, then smoothly turns into Haldi marigold flowers!
+      let effectiveMode = mode;
+      if (mode === 0 && (Date.now() - saathStartTime) > 4500) {
+        effectiveMode = 1;
+      }
+
+      return {
+        x: Math.random() * w,
+        y: spawnAtTop ? -25 - Math.random() * 120 : Math.random() * h,
+        vy: 1.4 + Math.random() * 2.2,
+        vx: (Math.random() - 0.5) * 1.2,
+        size: 7 + Math.random() * 9,
+        rot: Math.random() * Math.PI * 2,
+        vRot: (Math.random() - 0.5) * 0.06,
+        swayPhase: Math.random() * Math.PI * 2,
+        kind: effectiveMode,
+        huePick: Math.random()
+      };
+    }
+
+    function seedParticles() {
+      particles = [];
+      const count = 46;
+      for (let i = 0; i < count; i++) {
+        particles.push(createParticleForMode(currentParticleMode, false));
+      }
+    }
+
+    function setParticleMode(idx) {
+      currentParticleMode = idx;
+      if (idx === 0) {
+        saathStartTime = Date.now();
+      }
+      for (let i = 0; i < 6; i++) {
+        const card = document.getElementById(`evCard-${i}`);
+        if (card) {
+          if (i === idx) card.classList.add('active-focus');
+          else card.classList.remove('active-focus');
+        }
+      }
+      const ev = (i18n[currentLang] && i18n[currentLang].events[idx]) || i18n.en.events[idx];
+      const iconEl = document.getElementById('activeMotifIcon');
+      const labelEl = document.getElementById('activeMotifLabel');
+      if (iconEl) iconEl.textContent = ev.icon;
+      if (labelEl) labelEl.textContent = ev.motifStatus;
+      seedParticles();
+    }
+
+    function drawSingleParticle(pt) {
+      if (!pCtx) return;
+      pCtx.save();
+      pCtx.translate(pt.x, pt.y);
+      pCtx.rotate(pt.rot);
+
+      if (pt.kind === 0) {
+        // Broken ulta diya bits & clay shards
+        pCtx.fillStyle = pt.huePick > 0.5 ? '#C86D51' : '#A84A2E';
+        pCtx.beginPath();
+        pCtx.moveTo(-pt.size * 0.6, -pt.size * 0.35);
+        pCtx.lineTo(pt.size * 0.6, -pt.size * 0.15);
+        pCtx.lineTo(0, pt.size * 0.65);
+        pCtx.closePath();
+        pCtx.fill();
+      } else if (pt.kind === 1) {
+        // Marigold flower / tassel
+        if (pt.huePick > 0.25) {
+          pCtx.fillStyle = pt.huePick > 0.6 ? '#F59E0B' : '#FBBF24';
+          for (let p = 0; p < 6; p++) {
+            pCtx.rotate(Math.PI / 3);
+            pCtx.beginPath();
+            pCtx.ellipse(0, pt.size * 0.45, pt.size * 0.28, pt.size * 0.52, 0, 0, Math.PI * 2);
+            pCtx.fill();
+          }
+          pCtx.fillStyle = '#D97706';
+          pCtx.beginPath();
+          pCtx.arc(0, 0, pt.size * 0.25, 0, Math.PI * 2);
+          pCtx.fill();
+        } else {
+          // Tassel
+          pCtx.fillStyle = '#EA580C';
+          pCtx.fillRect(-2, -pt.size * 0.6, 4, pt.size * 0.4);
+          pCtx.beginPath();
+          pCtx.moveTo(-5, -pt.size * 0.2);
+          pCtx.lineTo(5, -pt.size * 0.2);
+          pCtx.lineTo(8, pt.size * 0.65);
+          pCtx.lineTo(-8, pt.size * 0.65);
+          pCtx.closePath();
+          pCtx.fill();
+        }
+      } else if (pt.kind === 2) {
+        // Glitter & bubbles for Sangeet
+        if (pt.huePick > 0.45) {
+          pCtx.strokeStyle = pt.huePick > 0.72 ? 'rgba(168, 85, 247, 0.75)' : 'rgba(236, 72, 153, 0.75)';
+          pCtx.fillStyle = 'rgba(255, 255, 255, 0.35)';
+          pCtx.lineWidth = 1.6;
+          pCtx.beginPath();
+          pCtx.arc(0, 0, pt.size * 0.65, 0, Math.PI * 2);
+          pCtx.fill();
+          pCtx.stroke();
+        } else {
+          pCtx.fillStyle = pt.huePick > 0.22 ? '#F5DC8E' : '#C084FC';
+          pCtx.beginPath();
+          pCtx.moveTo(0, -pt.size * 0.7);
+          pCtx.lineTo(pt.size * 0.22, -pt.size * 0.22);
+          pCtx.lineTo(pt.size * 0.7, 0);
+          pCtx.lineTo(pt.size * 0.22, pt.size * 0.22);
+          pCtx.lineTo(0, pt.size * 0.7);
+          pCtx.lineTo(-pt.size * 0.22, pt.size * 0.22);
+          pCtx.lineTo(-pt.size * 0.7, 0);
+          pCtx.lineTo(-pt.size * 0.22, -pt.size * 0.22);
+          pCtx.closePath();
+          pCtx.fill();
+        }
+      } else if (pt.kind === 3) {
+        // Cash notes for Baraat
+        const wNote = pt.size * 1.9;
+        const hNote = pt.size * 0.95;
+        pCtx.fillStyle = '#4D9B6A';
+        pCtx.strokeStyle = '#1E5631';
+        pCtx.lineWidth = 1.2;
+        pCtx.beginPath();
+        pCtx.roundRect(-wNote / 2, -hNote / 2, wNote, hNote, 2);
+        pCtx.fill();
+        pCtx.stroke();
+        pCtx.fillStyle = '#E8F8EE';
+        pCtx.font = `bold ${Math.max(8, Math.round(pt.size * 0.65))}px sans-serif`;
+        pCtx.textAlign = 'center';
+        pCtx.textBaseline = 'middle';
+        pCtx.fillText('₹', 0, 0.5);
+      } else if (pt.kind === 4) {
+        // Rose petals for Phera
+        pCtx.fillStyle = pt.huePick > 0.5 ? '#E11D48' : '#FB7185';
+        pCtx.beginPath();
+        pCtx.ellipse(0, 0, pt.size * 0.75, pt.size * 0.42, 0, 0, Math.PI * 2);
+        pCtx.fill();
+      } else {
+        // Musical symbol for Sufi Night
+        pCtx.fillStyle = pt.huePick > 0.5 ? '#C9A253' : '#9B7428';
+        pCtx.font = `bold ${Math.max(12, Math.round(pt.size * 1.35))}px serif`;
+        pCtx.textAlign = 'center';
+        pCtx.textBaseline = 'middle';
+        const symbols = ['♪', '♫', '♬'];
+        const sym = symbols[Math.floor(pt.huePick * symbols.length) % symbols.length];
+        pCtx.fillText(sym, 0, 0);
+      }
+
+      pCtx.restore();
+    }
+
+    function animateParticles() {
+      if (pCtx && particleCanvas) {
+        pCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+        for (let i = 0; i < particles.length; i++) {
+          const pt = particles[i];
+          pt.swayPhase += 0.04;
+          pt.x += pt.vx + Math.sin(pt.swayPhase) * 0.65;
+          pt.y += pt.vy;
+          pt.rot += pt.vRot;
+
+          drawSingleParticle(pt);
+
+          if (pt.y > particleCanvas.height + 30) {
+            particles[i] = createParticleForMode(currentParticleMode, true);
+          }
+        }
+      }
+      requestAnimationFrame(animateParticles);
+    }
+
+    resizeParticleCanvas();
+    seedParticles();
+    animateParticles();
+    window.addEventListener('resize', resizeParticleCanvas, { passive: true });
+
+    function activateEventAndOpen(idx) {
+      setParticleMode(idx);
+      openEventModal(idx);
+    }
+
     function openEventModal(idx) {
+      setParticleMode(idx);
       const ev = i18n[currentLang].events[idx];
       document.getElementById('modalIcon').textContent = ev.icon;
       document.getElementById('modalDate').textContent = ev.date;
