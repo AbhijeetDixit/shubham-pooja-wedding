@@ -1997,6 +1997,7 @@
       }, 420);
 
       document.body.classList.remove('scroll-locked');
+      hasCapturedInitialScroll = false;
       tapToOpenBox.classList.add('hidden');
       languageBubblesBox.classList.remove('hidden');
       languageBubblesBox.classList.add('flex');
@@ -2519,25 +2520,58 @@
       let diyaBreakProgress = 0;
       let isDiyaShattered = false;
       let shatterTimestamp = 0;
+      let initialScrollY = 0;
+      let hasCapturedInitialScroll = false;
 
-      function updateDiyaScrollProgress() {
+      function getCurrentScrollY() {
+        return (
+          window.scrollY ||
+          window.pageYOffset ||
+          (document.scrollingElement ? document.scrollingElement.scrollTop : 0) ||
+          document.documentElement.scrollTop ||
+          document.body.scrollTop ||
+          0
+        );
+      }
+
+      function triggerDiyaCrush(nowTs) {
+        if (isDiyaShattered) return;
+        diyaBreakProgress = 1;
+        isDiyaShattered = true;
+        shatterTimestamp = nowTs || performance.now();
+        initContinuousLeftParticles();
+      }
+
+      function updateDiyaScrollProgress(nowTs) {
         if (isDiyaShattered) {
           diyaBreakProgress = 1;
           return;
         }
+        const sy = getCurrentScrollY();
+        if (!hasCapturedInitialScroll) {
+          initialScrollY = sy;
+          hasCapturedInitialScroll = true;
+        }
+
         const cardEl = document.getElementById('card-saath');
         if (!cardEl) return;
+
+        // Do not shatter on initial page load before user scrolls down into the celebrations area
+        const userScrolledDown = Math.max(0, sy - initialScrollY);
         const r = cardEl.getBoundingClientRect();
         const vh = window.innerHeight || 800;
-        const visibilityRatio = Math.min(1, Math.max(0, (vh - r.top) / (vh * 0.55)));
-        const target = Math.max(visibilityRatio, Math.min(1, window.scrollY / 90));
-        diyaBreakProgress += (target - diyaBreakProgress) * 0.22;
 
-        if (diyaBreakProgress >= 0.92) {
-          diyaBreakProgress = 1;
-          isDiyaShattered = true;
-          shatterTimestamp = performance.now();
-          initContinuousLeftParticles();
+        // Progress increases smoothly as the user scrolls down toward/into the Saath card
+        const cardEnterProgress = userScrolledDown > 8
+          ? Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (vh * 0.45)))
+          : 0;
+        const scrollStepProgress = Math.min(1, userScrolledDown / 110);
+        const target = Math.max(cardEnterProgress, scrollStepProgress);
+
+        diyaBreakProgress += (target - diyaBreakProgress) * 0.18;
+
+        if (diyaBreakProgress >= 0.94 && userScrolledDown > 12) {
+          triggerDiyaCrush(nowTs);
         }
       }
 
@@ -3562,7 +3596,7 @@
       }
 
       function masterLoop(now) {
-        updateDiyaScrollProgress();
+        updateDiyaScrollProgress(now);
 
         renderSaathScene(now);
         renderHaldiScene(now);
@@ -3571,7 +3605,7 @@
         renderPhereScene(now);
         renderSufiScene(now);
 
-        const sy = window.scrollY;
+        const sy = getCurrentScrollY();
         const deltaY = sy - lastScrollY;
         lastScrollY = sy;
         scrollBoost = scrollBoost * 0.82 + Math.max(0, deltaY) * 0.25;
