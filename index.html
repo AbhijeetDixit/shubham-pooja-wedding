@@ -430,34 +430,86 @@
         0 10px 0 0 rgba(201, 162, 83, 0.85);
     }
 
-    /* Interactive 3D Vanity Table & Drawers */
-    .vanity-drawer {
-      transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.32s ease, background 0.32s ease;
+    /* Interactive Ivory-and-Gold Wedding Wardrobe Armoire & Sliding Drawers */
+    .wardrobe-shell {
+      position: relative;
+      background: linear-gradient(180deg, #FFFDF9 0%, #F7EFE4 100%);
+      border: 3px solid #D9BFA3;
       box-shadow:
-        0 6px 0 #5C3622,
-        0 10px 18px rgba(0, 0, 0, 0.28);
+        0 20px 44px rgba(35, 26, 46, 0.16),
+        inset 0 0 0 2px rgba(201, 162, 83, 0.35);
     }
 
-    .vanity-drawer:hover {
+    .wardrobe-crown {
+      background: linear-gradient(180deg, #FFFDF9 0%, #F4E6D6 100%);
+      border: 2.5px solid #D9BFA3;
+      box-shadow: 0 6px 16px rgba(35, 26, 46, 0.08);
+    }
+
+    .wardrobe-door-left,
+    .wardrobe-door-right {
+      transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease;
+      background: linear-gradient(165deg, #FFFDF9 0%, #F5E8D8 100%);
+      border: 2px solid #D6BA99;
+    }
+
+    .wardrobe-door-left {
+      transform-origin: left center;
+    }
+
+    .wardrobe-door-right {
+      transform-origin: right center;
+    }
+
+    .wardrobe-open .wardrobe-door-left {
+      transform: perspective(900px) rotateY(-106deg);
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    .wardrobe-open .wardrobe-door-right {
+      transform: perspective(900px) rotateY(106deg);
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    .wardrobe-drawer-btn {
+      position: relative;
+      background: linear-gradient(180deg, #FFFDF9 0%, #F6E9D9 100%);
+      border: 1.5px solid #CFAF86;
+      box-shadow:
+        0 4px 0 #C7A67B,
+        0 8px 16px rgba(35, 26, 46, 0.10);
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease, background 0.28s ease, border-color 0.28s ease;
+    }
+
+    .wardrobe-drawer-btn:hover {
       transform: translateY(-2px);
+      border-color: #C9A253;
     }
 
-    .vanity-drawer.active-drawer {
-      transform: translateY(4px) scale(1.03);
-      background: linear-gradient(180deg, #F5DC8E 0%, #D4AF37 100%) !important;
-      color: #1E2A38 !important;
+    .wardrobe-drawer-btn.is-selected {
+      transform: translateY(6px);
+      background: linear-gradient(180deg, #FBF1DC 0%, #EED59B 100%);
+      border-color: #C9A253;
       box-shadow:
-        0 2px 0 #7C5A1E,
-        0 12px 24px rgba(201, 162, 83, 0.45);
+        0 1px 0 #9B7428,
+        0 10px 20px rgba(201, 162, 83, 0.28);
     }
 
-    .drawer-pop-card {
-      animation: drawerPopUp 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    .look-showcase-enter {
+      animation: wardrobeLookReveal 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
-    @keyframes drawerPopUp {
-      from { opacity: 0; transform: translateY(14px) scale(0.96); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+    @keyframes wardrobeLookReveal {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.97);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     /* Fix Mobile Native Date & Time Inputs Overshooting Container */
@@ -1026,81 +1078,145 @@
   </section>
 
   <!-- =========================================================
-       SECTION 6: INTERACTIVE VANITY TABLE WITH MIRROR & LABELED DRAWERS
+       SECTION 6: INTERACTIVE CLOSED-TO-OPEN WARDROBE & DRAWERS
   ========================================================== -->
-  <section class="py-20 px-4 bg-[#F3E9D8]">
-    <div class="max-w-4xl mx-auto text-center">
-      <p data-i18n="styleGuideSub" class="text-xs uppercase tracking-[0.25em] text-[#C86D51] font-semibold">Style Guide</p>
-      <h2 data-i18n="dressCodeTitle" class="font-serif-display text-4xl sm:text-5xl text-[#1E2A38] mt-1">The Wedding Vanity</h2>
-      <p data-i18n="dressCodeDesc" class="text-sm text-[#1E2A38]/75 mt-2 mb-10">Tap any labeled drawer on the vanity table below to open it and reveal that celebration’s dress code.</p>
+  <section id="wardrobeSection" class="py-20 px-4 bg-[#F3E9D8]">
+    <div class="max-w-md mx-auto text-center">
+      <p data-i18n="styleGuideSub" class="text-[11px] uppercase tracking-[0.26em] text-[#C86D51] font-semibold">Style Guide</p>
+      <h2 data-i18n="dressCodeTitle" class="font-script text-5xl sm:text-6xl text-[#231A2E] mt-1 leading-none">Wardrobe Planner</h2>
+      <p data-i18n="dressCodeDesc" class="text-xs sm:text-sm text-[#231A2E]/75 mt-2 mb-8">
+        Tap the wardrobe doors to open, then tap any drawer to reveal that function’s outfit &amp; dress code.
+      </p>
 
-      <div class="max-w-xl mx-auto">
-        <div class="relative mx-auto w-64 sm:w-72 h-52 sm:h-56 rounded-t-full border-[10px] border-[#C9A253] bg-gradient-to-b from-[#E8F3FA] via-[#FDFBF7] to-[#F2E2C9] shadow-2xl flex flex-col items-center justify-center p-4 overflow-hidden">
-          <div class="absolute -left-10 -top-10 w-24 h-72 bg-white/45 rotate-25 pointer-events-none"></div>
-          <div class="absolute inset-1.5 rounded-t-full border border-[#9B7428]/50 pointer-events-none"></div>
+      <!-- Ornate Carved Crown Topper -->
+      <div class="wardrobe-crown mx-auto w-[86%] rounded-t-[44px] py-2.5 px-4 flex flex-col items-center justify-center relative z-10">
+        <svg viewBox="0 0 180 34" class="w-36 h-7">
+          <path d="M90 4 Q102 18 90 30 Q78 18 90 4 Z" fill="#D8B88C" stroke="#8C6A3E" stroke-width="1.2" />
+          <path d="M56 12 Q72 8 82 22 Q66 26 56 12 Z" fill="#E6CCB0" stroke="#9C7A4C" stroke-width="1.1" />
+          <path d="M124 12 Q108 8 98 22 Q114 26 124 12 Z" fill="#E6CCB0" stroke="#9C7A4C" stroke-width="1.1" />
+          <path d="M22 20 Q38 14 48 25" fill="none" stroke="#9C7A4C" stroke-width="1.4" />
+          <path d="M158 20 Q142 14 132 25" fill="none" stroke="#9C7A4C" stroke-width="1.4" />
+        </svg>
+      </div>
 
-          <div id="mirrorDisplay" class="z-10 text-center px-3">
-            <span id="mirrorIcon" class="text-4xl block mb-1.5 drop-shadow">🪞</span>
-            <p id="mirrorEventTitle" data-i18n="mirrorPromptTitle" class="font-serif-display text-xl sm:text-2xl font-bold text-[#1E2A38]">
-              Tap a Drawer Below
-            </p>
-            <p id="mirrorDressBadge" data-i18n="mirrorPromptSub" class="text-[11px] uppercase tracking-wider text-[#C86D51] font-semibold mt-1">
-              To preview your look
-            </p>
+      <!-- Main Wardrobe Cabinet Body -->
+      <div id="wardrobeCabinet" class="wardrobe-shell rounded-b-[28px] rounded-t-2xl p-3.5 sm:p-4 -mt-1 relative overflow-hidden">
+
+        <!-- CLOSED WARDROBE STATE (Shown Initially; Swings Open on Click) -->
+        <div id="wardrobeClosedView" onclick="openWardrobeDoors()" role="button" tabindex="0" aria-label="Tap wardrobe to open" class="cursor-pointer select-none">
+          <div class="relative grid grid-cols-2 gap-1.5 h-[360px] sm:h-[380px]">
+            <!-- Left Door -->
+            <div class="wardrobe-door-left rounded-l-xl p-3 flex flex-col justify-between items-end relative">
+              <div class="w-full h-full border border-[#CFAF86]/75 rounded-lg p-2 flex flex-col justify-between">
+                <div class="h-3 border-b border-[#CFAF86]/40"></div>
+                <div class="h-3 border-t border-[#CFAF86]/40"></div>
+              </div>
+              <span class="w-2.5 h-7 rounded-full bg-gradient-to-b from-[#F5DC8E] via-[#C9A253] to-[#8C6820] border border-[#6E5014] my-auto -mr-1 shadow"></span>
+            </div>
+
+            <!-- Right Door -->
+            <div class="wardrobe-door-right rounded-r-xl p-3 flex flex-col justify-between items-start relative">
+              <div class="w-full h-full border border-[#CFAF86]/75 rounded-lg p-2 flex flex-col justify-between">
+                <div class="h-3 border-b border-[#CFAF86]/40"></div>
+                <div class="h-3 border-t border-[#CFAF86]/40"></div>
+              </div>
+              <span class="w-2.5 h-7 rounded-full bg-gradient-to-b from-[#F5DC8E] via-[#C9A253] to-[#8C6820] border border-[#6E5014] my-auto -ml-1 shadow"></span>
+            </div>
+
+            <!-- Centered Gold "TAP TO OPEN" Latch Pill -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-10">
+              <div class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#C9A253] via-[#F5DC8E] to-[#B58428] text-[#1E2A38] font-bold text-xs uppercase tracking-[0.2em] shadow-xl border border-[#8C6820]">
+                <span data-i18n="tapOpenWardrobe">Tap Wardrobe to Open</span>
+              </div>
+              <span class="mt-2 px-3 py-1 rounded-full bg-[#1E2A38]/85 text-[#FAF5EC] text-[10px] tracking-wider uppercase shadow">
+                <span data-i18n="wardrobeHintSub">Reveal Drawers &amp; Outfits</span>
+              </span>
+            </div>
           </div>
         </div>
 
-        <div class="h-5 bg-gradient-to-r from-[#5A3520] via-[#7A492E] to-[#5A3520] rounded-t-xl border-t-2 border-x-2 border-[#C9A253] shadow-md mx-2"></div>
-
-        <div class="bg-gradient-to-b from-[#3B2316] to-[#26160D] p-4 sm:p-6 rounded-b-3xl border-2 border-[#C9A253] shadow-2xl">
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3.5">
-            <button type="button" id="drawer-0" onclick="openVanityDrawer(0)" class="vanity-drawer bg-gradient-to-b from-[#8B5334] to-[#6E3F25] text-[#FAF5EC] rounded-xl p-3 border border-[#C9A253]/80 flex flex-col items-center justify-center">
-              <span data-i18n="ev0Title" class="font-serif-display text-lg font-bold tracking-wide">Saath</span>
-              <span class="w-8 h-2 rounded-full bg-gradient-to-r from-[#B5892E] via-[#F5DC8E] to-[#B5892E] mt-2 shadow-inner"></span>
-            </button>
-
-            <button type="button" id="drawer-1" onclick="openVanityDrawer(1)" class="vanity-drawer bg-gradient-to-b from-[#8B5334] to-[#6E3F25] text-[#FAF5EC] rounded-xl p-3 border border-[#C9A253]/80 flex flex-col items-center justify-center">
-              <span data-i18n="ev1Title" class="font-serif-display text-lg font-bold tracking-wide">Haldi</span>
-              <span class="w-8 h-2 rounded-full bg-gradient-to-r from-[#B5892E] via-[#F5DC8E] to-[#B5892E] mt-2 shadow-inner"></span>
-            </button>
-
-            <button type="button" id="drawer-2" onclick="openVanityDrawer(2)" class="vanity-drawer bg-gradient-to-b from-[#8B5334] to-[#6E3F25] text-[#FAF5EC] rounded-xl p-3 border border-[#C9A253]/80 flex flex-col items-center justify-center">
-              <span data-i18n="ev2Title" class="font-serif-display text-lg font-bold tracking-wide">Sangeet</span>
-              <span class="w-8 h-2 rounded-full bg-gradient-to-r from-[#B5892E] via-[#F5DC8E] to-[#B5892E] mt-2 shadow-inner"></span>
-            </button>
-
-            <button type="button" id="drawer-3" onclick="openVanityDrawer(3)" class="vanity-drawer bg-gradient-to-b from-[#8B5334] to-[#6E3F25] text-[#FAF5EC] rounded-xl p-3 border border-[#C9A253]/80 flex flex-col items-center justify-center">
-              <span data-i18n="ev3Title" class="font-serif-display text-lg font-bold tracking-wide">Baraat</span>
-              <span class="w-8 h-2 rounded-full bg-gradient-to-r from-[#B5892E] via-[#F5DC8E] to-[#B5892E] mt-2 shadow-inner"></span>
-            </button>
-
-            <button type="button" id="drawer-4" onclick="openVanityDrawer(4)" class="vanity-drawer bg-gradient-to-b from-[#8B5334] to-[#6E3F25] text-[#FAF5EC] rounded-xl p-3 border border-[#C9A253]/80 flex flex-col items-center justify-center">
-              <span data-i18n="ev4Title" class="font-serif-display text-lg font-bold tracking-wide">Phera</span>
-              <span class="w-8 h-2 rounded-full bg-gradient-to-r from-[#B5892E] via-[#F5DC8E] to-[#B5892E] mt-2 shadow-inner"></span>
-            </button>
-
-            <button type="button" id="drawer-5" onclick="openVanityDrawer(5)" class="vanity-drawer bg-gradient-to-b from-[#8B5334] to-[#6E3F25] text-[#FAF5EC] rounded-xl p-3 border border-[#C9A253]/80 flex flex-col items-center justify-center">
-              <span data-i18n="ev5Title" class="font-serif-display text-lg font-bold tracking-wide">Sufi Night</span>
-              <span class="w-8 h-2 rounded-full bg-gradient-to-r from-[#B5892E] via-[#F5DC8E] to-[#B5892E] mt-2 shadow-inner"></span>
+        <!-- OPEN WARDROBE STATE: Hanging Outfit Stage + Labeled Drawers -->
+        <div id="wardrobeOpenView" class="hidden look-showcase-enter space-y-3.5">
+          <!-- Top Bar with Close / Reset Pill -->
+          <div class="flex items-center justify-between px-1">
+            <span id="wardrobeActiveTag" class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#9B7428]">
+              SAATH • 3 JAN
+            </span>
+            <button type="button" onclick="closeWardrobeDoors()" data-i18n="closeDoorsBtn" class="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full bg-[#F3E9D8] text-[#231A2E] border border-[#CFAF86] hover:bg-[#E7D8C3] transition">
+              Close Doors
             </button>
           </div>
 
-          <div id="vanityPopCard" class="hidden mt-5 bg-[#FAF5EC] text-[#1E2A38] rounded-2xl p-5 border-2 border-[#C9A253] shadow-xl text-center">
-            <span id="popDrawerLabel" class="text-[10px] uppercase tracking-[0.25em] text-[#C86D51] font-bold">Saath • 3 Jan</span>
-            <h3 id="popDressTheme" class="font-serif-display text-2xl sm:text-3xl font-bold text-[#1E2A38] mt-1">
-              Green / Colourful Ethnic
-            </h3>
-            <p id="popDressTip" class="text-xs sm:text-sm text-[#1E2A38]/80 mt-2 max-w-md mx-auto leading-relaxed">
-              Vibrant festive kurtas, colourful bandhani, and traditional ethnic wear.
+          <!-- Hanging Rail & Illustrated Couple Attire Stage -->
+          <div class="relative rounded-2xl bg-gradient-to-b from-[#FFFDF9] to-[#F7ECE0] border border-[#DEC4A3] pt-3 pb-4 px-3 shadow-inner overflow-hidden">
+            <!-- Soft Warm Aura Behind Hangers -->
+            <div id="outfitAura" class="w-36 h-36 rounded-full blur-2xl opacity-45 bg-amber-300 absolute top-6 left-1/2 -translate-x-1/2 pointer-events-none transition-colors duration-300"></div>
+
+            <!-- Hanging Rod -->
+            <div class="relative flex items-center justify-between mb-1 px-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#C9A253] border border-[#8C6820]"></span>
+              <div class="flex-1 h-1 bg-gradient-to-r from-[#B8976A] via-[#EBD4A7] to-[#B8976A] rounded-full mx-1"></div>
+              <span class="w-2.5 h-2.5 rounded-full bg-[#C9A253] border border-[#8C6820]"></span>
+            </div>
+
+            <!-- Dynamic Outfit Artwork (Groom + Bride Silhouette & Accessories) -->
+            <div id="wardrobeOutfitStage" class="relative z-10 min-h-[168px] flex flex-col items-center justify-center">
+              <!-- Populated dynamically by renderWardrobeOutfit(idx) -->
+            </div>
+
+            <!-- Dress Code Theme & Description Caption -->
+            <div class="relative z-10 mt-2 pt-2.5 border-t border-[#E6D5B8] text-center">
+              <p id="wardrobeDressCodeTitle" class="font-serif-display text-lg sm:text-xl font-bold text-[#231A2E] leading-snug">
+                Green / Colourful Ethnic
+              </p>
+              <p id="wardrobeDressCodeDesc" class="text-[11px] sm:text-xs text-[#231A2E]/75 mt-0.5 leading-relaxed">
+                Vibrant festive kurtas, colourful bandhani, and traditional ethnic wear.
+              </p>
+            </div>
+          </div>
+
+          <!-- Labeled Drawers Stack (One Drawer per Function — Tap Any Drawer to Switch) -->
+          <div class="space-y-2 pt-0.5">
+            <p data-i18n="tapDrawerPrompt" class="text-[10px] uppercase tracking-[0.22em] text-[#8C6A3E] font-semibold text-center">
+              Tap a Drawer to View Outfit
             </p>
-          </div>
-        </div>
+            <div class="grid grid-cols-2 gap-2">
+              <button type="button" id="wDrawer-0" onclick="selectWardrobeDrawer(0)" class="wardrobe-drawer-btn is-selected rounded-xl py-2.5 px-3 flex items-center justify-between text-left">
+                <span data-i18n="ev0Title" class="font-serif-display text-base font-bold text-[#231A2E]">Saath</span>
+                <span class="w-6 h-1.5 rounded-full bg-[#C9A253] border border-[#8C6820]/50"></span>
+              </button>
 
-        <div class="flex justify-between px-10">
-          <div class="w-4 h-10 bg-gradient-to-b from-[#26160D] to-[#4A2C1B] rounded-b-lg border-x border-b border-[#C9A253]/60"></div>
-          <div class="w-4 h-10 bg-gradient-to-b from-[#26160D] to-[#4A2C1B] rounded-b-lg border-x border-b border-[#C9A253]/60"></div>
+              <button type="button" id="wDrawer-1" onclick="selectWardrobeDrawer(1)" class="wardrobe-drawer-btn rounded-xl py-2.5 px-3 flex items-center justify-between text-left">
+                <span data-i18n="ev1Title" class="font-serif-display text-base font-bold text-[#231A2E]">Haldi</span>
+                <span class="w-6 h-1.5 rounded-full bg-[#C9A253] border border-[#8C6820]/50"></span>
+              </button>
+
+              <button type="button" id="wDrawer-2" onclick="selectWardrobeDrawer(2)" class="wardrobe-drawer-btn rounded-xl py-2.5 px-3 flex items-center justify-between text-left">
+                <span data-i18n="ev2Title" class="font-serif-display text-base font-bold text-[#231A2E]">Sangeet</span>
+                <span class="w-6 h-1.5 rounded-full bg-[#C9A253] border border-[#8C6820]/50"></span>
+              </button>
+
+              <button type="button" id="wDrawer-3" onclick="selectWardrobeDrawer(3)" class="wardrobe-drawer-btn rounded-xl py-2.5 px-3 flex items-center justify-between text-left">
+                <span data-i18n="ev3Title" class="font-serif-display text-base font-bold text-[#231A2E]">Baraat</span>
+                <span class="w-6 h-1.5 rounded-full bg-[#C9A253] border border-[#8C6820]/50"></span>
+              </button>
+
+              <button type="button" id="wDrawer-4" onclick="selectWardrobeDrawer(4)" class="wardrobe-drawer-btn rounded-xl py-2.5 px-3 flex items-center justify-between text-left">
+                <span data-i18n="ev4Title" class="font-serif-display text-base font-bold text-[#231A2E]">Phera</span>
+                <span class="w-6 h-1.5 rounded-full bg-[#C9A253] border border-[#8C6820]/50"></span>
+              </button>
+
+              <button type="button" id="wDrawer-5" onclick="selectWardrobeDrawer(5)" class="wardrobe-drawer-btn rounded-xl py-2.5 px-3 flex items-center justify-between text-left">
+                <span data-i18n="ev5Title" class="font-serif-display text-base font-bold text-[#231A2E]">Sufi Night</span>
+                <span class="w-6 h-1.5 rounded-full bg-[#C9A253] border border-[#8C6820]/50"></span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
+
+      <!-- Wardrobe Base Pedestal -->
+      <div class="mx-auto w-[90%] h-3.5 bg-gradient-to-r from-[#D9BFA3] via-[#F2E3CE] to-[#D9BFA3] rounded-b-xl border-x border-b border-[#C7A67B] shadow"></div>
     </div>
   </section>
 
@@ -1904,8 +2020,8 @@
         guestNameInput.placeholder = dict.fullNamePlaceholder;
       }
 
-      if (activeDrawerIdx !== null) {
-        openVanityDrawer(activeDrawerIdx);
+      if (typeof refreshWardrobeLanguage === 'function') {
+        refreshWardrobeLanguage();
       }
 
       const canvas = document.getElementById('scratchCanvas');
@@ -3696,37 +3812,173 @@
     }
 
     // =========================================================
-    // 7. INTERACTIVE VANITY TABLE & DRAWER POP-UP
+    // 7. CLOSED-TO-OPEN WARDROBE & DRAWER DRESS CODE REVEAL
     // =========================================================
-    function openVanityDrawer(idx) {
-      activeDrawerIdx = idx;
-      const ev = i18n[currentLang].events[idx];
+    let wardrobeIsOpen = false;
+    let activeWardrobeDrawerIdx = 0;
 
-      for (let i = 0; i < 6; i++) {
-        const btn = document.getElementById(`drawer-${i}`);
-        if (!btn) continue;
-        if (i === idx) {
-          btn.classList.add('active-drawer');
-        } else {
-          btn.classList.remove('active-drawer');
-        }
+    const wardrobeOutfits = [
+      // 0: Saath — Green / Colourful Ethnic
+      {
+        groomTop: '#15803D',
+        groomBottom: '#FAF5EC',
+        brideTop: '#16A34A',
+        brideBottom: '#FACC15',
+        auraClass: 'bg-emerald-300',
+        accessoryIcon: '🌿✨🪔'
+      },
+      // 1: Haldi — Pastel / Floral / Traditional
+      {
+        groomTop: '#FEF08A',
+        groomBottom: '#FFFBEB',
+        brideTop: '#FDE047',
+        brideBottom: '#FDBA74',
+        auraClass: 'bg-amber-300',
+        accessoryIcon: '🌼💛📿'
+      },
+      // 2: Sangeet — Glamorous Indian / Indo-Western
+      {
+        groomTop: '#4C1D95',
+        groomBottom: '#1E1B4B',
+        brideTop: '#DB2777',
+        brideBottom: '#F5D0FE',
+        auraClass: 'bg-fuchsia-400',
+        accessoryIcon: '🪩✨💃'
+      },
+      // 3: Baraat — Traditional Indian / Wedding Glam
+      {
+        groomTop: '#FFFDF7',
+        groomBottom: '#FDE68A',
+        brideTop: '#BE123C',
+        brideBottom: '#FDE047',
+        auraClass: 'bg-rose-300',
+        accessoryIcon: '🪭👑🥁'
+      },
+      // 4: Phera — Traditional Indian / Wedding Glam
+      {
+        groomTop: '#FEF3C7',
+        groomBottom: '#F5E8D8',
+        brideTop: '#9F1239',
+        brideBottom: '#FACC15',
+        auraClass: 'bg-red-300',
+        accessoryIcon: '🌸💍🔥'
+      },
+      // 5: Sufi Night — Dark / Classy Evening Wear
+      {
+        groomTop: '#1E293B',
+        groomBottom: '#0F172A',
+        brideTop: '#312E81',
+        brideBottom: '#1E1B4B',
+        auraClass: 'bg-indigo-400',
+        accessoryIcon: '🌙🕯️🎶'
+      }
+    ];
+
+    function buildOutfitSvg(styleObj) {
+      return `
+        <div class="flex items-end justify-center gap-5">
+          <!-- Groom Hanger + Attire -->
+          <div class="flex flex-col items-center">
+            <svg viewBox="0 0 84 128" class="w-20 h-28 drop-shadow">
+              <path d="M42 6 C42 2, 47 2, 47 6 C47 9, 42 10, 42 13 L20 23 L64 23 L42 13" fill="none" stroke="#8C6A3E" stroke-width="2" stroke-linecap="round"/>
+              <path d="M22 25 L62 25 L67 74 L17 74 Z" fill="${styleObj.groomTop}" stroke="#261710" stroke-width="1.6"/>
+              <line x1="42" y1="25" x2="42" y2="74" stroke="#F5DC8E" stroke-width="1.4"/>
+              <rect x="25" y="74" width="34" height="44" rx="4" fill="${styleObj.groomBottom}" stroke="#261710" stroke-width="1.5"/>
+            </svg>
+            <span class="text-[9px] uppercase tracking-widest text-[#6E5014] font-semibold mt-0.5">Groom</span>
+          </div>
+
+          <!-- Bride Hanger + Attire -->
+          <div class="flex flex-col items-center">
+            <svg viewBox="0 0 92 128" class="w-22 h-28 drop-shadow">
+              <path d="M46 6 C46 2, 51 2, 51 6 C51 9, 46 10, 46 13 L22 23 L70 23 L46 13" fill="none" stroke="#8C6A3E" stroke-width="2" stroke-linecap="round"/>
+              <path d="M27 25 L65 25 L59 54 L33 54 Z" fill="${styleObj.brideTop}" stroke="#261710" stroke-width="1.6"/>
+              <path d="M33 54 L59 54 L80 120 L12 120 Z" fill="${styleObj.brideBottom}" stroke="#261710" stroke-width="1.6"/>
+              <path d="M16 113 Q46 119 76 113" fill="none" stroke="#C9A253" stroke-width="2.2"/>
+            </svg>
+            <span class="text-[9px] uppercase tracking-widest text-[#6E5014] font-semibold mt-0.5">Bride</span>
+          </div>
+        </div>
+        <div class="mt-1.5 text-sm tracking-widest">${styleObj.accessoryIcon}</div>
+      `;
+    }
+
+    function renderWardrobeOutfit(idx) {
+      const ev = (i18n[currentLang] && i18n[currentLang].events[idx]) || i18n.en.events[idx];
+      const st = wardrobeOutfits[idx] || wardrobeOutfits[0];
+
+      const tagEl = document.getElementById('wardrobeActiveTag');
+      const titleEl = document.getElementById('wardrobeDressCodeTitle');
+      const descEl = document.getElementById('wardrobeDressCodeDesc');
+      const stageEl = document.getElementById('wardrobeOutfitStage');
+      const auraEl = document.getElementById('outfitAura');
+
+      if (tagEl) tagEl.textContent = `${ev.title.toUpperCase()} • ${ev.shortDate.toUpperCase()}`;
+      if (titleEl) titleEl.textContent = ev.dressTheme;
+      if (descEl) descEl.textContent = ev.dressTip;
+      if (auraEl) auraEl.className = `w-36 h-36 rounded-full blur-2xl opacity-45 ${st.auraClass} absolute top-6 left-1/2 -translate-x-1/2 pointer-events-none transition-colors duration-300`;
+
+      if (stageEl) {
+        stageEl.innerHTML = buildOutfitSvg(st);
+        stageEl.classList.remove('look-showcase-enter');
+        void stageEl.offsetWidth;
+        stageEl.classList.add('look-showcase-enter');
       }
 
-      document.getElementById('mirrorIcon').textContent = ev.icon;
-      document.getElementById('mirrorEventTitle').textContent = ev.title;
-      document.getElementById('mirrorDressBadge').textContent = ev.dressTheme;
+      for (let i = 0; i < 6; i++) {
+        const btn = document.getElementById(`wDrawer-${i}`);
+        if (!btn) continue;
+        if (i === idx) btn.classList.add('is-selected');
+        else btn.classList.remove('is-selected');
+      }
+    }
 
-      const popCard = document.getElementById('vanityPopCard');
-      document.getElementById('popDrawerLabel').textContent = `${ev.title} • ${ev.shortDate}`;
-      document.getElementById('popDressTheme').textContent = ev.dressTheme;
-      document.getElementById('popDressTip').textContent = ev.dressTip;
+    function openWardrobeDoors() {
+      const cabinet = document.getElementById('wardrobeCabinet');
+      const closedView = document.getElementById('wardrobeClosedView');
+      const openView = document.getElementById('wardrobeOpenView');
 
-      popCard.classList.remove('hidden', 'drawer-pop-card');
-      void popCard.offsetWidth;
-      popCard.classList.add('drawer-pop-card');
+      if (!wardrobeIsOpen) {
+        wardrobeIsOpen = true;
+        if (cabinet) cabinet.classList.add('wardrobe-open');
+        setTimeout(() => {
+          if (closedView) closedView.classList.add('hidden');
+          if (openView) openView.classList.remove('hidden');
+          renderWardrobeOutfit(activeWardrobeDrawerIdx);
+        }, 280);
+      }
+    }
+
+    function closeWardrobeDoors() {
+      wardrobeIsOpen = false;
+      const cabinet = document.getElementById('wardrobeCabinet');
+      const closedView = document.getElementById('wardrobeClosedView');
+      const openView = document.getElementById('wardrobeOpenView');
+
+      if (openView) openView.classList.add('hidden');
+      if (closedView) closedView.classList.remove('hidden');
+      if (cabinet) cabinet.classList.remove('wardrobe-open');
+    }
+
+    function selectWardrobeDrawer(idx) {
+      activeWardrobeDrawerIdx = idx;
+      if (!wardrobeIsOpen) {
+        openWardrobeDoors();
+      }
+      renderWardrobeOutfit(idx);
+    }
+
+    // Keep legacy hook aligned if language changes while wardrobe is open
+    function refreshWardrobeLanguage() {
+      if (wardrobeIsOpen) {
+        renderWardrobeOutfit(activeWardrobeDrawerIdx);
+      }
     }
 
     // =========================================================
+    // 8. TEAM SELECTOR & BOARDING PASS RSVP GENERATOR
+    // =========================================================
+    function selectSide(sideKey) {    // =========================================================
     // 8. TEAM SELECTOR & BOARDING PASS RSVP GENERATOR
     // =========================================================
     function selectSide(sideKey) {
@@ -3743,8 +3995,14 @@
       }
     }
 
+    // Paste your deployed Google Apps Script Web App URL below:
+    const GOOGLE_SCRIPT_URL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+    let isSubmittingRsvp = false;
+
     function generateRsvpPass(e) {
       e.preventDefault();
+      if (isSubmittingRsvp) return;
+
       const dict = i18n[currentLang];
       const name = document.getElementById('guestName').value.trim();
       const sideKey = document.getElementById('selectedSideKey').value;
@@ -3757,6 +4015,7 @@
       const destCode = destValue === 'Amravati' ? 'AMR' : 'BDN';
       const destLabel = destValue === 'Amravati' ? dict.destAmravati : 'Budhni';
 
+      // Populate & display boarding pass immediately for snappy UX
       document.getElementById('passGuestName').textContent = name;
       document.getElementById('passSideBadge').textContent = sideKey === 'groom' ? dict.teamGroomFull : dict.teamBrideFull;
       document.getElementById('passDestCode').textContent = destCode;
@@ -3767,6 +4026,37 @@
       const passCard = document.getElementById('rsvpPassCard');
       passCard.classList.remove('hidden');
       passCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // Send RSVP payload to Google Sheets in the background
+      if (GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes('PASTE_YOUR_GOOGLE_APPS_SCRIPT')) {
+        isSubmittingRsvp = true;
+        const submitBtn = document.querySelector('#rsvpForm button[type="submit"]');
+        if (submitBtn) submitBtn.disabled = true;
+
+        const payload = {
+          side: sideKey === 'groom' ? 'Team Groom (Shubham)' : 'Team Bride (Pooja)',
+          name: name,
+          destination: destValue,
+          arrivalDate: date,
+          arrivalTime: time,
+          guests: countSelect.value,
+          language: currentLang
+        };
+
+        fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        })
+          .catch((err) => console.warn('RSVP sync warning:', err))
+          .finally(() => {
+            setTimeout(() => {
+              isSubmittingRsvp = false;
+              if (submitBtn) submitBtn.disabled = false;
+            }, 1500);
+          });
+      }
     }
   </script>
 </body>
