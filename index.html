@@ -1377,6 +1377,59 @@
       flex: 0 0 18px !important;
     }
 
+
+    /* Latest visual polish: slightly larger wardrobe and more legible labels. */
+    #wardrobeCabinet {
+      width: min(97.65%, 451.5px) !important;
+      height: clamp(451.5px, 60.9vh, 535.5px) !important;
+    }
+    #wardrobeOpenView > .flex.items-center.justify-between > span {
+      font-size: 10.5px !important;
+    }
+    #wardrobeOpenView > .flex.items-center.justify-between > button {
+      font-size: 9.5px !important;
+      padding: 4px 7px !important;
+    }
+    #wardrobeOpenView #wardrobeDressCodeTitle {
+      font-size: 13px !important;
+      line-height: 1.18 !important;
+    }
+    #wardrobeOpenView #wardrobeDressCodeDesc {
+      font-size: 9.5px !important;
+      line-height: 1.25 !important;
+    }
+    #wardrobeOpenView p[data-i18n="tapDrawerPrompt"] {
+      font-size: 9.5px !important;
+      letter-spacing: .11em !important;
+    }
+    #wardrobeOpenView > .space-y-2.pb-1 {
+      grid-auto-rows: 31.5px !important;
+      row-gap: 5.25px !important;
+    }
+    #wardrobeOpenView > .space-y-2.pb-1 > button {
+      height: 31.5px !important;
+      min-height: 31.5px !important;
+    }
+    #wardrobeOpenView > .space-y-2.pb-1 > button .drawer-label {
+      font-size: 9.5px !important;
+      letter-spacing: .06em !important;
+    }
+    #wardrobeOpenView .wardrobe-outfit-labels {
+      font-size: 8px !important;
+    }
+    #wardrobeOpenView .wardrobe-outfit-accessories {
+      font-size: 14px !important;
+    }
+    @media (max-width: 380px) {
+      #wardrobeCabinet {
+        width: min(97.65%, 451.5px) !important;
+        height: clamp(430px, 59vh, 500px) !important;
+      }
+      #wardrobeOpenView > .space-y-2.pb-1 > button .drawer-label {
+        font-size: 9px !important;
+      }
+    }
+
   </style>
 </head>
 <body class="scroll-locked">
@@ -1523,42 +1576,13 @@
         </svg>
 
         <div class="arch-window aspect-[3/4] flex flex-col items-center justify-end pt-8 px-4">
-          <svg viewBox="0 0 300 360" class="w-full h-full drop-shadow-lg">
-            <defs>
-              <radialGradient id="skin3dA" cx="35%" cy="30%" r="70%">
-                <stop offset="0%" stop-color="#FFE0C2" />
-                <stop offset="70%" stop-color="#F2C29B" />
-                <stop offset="100%" stop-color="#C99268" />
-              </radialGradient>
-              <radialGradient id="skin3dB" cx="35%" cy="30%" r="70%">
-                <stop offset="0%" stop-color="#FFE6CE" />
-                <stop offset="70%" stop-color="#F6CEAE" />
-                <stop offset="100%" stop-color="#CE9A72" />
-              </radialGradient>
-              <linearGradient id="sherwani3d" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#FFFFFF" />
-                <stop offset="65%" stop-color="#FAF5EC" />
-                <stop offset="100%" stop-color="#DFD2BC" />
-              </linearGradient>
-              <linearGradient id="lehenga3d" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#E58467" />
-                <stop offset="60%" stop-color="#C86D51" />
-                <stop offset="100%" stop-color="#873D26" />
-              </linearGradient>
-            </defs>
-            <line x1="150" y1="0" x2="150" y2="360" stroke="#FFFFFF" stroke-width="3" opacity="0.65" />
-            <line x1="0" y1="180" x2="300" y2="180" stroke="#FFFFFF" stroke-width="3" opacity="0.65" />
-            <circle cx="118" cy="145" r="30" fill="url(#skin3dA)" />
-            <path d="M88,140 Q118,98 148,140 Q145,120 118,120 Q92,120 88,140 Z" fill="#1E2A38" />
-            <path d="M68,360 L76,215 Q118,195 160,215 L168,360 Z" fill="url(#sherwani3d)" stroke="#C9A253" stroke-width="2" />
-            <path d="M118,205 L118,360" stroke="#C9A253" stroke-width="2" />
-            <circle cx="186" cy="155" r="28" fill="url(#skin3dB)" />
-            <path d="M156,152 Q186,112 216,152 L224,235 L148,235 Z" fill="#2A1810" />
-            <path d="M154,132 Q186,105 218,132 L242,360 L134,360 Z" fill="url(#lehenga3d)" opacity="0.94" />
-            <circle cx="186" cy="138" r="4" fill="#F5DC8E" />
-            <path d="M84,225 Q118,275 152,225" stroke="#F5DC8E" stroke-width="8" fill="none" stroke-linecap="round" />
-            <path d="M154,230 Q186,278 218,230" stroke="#F5DC8E" stroke-width="8" fill="none" stroke-linecap="round" />
-          </svg>
+          <img
+            src="./assets/sacred-story-hands.webp"
+            alt="The groom gently holding the bride’s henna-adorned hand"
+            class="w-full h-full object-contain drop-shadow-lg"
+            loading="lazy"
+            decoding="async"
+          >
         </div>
       </div>
 
