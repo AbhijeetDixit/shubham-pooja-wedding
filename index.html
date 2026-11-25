@@ -1249,6 +1249,134 @@
       #coastalCar { width:54%; }
     }
 
+  
+    /* v3 wardrobe: replace the shell's baked-in sample garments with the live,
+       event-specific outfit illustration. Keep the cabinet shell and drawers fixed. */
+    #wardrobeOpenView .armoire-interior {
+      overflow: visible !important;
+      isolation: isolate;
+    }
+    #wardrobeOpenView .armoire-interior::before {
+      content: "" !important;
+      display: block !important;
+      position: absolute !important;
+      inset: 0 !important;
+      z-index: 0 !important;
+      border: 1px solid rgba(214,166,83,.75);
+      border-radius: 5px;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(255,216,150,.22), transparent 65%),
+        linear-gradient(145deg, #70452c 0%, #4a2b20 48%, #68402a 100%);
+      box-shadow: inset 0 0 18px rgba(30,13,7,.34);
+    }
+    #wardrobeOpenView .armoire-interior::after {
+      content: "" !important;
+      display: block !important;
+      position: absolute !important;
+      left: 5% !important;
+      right: 5% !important;
+      top: 9% !important;
+      height: 3px !important;
+      z-index: 2 !important;
+      border-radius: 4px;
+      background: linear-gradient(90deg,#9b6c2c,#f7d88b,#9b6c2c);
+      box-shadow: 0 2px 4px rgba(25,10,4,.4);
+    }
+    #wardrobeOpenView #wardrobeOutfitStage {
+      display: flex !important;
+      position: absolute !important;
+      inset: 9% 2% 32% !important;
+      width: 96% !important;
+      height: 59% !important;
+      min-height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      z-index: 5 !important;
+      align-items: center !important;
+      justify-content: center !important;
+      pointer-events: none;
+    }
+    #wardrobeOpenView .wardrobe-outfit-pair {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      animation: wardrobeOutfitReveal .28s ease-out both;
+    }
+    #wardrobeOpenView .wardrobe-outfit-pair svg {
+      display: block;
+      width: 100%;
+      height: 78%;
+      max-height: 175px;
+      overflow: visible;
+    }
+    #wardrobeOpenView .wardrobe-outfit-labels {
+      width: 70%;
+      display: flex;
+      justify-content: space-around;
+      color: #f8e6c2;
+      font: 700 7px/1.1 Arial,sans-serif;
+      letter-spacing: .16em;
+      text-shadow: 0 1px 2px #28150d;
+      margin-top: -2px;
+    }
+    #wardrobeOpenView .wardrobe-outfit-accessories {
+      color: #f8d98a;
+      font-size: 13px;
+      line-height: 1.1;
+      margin-top: 2px;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,.5));
+    }
+    @keyframes wardrobeOutfitReveal {
+      from { opacity:0; transform:translateY(5px) scale(.98); }
+      to { opacity:1; transform:translateY(0) scale(1); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #wardrobeOpenView .wardrobe-outfit-pair { animation:none; }
+    }
+
+  
+    /* Keep the outfit art inside the hanging bay; animate only the artwork,
+       never the stage box itself (that box defines the alignment anchor). */
+    #wardrobeOpenView #wardrobeOutfitStage.look-showcase-enter {
+      animation: none !important;
+      transform: none !important;
+    }
+    #wardrobeOpenView > .space-y-2.pb-1 {
+      top: 57% !important;
+      bottom: auto !important;
+      height: auto !important;
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      grid-auto-rows: 30px !important;
+      row-gap: 5px !important;
+      column-gap: 5px !important;
+    }
+    #wardrobeOpenView > .space-y-2.pb-1 > button {
+      height: 30px !important;
+      min-height: 30px !important;
+      margin: 0 !important;
+      transform: none !important;
+      transition: background .18s ease, box-shadow .18s ease, border-color .18s ease !important;
+      box-sizing: border-box !important;
+    }
+    #wardrobeOpenView > .space-y-2.pb-1 > button.is-selected {
+      transform: none !important;
+      box-shadow: inset 0 0 0 1.5px #9a7335, 0 2px 5px rgba(60,35,15,.16) !important;
+    }
+    #wardrobeOpenView > .space-y-2.pb-1 > button .drawer-label {
+      white-space: nowrap;
+      font-size: 8px !important;
+      padding: 2px 6px !important;
+    }
+    #wardrobeOpenView > .space-y-2.pb-1 > button .drawer-pull {
+      width: 18px !important;
+      flex: 0 0 18px !important;
+    }
+
   </style>
 </head>
 <body class="scroll-locked">
@@ -1317,7 +1445,7 @@
   <!-- =========================================================
        SECTION 2: SCROLL-DRIVEN ITALIAN RIVIERA CAR DRIVE
   ========================================================== -->
-  <section id="italianDriveSection" class="relative h-[240vh] bg-gradient-to-b from-[#89BCE0] via-[#CBE4F6] to-[#FAF5EC]">
+  <section id="italianDriveSection" class="relative h-[280vh] bg-gradient-to-b from-[#89BCE0] via-[#CBE4F6] to-[#FAF5EC]">
     <div class="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between">
       <div class="text-center pt-16 px-4 z-20">
         <p data-i18n="driveSubtitle" class="text-xs uppercase tracking-[0.25em] text-[#4A5D4E] font-semibold">La Dolce Vita Begins</p>
@@ -2687,13 +2815,14 @@
     const coastalCar = document.getElementById('coastalCar');
     let coastalRafPending = false;
 
-    // Cubic Bezier follows the visible centre line of the illustrated road.
-    // Coordinates are percentages of the scene, so this scales with mobile/desktop layouts.
+    // Gentle beach-road arc. The car artwork already has a fixed rear three-quarter
+    // perspective, so do not rotate it with the path: that caused the car to lean
+    // unnaturally and drift outside the road on mobile.
     const coastalRoad = {
-      p0: { x: 56, y: 94 },
-      p1: { x: 51, y: 83 },
-      p2: { x: 54, y: 68 },
-      p3: { x: 66, y: 49 }
+      p0: { x: 58, y: 96 },
+      p1: { x: 62, y: 82 },
+      p2: { x: 64, y: 66 },
+      p3: { x: 60, y: 49 }
     };
 
     function bezierPoint(t) {
@@ -2709,34 +2838,24 @@
       };
     }
 
-    function bezierTangent(t) {
-      const u = 1 - t;
-      const p = coastalRoad;
-      return {
-        x: 3*u*u*(p.p1.x-p.p0.x) + 6*u*t*(p.p2.x-p.p1.x) + 3*t*t*(p.p3.x-p.p2.x),
-        y: 3*u*u*(p.p1.y-p.p0.y) + 6*u*t*(p.p2.y-p.p1.y) + 3*t*t*(p.p3.y-p.p2.y)
-      };
-    }
-
     function updateCoastalScenePosition() {
       coastalRafPending = false;
       if (!italianSection || !coastalArtwork || !coastalCar) return;
 
       const rect = italianSection.getBoundingClientRect();
       const scrollDistance = Math.max(1, rect.height - window.innerHeight);
-      const progress = Math.min(Math.max(-rect.top / scrollDistance, 0), 1);
+      const rawProgress = Math.min(Math.max(-rect.top / scrollDistance, 0), 1);
 
+      // Smoothstep eases both the start and finish so small scroll movements feel natural.
+      const progress = rawProgress * rawProgress * (3 - 2 * rawProgress);
       const point = bezierPoint(progress);
-      const tangent = bezierTangent(progress);
-      // Keep the convertible mostly level; a restrained steering lean follows the bend.
-      const steering = Math.max(-7, Math.min(7, tangent.x * 13));
-      const scale = 0.74 - progress * 0.43;
-      const fade = progress < 0.88 ? 1 : Math.max(0, 1 - (progress - 0.88) / 0.12);
+      const scale = 0.66 - progress * 0.37;
+      const fade = rawProgress < 0.94 ? 1 : Math.max(0, 1 - (rawProgress - 0.94) / 0.06);
 
       coastalCar.style.left = `${point.x}%`;
       coastalCar.style.top = `${point.y}%`;
       coastalCar.style.transform =
-        `translate3d(-50%,-50%,0) scale(${scale.toFixed(3)}) rotate(${steering.toFixed(2)}deg)`;
+        `translate3d(-50%,-50%,0) scale(${scale.toFixed(3)})`;
       coastalCar.style.opacity = fade.toFixed(3);
     }
 
@@ -4505,34 +4624,74 @@
 
     function buildOutfitSvg(styleObj) {
       return `
-        <div class="flex items-end justify-center gap-5">
-          <!-- Groom Hanger + Attire -->
-          <div class="flex flex-col items-center">
-            <svg viewBox="0 0 84 128" class="w-20 h-28 drop-shadow">
-              <path d="M42 6 C42 2, 47 2, 47 6 C47 9, 42 10, 42 13 L20 23 L64 23 L42 13" fill="none" stroke="#8C6A3E" stroke-width="2" stroke-linecap="round"/>
-              <path d="M22 25 L62 25 L67 74 L17 74 Z" fill="${styleObj.groomTop}" stroke="#261710" stroke-width="1.6"/>
-              <line x1="42" y1="25" x2="42" y2="74" stroke="#F5DC8E" stroke-width="1.4"/>
-              <rect x="25" y="74" width="34" height="44" rx="4" fill="${styleObj.groomBottom}" stroke="#261710" stroke-width="1.5"/>
-            </svg>
-            <span class="text-[9px] uppercase tracking-widest text-[#6E5014] font-semibold mt-0.5">Groom</span>
+        <div class="wardrobe-outfit-pair">
+          <svg viewBox="0 0 320 190" role="img" aria-label="Groom and bride outfits for the selected wedding function">
+            <defs>
+              <linearGradient id="groomFabric" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="${styleObj.groomTop}" stop-opacity="1"/>
+                <stop offset="1" stop-color="${styleObj.groomBottom}" stop-opacity=".92"/>
+              </linearGradient>
+              <linearGradient id="brideFabric" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="${styleObj.brideTop}"/>
+                <stop offset="1" stop-color="${styleObj.brideBottom}"/>
+              </linearGradient>
+              <linearGradient id="goldTrim" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#9A6A25"/>
+                <stop offset=".5" stop-color="#F8D98A"/>
+                <stop offset="1" stop-color="#9A6A25"/>
+              </linearGradient>
+              <filter id="garmentShadow" x="-30%" y="-20%" width="160%" height="160%">
+                <feDropShadow dx="0" dy="3" stdDeviation="2.5" flood-color="#3B2118" flood-opacity=".25"/>
+              </filter>
+            </defs>
+            <!-- Hangers -->
+            <g fill="none" stroke="#8B6338" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M79 22 C79 13 91 13 91 22 L57 39 L123 39 Z"/>
+              <path d="M225 22 C225 13 237 13 237 22 L194 39 L268 39 Z"/>
+            </g>
+            <!-- Groom's embroidered sherwani and trousers -->
+            <g filter="url(#garmentShadow)" stroke="#6C492A" stroke-width="1.6" stroke-linejoin="round">
+              <path d="M67 42 L115 42 L130 60 L119 75 L116 132 L66 132 L63 75 L52 60 Z"
+                    fill="url(#groomFabric)"/>
+              <path d="M80 43 L91 55 L102 43 L98 67 L91 75 L84 67 Z" fill="#F8E8C9" stroke-width="1"/>
+              <path d="M91 58 L91 129" stroke="url(#goldTrim)" stroke-width="2.5" fill="none"/>
+              <path d="M72 80 L84 84 M72 92 L84 96 M98 84 L111 80 M98 96 L111 92"
+                    stroke="#EBCB83" stroke-width="1.2" fill="none"/>
+              <path d="M70 132 L91 132 L88 177 L68 177 Z M93 132 L113 132 L116 177 L96 177 Z"
+                    fill="${styleObj.groomBottom}"/>
+              <path d="M67 177 L89 177 M95 177 L118 177" stroke="#8B6338" stroke-width="2"/>
+            </g>
+            <!-- Bride's blouse and full lehenga -->
+            <g filter="url(#garmentShadow)" stroke="#75472F" stroke-width="1.6" stroke-linejoin="round">
+              <path d="M207 43 L244 43 L258 59 L251 76 L241 72 L238 93 L213 93 L210 72 L200 76 L193 59 Z"
+                    fill="url(#brideFabric)"/>
+              <path d="M214 47 Q225 58 237 47 M211 62 Q225 68 241 62"
+                    stroke="url(#goldTrim)" stroke-width="2" fill="none"/>
+              <path d="M213 91 L238 91 L275 169 Q225 184 177 169 Z" fill="url(#brideFabric)"/>
+              <path d="M184 159 Q225 174 269 159 L275 169 Q225 184 177 169 Z"
+                    fill="url(#goldTrim)" stroke-width="1"/>
+              <path d="M198 111 L207 164 M225 101 L225 171 M250 111 L243 164"
+                    stroke="#F8D98A" stroke-width="1.6" opacity=".85" fill="none"/>
+              <path d="M190 137 Q225 146 263 137 M184 153 Q225 164 270 153"
+                    stroke="#F8D98A" stroke-width="1" opacity=".8" fill="none"/>
+            </g>
+            <!-- Tiny gold embroidery motifs -->
+            <g fill="#F8D98A" opacity=".95">
+              <circle cx="77" cy="105" r="1.7"/><circle cx="105" cy="105" r="1.7"/>
+              <circle cx="77" cy="117" r="1.7"/><circle cx="105" cy="117" r="1.7"/>
+              <circle cx="205" cy="125" r="1.8"/><circle cx="245" cy="125" r="1.8"/>
+              <circle cx="214" cy="145" r="1.8"/><circle cx="236" cy="145" r="1.8"/>
+            </g>
+          </svg>
+          <div class="wardrobe-outfit-labels">
+            <span>GROOM</span><span>BRIDE</span>
           </div>
-
-          <!-- Bride Hanger + Attire -->
-          <div class="flex flex-col items-center">
-            <svg viewBox="0 0 92 128" class="w-22 h-28 drop-shadow">
-              <path d="M46 6 C46 2, 51 2, 51 6 C51 9, 46 10, 46 13 L22 23 L70 23 L46 13" fill="none" stroke="#8C6A3E" stroke-width="2" stroke-linecap="round"/>
-              <path d="M27 25 L65 25 L59 54 L33 54 Z" fill="${styleObj.brideTop}" stroke="#261710" stroke-width="1.6"/>
-              <path d="M33 54 L59 54 L80 120 L12 120 Z" fill="${styleObj.brideBottom}" stroke="#261710" stroke-width="1.6"/>
-              <path d="M16 113 Q46 119 76 113" fill="none" stroke="#C9A253" stroke-width="2.2"/>
-            </svg>
-            <span class="text-[9px] uppercase tracking-widest text-[#6E5014] font-semibold mt-0.5">Bride</span>
-          </div>
+          <div class="wardrobe-outfit-accessories">${styleObj.accessoryIcon}</div>
         </div>
-        <div class="mt-1.5 text-sm tracking-widest">${styleObj.accessoryIcon}</div>
       `;
     }
 
-    function renderWardrobeOutfit(idx) {
+        function renderWardrobeOutfit(idx) {
       const ev = (i18n[currentLang] && i18n[currentLang].events[idx]) || i18n.en.events[idx];
       const st = wardrobeOutfits[idx] || wardrobeOutfits[0];
 
