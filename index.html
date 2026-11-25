@@ -109,14 +109,7 @@
       position: relative;
       width: 310px;
       height: 250px;
-      transform-style: preserve-3d;
-      transform: rotateX(7deg) rotateZ(-3deg);
-      transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
       cursor: pointer;
-    }
-
-    .suitcase-3d.open {
-      transform: rotateX(7deg) rotateZ(-3deg) scale(1.02);
     }
 
     .tap-pulse-ring {
@@ -1026,6 +1019,48 @@
       .suitcase-3d.open { transform: scale(.90) rotateX(7deg) rotateZ(-3deg); }
     }
 
+    /* SVG artwork components: same physical suitcase silhouette in both states. */
+    .suitcase-3d.record-player-control {
+      width: min(94vw, 520px);
+      height: clamp(270px, 42vh, 390px);
+      transform: none !important;
+      position: relative;
+      cursor: pointer;
+      perspective: none;
+    }
+    .record-art {
+      position: absolute;
+      left: 50%; top: 50%;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      transform: translate(-50%, -50%);
+      transition: opacity 850ms cubic-bezier(.22,1,.36,1), transform 850ms cubic-bezier(.22,1,.36,1);
+      filter: drop-shadow(0 18px 18px rgba(0,0,0,.22));
+    }
+    .record-art-closed { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    .record-art-open { opacity: 0; transform: translate(-50%, -50%) scale(.97); pointer-events: none; }
+    .suitcase-3d.open .record-art-closed { opacity: 0; transform: translate(-50%, -50%) scale(.97); }
+    .suitcase-3d.open .record-art-open { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    .suitcase-3d.record-player-control .tap-pulse-ring { inset: 4%; border-radius: 22px; }
+    .wardrobe-closed-art-wrap { height: clamp(410px, 54vh, 500px); }
+    .wardrobe-closed-art { display:block; width:100%; height:100%; object-fit:contain; object-position:center; }
+    #wardrobeCabinet { overflow:visible; }
+    #wardrobeClosedView { width:100%; }
+    #wardrobeClosedView > .wardrobe-closed-art-wrap { width:100%; }
+    #coastalDriveScene { isolation:isolate; background:#D8E9F2; }
+    #coastalSceneArtwork { height:120%; object-fit:cover; object-position:center center; }
+    /* The convertible is integrated into the landscape artwork; the scene pans as guests scroll. */
+    #wardrobeSection:not(.wardrobe-is-open) .armoire-crown,
+    #wardrobeSection:not(.wardrobe-is-open) .armoire-base { display:none; }
+    #wardrobeCabinet:not(.wardrobe-open) { background:transparent; border:0; box-shadow:none; padding:0; }
+    #wardrobeCabinet:not(.wardrobe-open)::before,
+    #wardrobeCabinet:not(.wardrobe-open)::after { display:none; }
+    #wardrobeClosedView > .wardrobe-closed-art-wrap { height:clamp(410px, 54vh, 500px); }
+    @media (max-width:640px) {
+      .wardrobe-closed-art-wrap { height:clamp(390px, 52vh, 470px); }
+      #wardrobeCabinet { padding:8px; }
+      #wardrobeClosedView > .wardrobe-closed-art-wrap { height:clamp(390px, 52vh, 470px); }
+    }
     /* Compact wardrobe proportions: the closed doors fill the cabinet frame,
        while the open state grows naturally to fit its six function drawers. */
     #wardrobeCabinet { min-height: 0; }
@@ -1037,6 +1072,14 @@
       #wardrobeCabinet { padding: 10px; }
       #wardrobeClosedView > .relative { height: clamp(410px, 54vh, 470px); }
       .armoire-crown { max-width: 100%; }
+    }
+    /* Final mobile-safe overrides: the closed armoire is one complete illustration,
+       not a smaller pair of doors nested inside a second cabinet frame. */
+    #wardrobeCabinet:not(.wardrobe-open) { padding:0 !important; }
+    #wardrobeClosedView > .wardrobe-closed-art-wrap { height:clamp(390px, 52vh, 470px) !important; }
+    #wardrobeClosedView .wardrobe-closed-art { object-fit:contain; }
+    @media (max-width:380px) {
+      .suitcase-3d.record-player-control { height:clamp(250px, 39vh, 330px); }
     }
 
   </style>
@@ -1068,87 +1111,10 @@
 
     <!-- 3D Suitcase Turntable -->
     <div class="scene-3d my-6 z-10">
-      <div id="suitcase3D" class="suitcase-3d" onclick="openRecordPlayer()" role="button" tabindex="0" aria-label="Tap to open record player">
+      <div id="suitcase3D" class="suitcase-3d record-player-control" onclick="openRecordPlayer()" role="button" tabindex="0" aria-label="Tap to open record player">
         <div class="tap-pulse-ring"></div>
-
-        <div class="case-base">
-          <div class="case-side-front">
-            <div class="brass-clasp"></div>
-            <div class="side-handle"></div>
-            <div class="brass-clasp"></div>
-          </div>
-          <div class="case-side-left"></div>
-
-          <div class="platter-deck">
-            <div id="vinylDisc" class="vinyl-disc">
-              <div class="vinyl-sheen"></div>
-              <div class="couple-pin">
-                <svg viewBox="0 0 80 90" aria-hidden="true">
-                  <ellipse cx="40" cy="82" rx="29" ry="4" fill="#000" opacity=".45"/>
-                  <!-- Groom: tiny standing figure in an ivory sherwani -->
-                  <path d="M20 43 Q20 34 28 34 Q36 34 37 43 L40 77 Q30 81 18 77 Z" fill="#F3E6CC" stroke="#6C4328" stroke-width="1.5"/>
-                  <circle cx="28" cy="25" r="8" fill="#D99B70" stroke="#70452D" stroke-width="1.2"/>
-                  <path d="M20 24 Q21 13 30 15 Q38 17 36 26 L32 22 L24 22 Z" fill="#33251D"/>
-                  <path d="M19 39 L12 59 M36 40 L42 58" stroke="#D99B70" stroke-width="4" stroke-linecap="round"/>
-                  <path d="M24 47 L32 47 M28 39 L28 74" stroke="#B58A4D" stroke-width="1.4"/>
-                  <path d="M21 77 L19 84 M35 77 L37 84" stroke="#3B2B22" stroke-width="4" stroke-linecap="round"/>
-                  <!-- Bride: tiny standing figure in a rose lehenga -->
-                  <circle cx="53" cy="27" r="7.5" fill="#E5AD86" stroke="#70452D" stroke-width="1.2"/>
-                  <path d="M45 27 Q45 15 54 16 Q63 17 61 29 L57 23 L48 23 Z" fill="#302019"/>
-                  <path d="M48 37 Q54 33 60 38 L69 76 Q55 84 40 76 Z" fill="#B94F4B" stroke="#6E302A" stroke-width="1.5"/>
-                  <path d="M43 43 L37 59 M60 43 L66 58" stroke="#E5AD86" stroke-width="3.5" stroke-linecap="round"/>
-                  <path d="M44 56 Q54 61 65 56 M42 67 Q55 72 67 67" stroke="#E8C27B" stroke-width="1.6" fill="none"/>
-                  <path d="M46 35 Q54 40 62 35" stroke="#E8C27B" stroke-width="2" fill="none"/>
-                  <circle cx="60" cy="33" r="2" fill="#E8C27B"/>
-                </svg>
-              </div>
-            </div>
-
-            <div class="tonearm-base">
-              <div id="tonearmStick" class="tonearm-stick">
-                <div class="tonearm-head"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Double-Sided Hinged 3D Lid -->
-        <div class="case-lid">
-          <div class="lid-face-closed">
-            <div class="lid-inner-plaque">
-              <span class="text-[10px] uppercase tracking-[0.25em] text-[#C9A253] mb-1">Wedding Invitation</span>
-              <p class="font-script text-4xl text-[#F5DC8E] leading-tight">S &amp; P</p>
-              <div class="w-12 h-[1px] bg-[#C9A253]/60 my-2"></div>
-              <div class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#C9A253] text-[#1E2A38] font-bold text-[11px] uppercase tracking-wider shadow-md">
-                <span>👆</span> <span>Tap Box to Open</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="lid-face-open">
-            <div class="lid-inner-plaque">
-              <svg viewBox="0 0 220 155" class="w-44 h-32 drop-shadow-lg">
-                <defs>
-                  <linearGradient id="lidHeartGrad" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#E5735C" />
-                    <stop offset="55%" stop-color="#C86D51" />
-                    <stop offset="100%" stop-color="#8C3B24" />
-                  </linearGradient>
-                </defs>
-                <path d="M110 142 C110 142 22 92 22 45 C22 20 42 8 64 8 C84 8 100 20 110 35 C120 20 136 8 156 8 C178 8 198 20 198 45 C198 92 110 142 110 142 Z" fill="url(#lidHeartGrad)" stroke="#F5DC8E" stroke-width="3.5" />
-                <text x="110" y="58" text-anchor="middle" fill="#FFFDF7" font-family="Georgia, 'Times New Roman', serif" font-size="19" font-weight="bold">
-                  Shubham
-                </text>
-                <text x="110" y="79" text-anchor="middle" fill="#F5DC8E" font-family="Georgia, 'Times New Roman', serif" font-size="15" font-style="italic">
-                  and
-                </text>
-                <text x="110" y="102" text-anchor="middle" fill="#FFFDF7" font-family="Georgia, 'Times New Roman', serif" font-size="19" font-weight="bold">
-                  Pooja
-                </text>
-              </svg>
-            </div>
-          </div>
-        </div>
+        <img class="record-art record-art-closed" src="./assets/record-player-closed.png" alt="Closed mustard-yellow vintage suitcase record player">
+        <img class="record-art record-art-open" src="./assets/record-player-open.png" alt="Open vintage record player with vinyl and miniature couple">
       </div>
     </div>
 
@@ -1196,127 +1162,7 @@
       </div>
 
       <div class="relative w-full h-[62vh] min-h-[420px] max-h-[650px] mt-auto overflow-hidden" id="coastalDriveScene">
-        <svg viewBox="0 0 720 900" preserveAspectRatio="xMidYMid slice"
-             class="absolute inset-0 w-full h-full" aria-hidden="true">
-          <defs>
-            <linearGradient id="coastSky" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#A9C7E5"/>
-              <stop offset=".52" stop-color="#E8B9B6"/>
-              <stop offset="1" stop-color="#F6D9BD"/>
-            </linearGradient>
-            <linearGradient id="coastWater" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#A6D3D7"/>
-              <stop offset="1" stop-color="#65A8B7"/>
-            </linearGradient>
-            <linearGradient id="coastRoad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#E9E2E8"/>
-              <stop offset="1" stop-color="#C9C4D3"/>
-            </linearGradient>
-          </defs>
-
-          <rect width="720" height="900" fill="url(#coastSky)"/>
-          <path d="M490 0 H720 V900 H565 Q620 740 575 590 Q530 420 490 0Z" fill="url(#coastWater)"/>
-          <path d="M505 270 Q590 250 720 270 M535 390 Q630 372 720 392 M565 540 Q650 520 720 540"
-                fill="none" stroke="#E3F4EF" stroke-width="5" opacity=".5"/>
-
-          <!-- Distant green headland -->
-          <path d="M0 260 Q120 190 250 225 Q355 245 500 195 L560 290 L0 390Z"
-                fill="#91A994"/>
-
-          <!-- Pastel coastal houses -->
-          <g>
-            <path d="M0 340 L0 255 L118 255 L118 390 L0 420Z" fill="#F3CF7F"/>
-            <path d="M-12 255 L55 210 L132 255Z" fill="#C77E60"/>
-            <path d="M125 365 L125 285 L235 285 L235 405 L125 420Z" fill="#F7DDA2"/>
-            <path d="M112 285 L180 242 L248 285Z" fill="#B96F58"/>
-            <path d="M240 405 L240 330 L330 330 L330 430 L240 440Z" fill="#F0C875"/>
-            <path d="M228 330 L285 294 L343 330Z" fill="#C9825E"/>
-            <g fill="#76918A">
-              <rect x="24" y="292" width="22" height="38"/><rect x="72" y="292" width="22" height="38"/>
-              <rect x="150" y="318" width="20" height="34"/><rect x="194" y="318" width="20" height="34"/>
-              <rect x="263" y="355" width="18" height="30"/>
-            </g>
-          </g>
-
-          <!-- Palms and flowering shrubs -->
-          <g fill="none" stroke="#76533A" stroke-width="9" stroke-linecap="round">
-            <path d="M80 420 Q75 340 105 265"/>
-            <path d="M205 430 Q205 365 226 310"/>
-            <path d="M330 455 Q328 398 345 355"/>
-          </g>
-          <g fill="#477653">
-            <path d="M105 265 Q40 220 25 245 Q65 245 105 265 Q65 185 55 210 Q82 230 105 265 Q103 185 128 192 Q132 225 105 265 Q162 215 176 240 Q145 255 105 265 Q176 270 166 290 Q135 278 105 265Z"/>
-            <path d="M226 310 Q175 276 160 296 Q195 294 226 310 Q195 245 183 267 Q208 280 226 310 Q225 254 245 260 Q247 284 226 310 Q270 278 282 300 Q256 309 226 310Z"/>
-            <path d="M345 355 Q305 326 292 343 Q320 342 345 355 Q322 305 312 321 Q333 333 345 355 Q345 314 360 320 Q362 339 345 355 Q380 332 390 348 Q368 355 345 355Z"/>
-          </g>
-          <path d="M0 435 Q110 400 220 440 T400 450 L410 500 Q230 475 0 520Z" fill="#47764B"/>
-          <g fill="#D94E8B">
-            <circle cx="28" cy="432" r="22"/><circle cx="72" cy="452" r="19"/><circle cx="120" cy="430" r="23"/>
-            <circle cx="166" cy="460" r="20"/><circle cx="214" cy="444" r="23"/><circle cx="265" cy="468" r="19"/>
-            <circle cx="315" cy="458" r="21"/>
-          </g>
-
-          <!-- Promenade curves from the foreground into the distance -->
-          <path d="M170 930 C190 790 320 735 360 630 C405 510 330 465 340 390 C350 320 420 290 455 250"
-                fill="none" stroke="#E8C89B" stroke-width="285" stroke-linecap="round"/>
-          <path d="M170 930 C190 790 320 735 360 630 C405 510 330 465 340 390 C350 320 420 290 455 250"
-                fill="none" stroke="url(#coastRoad)" stroke-width="270" stroke-linecap="round"/>
-          <path d="M170 930 C190 790 320 735 360 630 C405 510 330 465 340 390 C350 320 420 290 455 250"
-                fill="none" stroke="#FFF9F0" stroke-width="5" stroke-dasharray="30 30"
-                stroke-linecap="round" opacity=".9"/>
-
-          <!-- Rock-lined sea edge -->
-          <path d="M500 330 Q600 430 590 560 Q575 700 470 770"
-                fill="none" stroke="#D6B18C" stroke-width="18"/>
-          <g fill="#65534D" stroke="#4B4240" stroke-width="4">
-            <ellipse cx="535" cy="365" rx="36" ry="23"/>
-            <ellipse cx="570" cy="420" rx="42" ry="27"/>
-            <ellipse cx="585" cy="485" rx="44" ry="28"/>
-            <ellipse cx="565" cy="550" rx="42" ry="26"/>
-            <ellipse cx="535" cy="615" rx="38" ry="24"/>
-            <ellipse cx="500" cy="675" rx="34" ry="22"/>
-          </g>
-          <g fill="#A58A79" opacity=".7">
-            <ellipse cx="527" cy="359" rx="12" ry="6"/><ellipse cx="560" cy="414" rx="14" ry="7"/>
-            <ellipse cx="576" cy="478" rx="15" ry="8"/><ellipse cx="555" cy="543" rx="14" ry="7"/>
-            <ellipse cx="525" cy="609" rx="12" ry="6"/>
-          </g>
-
-          <!-- Traditional promenade lamps, aligned along the road edge -->
-          <g stroke="#29343B" stroke-width="8" stroke-linecap="round">
-            <path d="M245 650 L225 485"/><path d="M375 575 L365 420"/><path d="M455 455 L455 335"/>
-          </g>
-          <g fill="#29343B">
-            <path d="M207 486 L243 486 L237 466 L213 466Z"/>
-            <path d="M347 421 L383 421 L377 401 L353 401Z"/>
-            <path d="M437 336 L473 336 L467 316 L443 316Z"/>
-          </g>
-          <g fill="#FFE4A0">
-            <rect x="216" y="469" width="18" height="19" rx="6"/>
-            <rect x="356" y="404" width="18" height="19" rx="6"/>
-            <rect x="446" y="319" width="18" height="19" rx="6"/>
-          </g>
-        </svg>
-
-        <!-- Rear-view convertible; scroll motion carries it up the road -->
-        <div id="coupleCar" class="absolute z-20 w-32 sm:w-40 left-1/2 bottom-[3%] -ml-16 sm:-ml-20 will-change-transform">
-          <svg viewBox="0 0 220 150" class="w-full drop-shadow-xl" aria-label="Yellow convertible carrying the couple away along the coastal road">
-            <ellipse cx="110" cy="139" rx="83" ry="7" fill="#3D3540" opacity=".25"/>
-            <path d="M66 48 Q67 19 92 18 Q113 18 116 48Z" fill="#4A3026"/>
-            <path d="M115 48 Q117 15 145 18 Q169 21 169 50Z" fill="#6A3B2B"/>
-            <path d="M76 43 Q90 28 106 43 L111 76 L70 76Z" fill="#F1D6C7"/>
-            <path d="M126 42 Q145 26 160 45 L168 77 L120 77Z" fill="#E9B8A7"/>
-            <path d="M70 55 Q109 66 166 55 L174 89 L62 89Z" fill="#6A3D2C"/>
-            <path d="M40 75 Q53 65 75 65 L150 65 Q175 65 186 82 L194 116 Q190 127 174 130 L45 130 Q29 126 27 115 L31 89Z"
-                  fill="#F2C95F" stroke="#9C6B2B" stroke-width="3"/>
-            <path d="M35 91 Q110 100 188 91" fill="none" stroke="#FFE6A0" stroke-width="4"/>
-            <rect x="83" y="103" width="54" height="13" rx="3" fill="#E9D9B7" stroke="#A77A3D" stroke-width="2"/>
-            <rect x="92" y="106" width="36" height="6" rx="2" fill="#A7B9B5"/>
-            <circle cx="48" cy="111" r="7" fill="#B7433E"/><circle cx="174" cy="111" r="7" fill="#B7433E"/>
-            <circle cx="51" cy="128" r="9" fill="#34343A"/><circle cx="169" cy="128" r="9" fill="#34343A"/>
-            <circle cx="51" cy="128" r="4" fill="#C9B9A0"/><circle cx="169" cy="128" r="4" fill="#C9B9A0"/>
-          </svg>
-        </div>
+        <img id="coastalSceneArtwork" src="./assets/coastal-background.webp" alt="Illustrated Mediterranean coastal road with a yellow convertible carrying the couple" class="absolute inset-x-0 top-0 w-full h-[120%] max-w-none will-change-transform" style="object-fit:cover;object-position:center center;transform:translate3d(0,0,0) scale(1.04)">
       </div>
     </div>
   </section>
@@ -1650,24 +1496,8 @@
 
         <!-- CLOSED STATE (tap to swing the doors open) -->
         <div id="wardrobeClosedView" onclick="openWardrobeDoors()" role="button" tabindex="0" aria-label="Tap wardrobe to open" class="cursor-pointer select-none">
-          <div class="relative grid grid-cols-2 gap-[3px] h-[360px] sm:h-[380px]">
-            <!-- Left Door -->
-            <div class="wardrobe-door-left rounded-l-md">
-              <div class="door-panel">
-                <svg class="door-scroll left-2" viewBox="0 0 30 60" fill="none" stroke="#6B5340" stroke-width="1.5" stroke-linecap="round"><path d="M12 4 C24 4 26 18 17 22 C9 26 8 36 17 40 C25 44 25 54 13 56"/></svg>
-              </div>
-              <span class="door-pull right-1.5"></span>
-            </div>
-
-            <!-- Right Door -->
-            <div class="wardrobe-door-right rounded-r-md">
-              <div class="door-panel">
-                <svg class="door-scroll right-2" style="transform:scaleX(-1)" viewBox="0 0 30 60" fill="none" stroke="#6B5340" stroke-width="1.5" stroke-linecap="round"><path d="M12 4 C24 4 26 18 17 22 C9 26 8 36 17 40 C25 44 25 54 13 56"/></svg>
-              </div>
-              <span class="door-pull left-1.5"></span>
-            </div>
-
-            <!-- Centered Gold "TAP TO OPEN" Latch Pill -->
+          <div class="wardrobe-closed-art-wrap relative w-full">
+            <img src="./assets/wardrobe-closed.webp" class="wardrobe-closed-art" alt="Closed antique ivory wardrobe with full-height double doors">
             <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-10">
               <div class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#C9A253] via-[#F5DC8E] to-[#B58428] text-[#1E2A38] font-bold text-xs uppercase tracking-[0.2em] shadow-xl border border-[#8C6820]">
                 <span data-i18n="tapOpenWardrobe">Tap Wardrobe to Open</span>
@@ -2665,17 +2495,10 @@
       playerOpened = true;
 
       const suitcase = document.getElementById('suitcase3D');
-      const vinyl = document.getElementById('vinylDisc');
-      const tonearm = document.getElementById('tonearmStick');
       const tapToOpenBox = document.getElementById('tapToOpenBox');
       const languageBubblesBox = document.getElementById('languageBubblesBox');
 
       suitcase.classList.add('open');
-      setTimeout(() => {
-        vinyl.classList.add('spinning');
-        tonearm.classList.add('playing');
-      }, 420);
-
       document.body.classList.remove('scroll-locked');
       hasCapturedInitialScroll = false;
       tapToOpenBox.classList.add('hidden');
@@ -2691,22 +2514,22 @@
     // 4. SCROLL-DRIVEN ITALIAN COASTAL CAR ANIMATION
     // =========================================================
     const italianSection = document.getElementById('italianDriveSection');
-    const coupleCar = document.getElementById('coupleCar');
-
-    window.addEventListener('scroll', () => {
-      if (!italianSection || !coupleCar) return;
+    const coastalArtwork = document.getElementById('coastalSceneArtwork');
+    function updateCoastalScenePosition() {
+      if (!italianSection || !coastalArtwork) return;
       const rect = italianSection.getBoundingClientRect();
       const scrollableDistance = rect.height - window.innerHeight;
       if (scrollableDistance <= 0) return;
-
       const progress = Math.min(Math.max(-rect.top / scrollableDistance, 0), 1);
-      const scene = document.getElementById('coastalDriveScene');
-      const sceneHeight = scene ? scene.clientHeight : window.innerHeight * 0.62;
-      const travelY = progress * sceneHeight * 0.42;
-      const travelX = -progress * Math.min(window.innerWidth * 0.08, 28);
-      const scale = 1 - progress * 0.16;
-      coupleCar.style.transform = `translate(${travelX}px, ${-travelY}px) scale(${scale})`;
-    }, { passive: true });
+      // Pan the single, cohesive illustration upward so the yellow convertible
+      // travels from the lower foreground toward the middle distance.
+      const travel = progress * 22;
+      const zoom = 1.04 + progress * 0.035;
+      coastalArtwork.style.transform = `translate3d(0, -${travel}%, 0) scale(${zoom})`;
+    }
+    window.addEventListener('scroll', updateCoastalScenePosition, { passive: true });
+    window.addEventListener('resize', updateCoastalScenePosition);
+    updateCoastalScenePosition();
 
     // =========================================================
     // 5. GOLD-FOIL SCRATCH CARD (AUTO-CLEARS AT 35% SCRATCHED)
@@ -4527,6 +4350,8 @@
 
       if (!wardrobeIsOpen) {
         wardrobeIsOpen = true;
+        const wardrobeSection = document.getElementById('wardrobeSection');
+        if (wardrobeSection) wardrobeSection.classList.add('wardrobe-is-open');
         if (cabinet) cabinet.classList.add('wardrobe-open');
         setTimeout(() => {
           if (closedView) closedView.classList.add('hidden');
@@ -4538,6 +4363,8 @@
 
     function closeWardrobeDoors() {
       wardrobeIsOpen = false;
+      const wardrobeSection = document.getElementById('wardrobeSection');
+      if (wardrobeSection) wardrobeSection.classList.remove('wardrobe-is-open');
       const cabinet = document.getElementById('wardrobeCabinet');
       const closedView = document.getElementById('wardrobeClosedView');
       const openView = document.getElementById('wardrobeOpenView');
