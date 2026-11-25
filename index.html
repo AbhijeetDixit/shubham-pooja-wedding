@@ -491,25 +491,79 @@
 
     .wardrobe-shell {
       position: relative;
+      isolation: isolate;
       background:
-        linear-gradient(90deg, transparent 11px, rgba(107, 83, 64, 0.55) 11px, rgba(107, 83, 64, 0.55) 12px, transparent 12px),
-        linear-gradient(270deg, transparent 11px, rgba(107, 83, 64, 0.55) 11px, rgba(107, 83, 64, 0.55) 12px, transparent 12px),
-        var(--ivory-paint);
-      border: 2px solid var(--armoire-line);
+        repeating-linear-gradient(92deg, rgba(142, 105, 94, .025) 0 1px, transparent 1px 7px),
+        linear-gradient(90deg, #D8C0B9 0, #F5EAE5 3%, #F8F0E9 16%, #EAD8D2 50%, #F8F0E9 84%, #D8C0B9 97%, #BFA49B 100%);
+      border: 2px solid #9D7B73;
       box-shadow:
-        0 18px 36px rgba(60, 40, 20, 0.22),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.55),
-        inset 0 0 20px rgba(140, 100, 60, 0.22);
+        0 20px 38px rgba(65, 43, 39, .24),
+        inset 0 0 0 2px rgba(255,255,255,.72),
+        inset 0 0 0 7px rgba(157,123,115,.18),
+        inset 0 0 24px rgba(132,91,82,.20);
     }
+    .wardrobe-shell::before {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border: 1px solid rgba(153, 113, 104, .55);
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,.38);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .wardrobe-shell::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .32;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(255,255,255,.85), transparent 46%),
+        linear-gradient(180deg, transparent 0 88%, rgba(111,75,68,.10));
+    }
+    #wardrobeClosedView, #wardrobeOpenView { position: relative; z-index: 1; }
 
     .wardrobe-door-left,
     .wardrobe-door-right {
       position: relative;
-      padding: 7px;
+      padding: 8px;
+      overflow: hidden;
       transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease;
-      background: var(--ivory-paint);
-      border: 2px solid var(--armoire-line);
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55), inset 0 0 16px rgba(140, 100, 60, 0.2);
+      background:
+        repeating-linear-gradient(90deg, rgba(147,106,98,.035) 0 1px, transparent 1px 6px),
+        linear-gradient(135deg, #F9F0EA 0%, #E8D4CE 16%, #F8EEE8 34%, #E6D0C9 58%, #FBF4EE 82%, #D9BFB7 100%);
+      border: 2px solid #A17E75;
+      box-shadow:
+        inset 0 0 0 2px rgba(255,255,255,.8),
+        inset 0 0 0 5px rgba(157,116,107,.24),
+        inset 0 0 22px rgba(129,83,76,.16),
+        2px 3px 7px rgba(74,49,43,.16);
+    }
+    .wardrobe-door-left::before,
+    .wardrobe-door-right::before {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border: 1px solid rgba(147,105,97,.65);
+      border-radius: 58px 58px 7px 7px / 36px 36px 7px 7px;
+      box-shadow:
+        inset 0 0 0 3px rgba(255,255,255,.55),
+        inset 0 0 0 4px rgba(157,116,107,.28);
+      pointer-events: none;
+    }
+    .wardrobe-door-left::after,
+    .wardrobe-door-right::after {
+      content: "❧";
+      position: absolute;
+      top: 16%;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(143,101,94,.72);
+      font-family: Georgia, serif;
+      font-size: 30px;
+      text-shadow: 0 1px rgba(255,255,255,.8);
+      pointer-events: none;
     }
 
     .wardrobe-door-left { transform-origin: left center; }
@@ -527,17 +581,45 @@
       pointer-events: none;
     }
 
-    /* raised, arch-shouldered door panel */
+    /* Deeply moulded raised panels with a soft, hand-painted finish */
     .door-panel {
       position: relative;
       width: 100%;
       height: 100%;
-      border: 1.5px solid var(--armoire-line);
+      border: 1.5px solid #A27D74;
       border-radius: 64px 64px 8px 8px / 40px 40px 8px 8px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(140, 100, 60, 0.06));
+      background:
+        radial-gradient(ellipse at 50% 8%, rgba(255,255,255,.82), transparent 35%),
+        linear-gradient(180deg, rgba(255,255,255,.52), rgba(179,139,130,.10)),
+        #F4E7E1;
       box-shadow:
-        inset 0 0 0 4px rgba(255, 255, 255, 0.35),
-        inset 0 0 0 5px rgba(107, 83, 64, 0.35);
+        inset 0 0 0 3px rgba(255,255,255,.68),
+        inset 0 0 0 5px rgba(151,111,102,.42),
+        inset 0 0 0 9px rgba(255,255,255,.42),
+        inset 0 0 0 10px rgba(151,111,102,.25),
+        inset 0 12px 18px rgba(255,255,255,.36),
+        0 1px 2px rgba(88,58,51,.14);
+    }
+    .door-panel::before {
+      content: "";
+      position: absolute;
+      inset: 13px 10px;
+      border: 1px solid rgba(151,111,102,.48);
+      border-radius: 52px 52px 5px 5px / 34px 34px 5px 5px;
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,.45);
+      pointer-events: none;
+    }
+    .door-panel::after {
+      content: "❦";
+      position: absolute;
+      left: 50%;
+      top: 47%;
+      transform: translate(-50%, -50%);
+      color: rgba(151,111,102,.62);
+      font-family: Georgia, serif;
+      font-size: 34px;
+      text-shadow: 0 1px rgba(255,255,255,.85);
+      pointer-events: none;
     }
 
     .door-scroll {
@@ -554,7 +636,7 @@
       width: 8px;
       height: 36px;
       border-radius: 5px;
-      background: linear-gradient(90deg, #6B4A2A, #C9A86A 45%, #6B4A2A);
+      background: linear-gradient(90deg, #684238, #C59A69 45%, #684238);
       border: 1px solid #3F2A16;
       box-shadow: 0 2px 3px rgba(0, 0, 0, 0.35);
       z-index: 2;
@@ -564,12 +646,26 @@
     .armoire-interior {
       position: relative;
       overflow: hidden;
-      border: 2px solid var(--armoire-line);
+      border: 2px solid #A17B72;
       border-radius: 34px 34px 6px 6px / 22px 22px 6px 6px;
       background:
-        repeating-linear-gradient(90deg, rgba(107, 83, 64, 0.07) 0 1px, transparent 1px 22px),
-        linear-gradient(180deg, #F7EFF0 0%, #EFE3E3 100%);
-      box-shadow: inset 0 8px 18px rgba(107, 83, 64, 0.22), inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+        repeating-linear-gradient(90deg, rgba(145,103,96,.055) 0 1px, transparent 1px 18px),
+        radial-gradient(ellipse at 50% 0%, rgba(255,255,255,.95), transparent 56%),
+        linear-gradient(180deg, #E8D5D0 0%, #F8EFEB 18%, #EBDAD5 100%);
+      box-shadow:
+        inset 0 10px 22px rgba(105,70,64,.25),
+        inset 0 0 0 3px rgba(255,255,255,.72),
+        inset 0 0 0 6px rgba(155,113,104,.24),
+        inset 0 0 28px rgba(130,88,81,.18);
+    }
+    .armoire-interior::before {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(151,108,100,.42);
+      border-radius: 28px 28px 3px 3px / 18px 18px 3px 3px;
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,.38);
+      pointer-events: none;
     }
 
     .armoire-rod {
@@ -600,28 +696,39 @@
     .wardrobe-drawer-btn {
       position: relative;
       width: 100%;
-      height: 46px;
+      height: 49px;
       padding: 0 12px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: var(--ivory-paint);
-      border: 1.5px solid var(--armoire-line);
-      border-radius: 6px;
+      background:
+        repeating-linear-gradient(90deg, rgba(151,108,100,.035) 0 1px, transparent 1px 7px),
+        linear-gradient(180deg, #FCF5EF 0%, #EBD8D2 48%, #F8EEE8 100%);
+      border: 1.5px solid #A17B72;
+      border-radius: 5px;
       box-shadow:
-        0 3px 0 rgba(107, 83, 64, 0.55),
-        0 7px 12px rgba(60, 40, 20, 0.14),
-        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+        0 3px 0 rgba(133,94,86,.58),
+        0 7px 12px rgba(65,43,39,.15),
+        inset 0 1px 0 rgba(255,255,255,.9),
+        inset 0 -3px 7px rgba(135,91,83,.10);
       transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease, background 0.28s ease;
     }
 
     .wardrobe-drawer-btn::before {
-      content: "";
+      content: "❧";
       position: absolute;
       inset: 4px;
-      border: 1px solid rgba(107, 83, 64, 0.45);
-      border-radius: 8px 8px 5px 5px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 8px;
+      color: rgba(143,101,94,.72);
+      font-family: Georgia, serif;
+      font-size: 20px;
+      border: 1px solid rgba(151,108,100,.48);
+      border-radius: 3px;
       pointer-events: none;
+      text-shadow: 0 1px rgba(255,255,255,.8);
     }
 
     .wardrobe-drawer-btn:hover { transform: translateY(-1px); }
@@ -641,9 +748,9 @@
       position: relative;
       z-index: 1;
       padding: 3px 18px;
-      border: 1.5px solid rgba(107, 83, 64, 0.8);
+      border: 1.5px solid rgba(145, 99, 88, 0.82);
       border-radius: 10px;
-      background: rgba(255, 252, 245, 0.7);
+      background: linear-gradient(180deg, #FFF9F2, #EAD7D0);
       font-size: 11px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -750,6 +857,181 @@
       background: rgba(20, 29, 38, 0.72);
       backdrop-filter: blur(6px);
     }
+
+
+    /* Record-player refresh: vintage ochre suitcase, dark turntable, leather-lined lid */
+    .scene-3d { perspective: 1250px; }
+    .suitcase-3d {
+      width: 320px;
+      height: 230px;
+      transform: rotateX(20deg) rotateZ(-8deg);
+    }
+    .suitcase-3d.open {
+      transform: rotateX(17deg) rotateZ(-8deg) scale(1.035);
+    }
+    .case-base {
+      background: linear-gradient(145deg, #F3C45D 0%, #D99A2D 48%, #B97820 100%);
+      border: 3px solid #75451F;
+      border-radius: 13px;
+      box-shadow: inset 0 0 0 2px rgba(255,239,185,.42), inset 0 -12px 20px rgba(113,62,13,.2),
+        -8px 10px 0 #75451F, -12px 15px 24px rgba(0,0,0,.42);
+    }
+    .case-base::before {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border: 1px solid rgba(111,66,24,.38);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+    .case-side-front {
+      bottom: -20px;
+      height: 20px;
+      background: linear-gradient(90deg, #A9661C, #E2A83E 50%, #9A5D19);
+      border-bottom: 3px solid #75451F;
+    }
+    .case-side-left {
+      left: -19px;
+      width: 19px;
+      background: linear-gradient(180deg, #B97925, #875019);
+      border-left: 3px solid #75451F;
+    }
+    .brass-clasp {
+      width: 22px;
+      height: 17px;
+      background: linear-gradient(180deg, #F6D88A, #B77B28 58%, #70451B);
+      border: 1px solid #684018;
+      border-radius: 4px;
+    }
+    .side-handle {
+      width: 82px;
+      height: 13px;
+      background: linear-gradient(180deg, #75401D, #3B2113);
+      border: 2px solid #B77D32;
+      border-radius: 8px;
+    }
+    .platter-deck {
+      width: 278px;
+      height: 198px;
+      background: linear-gradient(145deg, #33271F, #111316 72%);
+      border: 3px solid #8D5B22;
+      border-radius: 7px;
+      box-shadow: inset 0 0 0 2px rgba(255,213,132,.22), inset 0 5px 15px #000;
+    }
+    .vinyl-disc {
+      width: 158px;
+      height: 158px;
+      background: repeating-radial-gradient(circle at center, #090a0b 0 2px, #242629 3px, #101113 4px);
+      box-shadow: 0 5px 12px rgba(0,0,0,.85), 0 0 0 5px #A87535, 0 0 0 7px #29221B;
+    }
+    .couple-pin {
+      width: 58px;
+      height: 66px;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: 0 3px 5px rgba(0,0,0,.55);
+      transform: translateY(-3px);
+    }
+    .couple-pin svg { width: 58px; height: 66px; overflow: visible; }
+    .tonearm-base {
+      top: 15px;
+      right: 16px;
+      width: 22px;
+      height: 22px;
+      background: radial-gradient(circle at 35% 30%, #FFF0B5, #C18A36 62%, #68451D);
+      border: 2px solid #4A3219;
+    }
+    .tonearm-stick {
+      height: 104px;
+      width: 5px;
+      background: linear-gradient(90deg, #9D6B28, #FFF0B5 48%, #A36C24);
+    }
+    .tonearm-head {
+      background: #24272A;
+      border-color: #D9AD59;
+      width: 13px;
+      height: 17px;
+    }
+    .case-lid { border-radius: 13px; }
+    .lid-face-closed {
+      background:
+        radial-gradient(circle at 13px 13px, #4B2C18 0 5px, #2B1A12 5.5px 8px, transparent 8.5px),
+        radial-gradient(circle at calc(100% - 13px) 13px, #4B2C18 0 5px, #2B1A12 5.5px 8px, transparent 8.5px),
+        radial-gradient(circle at 13px calc(100% - 13px), #4B2C18 0 5px, #2B1A12 5.5px 8px, transparent 8.5px),
+        radial-gradient(circle at calc(100% - 13px) calc(100% - 13px), #4B2C18 0 5px, #2B1A12 5.5px 8px, transparent 8.5px),
+        linear-gradient(145deg, #F5CE72, #DFA63F 58%, #BD7D25);
+      border: 3px solid #75451F;
+      box-shadow: inset 0 0 0 2px rgba(255,245,200,.3), 0 9px 18px rgba(0,0,0,.32);
+    }
+    .lid-face-closed .lid-inner-plaque { display: none; }
+    .lid-face-closed::before,
+    .lid-face-closed::after {
+      content: "";
+      position: absolute;
+      bottom: 17px;
+      width: 24px;
+      height: 29px;
+      border: 2px solid #75451F;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #9B6327, #F0C66A 48%, #9B6327);
+      box-shadow: inset 0 0 0 2px rgba(255,235,174,.35);
+    }
+    .lid-face-closed::before { left: 22%; }
+    .lid-face-closed::after { right: 22%; }
+    .lid-face-open {
+      background: linear-gradient(145deg, #9B5930, #60351F 72%, #482719);
+      border: 3px solid #75451F;
+    }
+    .lid-face-open .lid-inner-plaque {
+      border: 1px solid rgba(239,190,119,.55);
+      border-radius: 5px;
+      background: linear-gradient(145deg, rgba(183,111,63,.72), rgba(82,43,27,.42));
+      box-shadow: inset 0 0 22px rgba(42,18,9,.34);
+    }
+    .lid-face-open .lid-inner-plaque svg { display: none; }
+    .lid-face-open .lid-inner-plaque::after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(240,196,133,.22);
+      pointer-events: none;
+    }
+
+    /* Explicit color separation: the suitcase exterior stays ochre in both
+       states; only the inside face of the raised lid is leather brown. */
+    .case-lid { background: transparent; }
+    .case-base {
+      background: linear-gradient(145deg, #F3C45D 0%, #D99A2D 48%, #B97820 100%);
+    }
+    .case-side-front {
+      background: linear-gradient(90deg, #A9661C, #E2A83E 50%, #9A5D19);
+    }
+    .case-side-left {
+      background: linear-gradient(180deg, #B97925, #875019);
+    }
+    .lid-face-closed {
+      background:
+        radial-gradient(circle at 13px 13px, #4B2C18 0 5px, #2B1A12 5.5px 8px, transparent 8.5px),
+        radial-gradient(circle at calc(100% - 13px) 13px, #4B2C18 0 5px, #2B1A12 5.5px 8px, transparent 8.5px),
+        radial-gradient(circle at 13px calc(100% - 13px), #4B2C18 0 5px, #2B1A12 5.5px 8px, transparent 8.5px),
+        radial-gradient(circle at calc(100% - 13px) calc(100% - 13px), #4B2C18 0 5px, #2B1A12 5.5px 8px, transparent 8.5px),
+        linear-gradient(145deg, #F5CE72, #DFA63F 58%, #BD7D25);
+    }
+    .lid-face-open {
+      background: linear-gradient(145deg, #9B5930, #60351F 72%, #482719);
+    }
+    @media (max-width: 380px) {
+      .suitcase-3d { transform: scale(.91) rotateX(20deg) rotateZ(-8deg); }
+      .suitcase-3d.open { transform: scale(.94) rotateX(17deg) rotateZ(-8deg); }
+    }
+
+    /* Keep wardrobe cabinet footprint identical in its open and closed states. */
+    #wardrobeCabinet { min-height: 760px; }
+    #wardrobeClosedView { min-height: 720px; display: flex; align-items: center; }
+    #wardrobeClosedView > .relative { width: 100%; }
+    #wardrobeClosedView.hidden { display: none; }
+
   </style>
 </head>
 <body class="scroll-locked">
@@ -794,16 +1076,23 @@
             <div id="vinylDisc" class="vinyl-disc">
               <div class="vinyl-sheen"></div>
               <div class="couple-pin">
-                <svg viewBox="0 0 80 80" class="w-14 h-14">
-                  <circle cx="29" cy="27" r="8" fill="#F4C7A1" />
-                  <path d="M21 25 Q29 15 37 25" fill="#1E2A38" />
-                  <path d="M17 55 C17 40 41 40 41 55 Z" fill="#1E2A38" />
-                  <polygon points="29,38 26,45 32,45" fill="#C9A253" />
-                  <circle cx="51" cy="29" r="7.5" fill="#F7D1B2" />
-                  <path d="M43 28 Q51 17 59 28 L61 44 L41 44 Z" fill="#2C1A12" />
-                  <path d="M39 55 C39 41 63 41 63 55 Z" fill="#C86D51" />
-                  <circle cx="51" cy="25" r="1.5" fill="#D4AF37" />
-                  <path d="M40 16 C38 13, 34 15, 40 20 C46 15, 42 13, 40 16 Z" fill="#C86D51" />
+                <svg viewBox="0 0 80 90" aria-hidden="true">
+                  <ellipse cx="40" cy="82" rx="29" ry="4" fill="#000" opacity=".45"/>
+                  <!-- Groom: tiny standing figure in an ivory sherwani -->
+                  <path d="M20 43 Q20 34 28 34 Q36 34 37 43 L40 77 Q30 81 18 77 Z" fill="#F3E6CC" stroke="#6C4328" stroke-width="1.5"/>
+                  <circle cx="28" cy="25" r="8" fill="#D99B70" stroke="#70452D" stroke-width="1.2"/>
+                  <path d="M20 24 Q21 13 30 15 Q38 17 36 26 L32 22 L24 22 Z" fill="#33251D"/>
+                  <path d="M19 39 L12 59 M36 40 L42 58" stroke="#D99B70" stroke-width="4" stroke-linecap="round"/>
+                  <path d="M24 47 L32 47 M28 39 L28 74" stroke="#B58A4D" stroke-width="1.4"/>
+                  <path d="M21 77 L19 84 M35 77 L37 84" stroke="#3B2B22" stroke-width="4" stroke-linecap="round"/>
+                  <!-- Bride: tiny standing figure in a rose lehenga -->
+                  <circle cx="53" cy="27" r="7.5" fill="#E5AD86" stroke="#70452D" stroke-width="1.2"/>
+                  <path d="M45 27 Q45 15 54 16 Q63 17 61 29 L57 23 L48 23 Z" fill="#302019"/>
+                  <path d="M48 37 Q54 33 60 38 L69 76 Q55 84 40 76 Z" fill="#B94F4B" stroke="#6E302A" stroke-width="1.5"/>
+                  <path d="M43 43 L37 59 M60 43 L66 58" stroke="#E5AD86" stroke-width="3.5" stroke-linecap="round"/>
+                  <path d="M44 56 Q54 61 65 56 M42 67 Q55 72 67 67" stroke="#E8C27B" stroke-width="1.6" fill="none"/>
+                  <path d="M46 35 Q54 40 62 35" stroke="#E8C27B" stroke-width="2" fill="none"/>
+                  <circle cx="60" cy="33" r="2" fill="#E8C27B"/>
                 </svg>
               </div>
             </div>
@@ -895,68 +1184,134 @@
           A Journey of Love &amp; Forever
         </h2>
         <p data-i18n="driveDesc" class="text-xs sm:text-sm text-[#1E2A38]/75 mt-2 max-w-md mx-auto">
-          Scroll down as Shubham &amp; Pooja cruise along the sun-drenched Italian coast toward their wedding celebration.
+          Scroll down as Shubham &amp; Pooja drive along a winding seaside promenade toward their wedding celebration.
         </p>
       </div>
 
-      <div class="relative w-full h-[65vh] mt-auto">
-        <svg viewBox="0 0 1440 520" preserveAspectRatio="xMidYMax slice" class="w-full h-full">
+      <div class="relative w-full h-[65vh] mt-auto overflow-hidden" id="coastalDriveScene">
+        <svg viewBox="0 0 1440 620" preserveAspectRatio="xMidYMax slice" class="absolute inset-0 w-full h-full" aria-hidden="true">
           <defs>
-            <radialGradient id="sun3d" cx="35%" cy="35%" r="65%">
-              <stop offset="0%" stop-color="#FFFDF0" />
-              <stop offset="60%" stop-color="#FFE082" />
-              <stop offset="100%" stop-color="#F6B93B" />
-            </radialGradient>
-            <linearGradient id="sea3d" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#2980B9" />
-              <stop offset="100%" stop-color="#1B4F72" />
+            <linearGradient id="coastSky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#A9C5E4"/>
+              <stop offset="48%" stop-color="#E9B6B2"/>
+              <stop offset="100%" stop-color="#F6D6B8"/>
             </linearGradient>
-            <linearGradient id="carBody3d" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#E58264" />
-              <stop offset="55%" stop-color="#C86D51" />
-              <stop offset="100%" stop-color="#8E422B" />
+            <linearGradient id="coastSea" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#9BC9D4"/>
+              <stop offset="100%" stop-color="#5E9EAD"/>
+            </linearGradient>
+            <linearGradient id="coastRoad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#E8E3E8"/>
+              <stop offset="100%" stop-color="#C9C3D2"/>
+            </linearGradient>
+            <linearGradient id="villaYellow" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#FFE29A"/>
+              <stop offset="100%" stop-color="#E8B94F"/>
             </linearGradient>
           </defs>
-          <circle cx="1140" cy="95" r="46" fill="url(#sun3d)" />
-          <path d="M0,260 Q280,150 580,250 T1160,230 L1440,210 L1440,360 L0,360 Z" fill="#9DBB9E" />
-          <g transform="translate(140, 145)">
-            <rect x="0" y="45" width="54" height="65" fill="#F4C095" rx="2" />
-            <polygon points="-4,45 27,25 58,45" fill="#C86D51" />
-            <rect x="48" y="25" width="62" height="85" fill="#F9E2AE" rx="2" />
-            <polygon points="44,25 79,5 114,25" fill="#B55438" />
-            <rect x="104" y="55" width="52" height="55" fill="#E9967A" rx="2" />
-            <ellipse cx="-16" cy="72" rx="9" ry="38" fill="#3E5641" />
-            <ellipse cx="168" cy="75" rx="8" ry="34" fill="#3E5641" />
+
+          <!-- Soft dusk sky and calm sea -->
+          <rect width="1440" height="620" fill="url(#coastSky)"/>
+          <path d="M760 0 H1440 V620 H900 Q1000 470 920 360 Q850 250 760 0Z" fill="url(#coastSea)"/>
+          <path d="M790 300 Q980 285 1140 310 T1440 300 M900 390 Q1080 370 1240 395 T1440 385 M1010 490 Q1170 470 1440 495"
+                fill="none" stroke="#D5EEF0" stroke-width="5" opacity=".48"/>
+
+          <!-- Distant coastal headland -->
+          <path d="M0 190 Q180 115 360 145 Q520 170 700 120 L820 155 L860 260 L0 310Z" fill="#829D83" opacity=".75"/>
+
+          <!-- Promenade-side villas -->
+          <g>
+            <path d="M0 245 L0 150 L175 150 L175 275Z" fill="url(#villaYellow)"/>
+            <path d="M0 150 L88 105 L195 150Z" fill="#C77B57"/>
+            <path d="M185 265 L185 170 L330 170 L330 292Z" fill="#F5D58C"/>
+            <path d="M170 170 L255 125 L345 170Z" fill="#B96F50"/>
+            <path d="M335 288 L335 205 L435 205 L435 310Z" fill="#F1C875"/>
+            <path d="M320 205 L385 170 L450 205Z" fill="#C77B57"/>
+            <g fill="#7C5A45" opacity=".9">
+              <rect x="35" y="185" width="28" height="42" rx="2"/><rect x="100" y="185" width="28" height="42" rx="2"/>
+              <rect x="220" y="200" width="25" height="38" rx="2"/><rect x="280" y="200" width="25" height="38" rx="2"/>
+              <rect x="365" y="225" width="22" height="34" rx="2"/>
+            </g>
+            <g fill="#D7E8E5">
+              <rect x="39" y="189" width="20" height="34"/><rect x="104" y="189" width="20" height="34"/>
+              <rect x="224" y="204" width="17" height="30"/><rect x="284" y="204" width="17" height="30"/>
+              <rect x="369" y="229" width="14" height="26"/>
+            </g>
           </g>
-          <rect x="0" y="305" width="1440" height="105" fill="url(#sea3d)" />
-          <path d="M0,325 Q180,318 360,325 T720,325 T1080,325 T1440,325" stroke="#85C7F2" stroke-width="3" fill="none" />
-          <path d="M80,355 Q260,348 440,355 T800,355 T1160,355" stroke="#85C7F2" stroke-width="2.5" fill="none" />
-          <rect x="0" y="395" width="1440" height="22" fill="#E5D5B7" />
-          <rect x="0" y="417" width="1440" height="103" fill="#3D4249" />
-          <line x1="0" y1="468" x2="1440" y2="468" stroke="#FAF5EC" stroke-width="4" stroke-dasharray="36 28" />
+
+          <!-- Palm trees -->
+          <g stroke="#72533C" stroke-width="10" stroke-linecap="round" fill="none">
+            <path d="M112 335 Q112 245 145 165"/><path d="M270 350 Q270 270 294 205"/>
+            <path d="M420 370 Q420 300 438 245"/>
+          </g>
+          <g fill="#426D4F">
+            <path d="M145 165 Q70 115 40 150 Q93 145 145 165 Q85 75 72 110 Q112 125 145 165 Q138 80 166 88 Q169 125 145 165 Q205 105 220 132 Q188 150 145 165 Q226 166 219 190 Q178 180 145 165Z"/>
+            <path d="M294 205 Q235 165 210 192 Q255 187 294 205 Q248 130 236 158 Q270 174 294 205 Q293 137 315 144 Q316 176 294 205 Q345 160 360 185 Q330 200 294 205 Q355 211 349 230 Q320 218 294 205Z"/>
+            <path d="M438 245 Q390 210 372 231 Q410 229 438 245 Q400 190 389 211 Q415 223 438 245 Q437 198 454 204 Q455 226 438 245 Q477 213 490 233 Q464 242 438 245Z"/>
+          </g>
+
+          <!-- Bright bougainvillea along the promenade -->
+          <path d="M0 330 Q160 285 320 345 T520 350 L540 410 Q330 385 150 420 L0 420Z" fill="#477A4D"/>
+          <g fill="#D94D8D">
+            <circle cx="42" cy="332" r="23"/><circle cx="86" cy="350" r="19"/><circle cx="130" cy="327" r="24"/>
+            <circle cx="178" cy="360" r="22"/><circle cx="225" cy="345" r="24"/><circle cx="275" cy="365" r="20"/>
+            <circle cx="325" cy="350" r="22"/><circle cx="375" cy="378" r="20"/>
+          </g>
+
+          <!-- Curving coastal road, with a clear dashed centre line -->
+          <path d="M690 620 C650 545 720 500 665 440 C610 380 520 400 480 335 C438 265 510 205 390 155"
+                fill="none" stroke="#E9D0A9" stroke-width="330" stroke-linecap="round"/>
+          <path d="M690 620 C650 545 720 500 665 440 C610 380 520 400 480 335 C438 265 510 205 390 155"
+                fill="none" stroke="url(#coastRoad)" stroke-width="314" stroke-linecap="round"/>
+          <path d="M690 620 C650 545 720 500 665 440 C610 380 520 400 480 335 C438 265 510 205 390 155"
+                fill="none" stroke="#FFF9EF" stroke-width="5" stroke-dasharray="30 28" stroke-linecap="round" opacity=".8"/>
+
+          <!-- Rocky shoreline and low sea wall -->
+          <path d="M790 255 Q920 290 930 390 Q930 485 805 545" fill="none" stroke="#D8B18A" stroke-width="20"/>
+          <g fill="#66534D" stroke="#4C4544" stroke-width="4">
+            <ellipse cx="875" cy="300" rx="35" ry="22"/><ellipse cx="910" cy="345" rx="40" ry="27"/>
+            <ellipse cx="895" cy="395" rx="48" ry="28"/><ellipse cx="865" cy="448" rx="42" ry="25"/>
+            <ellipse cx="830" cy="493" rx="36" ry="23"/><ellipse cx="955" cy="390" rx="35" ry="22"/>
+          </g>
+          <g fill="#9B8172" opacity=".75">
+            <ellipse cx="866" cy="294" rx="11" ry="6"/><ellipse cx="900" cy="338" rx="13" ry="7"/>
+            <ellipse cx="884" cy="388" rx="15" ry="8"/><ellipse cx="850" cy="442" rx="12" ry="7"/>
+          </g>
+
+          <!-- Elegant promenade lamps and chain rails -->
+          <g stroke="#26313A" stroke-width="8" stroke-linecap="round" fill="none">
+            <path d="M520 405 L505 285 M680 470 L665 325 M820 520 L805 375"/>
+          </g>
+          <g fill="#24313A">
+            <path d="M490 284 L520 284 L515 267 L495 267Z"/><path d="M650 324 L680 324 L675 307 L655 307Z"/>
+            <path d="M790 374 L820 374 L815 357 L795 357Z"/>
+          </g>
+          <g fill="#FFE5A1">
+            <rect x="498" y="270" width="14" height="16" rx="5"/><rect x="658" y="310" width="14" height="16" rx="5"/>
+            <rect x="798" y="360" width="14" height="16" rx="5"/>
+          </g>
+          <path d="M520 405 Q600 430 680 470 Q750 500 820 520" fill="none" stroke="#3D4249" stroke-width="3" stroke-dasharray="5 5"/>
         </svg>
 
-        <div id="coupleCar" class="absolute bottom-[54px] left-0 w-64 sm:w-80 transition-transform duration-75 ease-out z-20 will-change-transform">
-          <svg viewBox="0 0 320 150" class="w-full drop-shadow-2xl">
-            <ellipse cx="162" cy="138" rx="132" ry="8" fill="rgba(0,0,0,0.35)" />
-            <path d="M122,46 Q72,30 28,48 Q68,54 118,54 Z" fill="#F2D7D0" opacity="0.95" />
-            <circle cx="176" cy="48" r="13" fill="#F4C7A1" />
-            <path d="M164,44 Q176,28 189,44" fill="#1E2A38" />
-            <rect x="162" y="61" width="28" height="24" rx="6" fill="#1E2A38" />
-            <circle cx="136" cy="50" r="12" fill="#F7D1B2" />
-            <path d="M124,48 Q136,30 148,48 L152,72 L120,72 Z" fill="#2C1A12" />
-            <rect x="122" y="62" width="28" height="24" rx="6" fill="#C86D51" />
-            <polygon points="196,76 212,44 218,44 205,76" fill="#DDF2FF" opacity="0.85" />
-            <path d="M32,84 Q42,68 95,72 L225,72 Q278,72 292,92 L292,114 L26,114 Q22,96 32,84 Z" fill="url(#carBody3d)" />
-            <path d="M36,92 L288,92" stroke="#F5DC8E" stroke-width="3" />
-            <rect x="44" y="88" width="66" height="16" rx="3" fill="#FAF5EC" />
-            <text x="77" y="99" text-anchor="middle" font-size="8" font-family="serif" fill="#1E2A38" font-weight="bold">S &amp; P</text>
-            <circle cx="84" cy="116" r="22" fill="#1E2A38" />
-            <circle cx="84" cy="116" r="12" fill="#E5D5B7" />
-            <circle cx="84" cy="116" r="5" fill="#C9A253" />
-            <circle cx="242" cy="116" r="22" fill="#1E2A38" />
-            <circle cx="242" cy="116" r="12" fill="#E5D5B7" />
-            <circle cx="242" cy="116" r="5" fill="#C9A253" />
+        <!-- Small rear-view convertible, travelling up the road -->
+        <div id="coupleCar" class="absolute z-20 w-36 sm:w-44 left-1/2 bottom-0 -ml-[72px] sm:-ml-[88px] will-change-transform">
+          <svg viewBox="0 0 220 150" class="w-full drop-shadow-xl" aria-label="Yellow convertible carrying the couple away along the coastal road">
+            <ellipse cx="110" cy="139" rx="83" ry="7" fill="#3D3540" opacity=".28"/>
+            <!-- couple seen from behind -->
+            <path d="M66 48 Q67 19 92 18 Q113 18 116 48Z" fill="#4A3026"/>
+            <path d="M115 48 Q117 15 145 18 Q169 21 169 50Z" fill="#6A3B2B"/>
+            <path d="M76 43 Q90 28 106 43 L111 76 L70 76Z" fill="#F1D6C7"/>
+            <path d="M126 42 Q145 26 160 45 L168 77 L120 77Z" fill="#E9B8A7"/>
+            <path d="M70 55 Q109 66 166 55 L174 89 L62 89Z" fill="#6A3D2C"/>
+            <!-- open-top yellow body -->
+            <path d="M40 75 Q53 65 75 65 L150 65 Q175 65 186 82 L194 116 Q190 127 174 130 L45 130 Q29 126 27 115 L31 89Z"
+                  fill="#F2C95F" stroke="#9C6B2B" stroke-width="3"/>
+            <path d="M35 91 Q110 100 188 91" fill="none" stroke="#FFE6A0" stroke-width="4"/>
+            <rect x="83" y="103" width="54" height="13" rx="3" fill="#E9D9B7" stroke="#A77A3D" stroke-width="2"/>
+            <rect x="92" y="106" width="36" height="6" rx="2" fill="#A7B9B5"/>
+            <circle cx="48" cy="111" r="7" fill="#B7433E"/><circle cx="174" cy="111" r="7" fill="#B7433E"/>
+            <circle cx="51" cy="128" r="9" fill="#34343A"/><circle cx="169" cy="128" r="9" fill="#34343A"/>
+            <circle cx="51" cy="128" r="4" fill="#C9B9A0"/><circle cx="169" cy="128" r="4" fill="#C9B9A0"/>
           </svg>
         </div>
       </div>
@@ -2342,9 +2697,12 @@
       if (scrollableDistance <= 0) return;
 
       const progress = Math.min(Math.max(-rect.top / scrollableDistance, 0), 1);
-      const maxTravel = window.innerWidth + 320;
-      const translateX = -120 + progress * maxTravel;
-      coupleCar.style.transform = `translateX(${translateX}px)`;
+      const scene = document.getElementById('coastalDriveScene');
+      const sceneHeight = scene ? scene.clientHeight : window.innerHeight * 0.65;
+      const travelY = progress * sceneHeight * 0.48;
+      const travelX = -progress * Math.min(window.innerWidth * 0.24, 180);
+      const scale = 1 - progress * 0.22;
+      coupleCar.style.transform = `translate(${travelX}px, ${-travelY}px) scale(${scale})`;
     }, { passive: true });
 
     // =========================================================
