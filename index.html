@@ -110,13 +110,13 @@
       width: 310px;
       height: 250px;
       transform-style: preserve-3d;
-      transform: rotateX(48deg) rotateZ(-28deg);
+      transform: rotateX(7deg) rotateZ(-3deg);
       transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
       cursor: pointer;
     }
 
     .suitcase-3d.open {
-      transform: rotateX(42deg) rotateZ(-22deg) scale(1.06);
+      transform: rotateX(7deg) rotateZ(-3deg) scale(1.02);
     }
 
     .tap-pulse-ring {
@@ -1022,15 +1022,22 @@
       background: linear-gradient(145deg, #9B5930, #60351F 72%, #482719);
     }
     @media (max-width: 380px) {
-      .suitcase-3d { transform: scale(.91) rotateX(20deg) rotateZ(-8deg); }
-      .suitcase-3d.open { transform: scale(.94) rotateX(17deg) rotateZ(-8deg); }
+      .suitcase-3d { transform: scale(.88) rotateX(7deg) rotateZ(-3deg); }
+      .suitcase-3d.open { transform: scale(.90) rotateX(7deg) rotateZ(-3deg); }
     }
 
-    /* Keep wardrobe cabinet footprint identical in its open and closed states. */
-    #wardrobeCabinet { min-height: 760px; }
-    #wardrobeClosedView { min-height: 720px; display: flex; align-items: center; }
-    #wardrobeClosedView > .relative { width: 100%; }
+    /* Compact wardrobe proportions: the closed doors fill the cabinet frame,
+       while the open state grows naturally to fit its six function drawers. */
+    #wardrobeCabinet { min-height: 0; }
+    #wardrobeClosedView { min-height: 0; display: flex; align-items: stretch; }
+    #wardrobeClosedView > .relative { width: 100%; height: clamp(430px, 57vh, 510px); }
     #wardrobeClosedView.hidden { display: none; }
+    @media (max-width: 640px) {
+      #wardrobeSection { padding-top: 2.75rem; padding-bottom: 2.75rem; }
+      #wardrobeCabinet { padding: 10px; }
+      #wardrobeClosedView > .relative { height: clamp(410px, 54vh, 470px); }
+      .armoire-crown { max-width: 100%; }
+    }
 
   </style>
 </head>
@@ -1188,122 +1195,118 @@
         </p>
       </div>
 
-      <div class="relative w-full h-[65vh] mt-auto overflow-hidden" id="coastalDriveScene">
-        <svg viewBox="0 0 1440 620" preserveAspectRatio="xMidYMax slice" class="absolute inset-0 w-full h-full" aria-hidden="true">
+      <div class="relative w-full h-[62vh] min-h-[420px] max-h-[650px] mt-auto overflow-hidden" id="coastalDriveScene">
+        <svg viewBox="0 0 720 900" preserveAspectRatio="xMidYMid slice"
+             class="absolute inset-0 w-full h-full" aria-hidden="true">
           <defs>
             <linearGradient id="coastSky" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#A9C5E4"/>
-              <stop offset="48%" stop-color="#E9B6B2"/>
-              <stop offset="100%" stop-color="#F6D6B8"/>
+              <stop offset="0" stop-color="#A9C7E5"/>
+              <stop offset=".52" stop-color="#E8B9B6"/>
+              <stop offset="1" stop-color="#F6D9BD"/>
             </linearGradient>
-            <linearGradient id="coastSea" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#9BC9D4"/>
-              <stop offset="100%" stop-color="#5E9EAD"/>
+            <linearGradient id="coastWater" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#A6D3D7"/>
+              <stop offset="1" stop-color="#65A8B7"/>
             </linearGradient>
             <linearGradient id="coastRoad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#E8E3E8"/>
-              <stop offset="100%" stop-color="#C9C3D2"/>
-            </linearGradient>
-            <linearGradient id="villaYellow" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#FFE29A"/>
-              <stop offset="100%" stop-color="#E8B94F"/>
+              <stop offset="0" stop-color="#E9E2E8"/>
+              <stop offset="1" stop-color="#C9C4D3"/>
             </linearGradient>
           </defs>
 
-          <!-- Soft dusk sky and calm sea -->
-          <rect width="1440" height="620" fill="url(#coastSky)"/>
-          <path d="M760 0 H1440 V620 H900 Q1000 470 920 360 Q850 250 760 0Z" fill="url(#coastSea)"/>
-          <path d="M790 300 Q980 285 1140 310 T1440 300 M900 390 Q1080 370 1240 395 T1440 385 M1010 490 Q1170 470 1440 495"
-                fill="none" stroke="#D5EEF0" stroke-width="5" opacity=".48"/>
+          <rect width="720" height="900" fill="url(#coastSky)"/>
+          <path d="M490 0 H720 V900 H565 Q620 740 575 590 Q530 420 490 0Z" fill="url(#coastWater)"/>
+          <path d="M505 270 Q590 250 720 270 M535 390 Q630 372 720 392 M565 540 Q650 520 720 540"
+                fill="none" stroke="#E3F4EF" stroke-width="5" opacity=".5"/>
 
-          <!-- Distant coastal headland -->
-          <path d="M0 190 Q180 115 360 145 Q520 170 700 120 L820 155 L860 260 L0 310Z" fill="#829D83" opacity=".75"/>
+          <!-- Distant green headland -->
+          <path d="M0 260 Q120 190 250 225 Q355 245 500 195 L560 290 L0 390Z"
+                fill="#91A994"/>
 
-          <!-- Promenade-side villas -->
+          <!-- Pastel coastal houses -->
           <g>
-            <path d="M0 245 L0 150 L175 150 L175 275Z" fill="url(#villaYellow)"/>
-            <path d="M0 150 L88 105 L195 150Z" fill="#C77B57"/>
-            <path d="M185 265 L185 170 L330 170 L330 292Z" fill="#F5D58C"/>
-            <path d="M170 170 L255 125 L345 170Z" fill="#B96F50"/>
-            <path d="M335 288 L335 205 L435 205 L435 310Z" fill="#F1C875"/>
-            <path d="M320 205 L385 170 L450 205Z" fill="#C77B57"/>
-            <g fill="#7C5A45" opacity=".9">
-              <rect x="35" y="185" width="28" height="42" rx="2"/><rect x="100" y="185" width="28" height="42" rx="2"/>
-              <rect x="220" y="200" width="25" height="38" rx="2"/><rect x="280" y="200" width="25" height="38" rx="2"/>
-              <rect x="365" y="225" width="22" height="34" rx="2"/>
-            </g>
-            <g fill="#D7E8E5">
-              <rect x="39" y="189" width="20" height="34"/><rect x="104" y="189" width="20" height="34"/>
-              <rect x="224" y="204" width="17" height="30"/><rect x="284" y="204" width="17" height="30"/>
-              <rect x="369" y="229" width="14" height="26"/>
+            <path d="M0 340 L0 255 L118 255 L118 390 L0 420Z" fill="#F3CF7F"/>
+            <path d="M-12 255 L55 210 L132 255Z" fill="#C77E60"/>
+            <path d="M125 365 L125 285 L235 285 L235 405 L125 420Z" fill="#F7DDA2"/>
+            <path d="M112 285 L180 242 L248 285Z" fill="#B96F58"/>
+            <path d="M240 405 L240 330 L330 330 L330 430 L240 440Z" fill="#F0C875"/>
+            <path d="M228 330 L285 294 L343 330Z" fill="#C9825E"/>
+            <g fill="#76918A">
+              <rect x="24" y="292" width="22" height="38"/><rect x="72" y="292" width="22" height="38"/>
+              <rect x="150" y="318" width="20" height="34"/><rect x="194" y="318" width="20" height="34"/>
+              <rect x="263" y="355" width="18" height="30"/>
             </g>
           </g>
 
-          <!-- Palm trees -->
-          <g stroke="#72533C" stroke-width="10" stroke-linecap="round" fill="none">
-            <path d="M112 335 Q112 245 145 165"/><path d="M270 350 Q270 270 294 205"/>
-            <path d="M420 370 Q420 300 438 245"/>
+          <!-- Palms and flowering shrubs -->
+          <g fill="none" stroke="#76533A" stroke-width="9" stroke-linecap="round">
+            <path d="M80 420 Q75 340 105 265"/>
+            <path d="M205 430 Q205 365 226 310"/>
+            <path d="M330 455 Q328 398 345 355"/>
           </g>
-          <g fill="#426D4F">
-            <path d="M145 165 Q70 115 40 150 Q93 145 145 165 Q85 75 72 110 Q112 125 145 165 Q138 80 166 88 Q169 125 145 165 Q205 105 220 132 Q188 150 145 165 Q226 166 219 190 Q178 180 145 165Z"/>
-            <path d="M294 205 Q235 165 210 192 Q255 187 294 205 Q248 130 236 158 Q270 174 294 205 Q293 137 315 144 Q316 176 294 205 Q345 160 360 185 Q330 200 294 205 Q355 211 349 230 Q320 218 294 205Z"/>
-            <path d="M438 245 Q390 210 372 231 Q410 229 438 245 Q400 190 389 211 Q415 223 438 245 Q437 198 454 204 Q455 226 438 245 Q477 213 490 233 Q464 242 438 245Z"/>
+          <g fill="#477653">
+            <path d="M105 265 Q40 220 25 245 Q65 245 105 265 Q65 185 55 210 Q82 230 105 265 Q103 185 128 192 Q132 225 105 265 Q162 215 176 240 Q145 255 105 265 Q176 270 166 290 Q135 278 105 265Z"/>
+            <path d="M226 310 Q175 276 160 296 Q195 294 226 310 Q195 245 183 267 Q208 280 226 310 Q225 254 245 260 Q247 284 226 310 Q270 278 282 300 Q256 309 226 310Z"/>
+            <path d="M345 355 Q305 326 292 343 Q320 342 345 355 Q322 305 312 321 Q333 333 345 355 Q345 314 360 320 Q362 339 345 355 Q380 332 390 348 Q368 355 345 355Z"/>
           </g>
-
-          <!-- Bright bougainvillea along the promenade -->
-          <path d="M0 330 Q160 285 320 345 T520 350 L540 410 Q330 385 150 420 L0 420Z" fill="#477A4D"/>
-          <g fill="#D94D8D">
-            <circle cx="42" cy="332" r="23"/><circle cx="86" cy="350" r="19"/><circle cx="130" cy="327" r="24"/>
-            <circle cx="178" cy="360" r="22"/><circle cx="225" cy="345" r="24"/><circle cx="275" cy="365" r="20"/>
-            <circle cx="325" cy="350" r="22"/><circle cx="375" cy="378" r="20"/>
-          </g>
-
-          <!-- Curving coastal road, with a clear dashed centre line -->
-          <path d="M690 620 C650 545 720 500 665 440 C610 380 520 400 480 335 C438 265 510 205 390 155"
-                fill="none" stroke="#E9D0A9" stroke-width="330" stroke-linecap="round"/>
-          <path d="M690 620 C650 545 720 500 665 440 C610 380 520 400 480 335 C438 265 510 205 390 155"
-                fill="none" stroke="url(#coastRoad)" stroke-width="314" stroke-linecap="round"/>
-          <path d="M690 620 C650 545 720 500 665 440 C610 380 520 400 480 335 C438 265 510 205 390 155"
-                fill="none" stroke="#FFF9EF" stroke-width="5" stroke-dasharray="30 28" stroke-linecap="round" opacity=".8"/>
-
-          <!-- Rocky shoreline and low sea wall -->
-          <path d="M790 255 Q920 290 930 390 Q930 485 805 545" fill="none" stroke="#D8B18A" stroke-width="20"/>
-          <g fill="#66534D" stroke="#4C4544" stroke-width="4">
-            <ellipse cx="875" cy="300" rx="35" ry="22"/><ellipse cx="910" cy="345" rx="40" ry="27"/>
-            <ellipse cx="895" cy="395" rx="48" ry="28"/><ellipse cx="865" cy="448" rx="42" ry="25"/>
-            <ellipse cx="830" cy="493" rx="36" ry="23"/><ellipse cx="955" cy="390" rx="35" ry="22"/>
-          </g>
-          <g fill="#9B8172" opacity=".75">
-            <ellipse cx="866" cy="294" rx="11" ry="6"/><ellipse cx="900" cy="338" rx="13" ry="7"/>
-            <ellipse cx="884" cy="388" rx="15" ry="8"/><ellipse cx="850" cy="442" rx="12" ry="7"/>
+          <path d="M0 435 Q110 400 220 440 T400 450 L410 500 Q230 475 0 520Z" fill="#47764B"/>
+          <g fill="#D94E8B">
+            <circle cx="28" cy="432" r="22"/><circle cx="72" cy="452" r="19"/><circle cx="120" cy="430" r="23"/>
+            <circle cx="166" cy="460" r="20"/><circle cx="214" cy="444" r="23"/><circle cx="265" cy="468" r="19"/>
+            <circle cx="315" cy="458" r="21"/>
           </g>
 
-          <!-- Elegant promenade lamps and chain rails -->
-          <g stroke="#26313A" stroke-width="8" stroke-linecap="round" fill="none">
-            <path d="M520 405 L505 285 M680 470 L665 325 M820 520 L805 375"/>
+          <!-- Promenade curves from the foreground into the distance -->
+          <path d="M170 930 C190 790 320 735 360 630 C405 510 330 465 340 390 C350 320 420 290 455 250"
+                fill="none" stroke="#E8C89B" stroke-width="285" stroke-linecap="round"/>
+          <path d="M170 930 C190 790 320 735 360 630 C405 510 330 465 340 390 C350 320 420 290 455 250"
+                fill="none" stroke="url(#coastRoad)" stroke-width="270" stroke-linecap="round"/>
+          <path d="M170 930 C190 790 320 735 360 630 C405 510 330 465 340 390 C350 320 420 290 455 250"
+                fill="none" stroke="#FFF9F0" stroke-width="5" stroke-dasharray="30 30"
+                stroke-linecap="round" opacity=".9"/>
+
+          <!-- Rock-lined sea edge -->
+          <path d="M500 330 Q600 430 590 560 Q575 700 470 770"
+                fill="none" stroke="#D6B18C" stroke-width="18"/>
+          <g fill="#65534D" stroke="#4B4240" stroke-width="4">
+            <ellipse cx="535" cy="365" rx="36" ry="23"/>
+            <ellipse cx="570" cy="420" rx="42" ry="27"/>
+            <ellipse cx="585" cy="485" rx="44" ry="28"/>
+            <ellipse cx="565" cy="550" rx="42" ry="26"/>
+            <ellipse cx="535" cy="615" rx="38" ry="24"/>
+            <ellipse cx="500" cy="675" rx="34" ry="22"/>
           </g>
-          <g fill="#24313A">
-            <path d="M490 284 L520 284 L515 267 L495 267Z"/><path d="M650 324 L680 324 L675 307 L655 307Z"/>
-            <path d="M790 374 L820 374 L815 357 L795 357Z"/>
+          <g fill="#A58A79" opacity=".7">
+            <ellipse cx="527" cy="359" rx="12" ry="6"/><ellipse cx="560" cy="414" rx="14" ry="7"/>
+            <ellipse cx="576" cy="478" rx="15" ry="8"/><ellipse cx="555" cy="543" rx="14" ry="7"/>
+            <ellipse cx="525" cy="609" rx="12" ry="6"/>
           </g>
-          <g fill="#FFE5A1">
-            <rect x="498" y="270" width="14" height="16" rx="5"/><rect x="658" y="310" width="14" height="16" rx="5"/>
-            <rect x="798" y="360" width="14" height="16" rx="5"/>
+
+          <!-- Traditional promenade lamps, aligned along the road edge -->
+          <g stroke="#29343B" stroke-width="8" stroke-linecap="round">
+            <path d="M245 650 L225 485"/><path d="M375 575 L365 420"/><path d="M455 455 L455 335"/>
           </g>
-          <path d="M520 405 Q600 430 680 470 Q750 500 820 520" fill="none" stroke="#3D4249" stroke-width="3" stroke-dasharray="5 5"/>
+          <g fill="#29343B">
+            <path d="M207 486 L243 486 L237 466 L213 466Z"/>
+            <path d="M347 421 L383 421 L377 401 L353 401Z"/>
+            <path d="M437 336 L473 336 L467 316 L443 316Z"/>
+          </g>
+          <g fill="#FFE4A0">
+            <rect x="216" y="469" width="18" height="19" rx="6"/>
+            <rect x="356" y="404" width="18" height="19" rx="6"/>
+            <rect x="446" y="319" width="18" height="19" rx="6"/>
+          </g>
         </svg>
 
-        <!-- Small rear-view convertible, travelling up the road -->
-        <div id="coupleCar" class="absolute z-20 w-36 sm:w-44 left-1/2 bottom-0 -ml-[72px] sm:-ml-[88px] will-change-transform">
+        <!-- Rear-view convertible; scroll motion carries it up the road -->
+        <div id="coupleCar" class="absolute z-20 w-32 sm:w-40 left-1/2 bottom-[3%] -ml-16 sm:-ml-20 will-change-transform">
           <svg viewBox="0 0 220 150" class="w-full drop-shadow-xl" aria-label="Yellow convertible carrying the couple away along the coastal road">
-            <ellipse cx="110" cy="139" rx="83" ry="7" fill="#3D3540" opacity=".28"/>
-            <!-- couple seen from behind -->
+            <ellipse cx="110" cy="139" rx="83" ry="7" fill="#3D3540" opacity=".25"/>
             <path d="M66 48 Q67 19 92 18 Q113 18 116 48Z" fill="#4A3026"/>
             <path d="M115 48 Q117 15 145 18 Q169 21 169 50Z" fill="#6A3B2B"/>
             <path d="M76 43 Q90 28 106 43 L111 76 L70 76Z" fill="#F1D6C7"/>
             <path d="M126 42 Q145 26 160 45 L168 77 L120 77Z" fill="#E9B8A7"/>
             <path d="M70 55 Q109 66 166 55 L174 89 L62 89Z" fill="#6A3D2C"/>
-            <!-- open-top yellow body -->
             <path d="M40 75 Q53 65 75 65 L150 65 Q175 65 186 82 L194 116 Q190 127 174 130 L45 130 Q29 126 27 115 L31 89Z"
                   fill="#F2C95F" stroke="#9C6B2B" stroke-width="3"/>
             <path d="M35 91 Q110 100 188 91" fill="none" stroke="#FFE6A0" stroke-width="4"/>
@@ -2698,10 +2701,10 @@
 
       const progress = Math.min(Math.max(-rect.top / scrollableDistance, 0), 1);
       const scene = document.getElementById('coastalDriveScene');
-      const sceneHeight = scene ? scene.clientHeight : window.innerHeight * 0.65;
-      const travelY = progress * sceneHeight * 0.48;
-      const travelX = -progress * Math.min(window.innerWidth * 0.24, 180);
-      const scale = 1 - progress * 0.22;
+      const sceneHeight = scene ? scene.clientHeight : window.innerHeight * 0.62;
+      const travelY = progress * sceneHeight * 0.42;
+      const travelX = -progress * Math.min(window.innerWidth * 0.08, 28);
+      const scale = 1 - progress * 0.16;
       coupleCar.style.transform = `translate(${travelX}px, ${-travelY}px) scale(${scale})`;
     }, { passive: true });
 
