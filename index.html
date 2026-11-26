@@ -1551,6 +1551,12 @@
 </head>
 <body class="scroll-locked">
 
+  <!-- Floating music control -->
+  <button id="musicToggle" type="button" onclick="toggleWeddingMusic()" aria-label="Play background music" aria-pressed="false"
+    class="fixed top-4 left-4 z-50 px-3.5 py-2 rounded-full bg-[#1E2A38]/90 text-[#F5DC8E] border border-[#C9A253]/70 shadow-lg backdrop-blur-md text-[10px] sm:text-[11px] font-semibold tracking-[0.12em] uppercase transition-colors hover:bg-[#2B3C50]">
+    Play Music
+  </button>
+
   <!-- Top-Right Quick Language Switcher Pill -->
   <div id="topLangPill" class="fixed top-4 right-4 z-50 flex items-center gap-1 bg-[#1E2A38]/90 text-[#FAF5EC] p-1 rounded-full border border-[#C9A253]/60 shadow-lg backdrop-blur-md text-[11px]">
     <button id="pill-en" onclick="setLanguage('en')" class="px-2.5 py-1 rounded-full font-semibold bg-[#C9A253] text-[#1E2A38] transition-colors">EN</button>
@@ -1677,7 +1683,7 @@
         “Two souls, one heart, and a lifetime of laughter ahead...”
       </p>
 
-      <div class="relative max-w-xs sm:max-w-sm mx-auto my-6">
+      <div class="relative max-w-sm mx-auto my-6">
         <svg viewBox="0 0 120 120" class="w-24 h-24 -top-6 -left-6 absolute z-20 pointer-events-none drop-shadow-md">
           <circle cx="42" cy="45" r="18" fill="#C86D51" opacity="0.95" />
           <circle cx="65" cy="32" r="14" fill="#E5989B" />
@@ -1692,11 +1698,11 @@
           <ellipse cx="76" cy="42" rx="10" ry="5" transform="rotate(-30 76 42)" fill="#4A5D4E" />
         </svg>
 
-        <div class="arch-window aspect-[3/4] flex flex-col items-center justify-end pt-8 px-4">
+        <div class="arch-window aspect-[3/2] flex flex-col items-center justify-center p-2 sm:p-3">
           <img
-            src="./assets/sacred-story-hands.webp"
-            alt="The groom gently holding the bride’s henna-adorned hand"
-            class="w-full h-full object-contain drop-shadow-lg"
+            src="./assets/couple-caricature.jpg"
+            alt="Illustrated caricature of Shubham and Pooja beside a classic white convertible on the coast"
+            class="w-full h-full object-cover rounded-t-[150px] rounded-b-xl drop-shadow-lg"
             loading="lazy"
             decoding="async"
           >
@@ -2840,9 +2846,18 @@
       }
     }
 
+    function updateMusicToggle() {
+      const button = document.getElementById('musicToggle');
+      if (!button) return;
+      button.textContent = isPlaying ? 'Pause Music' : 'Play Music';
+      button.setAttribute('aria-label', isPlaying ? 'Pause background music' : 'Play background music');
+      button.setAttribute('aria-pressed', isPlaying ? 'true' : 'false');
+    }
+
     function playWeddingMusic() {
       if (isPlaying) return;
       isPlaying = true;
+      updateMusicToggle();
       try {
         if (!audioEl) return;
         const playPromise = audioEl.play();
@@ -2853,6 +2868,30 @@
         }
       } catch (err) {
         startSynthMelody();
+      }
+    }
+
+    function pauseWeddingMusic() {
+      isPlaying = false;
+      if (audioEl) audioEl.pause();
+      if (synthInterval) {
+        clearInterval(synthInterval);
+        synthInterval = null;
+      }
+      if (audioCtx && audioCtx.state === 'running') {
+        audioCtx.suspend().catch(() => {});
+      }
+      updateMusicToggle();
+    }
+
+    function toggleWeddingMusic() {
+      if (isPlaying) {
+        pauseWeddingMusic();
+      } else {
+        if (audioCtx && audioCtx.state === 'suspended') {
+          audioCtx.resume().catch(() => {});
+        }
+        playWeddingMusic();
       }
     }
 
