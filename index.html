@@ -1383,6 +1383,108 @@
 
 
 
+
+
+    /* Theme boards: use the supplied full-colour outfit images in the existing
+       hanging bay. Keep the cabinet, drawers, and all interaction geometry intact. */
+    #wardrobeOpenView #wardrobeOutfitStage {
+      display: flex !important;
+      position: absolute !important;
+      inset: 3% 2% 4% !important;
+      width: 96% !important;
+      height: 93% !important;
+      min-height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      z-index: 5 !important;
+      align-items: center !important;
+      justify-content: center !important;
+      overflow: hidden !important;
+      pointer-events: none !important;
+    }
+    #wardrobeOpenView .armoire-interior::before {
+      background: #F6EEDF !important;
+      box-shadow: inset 0 0 12px rgba(90,58,30,.10) !important;
+    }
+    #wardrobeOpenView .wardrobe-theme-board {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      animation: wardrobeOutfitReveal .24s ease-out both;
+    }
+    #wardrobeOpenView .wardrobe-theme-board img {
+      display: block; width: 100%; height: 100%;
+      object-fit: contain; object-position: center;
+      border-radius: 3px;
+      filter: drop-shadow(0 1px 2px rgba(49,30,15,.16));
+    }
+    /* Theme artwork already contains its title and palette; don't cover it with
+       the legacy dress-code caption from the previous SVG-based wardrobe. */
+    #wardrobeOpenView .armoire-interior > .relative.z-10.mt-2 {
+      display: none !important;
+    }
+    #wardrobeOpenView #outfitAura { display: none !important; }
+
+
+    /* Final wardrobe theme layout: keep all theme wording in HTML, not baked into artwork. */
+    #wardrobeOpenView #wardrobeOutfitStage {
+      display:flex !important;
+      position:absolute !important;
+      inset:0 0 27% 0 !important;
+      width:100% !important;
+      height:73% !important;
+      min-height:0 !important;
+      margin:0 !important;
+      padding:0 !important;
+      align-items:center !important;
+      justify-content:center !important;
+      overflow:hidden !important;
+      z-index:5 !important;
+      pointer-events:none !important;
+    }
+    #wardrobeOpenView .wardrobe-theme-board {
+      width:100% !important;
+      height:100% !important;
+      display:flex !important;
+      align-items:center !important;
+      justify-content:center !important;
+    }
+    #wardrobeOpenView .wardrobe-theme-board img {
+      display:block !important;
+      width:100% !important;
+      height:100% !important;
+      object-fit:contain !important;
+      object-position:center !important;
+    }
+    #wardrobeOpenView .armoire-interior > .relative.z-10.mt-2 {
+      display:block !important;
+      position:absolute !important;
+      left:-28% !important;
+      right:auto !important;
+      bottom:0 !important;
+      top:auto !important;
+      width:156% !important;
+      margin:0 !important;
+      padding:4px 7px 3px !important;
+      box-sizing:border-box !important;
+      z-index:9 !important;
+      border-top:1px solid rgba(107,83,64,.28) !important;
+      border-radius:0 0 7px 7px !important;
+      background:rgba(255,248,239,.96) !important;
+      box-shadow:0 1px 4px rgba(65,39,20,.10) !important;
+      text-align:center !important;
+    }
+    #wardrobeOpenView #wardrobeDressCodeTitle {
+      display:block !important;
+      font-size:11px !important;
+      line-height:1.2 !important;
+      margin:0 !important;
+    }
+    #wardrobeOpenView #wardrobeDressCodeDesc {
+      display:block !important;
+      font-size:8.5px !important;
+      line-height:1.2 !important;
+      margin:2px 0 0 !important;
+    }
   </style>
 </head>
 <body class="scroll-locked">
@@ -4483,135 +4585,29 @@
     let wardrobeIsOpen = false;
     let activeWardrobeDrawerIdx = 0;
 
-    const wardrobeOutfits = [
-      // 0: Saath — Green / Colourful Ethnic
-      {
-        groomTop: '#15803D',
-        groomBottom: '#FAF5EC',
-        brideTop: '#16A34A',
-        brideBottom: '#FACC15',
-        auraClass: 'bg-emerald-300',
-        accessoryIcon: '🌿✨🪔'
-      },
-      // 1: Haldi — Pastel / Floral / Traditional
-      {
-        groomTop: '#FEF08A',
-        groomBottom: '#FFFBEB',
-        brideTop: '#FDE047',
-        brideBottom: '#FDBA74',
-        auraClass: 'bg-amber-300',
-        accessoryIcon: '🌼💛📿'
-      },
-      // 2: Sangeet — Glamorous Indian / Indo-Western
-      {
-        groomTop: '#4C1D95',
-        groomBottom: '#1E1B4B',
-        brideTop: '#DB2777',
-        brideBottom: '#F5D0FE',
-        auraClass: 'bg-fuchsia-400',
-        accessoryIcon: '🪩✨💃'
-      },
-      // 3: Baraat — Traditional Indian / Wedding Glam
-      {
-        groomTop: '#FFFDF7',
-        groomBottom: '#FDE68A',
-        brideTop: '#BE123C',
-        brideBottom: '#FDE047',
-        auraClass: 'bg-rose-300',
-        accessoryIcon: '🪭👑🥁'
-      },
-      // 4: Phera — Traditional Indian / Wedding Glam
-      {
-        groomTop: '#FEF3C7',
-        groomBottom: '#F5E8D8',
-        brideTop: '#9F1239',
-        brideBottom: '#FACC15',
-        auraClass: 'bg-red-300',
-        accessoryIcon: '🌸💍🔥'
-      },
-      // 5: Sufi Night — Dark / Classy Evening Wear
-      {
-        groomTop: '#1E293B',
-        groomBottom: '#0F172A',
-        brideTop: '#312E81',
-        brideBottom: '#1E1B4B',
-        auraClass: 'bg-indigo-400',
-        accessoryIcon: '🌙🕯️🎶'
-      }
+    // One shared image theme can serve more than one function. Phera is the
+    // wedding ceremony, so it intentionally shares Theme 4 with Baraat.
+    const wardrobeThemeByEvent = [
+      1, // Saath -> Timeless Tradition
+      2, // Haldi -> Shades of Blue & Pink
+      3, // Sangeet -> Groove in Glitter
+      4, // Baraat -> Sacred Pastels
+      4, // Phera (wedding) -> Sacred Pastels
+      5  // Sufi Night -> Opulent Dark Tones
     ];
 
-    function buildOutfitSvg(styleObj) {
-      return `
-        <div class="wardrobe-outfit-pair">
-          <svg viewBox="0 0 320 190" role="img" aria-label="Groom and bride outfits for the selected wedding function">
-            <defs>
-              <linearGradient id="groomFabric" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="${styleObj.groomTop}" stop-opacity="1"/>
-                <stop offset="1" stop-color="${styleObj.groomBottom}" stop-opacity=".92"/>
-              </linearGradient>
-              <linearGradient id="brideFabric" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="${styleObj.brideTop}"/>
-                <stop offset="1" stop-color="${styleObj.brideBottom}"/>
-              </linearGradient>
-              <linearGradient id="goldTrim" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0" stop-color="#9A6A25"/>
-                <stop offset=".5" stop-color="#F8D98A"/>
-                <stop offset="1" stop-color="#9A6A25"/>
-              </linearGradient>
-              <filter id="garmentShadow" x="-30%" y="-20%" width="160%" height="160%">
-                <feDropShadow dx="0" dy="3" stdDeviation="2.5" flood-color="#3B2118" flood-opacity=".25"/>
-              </filter>
-            </defs>
-            <!-- Hangers -->
-            <g fill="none" stroke="#8B6338" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M79 22 C79 13 91 13 91 22 L57 39 L123 39 Z"/>
-              <path d="M225 22 C225 13 237 13 237 22 L194 39 L268 39 Z"/>
-            </g>
-            <!-- Groom's embroidered sherwani and trousers -->
-            <g filter="url(#garmentShadow)" stroke="#6C492A" stroke-width="1.6" stroke-linejoin="round">
-              <path d="M67 42 L115 42 L130 60 L119 75 L116 132 L66 132 L63 75 L52 60 Z"
-                    fill="url(#groomFabric)"/>
-              <path d="M80 43 L91 55 L102 43 L98 67 L91 75 L84 67 Z" fill="#F8E8C9" stroke-width="1"/>
-              <path d="M91 58 L91 129" stroke="url(#goldTrim)" stroke-width="2.5" fill="none"/>
-              <path d="M72 80 L84 84 M72 92 L84 96 M98 84 L111 80 M98 96 L111 92"
-                    stroke="#EBCB83" stroke-width="1.2" fill="none"/>
-              <path d="M70 132 L91 132 L88 177 L68 177 Z M93 132 L113 132 L116 177 L96 177 Z"
-                    fill="${styleObj.groomBottom}"/>
-              <path d="M67 177 L89 177 M95 177 L118 177" stroke="#8B6338" stroke-width="2"/>
-            </g>
-            <!-- Bride's blouse and full lehenga -->
-            <g filter="url(#garmentShadow)" stroke="#75472F" stroke-width="1.6" stroke-linejoin="round">
-              <path d="M207 43 L244 43 L258 59 L251 76 L241 72 L238 93 L213 93 L210 72 L200 76 L193 59 Z"
-                    fill="url(#brideFabric)"/>
-              <path d="M214 47 Q225 58 237 47 M211 62 Q225 68 241 62"
-                    stroke="url(#goldTrim)" stroke-width="2" fill="none"/>
-              <path d="M213 91 L238 91 L275 169 Q225 184 177 169 Z" fill="url(#brideFabric)"/>
-              <path d="M184 159 Q225 174 269 159 L275 169 Q225 184 177 169 Z"
-                    fill="url(#goldTrim)" stroke-width="1"/>
-              <path d="M198 111 L207 164 M225 101 L225 171 M250 111 L243 164"
-                    stroke="#F8D98A" stroke-width="1.6" opacity=".85" fill="none"/>
-              <path d="M190 137 Q225 146 263 137 M184 153 Q225 164 270 153"
-                    stroke="#F8D98A" stroke-width="1" opacity=".8" fill="none"/>
-            </g>
-            <!-- Tiny gold embroidery motifs -->
-            <g fill="#F8D98A" opacity=".95">
-              <circle cx="77" cy="105" r="1.7"/><circle cx="105" cy="105" r="1.7"/>
-              <circle cx="77" cy="117" r="1.7"/><circle cx="105" cy="117" r="1.7"/>
-              <circle cx="205" cy="125" r="1.8"/><circle cx="245" cy="125" r="1.8"/>
-              <circle cx="214" cy="145" r="1.8"/><circle cx="236" cy="145" r="1.8"/>
-            </g>
-          </svg>
-          <div class="wardrobe-outfit-labels">
-            <span>GROOM</span><span>BRIDE</span>
-          </div>
-          <div class="wardrobe-outfit-accessories">${styleObj.accessoryIcon}</div>
-        </div>
-      `;
-    }
+    const wardrobeThemeAssets = {
+      1: { file: 'wardrobe-theme-1-timeless-tradition.jpg', label: 'Timeless Tradition' },
+      2: { file: 'wardrobe-theme-2-shades-blue-pink.jpg', label: 'Shades of Blue and Pink' },
+      3: { file: 'wardrobe-theme-3-groove-in-glitter.jpg', label: 'Groove in Glitter' },
+      4: { file: 'wardrobe-theme-4-sacred-pastels.jpg', label: 'Sacred Pastels' },
+      5: { file: 'wardrobe-theme-5-opulent-dark-tones.jpg', label: 'Opulent Dark Tones' }
+    };
 
         function renderWardrobeOutfit(idx) {
       const ev = (i18n[currentLang] && i18n[currentLang].events[idx]) || i18n.en.events[idx];
-      const st = wardrobeOutfits[idx] || wardrobeOutfits[0];
+      const themeNumber = wardrobeThemeByEvent[idx] || 1;
+      const theme = wardrobeThemeAssets[themeNumber] || wardrobeThemeAssets[1];
 
       const tagEl = document.getElementById('wardrobeActiveTag');
       const titleEl = document.getElementById('wardrobeDressCodeTitle');
@@ -4622,10 +4618,10 @@
       if (tagEl) tagEl.textContent = `${ev.title.toUpperCase()} • ${ev.shortDate.toUpperCase()}`;
       if (titleEl) titleEl.textContent = ev.dressTheme;
       if (descEl) descEl.textContent = ev.dressTip;
-      if (auraEl) auraEl.className = `w-36 h-36 rounded-full blur-2xl opacity-45 ${st.auraClass} absolute top-6 left-1/2 -translate-x-1/2 pointer-events-none transition-colors duration-300`;
+      if (auraEl) auraEl.classList.add('hidden');
 
       if (stageEl) {
-        stageEl.innerHTML = buildOutfitSvg(st);
+        stageEl.innerHTML = `<div class=\"wardrobe-theme-board\"><img src=\"./assets/${theme.file}\" alt=\"${theme.label} outfit colour theme\" loading=\"eager\" decoding=\"async\"></div>`;
         stageEl.classList.remove('look-showcase-enter');
         void stageEl.offsetWidth;
         stageEl.classList.add('look-showcase-enter');
