@@ -828,6 +828,18 @@
       background: linear-gradient(180deg, #D9E8F5 0%, #FBE8D3 100%);
     }
 
+    .couple-caricature-frame {
+      border-radius: 18px;
+      border: 8px solid #E9DEC9;
+      box-shadow:
+        0 0 0 2px var(--gold),
+        0 24px 50px rgba(30, 42, 56, 0.14),
+        inset 0 6px 18px rgba(0,0,0,0.12);
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(180deg, #D9E8F5 0%, #FBE8D3 100%);
+    }
+
     /* Boarding Pass Cutout Notches */
     .boarding-pass-notch-left,
     .boarding-pass-notch-right {
@@ -1698,11 +1710,11 @@
           <ellipse cx="76" cy="42" rx="10" ry="5" transform="rotate(-30 76 42)" fill="#4A5D4E" />
         </svg>
 
-        <div class="arch-window aspect-[3/2] flex flex-col items-center justify-center p-2 sm:p-3">
+        <div class="couple-caricature-frame aspect-[3/2] flex flex-col items-center justify-center p-2 sm:p-3">
           <img
             src="./assets/couple-caricature.jpg"
             alt="Illustrated caricature of Shubham and Pooja beside a classic white convertible on the coast"
-            class="w-full h-full object-cover rounded-t-[150px] rounded-b-xl drop-shadow-lg"
+            class="w-full h-full object-cover rounded-lg drop-shadow-lg"
             loading="lazy"
             decoding="async"
           >
@@ -2276,6 +2288,10 @@
 
     const i18n = {
       en: {
+        musicPlay: 'Play Music',
+        musicPause: 'Pause Music',
+        musicPlayAria: 'Play background music',
+        musicPauseAria: 'Pause background music',
         togetherFamilies: 'Together With Their Families',
         groomFirst: 'Shubham',
         brideFirst: 'Pooja',
@@ -2434,6 +2450,10 @@
         ]
       },
       hi: {
+        musicPlay: 'संगीत चलाएँ',
+        musicPause: 'संगीत रोकें',
+        musicPlayAria: 'पृष्ठभूमि संगीत चलाएँ',
+        musicPauseAria: 'पृष्ठभूमि संगीत रोकें',
         togetherFamilies: 'परिवारजनों के स्नेह और आशीर्वाद सहित',
         groomFirst: 'शुभम',
         brideFirst: 'पूजा',
@@ -2592,6 +2612,10 @@
         ]
       },
       sd_dev: {
+        musicPlay: 'गीत हलायो',
+        musicPause: 'गीत रोकियो',
+        musicPlayAria: 'पृष्ठभूमि में गीत हलायो',
+        musicPauseAria: 'पृष्ठभूमि में गीत रोकियो',
         togetherFamilies: 'कुटुंब जी दुआउनि ऐं प्यार सां गॾु',
         groomFirst: 'शुभम',
         brideFirst: 'पूजा',
@@ -2779,6 +2803,8 @@
         }
       });
 
+      updateMusicToggle();
+
       const guestNameInput = document.getElementById('guestName');
       if (guestNameInput && dict.fullNamePlaceholder) {
         guestNameInput.placeholder = dict.fullNamePlaceholder;
@@ -2849,8 +2875,9 @@
     function updateMusicToggle() {
       const button = document.getElementById('musicToggle');
       if (!button) return;
-      button.textContent = isPlaying ? 'Pause Music' : 'Play Music';
-      button.setAttribute('aria-label', isPlaying ? 'Pause background music' : 'Play background music');
+      const dict = i18n[currentLang] || i18n.en;
+      button.textContent = isPlaying ? dict.musicPause : dict.musicPlay;
+      button.setAttribute('aria-label', isPlaying ? dict.musicPauseAria : dict.musicPlayAria);
       button.setAttribute('aria-pressed', isPlaying ? 'true' : 'false');
     }
 
