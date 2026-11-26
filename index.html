@@ -1534,6 +1534,12 @@
       #wardrobeOpenView #wardrobeDressCodeTitle { font-size:11.5px !important; }
       #wardrobeOpenView #wardrobeDressCodeDesc { font-size:9px !important; }
     }
+
+    /* Nudge the theme artwork down slightly to close the space left by the
+       caption moving below the drawers. Keep the stage and drawer geometry fixed. */
+    #wardrobeOpenView .wardrobe-theme-board img {
+      transform: translateY(3%) !important;
+    }
   </style>
 </head>
 <body class="scroll-locked">
