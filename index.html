@@ -1540,6 +1540,13 @@
     #wardrobeOpenView .wardrobe-theme-board img {
       transform: translateY(12%) !important;
     }
+
+    /* The downward artwork nudge was being clipped by the stage's own overflow box.
+       Let the image extend below the stage while keeping the wardrobe interior visible. */
+    #wardrobeOpenView #wardrobeOutfitStage,
+    #wardrobeOpenView .wardrobe-theme-board {
+      overflow: visible !important;
+    }
   </style>
 </head>
 <body class="scroll-locked">
